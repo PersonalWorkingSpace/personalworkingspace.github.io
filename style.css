@@ -1,23 +1,39 @@
+:root {
+    --center-width : 800px;
+    --aside-width: 350px;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Lato", "PingFang SC", "Microsoft YaHei", "sans-serif";
     margin: 0;
     padding: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: #f4f4f4;
     color: #333;
-    font-family: "Lato", "PingFang SC", "Microsoft YaHei", "sans-serif"
 }
 
 header {
-    background: #333;
+    background: #424141;
     padding: 1rem 2rem;
     text-align: center;
-    justify-content: center;
     font-family:  "Vollkorn", "serif";
     line-height: 60.75px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+header .wrapper {
+    flex: 1 1 calc(var(--center-width) + 2*var(--aside-width));
+    max-width: calc(var(--center-width) + 2*var(--aside-width));
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #site-logo {
-    display: inline-block;
     font-weight: 800;
     font-size: 29.25px;
     color: #fff;
@@ -25,7 +41,6 @@ header {
 }
 
 nav {
-    display: inline-block;
     text-align: center;
 }
 
@@ -37,33 +52,35 @@ nav a {
 
 .container {
     display: flex;
-    width: 100vw;
-    height: 100vh;
+    flex-flow: row no-wrap;
+    justify-content: center;
+    background-color: #ffffff;
 }
 
 .left-area {
-    width: 20%;
-    background-color: #888282;
+    flex: 2 2 var(--aside-width);
+    max-width: var(--aside-width);
+    margin: 1rem;
+    border: 3px solid rgb(223, 55, 55);
 }
 
 .center-area {
-    width: 60%;
-    background-color: #FFFFFF;
+    flex: 1 1 var(--center-width);
+    max-width: var(--center-width);
+    margin: 1rem;
+    border: 3px solid rgb(43, 179, 38);
 }
 
 .right-area {
-    width: 20%;
-    background-color: #888282;
+    flex: 2 2 var(--aside-width);
+    max-width: var(--aside-width);
+    margin: 1rem;
+    border: 3px solid rgb(35, 48, 168);
 }
-
-
 
 footer {
     text-align: center;
     padding: 1rem;
     background: #333;
-    color: #fff;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    color: #ffffff;
 }
