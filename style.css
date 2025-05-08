@@ -50,6 +50,10 @@ nav a {
     text-decoration: none;
 }
 
+h1 {
+    font-size: 38px;
+}
+
 .container {
     display: flex;
     flex-flow: row no-wrap;
@@ -60,21 +64,21 @@ nav a {
 .left-area {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
-    margin: 1rem;
+    padding: 1rem;
     border: 3px solid rgb(223, 55, 55);
 }
 
 .center-area {
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
-    margin: 1rem;
+    padding: 1rem;
     border: 3px solid rgb(43, 179, 38);
 }
 
 .right-area {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
-    margin: 1rem;
+    padding: 1rem;
     border: 3px solid rgb(35, 48, 168);
 }
 
