@@ -6,6 +6,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="auther" content="MJ CHEN">
         <link href="style.css" rel="stylesheet" type="text/css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css" rel="stylesheet" >
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script>
     </head>
     <body>
         <header class="banner">
@@ -22,28 +25,71 @@
 
         <div class="container">
             <aside class="left-area">
-                <p>這是大綱</p>
+                <!-- <p>這是大綱</p> -->
             </aside>
 
             <main class="center-area">
                 <article class="news">
-                    <h1>HTML初學筆記</h1>
+                    <header class="post-header">
+                        <h1 class="post-title">HTML初學筆記</h1>
+                        <p class="post-meta">
+                            <time datetime="2025-05-11T00:00:00+08:00" itemprop="datePublished"> May 11, 2025 </time>
+                            • Internet NPC
+                        </p>
+                    </header>
+                        
                     <img width="100%" height="400px" src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
-                    <p>還沒想到要寫什麼ㄟ</p>
-                    <p>還沒想到要寫什麼ㄟ</p>
-                    <p>還沒想到要寫什麼ㄟ</p>
-                    <p>還沒想到要寫什麼ㄟ</p>
-                    <p>還沒想到要寫什麼ㄟ</p>
-                    <p>還沒想到要寫什麼ㄟ</p>
+                    <p class="content-paragraph">
+                        歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇筆記會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下<a href="https://developer.mozilla.org/en-US/">MDN</a>看看spec或是詢問AI工具即可。
+                    </p>
+
+                    <section class="L2-section">
+                        <h1 class="section-title">HTML是什麼</h1>
+                        <hr>
+                        <p class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 段落標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個磚塊的形式呈現在文件中，以下是其最基本的架構:</p>
+                        <pre><code class="html">
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+        &lt;head&gt;
+            ...
+        &lt;/head&gt;
+        &lt;body&gt;
+            ...
+        &lt;/body&gt;
+    &lt;/html>
+                        </code></pre>
+                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                    </section>
+
+                    <section class="L2-section">
+                        <h1 class="section-title">常用元件</h1>
+                        <hr>
+                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                    </section>
+
+                    <section class="L2-section">
+                        <h1 class="section-title">範例</h1>
+                        <hr>
+                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                    </section>
+
+                    <section class="L2-section">
+                        <h1 class="section-title">總結</h1>
+                        <hr>
+                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                    </section>
                 </article>
             </main>
 
             <aside class="right-area">
                 <div class="related">
-                    <p>這是系列文章</p>
+                    <!-- <p>這是系列文章</p> -->
                 </div>
                 <div class="tags">
-                    <p>這是相關tag</p>
+                    <!-- <p>這是相關tag</p> -->
                 </div>
             </aside>
 

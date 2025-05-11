@@ -4,27 +4,25 @@
 }
 
 body {
-    font-family: "Lato", "PingFang SC", "Microsoft YaHei", "sans-serif";
+    font-family: genyogothictw, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #f4f4f4;
+    /* width: 100%;  vw includes the scrollbar
+    height: 100vh; */
     color: #333;
 }
 
-header {
+.banner {
     background: #424141;
     padding: 1rem 2rem;
     text-align: center;
-    font-family:  "Vollkorn", "serif";
     line-height: 60.75px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
 }
 
-header .wrapper {
+.wrapper {
     flex: 1 1 calc(var(--center-width) + 2*var(--aside-width));
     max-width: calc(var(--center-width) + 2*var(--aside-width));
     display: flex;
@@ -50,8 +48,20 @@ nav a {
     text-decoration: none;
 }
 
-h1 {
+.post-title {
     font-size: 38px;
+    margin: 0.2rem 0rem 0rem 0rem;
+}
+
+.post-meta {
+    font-size: 15.75px;
+    color: #828282;
+    margin-top: 0rem;
+}
+
+.section-title {
+    font-size: 32px;
+    margin: 3rem 0rem 1rem 0rem;
 }
 
 .container {
@@ -65,26 +75,52 @@ h1 {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
     padding: 1rem;
-    border: 3px solid rgb(223, 55, 55);
+    /* border: 3px solid rgb(223, 55, 55); */
 }
 
 .center-area {
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
     padding: 1rem;
-    border: 3px solid rgb(43, 179, 38);
+    /* border: 3px solid rgb(43, 179, 38); */
 }
 
 .right-area {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
     padding: 1rem;
-    border: 3px solid rgb(35, 48, 168);
+    /* border: 3px solid rgb(35, 48, 168); */
+}
+
+.content-paragraph {
+    font-size: 18px;
+    margin-top: 2rem;
+    line-height: 2rem;
+}
+
+hr {
+    height: 2px;
+    background-color: rgb(46, 48, 49);
 }
 
 footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 1rem;
-    background: #333;
+    background-color: #333;
     color: #ffffff;
+    margin-top: 2rem;
+}
+
+a {
+    color: rgb(98, 149, 216);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.hljs { /* must set font emplicitly when <html lang="zh-Hant-TW"> */
+    font-family:Consolas;
+    font-size: 14px;
 }
