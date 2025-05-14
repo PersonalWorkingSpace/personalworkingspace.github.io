@@ -37,6 +37,10 @@ body {
     font-size: 29.25px;
     color: #fff;
     text-decoration: none;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav {
