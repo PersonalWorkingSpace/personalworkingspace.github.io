@@ -1,6 +1,7 @@
 :root {
     --center-width : 800px;
     --aside-width: 350px;
+    --default-font-size: 18px;
 }
 
 body {
@@ -59,7 +60,7 @@ nav a {
     margin-top: 0rem;
 }
 
-.section-title {
+.L1-section-title {
     font-size: 32px;
     margin: 3rem 0rem 1rem 0rem;
 }
@@ -93,7 +94,7 @@ nav a {
 }
 
 .content-paragraph {
-    font-size: 18px;
+    font-size: var(--default-font-size);
     margin-top: 2rem;
     line-height: 2rem;
 }
@@ -123,4 +124,12 @@ a {
 .hljs { /* must set font emplicitly when <html lang="zh-Hant-TW"> */
     font-family:Consolas;
     font-size: 14px;
+}
+
+code[class=inline] {
+    font-family:Consolas;
+    font-size: var(--default-font-size);
+    background-color: #fffddc;
+    color: rgb(226, 120, 120);
+    font-weight: bold;
 }

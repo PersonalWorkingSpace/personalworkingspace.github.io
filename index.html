@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
     <head>
-        <title>Internet NPC</title>
+        <title>HTML初學筆記</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="auther" content="MJ CHEN">
+        <link href="image/INPC-ICON.png" rel="icon" type="image/x-icon">
         <link href="style.css" rel="stylesheet" type="text/css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css" rel="stylesheet" >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -43,10 +44,10 @@
                         歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇筆記會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下<a href="https://developer.mozilla.org/en-US/">MDN</a>看看spec或是詢問AI工具即可。
                     </p>
 
-                    <section class="L2-section">
-                        <h1 class="section-title">HTML是什麼</h1>
+                    <section class="L1-section">
+                        <h1 class="L1-section-title">HTML是什麼</h1>
                         <hr>
-                        <p class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 段落標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個磚塊的形式呈現在文件中，以下是其最基本的架構:</p>
+                        <p class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 段落標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個標籤的形式呈現在文件中，以下是最基本的架構:</p>
                         <pre><code class="html">
     &lt;!DOCTYPE html&gt;
     &lt;html lang="en"&gt;
@@ -58,25 +59,108 @@
         &lt;/body&gt;
     &lt;/html>
                         </code></pre>
+                        <p class="content-paragraph">
+                            <ul>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;!DOCTYPE html&gt;</code>
+                                        - 這是在告訴系統這個檔案是HTML格式的文件，可以看到他的語法是用&lt;&gt;包起來並自成一個單元，類別屬於單一標籤。
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;html lang="en"&gt;...&lt;/html></code>
+                                        - 與前面不一樣，這邊是由起始標籤&lt;html&gt;與結束標籤&lt;/html&gt;構成，屬於容器標籤，用來標示出文件的內容範圍，屬性lang用來描述網站使用的語言，在瀏覽器搜尋時設定目標語言就會參考這個來過濾。
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;head&gt;... &lt;/head&gt;</code>
+                                        - 標頭檔區域裡面會描述關於此網站的一些相關資訊(metadata)，其中包含編碼方式、文件標題、作者資訊、關鍵字以及其他參考檔案(CSS, Javascript)的位置。
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;body&gt;... &lt;/body&gt;</code>
+                                        - body就是我們網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正內容所撰寫的地方，有些是為了之後的CSS排版方便而創造。
+                                    </p>
+                                </li>
+                            </ul>
+                        </p>
+                        <p class="content-paragraph">
+                            知道框架後，我們需要去了解有哪些標籤能夠塞到head, body來實現我們預期的網頁，下一個章節介紹幾個常用且出現在此網頁上的標籤。
+                        </p>
+                    </section>
+
+                    <section class="L1-section">
+                        <h1 class="L1-section-title">常用標籤</h1>
+                        <hr>
+                        <p class="content-paragraph">
+                            <ul>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;title&gt;...&lt;/title&gt;</code>
+                                        - 使用於head，你在網頁分業顯示的名稱就是定義於此，舉例來說，本網站
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;meta $key=$val&gt;</code>
+                                        - 使用於head，
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;header&gt;... &lt;/header&gt;</code>
+                                        - 使用於body，
+                                    </p>                                  
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;main&gt;... &lt;/main&gt;</code>
+                                        - 使用於body
+                                    </p>                        
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;h1&gt;... &lt;/h1&gt;</code>
+                                        - 使用於body
+                                    </p>                        
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;p&gt;... &lt;/p&gt;</code>
+                                        - 使用於body
+                                    </p>                        
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;img&gt;</code>
+                                        - 使用於body
+                                    </p>                        
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;ul&gt;... &lt;/ul&gt; & &lt;li&gt;... &lt;/li&gt;</code>
+                                        - 使用於body
+                                    </p>                        
+                                </li>
+                            </ul>
+                        </p>
+                        
+                            
                         <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
                     </section>
 
-                    <section class="L2-section">
-                        <h1 class="section-title">常用元件</h1>
+                    <section class="L1-section">
+                        <h1 class="L1-section-title">範例</h1>
                         <hr>
                         <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
                         <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
                     </section>
 
-                    <section class="L2-section">
-                        <h1 class="section-title">範例</h1>
-                        <hr>
-                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
-                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
-                    </section>
-
-                    <section class="L2-section">
-                        <h1 class="section-title">總結</h1>
+                    <section class="L1-section">
+                        <h1 class="L1-section-title">總結</h1>
                         <hr>
                         <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
                         <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
