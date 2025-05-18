@@ -5,6 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="auther" content="MJ CHEN">
+        <meta name="description" content="歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於...。">
+        <meta name="keywords" content="INPC, HTML, 網頁製作">
         <link href="image/INPC-ICON.png" rel="icon" type="image/x-icon">
         <link href="style.css" rel="stylesheet" type="text/css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css" rel="stylesheet" >
@@ -43,15 +45,17 @@
                         </p>
                     </header>
                         
-                    <img width="100%" height="400px" src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
-                    <p class="content-paragraph">
-                        歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇筆記會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下<a href="https://developer.mozilla.org/en-US/">MDN</a>看看spec或是詢問AI工具即可。
-                    </p>
+                    <section class="L1-section">
+                        <img width="100%" height="400px" src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
+                        <p class="content-paragraph">
+                            歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下<a href="https://developer.mozilla.org/en-US/">MDN</a>來看看spec或是詢問AI工具即可。
+                        </p>
+                    </section>
 
                     <section class="L1-section">
                         <h1 class="L1-section-title">HTML是什麼</h1>
                         <hr>
-                        <p class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 段落標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個標籤的形式呈現在文件中，以下是最基本的架構:</p>
+                        <p class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 章節標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個標籤的形式呈現在文件中，以下是最基本的架構:</p>
                         <pre><code class="html">
     &lt;!DOCTYPE html&gt;
     &lt;html lang="en"&gt;
@@ -61,7 +65,7 @@
         &lt;body&gt;
             ...
         &lt;/body&gt;
-    &lt;/html>
+    &lt;/html&gt;
                         </code></pre>
                         <p class="content-paragraph">
                             <ul>
@@ -79,14 +83,14 @@
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        <code class="inline">&lt;head&gt;... &lt;/head&gt;</code>
+                                        <code class="inline">&lt;head&gt;...&lt;/head&gt;</code>
                                         - 標頭檔區域裡面會描述關於此網站的一些相關資訊(metadata)，其中包含編碼方式、文件標題、作者資訊、關鍵字以及其他參考檔案(CSS, Javascript)的位置。
                                     </p>
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        <code class="inline">&lt;body&gt;... &lt;/body&gt;</code>
-                                        - body就是我們網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正內容所撰寫的地方，有些是為了之後的CSS排版方便而創造。
+                                        <code class="inline">&lt;body&gt;...&lt;/body&gt;</code>
+                                        - body就是網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正顯示出來的內容，有些是為了之後的CSS排版方便而創造。
                                     </p>
                                 </li>
                             </ul>
@@ -104,70 +108,202 @@
                                 <li>
                                     <p class="content-paragraph">
                                         <code class="inline">&lt;title&gt;...&lt;/title&gt;</code>
-                                        - 使用於head，你在網頁分業顯示的名稱就是定義於此，舉例來說，本網站
+                                        - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是"HTML初學筆記"。
                                     </p>
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
                                         <code class="inline">&lt;meta $key=$val&gt;</code>
-                                        - 使用於head，
+                                        - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:
+                                        <ul>
+                                            <li>
+                                                <p class="content-paragraph">
+                                                    <code class="prop">charset="UTF-8"</code>
+                                                    - 定義HTML文件的編碼方式，UTF-8能支援絕大部分的文字編碼並且維持相對較小的編碼長度，且大部分的瀏覽器都有支援，因此被廣泛採用。
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="content-paragraph">
+                                                    <code class="prop">name="viewport" content="width=device-width, initial-scale=1.0"</code>
+                                                    - 設定可視區域，主要是為了手機等行動裝置設定的，網頁要讓不同尺寸的螢幕都能正常顯示需要下點功夫，而這邊定義了兩個屬性: 指定螢幕寬度為裝置寬度，畫面初始縮放比例為100%。
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="content-paragraph">
+                                                    <code class="prop">name="description" content="XXX"</code>
+                                                    - 提供關於網頁的描述給瀏覽器顯示，就是搜尋時顯示在標題底下的那一小段文字，可以寫點吸人眼球的內容。
+                                                </p>
+                                            </li>
+                                        </ul>
                                     </p>
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        <code class="inline">&lt;header&gt;... &lt;/header&gt;</code>
-                                        - 使用於body，
+                                        <code class="inline">&lt;header&gt;...&lt;/header&gt;</code>
+                                        - 使用於body，與前面的head不同，這裡指的是顯示在文件最上方頁首區域，也就是網頁logo以及連結&lt;nav&gt;呈現的地方。
                                     </p>                                  
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        <code class="inline">&lt;main&gt;... &lt;/main&gt;</code>
-                                        - 使用於body
+                                        <code class="inline">&lt;main&gt;...&lt;/main&gt;</code>
+                                        - 使用於body，主要顯示內容的地方，內部會再細分成多個&lt;section&gt;, &lt;aside&gt;, &lt;article&gt;，用以呈現大小章節。
                                     </p>                        
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        <code class="inline">&lt;h1&gt;... &lt;/h1&gt;</code>
-                                        - 使用於body
+                                        <code class="inline">&lt;h1&gt;...&lt;/h1&gt;</code>
+                                        - 使用於body，定義出章節的標題，本章節的標題為"常用標籤"，根據預設字體尺寸由大到小又可分成h1~h6，如果寫在不同層級的section，也會顯示出不一樣的大小。
                                     </p>                        
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        <code class="inline">&lt;p&gt;... &lt;/p&gt;</code>
-                                        - 使用於body
+                                        <code class="inline">&lt;p&gt;...&lt;/p&gt;</code>
+                                        - 使用於body，定義出章節的段落 (paragraph)，也就是內文撰寫的地方，將一段文字包在一個區間並提供段落之間的間距控制等，文章內不可或缺的標籤。
                                     </p>                        
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        <code class="inline">&lt;img&gt;</code>
-                                        - 使用於body
+                                        <code class="inline">&lt;img $key=$val&gt;</code>
+                                        - 使用於body，用以在網頁中顯示圖片，具備多種屬性可以設定，常見:
+                                         <ul>
+                                            <li>
+                                                <p class="content-paragraph">
+                                                    <code class="prop">width="XXXpx"</code>
+                                                    - 設定圖片的寬度，單位px，設定寬度後，高度會等比例調整，所以會跟height二選一，兩個同時設定的話則會得到失真的圖片。
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="content-paragraph">
+                                                    <code class="prop">src="XXX"</code>
+                                                    - 設定圖片來源，可以提供一段網址(ex: unsplash)，或是網站伺服器本地圖片。
+                                                </p>
+                                            </li>
+                                            <li>
+                                                <p class="content-paragraph">
+                                                    <code class="prop">alt="XXX"</code>
+                                                     - 當圖片顯示不出來時 (網址過期、圖檔遭刪、格式不支援) 就會改顯示此文字，至少能讓人知道本來要顯示什麼。
+                                                </p>
+                                            </li>
+                                        </ul>
                                     </p>                        
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
                                         <code class="inline">&lt;ul&gt;... &lt;/ul&gt; & &lt;li&gt;... &lt;/li&gt;</code>
-                                        - 使用於body
+                                        - 使用於body，呈現項目符號  (bullet)，也就是本章節的那些黑色小圓圈，ul定義出項目的範圍，每組li則是一個項目，所以整個格式會是:
+                                        <pre><code class="html">
+    &lt;ul&gt;
+        &lt;li&gt;...&lt;/li&gt; &lt;!--項目1--&gt;
+        &lt;li&gt;...&lt;/li&gt; &lt;!--項目2--&gt;
+        &lt;li&gt;...&lt;/li&gt; &lt;!--項目3--&gt;
+    &lt;/ul&gt;
+                        </code></pre>
+
                                     </p>                        
                                 </li>
                             </ul>
                         </p>
                         
                             
-                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                        <p class="content-paragraph">
+                            值得注意的是，header, main, aside等標籤並不會真的影響網頁的呈現，使用他們是為了之後的排版以及程式語意上的維護，讓其他開發人員或是搜索引擎更好了解這份HTML，所以還是別拿石頭砸自己的腳，照常見的方式去使用這些標籤，對於日後的維運會更方便!!!
+                        </p>
+                        <p class="note">
+                            尤其等之後學到CSS，還能把段落標籤搞得跟標題標籤一樣外觀，但真的沒必要阿XD
+                        </p>
                     </section>
 
                     <section class="L1-section">
                         <h1 class="L1-section-title">範例</h1>
                         <hr>
-                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
-                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                        <p class="content-paragraph">
+                            在了解HTML文件的架構以及標籤後，可能還是不曉得要怎樣去運用這些標籤寫出一份網頁，因此這個章節要來實際描述一下本網站的HTML架構來供讀者參考，下圖為本網站簡化後的架構:
+                        </p>
+                        <p>
+                            <img width="100%" src="image\web-001_html-arch.png" alt="此網站的架構圖">
+                            <p class="content-paragraph">
+                                基本上都是用前面提過的標籤搭建，整個網頁可以分成五大區塊: 
+                                <ul>
+                                    <li>
+                                        <p class="content-paragraph">
+                                            <b>頁首</b>: 放置連結與logo、網站名稱等資訊。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="content-paragraph">
+                                            <b>頁尾</b>: 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="content-paragraph">
+                                            <b>左側欄位</b>: 提供文章章節以及閱讀進度等。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="content-paragraph">
+                                            <b>右側欄位</b>: 提供news或推薦相關文章等。
+                                        </p>
+                                    </li>
+                                    <li>
+                                        <p class="content-paragraph">
+                                            <b>主要內文</b>: 以多個section組成，每個section又包含一個title/image加上多個paragraph。
+                                        </p>
+                                    </li>
+                                </ul>
+                            </p>
+                        </p>
+
+                        <p class="content-paragraph">
+                            底下提供此架構的HTML程式碼，建議讀者可以下載或是複製成一個HTML檔案 (ex: index.html)，然後用瀏覽器開啟後，你就會發現......整個跟這個網頁一點也不像XDD，甚至連架構都跟上面的圖不一樣，這是因為沒有適當的排版/美化，也就是下一篇要介紹的CSS負責處理的。
+                            <p class="note">也許你有注意到&lt;div&gt;標籤，他雖然沒有語意上的意義，但他可是排版用神器!!!</p>
+                            <pre><code class="html">
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="zh-Hant-TW"&gt;
+        &lt;head&gt;
+            &lt;title&gt;MyWeb&lt;/title&gt; &lt;!--網頁名稱--&gt;
+            &lt;meta charset="UTF-8"&gt;
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;header&gt; &lt;!--頁首區域--&gt;
+                &lt;h1&gt; Header &lt;/h1&gt;
+            &lt;/header&gt;
+            &lt;div&gt;
+                &lt;aside&gt; &lt;!--左側區域--&gt;
+                    &lt;h1&gt; Aside &lt;/h1&gt;
+                &lt;/aside&gt;
+                
+                &lt;main&gt;  &lt;!--主要內文區域--&gt;
+                    &lt;h1&gt;Title&lt;/h1&gt;
+                    &lt;section&gt; &lt;!--介紹，顯示一張lego圖片--&gt;
+                        &lt;img width="200px" src="https://images.unsplash.com/photo-1560961911-a21c4f35443f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="這是一張lego積木"&gt;
+                        &lt;p&gt; Paragraph Introduce &lt;/p&gt;
+                    &lt;/section&gt;
+
+                    &lt;section&gt; &lt;!--第一段落--&gt;
+                        &lt;h1&gt;Section Title 1&lt;/h1&gt;
+                        &lt;p&gt;Paragraph 1&lt;/p&gt;
+                        &lt;p&gt;Paragraph 2&lt;/p&gt;
+                    &lt;/section&gt;
+                &lt;/main&gt;
+
+                &lt;aside&gt; &lt;!--右側區域--&gt;
+                    &lt;h1&gt; Aside &lt;/h1&gt;
+                &lt;/aside&gt;
+            &lt;/div&gt;
+            &lt;footer&gt; &lt;!--頁尾區域--&gt;
+                &lt;h1&gt;Footer&lt;/h1&gt;
+            &lt;/footer&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;
+                            </code></pre>
+                        </p>
                     </section>
 
                     <section class="L1-section">
                         <h1 class="L1-section-title">總結</h1>
                         <hr>
-                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
-                        <p class="content-paragraph">還沒想到要寫什麼ㄟ</p>
+                        <p class="content-paragraph">本篇筆記簡短介紹了HTML做為網頁建材的角色，以及其基本語法-名為標籤的無數磚頭: &lt;h1&gt;, &lt;p&gt;, &lt;img&gt;等等，讀者可以嘗試去搭建自己的網頁架構，想想看要有哪些區塊以及內容要寫些什麼 (這可能才是最難的XD)，也可以拿上面的範例去練習: 改一下內文、標題、增減章節數量，下一篇章會介紹CSS來把這些建材擺到正確的位置並進行美化，讓網頁更接近心中的樣子。
                     </section>
                 </article>
             </main>

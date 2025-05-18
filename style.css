@@ -2,6 +2,7 @@
     --center-width : 800px;
     --aside-width: 350px;
     --default-font-size: 18px;
+    --note-font-size: 18px;
 }
 
 body {
@@ -97,10 +98,21 @@ nav a {
     /* border: 3px solid rgb(35, 48, 168); */
 }
 
-.content-paragraph {
+p.content-paragraph {
     font-size: var(--default-font-size);
     margin-top: 2rem;
     line-height: 2rem;
+}
+
+p.note {
+    font-size: var(--note-font-size);
+    margin-top: 0.5rem;
+    line-height: 1rem;
+    color: rgb(167, 165, 165);
+}
+
+p.note::before {
+    content: "Note: ";
 }
 
 hr {
@@ -117,6 +129,7 @@ footer {
     background-color: #333;
     color: #ffffff;
     margin-top: 2rem;
+    padding: 5rem;
 }
 
 a {
@@ -135,5 +148,13 @@ code[class=inline] {
     font-size: var(--default-font-size);
     background-color: #fffddc;
     color: rgb(226, 120, 120);
+    font-weight: bold;
+}
+
+code[class=prop] {
+    font-family:Consolas;
+    font-size: var(--default-font-size);
+    background-color: #565568;
+    color: rgb(166, 214, 169);
     font-weight: bold;
 }
