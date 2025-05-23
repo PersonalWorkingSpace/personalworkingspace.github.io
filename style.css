@@ -84,6 +84,10 @@ nav a {
     /* border: 3px solid rgb(223, 55, 55); */
 }
 
+#agenda {
+    list-style: none;
+}
+
 .center-area {
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
