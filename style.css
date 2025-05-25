@@ -3,6 +3,7 @@
     --aside-width: 350px;
     --default-font-size: 18px;
     --note-font-size: 18px;
+    --color-bg-base-reverse: 0 0% 100%;
 }
 
 body {
@@ -12,6 +13,7 @@ body {
     /* width: 100%;  vw includes the scrollbar
     height: 100vh; */
     color: #333;
+    font-size: 24px;
 }
 
 .banner {
@@ -56,6 +58,7 @@ nav a {
 
 .post-title {
     font-size: 38px;
+    line-height: 38px;
     margin: 0.2rem 0rem 0rem 0rem;
 }
 
@@ -77,25 +80,75 @@ nav a {
     background-color: #ffffff;
 }
 
-.left-area {
+#left-area {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
     padding: 1rem;
     /* border: 3px solid rgb(223, 55, 55); */
 }
 
-#agenda {
-    list-style: none;
+#agenda-wrapper {
+    position: sticky;
+    width: 80%;
+    top: 10px;
 }
 
-.center-area {
+.agenda-title {
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 38px;
+    margin: 0.2rem 0rem 0rem 0rem;
+}
+
+#agenda {
+    list-style: none;
+    font-size: var(--default-font-size);
+    margin: 1rem 0rem 1rem 0rem;
+    padding: 0rem;
+}
+
+#agenda li {
+    width: 100%;
+    padding-left: 1rem;
+}
+
+#agenda .focus-section {
+    border-left: 5px solid rgb(31, 203, 234);
+    background-color: rgba(83, 216, 216, 0.5);
+    font-weight: 700;
+}
+
+#agenda .non-focus-section {
+    border-left: 5px solid rgb(218, 226, 228);
+    background-color: rgba(255, 255, 255, 0);
+    font-weight: 400;
+}
+
+a {
+    color: rgb(98, 149, 216);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+#agenda .focus-section a {
+    color:rgb(77, 75, 73);
+    font-weight: 400;
+}
+
+#agenda .non-focus-section a {
+    color:rgb(86, 84, 82);
+    font-weight: 300;
+}
+
+
+#center-area {
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
     padding: 1rem;
     /* border: 3px solid rgb(43, 179, 38); */
 }
 
-.right-area {
+#right-area {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
     padding: 1rem;
@@ -134,12 +187,6 @@ footer {
     color: #ffffff;
     margin-top: 2rem;
     padding: 5rem;
-}
-
-a {
-    color: rgb(98, 149, 216);
-    text-decoration: none;
-    font-weight: 600;
 }
 
 .hljs { /* must set font emplicitly when <html lang="zh-Hant-TW"> */

@@ -32,14 +32,17 @@
         </header>
 
         <div class="container">
-            <aside class="left-area">  <!-- 這是大綱 -->
-                <ul id="agenda" >
-
-                </ul>
+            <aside id="left-area">  <!-- 這是大綱 -->
+                <div id="agenda-wrapper">
+                    <h1 class="agenda-title">In this article</h1>
+                    <ol id="agenda" >
+                    </ol>
+                </div>
+                
             </aside>
 
-            <main class="center-area">
-                <article class="news">
+            <main id="center-area">
+                <article id="main-content">
                     <header class="post-header">
                         <h1 class="post-title">HTML初學筆記</h1>
                         <p class="post-meta">
@@ -306,12 +309,12 @@
                     <section class="L1-section">
                         <h1 class="L1-section-title">總結</h1>
                         <hr>
-                        <p class="content-paragraph">本篇筆記簡短介紹了HTML做為網頁建材的角色，以及其基本語法-名為標籤的無數磚頭: &lt;h1&gt;, &lt;p&gt;, &lt;img&gt;等等，讀者可以嘗試去搭建自己的網頁架構，想想看要有哪些區塊以及內容要寫些什麼 (這可能才是最難的XD)，也可以拿上面的範例去練習: 改一下內文、標題、增減章節數量，下一篇章會介紹CSS來把這些建材擺到正確的位置並進行美化，讓網頁更接近心中的樣子。
+                        <p class="content-paragraph">本篇筆記簡短介紹了HTML做為網頁建材的角色，以及其基本語法-名為標籤的無數磚頭: &lt;h1&gt;, &lt;p&gt;, &lt;img&gt;等等，讀者可以嘗試去搭建自己的網頁架構，想想看要有哪些區塊以及內容要寫些什麼 (這可能才是最難的XD)，也可以拿上面的範例去練習: 改一下內文、標題、增減章節數量，下一篇章會介紹CSS來把這些建材擺到正確的位置並進行美化，讓網頁更接近心中的樣子。</p>
                     </section>
                 </article>
             </main>
 
-            <aside class="right-area">
+            <aside id="right-area">
                 <div class="related">
                     <!-- <p>這是系列文章</p> -->
                 </div>

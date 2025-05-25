@@ -1,37 +1,60 @@
 window.onload = function() {
     updateAgenda();
+    updateReadProgress();
 }
 
 window.addEventListener('scroll', function() {
-    fixAgendaPosition();
+    updateReadProgress();
 })
 
 
 // Generate agenda
 function updateAgenda() {
-    sectionTitles = document.getElementsByClassName("L1-section-title");
+    let sectionTitles = document.getElementsByClassName("L1-section-title");
     let agenda = document.getElementById("agenda");
     
     for (let i = 0; i < sectionTitles.length; i++) {
-        var title = sectionTitles[i];
-        var newNode = document.createElement("li");
-        var nodeText = document.createTextNode(title.innerHTML);
-        newNode.appendChild(nodeText);
+        let title = sectionTitles[i];
+        let newNode = document.createElement("li");
+        let anchor = createAnchor(title.innerHTML, "#" + title.innerHTML);
+
+        title.setAttribute("id", title.innerHTML);
+        newNode.appendChild(anchor);
         agenda.appendChild(newNode);
     }
 }
 
-// Fix agenda position after scrolling below header
+function createAnchor(text, link) {
+    let anchor = document.createElement("a");
+    anchor.innerText = text;
+    anchor.setAttribute("href", link);
+    return anchor;
+}
 
-function fixAgendaPosition() {
-    let agenda = document.getElementById("agenda");
-    if (window.scrollY > agenda.offsetTop) {
-        agenda.style.color = "red";
-        agenda.style.position = "fixed";
-        agenda.style.top = "0";
+
+// Update agenda section status to display read progress
+function updateReadProgress() {
+    let sectionTitles = document.getElementsByClassName("L1-section-title");
+    let bullets = document.querySelectorAll("#agenda > li");
+    let scrolly = window.scrollY;
+    console.log(scrolly, document.querySelector("#main-content").scrollHeight);
+    
+    for (let i = 0; i < sectionTitles.length - 1; i++) {
+        let bullet = bullets[i];                 
+        let section = sectionTitles[i];
+        let nextSection = sectionTitles[i + 1];
+        if (scrolly >= section.offsetTop && scrolly < nextSection.offsetTop) {
+            bullet.className = "focus-section";
+        } else {
+            bullet.className = "non-focus-section";
+        }
+    }
+
+    let lastSection = sectionTitles[sectionTitles.length - 1];
+    let lastBullet = bullets[sectionTitles.length - 1];
+    if (scrolly >= lastSection.offsetTop) {
+        lastBullet.className = "focus-section";
     } else {
-        agenda.style.color = "black";
-        agenda.style.position = "";
-        agenda.style.top = "0";
+        lastBullet.className = "non-focus-section";
     }
 }
