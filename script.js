@@ -7,14 +7,19 @@ window.addEventListener('scroll', function() {
     updateReadProgress();
 })
 
+function getTitles() {
+    let postTitles = Array.from(document.getElementsByClassName("post-title"));
+    let sectionTitles = Array.from(document.getElementsByClassName("L1-section-title"));
+    return postTitles.concat(sectionTitles);
+}
 
 // Generate agenda
 function updateAgenda() {
-    let sectionTitles = document.getElementsByClassName("L1-section-title");
     let agenda = document.getElementById("agenda");
-    
-    for (let i = 0; i < sectionTitles.length; i++) {
-        let title = sectionTitles[i];
+
+    titles = getTitles();
+    for (let i = 0; i < titles.length; i++) {
+        let title = titles[i];
         let newNode = document.createElement("li");
         let anchor = createAnchor(title.innerHTML, "#" + title.innerHTML);
 
@@ -34,25 +39,33 @@ function createAnchor(text, link) {
 
 // Update agenda section status to display read progress
 function updateReadProgress() {
-    let sectionTitles = document.getElementsByClassName("L1-section-title");
+    let titles = getTitles();
     let bullets = document.querySelectorAll("#agenda > li");
     let scrolly = window.scrollY;
-    console.log(scrolly, document.querySelector("#main-content").scrollHeight);
+
+    let reachTop = false;
+    let reachBottom = false;
+    if (scrolly < titles[0].offsetTop) {
+       reachTop = true;
+    } else if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+        reachBottom = true;
+    }
     
-    for (let i = 0; i < sectionTitles.length - 1; i++) {
+    for (let i = 0; i < titles.length - 1; i++) {
         let bullet = bullets[i];                 
-        let section = sectionTitles[i];
-        let nextSection = sectionTitles[i + 1];
-        if (scrolly >= section.offsetTop && scrolly < nextSection.offsetTop) {
+        let title = titles[i];
+        let nextTitle = titles[i + 1];
+        if (i == 0 && reachTop || 
+            scrolly >= title.offsetTop && scrolly < nextTitle.offsetTop && !reachBottom) {
             bullet.className = "focus-section";
         } else {
             bullet.className = "non-focus-section";
         }
     }
 
-    let lastSection = sectionTitles[sectionTitles.length - 1];
-    let lastBullet = bullets[sectionTitles.length - 1];
-    if (scrolly >= lastSection.offsetTop) {
+    let lastTitle = titles[titles.length - 1];
+    let lastBullet = bullets[titles.length - 1];
+    if (scrolly >= lastTitle.offsetTop || reachBottom) {
         lastBullet.className = "focus-section";
     } else {
         lastBullet.className = "non-focus-section";
