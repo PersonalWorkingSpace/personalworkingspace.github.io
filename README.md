@@ -7,12 +7,12 @@
 * 2025/05/18 完成第一篇文章
 
 ## TODO
+* tag系統
 * light box for click figure
 * code copy function
 * code download
-* 大綱系統
-* tag系統
 * 標頭只在上滾顯示
 * 閱讀進度系統
 * RWD & boostrap5
 * CSS參數化
+* round corner

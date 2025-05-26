@@ -46,11 +46,11 @@ body {
     align-items: center;
 }
 
-nav {
+#site-nav {
     text-align: center;
 }
 
-nav a {
+#site-nav a {
     color: #fff;
     margin: 0 1rem;
     text-decoration: none;
@@ -63,9 +63,20 @@ nav a {
 }
 
 .post-meta {
-    font-size: 15.75px;
-    color: #828282;
-    margin-top: 0rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: left;
+    font-size: 16px;
+    color: #9b9c9c;
+    margin: 0.75rem 0rem;
+}
+
+a[class=tag] {
+    background-color: rgb(137, 141, 141);
+    color: rgb(255, 255, 255);
+    border-radius: 0.35rem;
+    padding: 0rem 0.3rem;
+    font-weight: 400;
 }
 
 .L1-section-title {
@@ -108,18 +119,19 @@ nav a {
 }
 
 #agenda li {
-    width: 100%;
+    width: 80%;
     padding-left: 1rem;
 }
 
 #agenda .focus-section {
-    border-left: 5px solid rgb(31, 203, 234);
+    border-left: 3px solid rgb(31, 203, 234);
     background-color: rgba(83, 216, 216, 0.5);
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
     font-weight: 700;
 }
 
 #agenda .non-focus-section {
-    border-left: 5px solid rgb(218, 226, 228);
+    border-left: 3px solid rgb(218, 226, 228);
     background-color: rgba(255, 255, 255, 0);
     font-weight: 400;
 }
