@@ -1,4 +1,8 @@
+import { colorCode } from './module/colorization.js';
+
 window.onload = function() {
+    updateCategory();
+    updateTag();
     updateAgenda();
     updateReadProgress();
 }
@@ -13,11 +17,43 @@ function getTitles() {
     return postTitles.concat(sectionTitles);
 }
 
+// Generate category
+function updateCategory() {
+    let url = decodeURIComponent(window.location.href);
+    let category = url.split("/category/")[1].split("/")[0];
+    let bar = document.getElementById("category-bar");
+    let anchor = createAnchor(category, "#");
+    anchor.setAttribute("class", "tag");
+    anchor.style.color = colorCode[category]["font"];
+    anchor.style.backgroundColor = colorCode[category]["bg"];
+    bar.appendChild(anchor);
+}
+
+// Generate tag
+function updateTag() {
+    let bar = document.getElementById("tag-bar");
+    let tags = document.querySelector('meta[name="keywords"]').content
+    let taglist = tags.split(",")
+    
+    for (let i = 0; i < taglist.length; i++) {
+        let tag = taglist[i].trim();
+        let anchor = createAnchor(tag, "#");
+        anchor.setAttribute("class", "tag");
+        anchor.style.color = colorCode[tag]["font"];
+        anchor.style.backgroundColor = colorCode[tag]["bg"];
+        bar.appendChild(anchor);
+        if (i != taglist.length - 1) {
+            let textNode = document.createTextNode(" ");
+            bar.appendChild(textNode);
+        }
+    }
+}
+
 // Generate agenda
 function updateAgenda() {
     let agenda = document.getElementById("agenda");
 
-    titles = getTitles();
+    let titles = getTitles();
     for (let i = 0; i < titles.length; i++) {
         let title = titles[i];
         let newNode = document.createElement("li");
@@ -42,6 +78,11 @@ function updateReadProgress() {
     let titles = getTitles();
     let bullets = document.querySelectorAll("#agenda > li");
     let scrolly = window.scrollY;
+
+    // agenda hasn't be generated
+    if (bullets.length == 0) {
+        return;
+    }
 
     let reachTop = false;
     let reachBottom = false;

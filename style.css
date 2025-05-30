@@ -72,8 +72,6 @@ body {
 }
 
 a[class=tag] {
-    background-color: rgb(137, 141, 141);
-    color: rgb(255, 255, 255);
     border-radius: 0.35rem;
     padding: 0rem 0.3rem;
     font-weight: 400;

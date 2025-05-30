@@ -5,9 +5,9 @@
 * 2025/05/03 大致框架完成
 * 2025/05/11 開始撰寫第一篇文章
 * 2025/05/18 完成第一篇文章
+* 2025/05/30 完成category, tag system
 
 ## TODO
-* tag系統
 * light box for click figure
 * code copy function
 * code download
