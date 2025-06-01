@@ -71,7 +71,9 @@ const Pages = [ // order by created date
 ];
 
 const Categories = {
-    "網頁設計": ["HTML初學筆記.html"]
+    "網頁設計": ["HTML初學筆記.html"],
+    "HTML": ["HTML初學筆記.html"],
+    "初學筆記": ["HTML初學筆記.html", "2", "3"],
 };
 
 const Tags = {

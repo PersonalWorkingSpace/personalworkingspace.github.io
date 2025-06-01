@@ -208,6 +208,22 @@ a {
     /* border: 3px solid rgb(35, 48, 168); */
 }
 
+#category-title, #tag-title {
+    font-size: 18px;
+    border-radius: 0.35rem;
+    font-weight: 600;
+}
+
+#category-list, #tag-list {
+    font-size: var(--timeline-font-size);
+    border-radius: 0.35rem;
+    font-weight: 600;
+}
+
+#tag-warpper {
+    margin-top: 3rem;
+}
+
 p.content-paragraph {
     font-size: var(--default-font-size);
     margin-top: 2rem;

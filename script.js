@@ -2,11 +2,10 @@ import { colorCode } from './module/colorization.js';
 import { NumberToMonth, Pages, Categories, Tags } from './module/statistic.js';
 
 window.onload = function() {
-    // updateCategory();
-    // updateTag();
+    updateCategory();
+    updateTag();
     updateAgenda();
     registerAgendaToggleEvent();
-    // updateReadProgress();
 }
 
 window.addEventListener('scroll', function() {
@@ -15,33 +14,33 @@ window.addEventListener('scroll', function() {
 
 // Generate category
 function updateCategory() {
-    let url = decodeURIComponent(window.location.href);
-    let category = url.split("/category/")[1].split("/")[0];
-    let bar = document.getElementById("category-bar");
-    let anchor = createAnchor(category, "#");
-    anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[category]["font"];
-    anchor.style.backgroundColor = colorCode[category]["bg"];
-    bar.appendChild(anchor);
+    let container = document.getElementById("category-list");
+    for (const [cg, listOfPages] of Object.entries(Categories)) {
+        let anchor = createAnchor(`${cg} (${listOfPages.length})`, "#");
+        anchor.setAttribute("class", "tag");
+        anchor.style.color = colorCode[cg]["font"];
+        anchor.style.backgroundColor = colorCode[cg]["bg"];
+        if (container.childNodes.length > 0) {
+            let textNode = document.createTextNode(" ");
+            container.appendChild(textNode);
+        }
+        container.appendChild(anchor);
+    }
 }
 
 // Generate tag
 function updateTag() {
-    let bar = document.getElementById("tag-bar");
-    let tags = document.querySelector('meta[name="keywords"]').content
-    let taglist = tags.split(",")
-    
-    for (let i = 0; i < taglist.length; i++) {
-        let tag = taglist[i].trim();
-        let anchor = createAnchor(tag, "#");
+    let container = document.getElementById("tag-list");
+    for (const [tag, listOfPages] of Object.entries(Tags)) {
+        let anchor = createAnchor(`${tag} (${listOfPages.length})`, "#");
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];
-        bar.appendChild(anchor);
-        if (i != taglist.length - 1) {
+        if (container.childNodes.length > 0) {
             let textNode = document.createTextNode(" ");
-            bar.appendChild(textNode);
+            container.appendChild(textNode);
         }
+        container.appendChild(anchor);
     }
 }
 
