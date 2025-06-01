@@ -2,15 +2,123 @@ import { colorCode } from './module/colorization.js';
 import { NumberToMonth, Pages, Categories, Tags } from './module/statistic.js';
 
 window.onload = function() {
+    updatePosts();
+    updateAgenda();
     updateCategory();
     updateTag();
-    updateAgenda();
     registerAgendaToggleEvent();
 }
 
 window.addEventListener('scroll', function() {
     // updateReadProgress();
 })
+
+function updatePosts() {
+    let container = document.getElementById("main-content");
+    let url = decodeURIComponent(window.location.href);
+    url = url.replace("/index.html", ""); // for local test
+
+    for (let i = 0; i < Pages.length; i++) {
+        let page = Pages[i];
+        let anchor = createAnchor("", `${url}/category/${page["category"]}/${page["title"]}.html`);
+        anchor.setAttribute("class", "post");
+
+        /* post
+            post-title   |
+            description  |    img
+            post-meta    |
+        */
+
+        let leftPart = document.createElement("div");
+        leftPart.setAttribute("class", "left-part");
+        let postTitle = document.createElement("h1");
+        postTitle.setAttribute("class", "post-title");
+        postTitle.innerHTML = page["title"];
+
+        let description = document.createElement("p");
+        description.setAttribute("class", "post-description");
+        description.innerHTML = page["description"];
+
+        let postMeta = getPostMeta(page);
+        postMeta.setAttribute("class", "post-meta");
+
+        leftPart.appendChild(postTitle);
+        leftPart.appendChild(description);
+        leftPart.appendChild(postMeta);
+
+        let thumbnail = document.createElement("img");
+        thumbnail.setAttribute("class", "thumbnail");
+        thumbnail.setAttribute("src", page["thumbnail"]);
+        thumbnail.setAttribute("alt", "thumbanil");
+
+        anchor.appendChild(leftPart);
+        anchor.appendChild(thumbnail);
+        container.appendChild(anchor);
+
+        if (i != Pages.length - 1) {
+            let hr = document.createElement("hr");
+            hr.setAttribute("class", "post-hr");
+            container.appendChild(hr);
+        }
+    }
+}
+
+
+function getPostMeta(post) {
+    let postMeta = document.createElement("div");
+    let created = document.createElement("time");
+    let date = post["created"];
+    
+    created.setAttribute("datetime", date);
+    created.innerHTML = `${NumberToMonth[date.getMonth() + 1]} ${date.getDate()}, ${date.getFullYear()}`
+    postMeta.appendChild(created);
+
+    let textNode = document.createTextNode(" | category: ");
+    postMeta.appendChild(textNode);
+    
+    let categoryBar = getPostCategory(post["category"]);
+    postMeta.appendChild(categoryBar);
+
+    textNode = document.createTextNode(" | tags: ");
+    postMeta.appendChild(textNode);
+
+    let tagBar = getPostTag(post["tag"]);
+    postMeta.appendChild(tagBar);
+    return postMeta;
+}
+
+function getPostCategory(category) {
+    let bar = document.createElement("span");
+    bar.setAttribute("id", "category-bar");
+
+    let anchor = createAnchor(category, "#");
+    anchor.setAttribute("class", "tag");
+    anchor.style.color = colorCode[category]["font"];
+    anchor.style.backgroundColor = colorCode[category]["bg"];
+    bar.appendChild(anchor);
+    return bar;
+}
+
+function getPostTag(tags) {
+    let bar = document.createElement("nav");
+    bar.setAttribute("id", "tag-bar");
+    let taglist = tags.split(",");
+
+    for (let i = 0; i < taglist.length; i++) {
+        let tag = taglist[i].trim();
+        let anchor = createAnchor(tag, "#");
+        anchor.setAttribute("class", "tag");
+        anchor.style.color = colorCode[tag]["font"];
+        anchor.style.backgroundColor = colorCode[tag]["bg"];
+        bar.appendChild(anchor);
+        if (i != taglist.length - 1) {
+            let textNode = document.createTextNode(" ");
+            bar.appendChild(textNode);
+        }
+    }
+
+    return bar;
+}
 
 // Generate category
 function updateCategory() {
@@ -91,7 +199,7 @@ function updateAgenda() {
 
 function createAnchor(text, link) {
     let anchor = document.createElement("a");
-    anchor.innerText = text;
+    anchor.innerHTML = text;
     anchor.setAttribute("href", link);
     return anchor;
 }

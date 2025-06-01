@@ -6,8 +6,11 @@
 * 2025/05/11 開始撰寫第一篇文章
 * 2025/05/18 完成第一篇文章
 * 2025/05/30 完成category, tag system
+* 2025/06/01 完成front page
 
 ## TODO
+* 調整post meta 格式
+* 撰寫第二篇文章
 * light box for click figure
 * code copy function
 * code download
@@ -19,3 +22,4 @@
 * timezone
 * ol vs. li css
 * hover
+* aspect ration of whole pages

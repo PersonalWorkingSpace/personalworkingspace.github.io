@@ -23,7 +23,7 @@ body {
     text-align: center;
     line-height: 60.75px;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: center;
 }
 
@@ -31,7 +31,7 @@ body {
     flex: 1 1 calc(var(--center-width) + 2*var(--aside-width));
     max-width: calc(var(--center-width) + 2*var(--aside-width));
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -42,7 +42,7 @@ body {
     color: #fff;
     text-decoration: none;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
 }
@@ -57,19 +57,59 @@ body {
     text-decoration: none;
 }
 
-.post-title {
+.post-header .post-title {
     font-size: 38px;
     line-height: 38px;
     margin: 0.2rem 0rem 0rem 0rem;
 }
 
-.post-meta {
+.post-header .post-meta {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: left;
     font-size: 16px;
     color: #9b9c9c;
     margin: 0.75rem 0rem;
+}
+
+.post {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.post .left-part {
+    width: 70%;
+}
+
+.post .post-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: black;
+    margin: 0.2rem 1rem 0rem 0rem;
+}
+
+.post .post-description {
+    font-size: 14px;
+    font-weight: 400;
+    color: #727474;
+    margin: 0.2rem 1rem 0rem 0rem;
+}
+
+.post .post-meta {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: left;
+    font-size: 13px;
+    color: #9b9c9c;
+    margin: 0.75rem 0rem;
+}
+
+.post .thumbnail {
+    object-position: center;
+    height: 100%;
+    width: 20%;
 }
 
 a[class=tag] {
@@ -85,16 +125,9 @@ a[class=tag] {
 
 .container {
     display: flex;
-    flex-flow: row no-wrap;
+    flex-flow: row nowrap;
     justify-content: center;
     background-color: #ffffff;
-}
-
-#left-area {
-    flex: 2 2 var(--aside-width);
-    max-width: var(--aside-width);
-    padding: 1rem;
-    /* border: 3px solid rgb(223, 55, 55); */
 }
 
 #agenda-wrapper {
@@ -194,10 +227,19 @@ a {
     font-weight: 400;
 }
 
+#left-area {
+    flex: 2 2 var(--aside-width);
+    max-width: var(--aside-width);
+    padding: 1rem;
+    margin-top: 2rem;
+    /* border: 3px solid rgb(223, 55, 55); */
+}
+
 #center-area {
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
     padding: 1rem;
+    margin-top: 2rem;
     /* border: 3px solid rgb(43, 179, 38); */
 }
 
@@ -205,6 +247,7 @@ a {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
     padding: 1rem;
+    margin-top: 2rem;
     /* border: 3px solid rgb(35, 48, 168); */
 }
 
@@ -242,13 +285,21 @@ p.note::before {
 }
 
 hr {
-    height: 2px;
+    height: 3px;
+    border: none;
     background-color: rgb(46, 48, 49);
+}
+
+.post-hr {
+    height: 1px;
+    border: none;
+    background-color: rgb(208, 214, 214);
+    width: 96%;
 }
 
 footer {
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
     text-align: center;

@@ -67,7 +67,7 @@ function updateAgenda() {
 
 function createAnchor(text, link) {
     let anchor = document.createElement("a");
-    anchor.innerText = text;
+    anchor.innerHTML = text;
     anchor.setAttribute("href", link);
     return anchor;
 }
