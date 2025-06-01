@@ -1,18 +1,3 @@
-const NumberToMonth = {
-    1: "Jan",
-    2: "Feb",
-    3: "Mar",
-    4: "Apr",
-    5: "May",
-    6: "Jun",
-    7: "Jul",
-    8: "Aug",
-    9: "Sep",
-    10: "Oct",
-    11: "Nov",
-    12: "Dec"
-}
-
 const Pages = [ // order by created date
     {
         "created": new Date("2025-05-11T00:00:00+08:00"),
@@ -99,4 +84,4 @@ const Tags = {
     "HTML": ["HTML初學筆記.html"]
 };
 
-export { NumberToMonth, Pages, Categories, Tags };
+export { Pages, Categories, Tags };

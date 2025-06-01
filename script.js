@@ -1,5 +1,6 @@
 import { colorCode } from './module/colorization.js';
-import { NumberToMonth, Pages, Categories, Tags } from './module/statistic.js';
+import { Pages, Categories, Tags } from './module/subpageInfo.js';
+import { NumberToMonth } from './module/common.js';
 
 window.onload = function() {
     updatePosts();
