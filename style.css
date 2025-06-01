@@ -3,6 +3,7 @@
     --aside-width: 350px;
     --default-font-size: 18px;
     --note-font-size: 18px;
+    --timeline-font-size: 16px;
     --color-bg-base-reverse: 0 0% 100%;
 }
 
@@ -150,6 +151,48 @@ a {
     font-weight: 300;
 }
 
+#agenda .collapsed .toggleTitle {
+    font-size: 18px;
+    color:rgb(0, 0, 0);
+    background-color: #ffffff00;
+    border-radius: 0.35rem;
+    padding-left: 1rem;
+    font-weight: 400;
+}
+
+#agenda .expanded .toggleTitle {
+    font-size: 18px;
+    color:rgb(228, 224, 220);
+    background-color: #333;
+    border-radius: 0.35rem;
+    padding-left: 1rem;
+    font-weight: 400;
+}
+
+#agenda .toggleTitle:hover, #agenda .toggleMemberBullet li:hover {
+    cursor: pointer;
+    color:rgb(0, 0, 0);
+    background-color: #64d4d8;
+    border-radius: 0.35rem;
+}
+
+.collapsed .toggleMemberBullet {
+    display: none;
+}
+
+.expanded .toggleMemberBullet {
+    list-style: none;
+    font-size: var(--timeline-font-size);
+    margin: 1rem 0rem 1rem 1.25rem;
+    padding: 0rem;
+    border-left: 3px solid rgb(38, 40, 41);
+}
+
+.toggleMemberBullet li a {
+    color: rgb(86, 87, 90);
+    text-decoration: none;
+    font-weight: 400;
+}
 
 #center-area {
     flex: 1 1 var(--center-width);

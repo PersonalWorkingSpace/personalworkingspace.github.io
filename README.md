@@ -16,3 +16,6 @@
 * RWD & boostrap5
 * CSS參數化
 * round corner
+* timezone
+* ol vs. li css
+* hover

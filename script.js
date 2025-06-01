@@ -1,21 +1,17 @@
 import { colorCode } from './module/colorization.js';
+import { NumberToMonth, Pages, Categories, Tags } from './module/statistic.js';
 
 window.onload = function() {
-    updateCategory();
-    updateTag();
+    // updateCategory();
+    // updateTag();
     updateAgenda();
-    updateReadProgress();
+    registerAgendaToggleEvent();
+    // updateReadProgress();
 }
 
 window.addEventListener('scroll', function() {
-    updateReadProgress();
+    // updateReadProgress();
 })
-
-function getTitles() {
-    let postTitles = Array.from(document.getElementsByClassName("post-title"));
-    let sectionTitles = Array.from(document.getElementsByClassName("L1-section-title"));
-    return postTitles.concat(sectionTitles);
-}
 
 // Generate category
 function updateCategory() {
@@ -49,19 +45,48 @@ function updateTag() {
     }
 }
 
-// Generate agenda
+// Generate agenda: articles published in past twelve months
 function updateAgenda() {
     let agenda = document.getElementById("agenda");
+    let now = new Date();
+    let month = now.getMonth() + 1; // January gives 0
+    let year = now.getFullYear();
+    let selectMonth = -1;
+    let toggleList;
 
-    let titles = getTitles();
-    for (let i = 0; i < titles.length; i++) {
-        let title = titles[i];
+    let url = decodeURIComponent(window.location.href);
+    url = url.replace("/index.html", ""); // for local test
+
+    for (let i = 0; i < Pages.length; i++) {
+        let page = Pages[i];
+        let pageYear = page["created"].getFullYear();
+        let pageMonth = page["created"].getMonth() + 1;
+
+        if ((year - pageYear) * 12 + (month - pageMonth) > 12) {
+            break;
+        }
+        
+        if (pageMonth != selectMonth) {
+            selectMonth = pageMonth;
+            let newNode = document.createElement("li");
+            let symbol = "▶";
+            let state = "collapsed";
+            if (i == 0) {
+                symbol = "▽";
+                state = "expanded";
+            }
+
+            let key = `${symbol} ${pageYear} ${NumberToMonth[pageMonth]}`;
+            toggleList = createToggle(key, state);
+            newNode.appendChild(toggleList);
+            agenda.appendChild(newNode);
+        }
+
+        let ol = toggleList.childNodes[1];
         let newNode = document.createElement("li");
-        let anchor = createAnchor(title.innerHTML, "#" + title.innerHTML);
-
-        title.setAttribute("id", title.innerHTML);
+        let anchor = createAnchor(page["title"], `${url}/category/${page["category"]}/${page["title"]}.html`); 
         newNode.appendChild(anchor);
-        agenda.appendChild(newNode);
+        ol.appendChild(newNode);
     }
 }
 
@@ -72,43 +97,44 @@ function createAnchor(text, link) {
     return anchor;
 }
 
+function createToggle(title, state) {
+    let toggleList = document.createElement("div");
+    let header = document.createElement("h1");
+    let member = document.createElement("ol");
+    header.setAttribute("class", "toggleTitle");
+    member.setAttribute("class", "toggleMemberBullet");
 
-// Update agenda section status to display read progress
-function updateReadProgress() {
-    let titles = getTitles();
-    let bullets = document.querySelectorAll("#agenda > li");
-    let scrolly = window.scrollY;
+    header.innerText = title;
+    toggleList.setAttribute("class", state);
+    toggleList.appendChild(header);
+    toggleList.appendChild(member);
+    return toggleList;
+}
 
-    // agenda hasn't be generated
-    if (bullets.length == 0) {
-        return;
-    }
-
-    let reachTop = false;
-    let reachBottom = false;
-    if (scrolly < titles[0].offsetTop) {
-       reachTop = true;
-    } else if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
-        reachBottom = true;
-    }
+// register toggle event for timeline
+function registerAgendaToggleEvent() {
+    let toggles = document.querySelectorAll("#agenda .toggleTitle");
     
-    for (let i = 0; i < titles.length - 1; i++) {
-        let bullet = bullets[i];                 
-        let title = titles[i];
-        let nextTitle = titles[i + 1];
-        if (i == 0 && reachTop || 
-            scrolly >= title.offsetTop && scrolly < nextTitle.offsetTop && !reachBottom) {
-            bullet.className = "focus-section";
-        } else {
-            bullet.className = "non-focus-section";
-        }
-    }
-
-    let lastTitle = titles[titles.length - 1];
-    let lastBullet = bullets[titles.length - 1];
-    if (scrolly >= lastTitle.offsetTop || reachBottom) {
-        lastBullet.className = "focus-section";
-    } else {
-        lastBullet.className = "non-focus-section";
+    for (let i = 0; i < toggles.length; i++) {
+        let toggle = toggles[i];
+        toggle.addEventListener(
+            "click", (event) => {
+                let clickedTC = event.target.parentElement;
+                let toggleContainers = document.querySelectorAll("#agenda li div");
+                console.log(clickedTC);
+                for (let i = 0; i < toggleContainers.length; i++) {
+                    let tc = toggleContainers[i];
+                    let h1 = tc.childNodes[0];
+                    
+                    if (tc == clickedTC) {
+                        tc.setAttribute("class", "expanded");
+                        h1.innerHTML = h1.innerHTML.replace("▶", "▽");
+                    } else {
+                        tc.setAttribute("class", "collapsed");
+                        h1.innerHTML = h1.innerHTML.replace("▽", "▶");
+                    }
+                }
+            }
+        );
     }
 }
