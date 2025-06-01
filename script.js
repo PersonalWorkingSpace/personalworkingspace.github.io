@@ -46,10 +46,7 @@ function updatePosts() {
         leftPart.appendChild(description);
         leftPart.appendChild(postMeta);
 
-        let thumbnail = document.createElement("img");
-        thumbnail.setAttribute("class", "thumbnail");
-        thumbnail.setAttribute("src", page["thumbnail"]);
-        thumbnail.setAttribute("alt", "thumbanil");
+        let thumbnail = getPostThumbnail(page["thumbnail"]);
 
         anchor.appendChild(leftPart);
         anchor.appendChild(thumbnail);
@@ -73,13 +70,13 @@ function getPostMeta(post) {
     created.innerHTML = `${NumberToMonth[date.getMonth() + 1]} ${date.getDate()}, ${date.getFullYear()}`
     postMeta.appendChild(created);
 
-    let textNode = document.createTextNode(" | category: ");
+    let textNode = document.createTextNode(`\xa0 |\xa0 category: \xa0`);
     postMeta.appendChild(textNode);
     
     let categoryBar = getPostCategory(post["category"]);
     postMeta.appendChild(categoryBar);
 
-    textNode = document.createTextNode(" | tags: ");
+    textNode = document.createTextNode(`\xa0 |\xa0 tags: \xa0`);
     postMeta.appendChild(textNode);
 
     let tagBar = getPostTag(post["tag"]);
@@ -118,6 +115,16 @@ function getPostTag(tags) {
     }
 
     return bar;
+}
+
+function getPostThumbnail(thumbnail) {
+    let thumbnailContainer = document.createElement("div");
+    let thumbnailImg = document.createElement("img");
+    thumbnailImg.setAttribute("src", thumbnail);
+    thumbnailImg.setAttribute("alt", "thumbnail");
+    thumbnailContainer.setAttribute("class", "thumbnail-container");
+    thumbnailContainer.appendChild(thumbnailImg);
+    return thumbnailContainer;
 }
 
 // Generate category
