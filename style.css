@@ -325,15 +325,15 @@ footer {
 code[class=inline] {
     font-family:Consolas;
     font-size: var(--default-font-size);
-    background-color: #fffddc;
-    color: rgb(226, 120, 120);
-    font-weight: bold;
+    border-radius: 0.35rem;
+    background-color: #f9f2f4;
+    color: #c7254e;
 }
 
 code[class=prop] {
     font-family:Consolas;
     font-size: var(--default-font-size);
+    border-radius: 0.35rem;
     background-color: #565568;
     color: rgb(166, 214, 169);
-    font-weight: bold;
 }
