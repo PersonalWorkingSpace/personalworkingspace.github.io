@@ -9,7 +9,8 @@
 * 2025/06/01 完成front page
 
 ## TODO
-* 調整post meta 格式
+* 左側時間軸調整
+* 左右比例調整
 * 撰寫第二篇文章
 * light box for click figure
 * code copy function

@@ -2,6 +2,16 @@ import os
 import json
 from glob import glob
 from bs4 import BeautifulSoup
+from collections import defaultdict
+
+def normalize_path(path: str) -> str:
+    # Remove leading ../ or .\, replace backslashes with slashes
+    path = path.replace("\\", "/")
+    if path.startswith("../"):
+        path = path[3:]
+    elif path.startswith(".\\"):
+        path = path[2:]
+    return path
 
 if __name__ == "__main__":
     # Get all HTML files in the current directory
@@ -49,6 +59,7 @@ if __name__ == "__main__":
                 )
 
             subpage_info.append({
+                'file': normalize_path(file),
                 'created': createdDate,
                 'title': title,
                 'category': category,
@@ -58,11 +69,39 @@ if __name__ == "__main__":
             })
 
     subpage_info.sort(key=lambda x: x['created'])
+    
+    # Create category and tag list
+    categoryDict = defaultdict(list)
+    tagDict = defaultdict(list)
+    for subpage in subpage_info:
+        if 'category' not in subpage:
+            raise ValueError(f"Missing category in subpage: {subpage}")
+        
+        if 'tag' not in subpage:
+            raise ValueError(f"Missing tag in subpage: {subpage}")
+        
+        categoryDict[subpage['category']].append(subpage['file'])
+        
+        for tag in subpage['tag'].split(','):
+            tag = tag.strip()
+            if tag:
+                tagDict[tag].append(subpage['file'])
+    
     # Export to JS file
-    with open('subpage_info.js', 'w', encoding='utf-8') as f:
+    with open('subpageInfo.js', 'w', encoding='utf-8') as f:
         f.write('const Pages = ')
         json.dump(subpage_info, f, ensure_ascii=False, indent=4)
-        f.write(';')
+        f.write(';\n\n')
+        
+        f.write('const Categories = ')
+        json.dump(categoryDict, f, ensure_ascii=False, indent=4)
+        f.write(';\n\n')
 
-    print("Exported to subpage_info.js")
+        f.write('const Tags = ')
+        json.dump(tagDict, f, ensure_ascii=False, indent=4)
+        f.write(';\n\n')
+        
+        f.write('export { Pages, Categories, Tags };\n')
+        
+    print("Exported to subpageInfo.js")
     

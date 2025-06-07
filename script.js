@@ -65,7 +65,7 @@ function updatePosts() {
 function getPostMeta(post) {
     let postMeta = document.createElement("div");
     let created = document.createElement("time");
-    let date = post["created"];
+    let date = new Date(post["created"]);
     
     created.setAttribute("datetime", date);
     created.innerHTML = `${NumberToMonth[date.getMonth() + 1]} ${date.getDate()}, ${date.getFullYear()}`
@@ -174,8 +174,9 @@ function updateAgenda() {
 
     for (let i = 0; i < Pages.length; i++) {
         let page = Pages[i];
-        let pageYear = page["created"].getFullYear();
-        let pageMonth = page["created"].getMonth() + 1;
+        let created = new Date(page["created"]);
+        let pageYear = created.getFullYear();
+        let pageMonth = created.getMonth() + 1;
 
         if ((year - pageYear) * 12 + (month - pageMonth) > 12) {
             break;
