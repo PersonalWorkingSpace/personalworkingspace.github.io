@@ -8,7 +8,7 @@
         <meta name="description" content="歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於...">
         <meta name="keywords" content="初學筆記, HTML">
         <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
-        <link href="../../style.css" rel="stylesheet" type="text/css">
+        <link href="../../style/style.css" rel="stylesheet" type="text/css">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css" rel="stylesheet" >
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
         <script type="module" src="../../module/subpage.js"></script>
@@ -17,7 +17,7 @@
     <body>
         <header class="banner">
             <div class="wrapper">
-                <a id="site-logo" href="index.html">
+                <a id="site-logo" href="../../index.html">
                     <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon">
                     <span>&nbsp&nbsp</span>
                     Internet NPC
@@ -31,7 +31,7 @@
             </div>
         </header>
 
-        <div class="container">
+        <div class="main-container">
             <aside id="left-area">  <!-- 這是大綱 -->
                 <div id="agenda-wrapper">
                     <h1 class="agenda-title">In this article</h1>
@@ -75,7 +75,7 @@
     &lt;/html&gt;
                         </code></pre>
                         <p class="content-paragraph">
-                            <ul>
+                            <ul class="content-ul">
                                 <li>
                                     <p class="content-paragraph">
                                         <code class="inline">&lt;!DOCTYPE html&gt;</code>
@@ -111,7 +111,7 @@
                         <h1 class="L1-section-title">常用標籤</h1>
                         <hr>
                         <p class="content-paragraph">
-                            <ul>
+                            <ul class="content-ul">
                                 <li>
                                     <p class="content-paragraph">
                                         <code class="inline">&lt;title&gt;...&lt;/title&gt;</code>
@@ -122,7 +122,7 @@
                                     <p class="content-paragraph">
                                         <code class="inline">&lt;meta $key=$val&gt;</code>
                                         - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:
-                                        <ul>
+                                        <ul class="content-ul">
                                             <li>
                                                 <p class="content-paragraph">
                                                     <code class="prop">charset="UTF-8"</code>
@@ -172,7 +172,7 @@
                                     <p class="content-paragraph">
                                         <code class="inline">&lt;img $key=$val&gt;</code>
                                         - 使用於body，用以在網頁中顯示圖片，具備多種屬性可以設定，常見:
-                                         <ul>
+                                         <ul class="content-ul">
                                             <li>
                                                 <p class="content-paragraph">
                                                     <code class="prop">width="XXXpx"</code>
@@ -204,8 +204,13 @@
         &lt;li&gt;...&lt;/li&gt; &lt;!--項目2--&gt;
         &lt;li&gt;...&lt;/li&gt; &lt;!--項目3--&gt;
     &lt;/ul&gt;
-                        </code></pre>
-
+                                        </code></pre>
+                                    </p>                        
+                                </li>
+                                <li>
+                                    <p class="content-paragraph">
+                                        <code class="inline">&lt;a href=$link&gt;</code>
+                                        - 使用於body，a代表anchor - 提供超連結的功能，$link可以是外部網址，也可以是本網站內部的其他頁面/章節，當使用者點擊後就會跳轉到指定的網頁。
                                     </p>                        
                                 </li>
                             </ul>
@@ -230,31 +235,21 @@
                             <img width="100%" src="../../image/web-001_html-arch.png" alt="此網站的架構圖">
                             <p class="content-paragraph">
                                 基本上都是用前面提過的標籤搭建，整個網頁可以分成五大區塊: 
-                                <ul>
+                                <ul class="content-ul">
                                     <li>
-                                        <p class="content-paragraph">
-                                            <b>頁首</b>: 放置連結與logo、網站名稱等資訊。
-                                        </p>
+                                        <b>頁首</b>: 放置連結與logo、網站名稱等資訊。
                                     </li>
                                     <li>
-                                        <p class="content-paragraph">
-                                            <b>頁尾</b>: 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。
-                                        </p>
+                                        <b>頁尾</b>: 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。
                                     </li>
                                     <li>
-                                        <p class="content-paragraph">
-                                            <b>左側欄位</b>: 提供文章章節以及閱讀進度等。
-                                        </p>
+                                        <b>左側欄位</b>: 提供文章章節以及閱讀進度等。
                                     </li>
                                     <li>
-                                        <p class="content-paragraph">
-                                            <b>右側欄位</b>: 提供news或推薦相關文章等。
-                                        </p>
+                                        <b>右側欄位</b>: 提供news或推薦相關文章等。
                                     </li>
                                     <li>
-                                        <p class="content-paragraph">
-                                            <b>主要內文</b>: 以多個section組成，每個section又包含一個title/image加上多個paragraph。
-                                        </p>
+                                        <b>主要內文</b>: 以多個section組成，每個section又包含一個title/image加上多個paragraph。
                                     </li>
                                 </ul>
                             </p>

@@ -84,8 +84,6 @@ function updateReadProgress() {
         return;
     }
 
-    console.log(window.innerHeight, window.pageYOffset, scrolly, document.body.offsetHeight);
-
     let reachTop = false;
     let reachBottom = false;
     if (scrolly < titles[0].offsetTop) {
@@ -99,7 +97,7 @@ function updateReadProgress() {
         let title = titles[i];
         let nextTitle = titles[i + 1];
         if (i == 0 && reachTop || 
-            scrolly >= title.offsetTop && scrolly < nextTitle.offsetTop && !reachBottom) {
+            scrolly >= (title.offsetTop - 10) && scrolly < (nextTitle.offsetTop - 10) && !reachBottom) { // minus 10 for stability
             bullet.className = "focus-section";
         } else {
             bullet.className = "non-focus-section";

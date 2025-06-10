@@ -17,11 +17,11 @@ window.addEventListener('scroll', function() {
 function updatePosts() {
     let container = document.getElementById("main-content");
     let url = decodeURIComponent(window.location.href);
-    url = url.replace("/index.html", ""); // for local test
+    url = url.replace("/index.html", "/"); // for local test
 
     for (let i = 0; i < Pages.length; i++) {
         let page = Pages[i];
-        let anchor = createAnchor("", `${url}/category/${page["category"]}/${page["title"]}.html`);
+        let anchor = createAnchor("", `${url}category/${page["category"]}/${page["title"]}.html`);
         anchor.setAttribute("class", "post");
 
         /* post
@@ -237,7 +237,6 @@ function registerAgendaToggleEvent() {
             "click", (event) => {
                 let clickedTC = event.target.parentElement;
                 let toggleContainers = document.querySelectorAll("#agenda li div");
-                console.log(clickedTC);
                 for (let i = 0; i < toggleContainers.length; i++) {
                     let tc = toggleContainers[i];
                     let h1 = tc.childNodes[0];

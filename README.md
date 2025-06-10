@@ -9,9 +9,11 @@
 * 2025/06/01 完成front page
 
 ## TODO
+* 撰寫第二篇文章
+* 使用不同li class來取代p in li
+* 目錄自動展開第二階層
 * 左側時間軸調整
 * 左右比例調整
-* 撰寫第二篇文章
 * light box for click figure
 * code copy function
 * code download

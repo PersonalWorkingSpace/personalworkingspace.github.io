@@ -68,7 +68,7 @@ if __name__ == "__main__":
                 'description': description,
             })
 
-    subpage_info.sort(key=lambda x: x['created'])
+    subpage_info.sort(key=lambda x: x['created'], reverse=True)
     
     # Create category and tag list
     categoryDict = defaultdict(list)
@@ -88,7 +88,7 @@ if __name__ == "__main__":
                 tagDict[tag].append(subpage['file'])
     
     # Export to JS file
-    with open('subpageInfo.js', 'w', encoding='utf-8') as f:
+    with open('../module/subpageInfo.js', 'w', encoding='utf-8') as f:
         f.write('const Pages = ')
         json.dump(subpage_info, f, ensure_ascii=False, indent=4)
         f.write(';\n\n')

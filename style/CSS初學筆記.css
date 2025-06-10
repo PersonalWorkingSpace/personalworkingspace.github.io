@@ -1,0 +1,132 @@
+#row-flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#column-flex-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.block1 {
+    background-color: #e48b8bc0;
+    border-radius: 0.35rem;
+    text-align: center;
+}
+
+.block2 {
+    background-color: #9de48bc0;
+    border-radius: 0.35rem;
+    text-align: center;
+}
+
+.block3 {
+    background-color: #8be4ddc0;
+    border-radius: 0.35rem;
+    text-align: center;
+}
+
+#justify-start-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#justify-end-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#justify-center-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+#justify-between-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+#justify-around-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#align-start-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#align-end-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#align-center-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#align-stretch-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    height: 100px; /* Set a height to see the stretch effect */
+}
+
+#align-baseline-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    height: 100px;
+}
+
+.text28 {
+    font-size: 28px;
+}
+
+.text36 {
+    font-size: 36px;
+}
+
+.no-radius {
+    background-color: rgb(173, 229, 210);
+}
+
+.radius {
+    background-color: rgb(173, 229, 210);
+    border-radius: 0.4rem;
+}
+
+div.demo-box-model {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div.demo-box-margin {
+    background-color: rgb(133, 218, 136);
+}
+
+div.demo-box-padding {
+    background-color: rgb(67, 186, 236);
+    border: 5px solid #000000;
+    padding: 10px 30px;;
+    margin: 20px 15px 40px 5px;
+    text-align: center;
+}

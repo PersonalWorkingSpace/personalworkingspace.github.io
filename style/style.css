@@ -129,7 +129,12 @@ a[class=tag] {
     margin: 3rem 0rem 1rem 0rem;
 }
 
-.container {
+.L2-section-title {
+    font-size: 26px;
+    margin: 2rem 0rem -0.5rem 0rem;
+}
+
+.main-container {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -158,7 +163,7 @@ a[class=tag] {
 
 #agenda li {
     width: 80%;
-    padding-left: 1rem;
+    padding: 0.25rem 1rem;
 }
 
 #agenda .focus-section {
@@ -284,7 +289,7 @@ p.note {
     font-size: var(--note-font-size);
     margin-top: 0.5rem;
     line-height: 1rem;
-    color: rgb(167, 165, 165);
+    color: rgb(127, 126, 126);
 }
 
 p.note::before {
@@ -322,6 +327,10 @@ footer {
     font-size: 14px;
 }
 
+code {
+    line-height: 1.2rem;
+}
+
 code[class=inline] {
     font-family:Consolas;
     font-size: var(--default-font-size);
@@ -336,4 +345,35 @@ code[class=prop] {
     border-radius: 0.35rem;
     background-color: #565568;
     color: rgb(166, 214, 169);
+}
+
+div.demo-container {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
+}
+
+div.demo {
+    flex: 1 1 var(--center-width);
+    font-size: var(--default-font-size);
+    border-radius: 0.5rem;
+    border: 3px solid #b1b1b1;
+    margin: 0 0.5rem;
+    height: 100%;
+}
+
+div.demo h1 {
+    font-size: var(--default-font-size);
+    margin: 0.5rem 0rem;
+    text-align: center;
+    color:#565656;
+}
+
+ul.content-ul li {
+    font-size: var(--default-font-size);
+    margin: 1rem 0rem;
+    line-height: 2em;
 }
