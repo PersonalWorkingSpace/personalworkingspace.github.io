@@ -57,7 +57,7 @@ body {
     text-decoration: none;
 }
 
-.post-header .post-title {
+.post-header  .post-title {
     font-size: 38px;
     line-height: 38px;
     margin: 0.2rem 0rem 0rem 0rem;
@@ -374,6 +374,17 @@ div.demo h1 {
 
 ul.content-ul li {
     font-size: var(--default-font-size);
+    line-height: 2rem;
+}
+
+ul.content-ul > li {
     margin: 1rem 0rem;
-    line-height: 2em;
+}
+
+ul.marginx1p5 > li {
+    margin: 1.5rem 0rem;
+}
+
+ul.marginx2 > li {
+    margin: 2rem 0rem;
 }

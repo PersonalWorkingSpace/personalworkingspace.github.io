@@ -75,30 +75,22 @@
     &lt;/html&gt;
                         </code></pre>
                         <p class="content-paragraph">
-                            <ul class="content-ul">
+                            <ul class="content-ul marginx1p5">
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;!DOCTYPE html&gt;</code>
-                                        - 這是在告訴系統這個檔案是HTML格式的文件，可以看到他的語法是用&lt;&gt;包起來並自成一個單元，類別屬於單一標籤。
-                                    </p>
+                                    <code class="inline">&lt;!DOCTYPE html&gt;</code>
+                                    - 這是在告訴系統這個檔案是HTML格式的文件，可以看到他的語法是用&lt;&gt;包起來並自成一個單元，類別屬於單一標籤。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;html lang="en"&gt;...&lt;/html></code>
-                                        - 與前面不一樣，這邊是由起始標籤&lt;html&gt;與結束標籤&lt;/html&gt;構成，屬於容器標籤，用來標示出文件的內容範圍，屬性lang用來描述網站使用的語言，在瀏覽器搜尋時設定目標語言就會參考這個來過濾。
-                                    </p>
+                                    <code class="inline">&lt;html lang="en"&gt;...&lt;/html></code>
+                                    - 與前面不一樣，這邊是由起始標籤&lt;html&gt;與結束標籤&lt;/html&gt;構成，屬於容器標籤，用來標示出文件的內容範圍，屬性lang用來描述網站使用的語言，在瀏覽器搜尋時設定目標語言就會參考這個來過濾。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;head&gt;...&lt;/head&gt;</code>
-                                        - 標頭檔區域裡面會描述關於此網站的一些相關資訊(metadata)，其中包含編碼方式、文件標題、作者資訊、關鍵字以及其他參考檔案(CSS, Javascript)的位置。
-                                    </p>
+                                    <code class="inline">&lt;head&gt;...&lt;/head&gt;</code>
+                                    - 標頭檔區域裡面會描述關於此網站的一些相關資訊(metadata)，其中包含編碼方式、文件標題、作者資訊、關鍵字以及其他參考檔案(CSS, Javascript)的位置。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;body&gt;...&lt;/body&gt;</code>
-                                        - body就是網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正顯示出來的內容，有些是為了之後的CSS排版方便而創造。
-                                    </p>
+                                    <code class="inline">&lt;body&gt;...&lt;/body&gt;</code>
+                                    - body就是網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正顯示出來的內容，有些是為了之後的CSS排版方便而創造。
                                 </li>
                             </ul>
                         </p>
@@ -111,107 +103,77 @@
                         <h1 class="L1-section-title">常用標籤</h1>
                         <hr>
                         <p class="content-paragraph">
-                            <ul class="content-ul">
+                            <ul class="content-ul marginx2">
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;title&gt;...&lt;/title&gt;</code>
-                                        - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是"HTML初學筆記"。
-                                    </p>
+                                    <code class="inline">&lt;title&gt;...&lt;/title&gt;</code>
+                                    - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是"HTML初學筆記"。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;meta $key=$val&gt;</code>
-                                        - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:
-                                        <ul class="content-ul">
-                                            <li>
-                                                <p class="content-paragraph">
-                                                    <code class="prop">charset="UTF-8"</code>
-                                                    - 定義HTML文件的編碼方式，UTF-8能支援絕大部分的文字編碼並且維持相對較小的編碼長度，且大部分的瀏覽器都有支援，因此被廣泛採用。
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p class="content-paragraph">
-                                                    <code class="prop">name="viewport" content="width=device-width, initial-scale=1.0"</code>
-                                                    - 設定可視區域，主要是為了手機等行動裝置設定的，網頁要讓不同尺寸的螢幕都能正常顯示需要下點功夫，而這邊定義了兩個屬性: 指定螢幕寬度為裝置寬度，畫面初始縮放比例為100%。
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p class="content-paragraph">
-                                                    <code class="prop">name="description" content="XXX"</code>
-                                                    - 提供關於網頁的描述給瀏覽器顯示，就是搜尋時顯示在標題底下的那一小段文字，可以寫點吸人眼球的內容。
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </p>
+                                    <code class="inline">&lt;meta $key=$val&gt;</code>
+                                    - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:
+                                    <ul class="content-ul marginx1p5">
+                                        <li>
+                                            <code class="prop">charset="UTF-8"</code>
+                                            - 定義HTML文件的編碼方式，UTF-8能支援絕大部分的文字編碼並且維持相對較小的編碼長度，且大部分的瀏覽器都有支援，因此被廣泛採用。
+                                        </li>
+                                        <li>
+                                            <code class="prop">name="viewport" content="width=device-width, initial-scale=1.0"</code>
+                                            - 設定可視區域，主要是為了手機等行動裝置設定的，網頁要讓不同尺寸的螢幕都能正常顯示需要下點功夫，而這邊定義了兩個屬性: 指定螢幕寬度為裝置寬度，畫面初始縮放比例為100%。
+                                        </li>
+                                        <li>
+                                            <code class="prop">name="description" content="XXX"</code>
+                                            - 提供關於網頁的描述給瀏覽器顯示，就是搜尋時顯示在標題底下的那一小段文字，可以寫點吸人眼球的內容。
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;header&gt;...&lt;/header&gt;</code>
-                                        - 使用於body，與前面的head不同，這裡指的是顯示在文件最上方頁首區域，也就是網頁logo以及連結&lt;nav&gt;呈現的地方。
-                                    </p>                                  
+                                    <code class="inline">&lt;header&gt;...&lt;/header&gt;</code>
+                                    - 使用於body，與前面的head不同，這裡指的是顯示在文件最上方頁首區域，也就是網頁logo以及連結&lt;nav&gt;呈現的地方。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;main&gt;...&lt;/main&gt;</code>
-                                        - 使用於body，主要顯示內容的地方，內部會再細分成多個&lt;section&gt;, &lt;aside&gt;, &lt;article&gt;，用以呈現大小章節。
-                                    </p>                        
+                                    <code class="inline">&lt;main&gt;...&lt;/main&gt;</code>
+                                    - 使用於body，主要顯示內容的地方，內部會再細分成多個&lt;section&gt;, &lt;aside&gt;, &lt;article&gt;，用以呈現大小章節。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;h1&gt;...&lt;/h1&gt;</code>
-                                        - 使用於body，定義出章節的標題，本章節的標題為"常用標籤"，根據預設字體尺寸由大到小又可分成h1~h6，如果寫在不同層級的section，也會顯示出不一樣的大小。
-                                    </p>                        
+                                    <code class="inline">&lt;h1&gt;...&lt;/h1&gt;</code>
+                                    - 使用於body，定義出章節的標題，本章節的標題為"常用標籤"，根據預設字體尺寸由大到小又可分成h1~h6，如果寫在不同層級的section，也會顯示出不一樣的大小。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;p&gt;...&lt;/p&gt;</code>
-                                        - 使用於body，定義出章節的段落 (paragraph)，也就是內文撰寫的地方，將一段文字包在一個區間並提供段落之間的間距控制等，文章內不可或缺的標籤。
-                                    </p>                        
+                                    <code class="inline">&lt;p&gt;...&lt;/p&gt;</code>
+                                    - 使用於body，定義出章節的段落 (paragraph)，也就是內文撰寫的地方，將一段文字包在一個區間並提供段落之間的間距控制等，文章內不可或缺的標籤。
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;img $key=$val&gt;</code>
-                                        - 使用於body，用以在網頁中顯示圖片，具備多種屬性可以設定，常見:
-                                         <ul class="content-ul">
-                                            <li>
-                                                <p class="content-paragraph">
-                                                    <code class="prop">width="XXXpx"</code>
-                                                    - 設定圖片的寬度，單位px，設定寬度後，高度會等比例調整，所以會跟height二選一，兩個同時設定的話則會得到失真的圖片。
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p class="content-paragraph">
-                                                    <code class="prop">src="XXX"</code>
-                                                    - 設定圖片來源，可以提供一段網址(ex: unsplash)，或是網站伺服器本地圖片。
-                                                </p>
-                                            </li>
-                                            <li>
-                                                <p class="content-paragraph">
-                                                    <code class="prop">alt="XXX"</code>
-                                                     - 當圖片顯示不出來時 (網址過期、圖檔遭刪、格式不支援) 就會改顯示此文字，至少能讓人知道本來要顯示什麼。
-                                                </p>
-                                            </li>
-                                        </ul>
-                                    </p>                        
+                                    <code class="inline">&lt;img $key=$val&gt;</code>
+                                    - 使用於body，用以在網頁中顯示圖片，具備多種屬性可以設定，常見:
+                                        <ul class="content-ul marginx1p5">
+                                        <li>
+                                            <code class="prop">width="XXXpx"</code>
+                                            - 設定圖片的寬度，單位px，設定寬度後，高度會等比例調整，所以會跟height二選一，兩個同時設定的話則會得到失真的圖片。
+                                        </li>
+                                        <li>
+                                            <code class="prop">src="XXX"</code>
+                                            - 設定圖片來源，可以提供一段網址(ex: unsplash)，或是網站伺服器本地圖片。
+                                        </li>
+                                        <li>
+                                            <code class="prop">alt="XXX"</code>
+                                            - 當圖片顯示不出來時 (網址過期、圖檔遭刪、格式不支援) 就會改顯示此文字，至少能讓人知道本來要顯示什麼。
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;ul&gt;... &lt;/ul&gt; & &lt;li&gt;... &lt;/li&gt;</code>
-                                        - 使用於body，呈現項目符號  (bullet)，也就是本章節的那些黑色小圓圈，ul定義出項目的範圍，每組li則是一個項目，所以整個格式會是:
-                                        <pre><code class="html">
+                                    <code class="inline">&lt;ul&gt;... &lt;/ul&gt; & &lt;li&gt;... &lt;/li&gt;</code>
+                                    - 使用於body，呈現項目符號  (bullet)，也就是本章節的那些黑色小圓圈，ul定義出項目的範圍，每組li則是一個項目，所以整個格式會是:
+                                    <pre><code class="html">
     &lt;ul&gt;
         &lt;li&gt;...&lt;/li&gt; &lt;!--項目1--&gt;
         &lt;li&gt;...&lt;/li&gt; &lt;!--項目2--&gt;
         &lt;li&gt;...&lt;/li&gt; &lt;!--項目3--&gt;
     &lt;/ul&gt;
-                                        </code></pre>
-                                    </p>                        
+                                    </code></pre>
                                 </li>
                                 <li>
-                                    <p class="content-paragraph">
-                                        <code class="inline">&lt;a href=$link&gt;</code>
-                                        - 使用於body，a代表anchor - 提供超連結的功能，$link可以是外部網址，也可以是本網站內部的其他頁面/章節，當使用者點擊後就會跳轉到指定的網頁。
-                                    </p>                        
+                                    <code class="inline">&lt;a href=$link&gt;</code>
+                                    - 使用於body，a代表anchor - 提供超連結的功能，$link可以是外部網址，也可以是本網站內部的其他頁面/章節，當使用者點擊後就會跳轉到指定的網頁。
                                 </li>
                             </ul>
                         </p>

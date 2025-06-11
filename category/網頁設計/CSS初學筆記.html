@@ -110,21 +110,18 @@
                             上面用標籤種類設定樣式的寫法稱為 <code class="inline">element</code> 選擇器，它會選擇所有指定標籤的元素，但這可能會遇到一個問題: 如果HTML中有許多相同的標籤，要如何只改變其中一個的樣式呢? 舉例來說，假設頁面上有兩個&lt;h1&gt;標題，但我們只想讓其中一個轉紅色。這時候就需要使用其他選擇器了:
                             <section class="L2-section">
                                 <h2 class="L2-section-title">Class 選擇器</h2>
-                                <ul class="content-ul">
+                                <ul class="content-ul marginx2">
                                     <li>
-                                        <p class="content-paragraph">
-                                            要能選取特定的標籤，我們必須先在HTML標籤中加入一些屬性，最常用的就是 <code class="inline">class</code> 屬性，底下替兩種顏色的標題設定不同的class:
-                                            <pre><code class="html">
+                                        要能選取特定的標籤，我們必須先在HTML標籤中加入一些屬性，最常用的就是 <code class="inline">class</code> 屬性，底下替兩種顏色的標題設定不同的class:
+                                        <pre><code class="html">
     &lt;!-- HTML --&gt;
     &lt;h1 class="black-title"&gt; 黑色標題 &lt;/h1&gt;
     &lt;h1 class="red-title"&gt; 紅色標題 &lt;/h1&gt;
-                                            </code></pre>
-                                        </p>
+                                        </code></pre>
                                     </li>
                                     <li>
-                                        <p class="content-paragraph">
-                                            將原先CSS指定標籤的寫法改成使用class名稱來選擇，selector的寫法上是一個小數點加class名稱 (".$className"):
-                                            <pre><code class="css">
+                                        將原先CSS指定標籤的寫法改成使用class名稱來選擇，selector的寫法上是一個小數點加class名稱 (".$className"):
+                                        <pre><code class="css">
     /* CSS */
     .black-title {
         font-size: 32px;
@@ -135,8 +132,7 @@
         font-size: 32px;
         color: rgb(255, 0, 0);
     }
-                                            </code></pre>
-                                        </p>
+                                        </code></pre>
                                     </li>
                                 </ul>                       
                             </p>
@@ -170,23 +166,19 @@
                             <h2 class="L2-section-title">選擇器應用</h2>
                             <p class="content-paragraph">
                                 <code class="inline">element</code>、<code class="inline">class</code>、<code class="inline">id</code> 可以結合使用，達成更為精準的選取:
-                                <ul class="content-ul">
+                                <ul class="content-ul marginx2">
                                     <li>
-                                        <p class="content-paragraph">
-                                            相同class名稱可以出現在不同標籤中，例如: &lt;h1 class=intro&gt;, &lt;p class=intro&gt; 兩者都是class相同，但標題與段落要套用不同樣式，要區分就得同時指定標籤和class: <code class="inline"> h1[class="intro"] </code>、<code class="inline"> p[class="intro"] </code>，這種selector代表class只能等於"intro"，不能同時有其他class，如果想要表達包含 intro class，則可以使用<code class="inline"> h1.intro </code>。
-                                        </p>
+                                        相同class名稱可以出現在不同標籤中，例如: &lt;h1 class=intro&gt;, &lt;p class=intro&gt; 兩者都是class相同，但標題與段落要套用不同樣式，要區分就得同時指定標籤和class: <code class="inline"> h1[class="intro"] </code>、<code class="inline"> p[class="intro"] </code>，這種selector代表class只能等於"intro"，不能同時有其他class，如果想要表達包含 intro class，則可以使用<code class="inline"> h1.intro </code>。
                                     </li>
                                     <li>
-                                        <p class="content-paragraph">
-                                            由於HTML是有階層的，所以CSS選擇器也支援多階層的指定: <code class="inline"> #main .subsection1 p </code> - 選取id為main內部class為subsection1的全部&lt;p&gt;元素，結構上可以想像成:
-                                            <pre><code class="html">
+                                        由於HTML是有階層的，所以CSS選擇器也支援多階層的指定: <code class="inline"> #main &gt; .subsection1 &gt; p </code> - 選取id為main內部class為subsection1的全部&lt;p&gt;元素，結構上可以想像成:
+                                        <pre><code class="html">
     &lt;div id="main"&gt;
         &lt;div class="subsection1"&gt;
             &lt;p&gt;這是第一段落&lt;/p&gt; &lt;!-- 這個會被選取 --&gt;
             &lt;p&gt;這是第二段落&lt;/p&gt; &lt;!-- 這個會被選取 --&gt;
     ...
-                                            </code></pre>
-                                        </p>
+                                        </code></pre>
                                     </li>
                                     <li>
                                         <p class="content-paragraph">
@@ -419,26 +411,18 @@
     }
                                 </code></pre>
                                 <p class="content-paragraph">
-                                    <ul class="content-ul">
+                                    <ul class="content-ul marginx1p5">
                                         <li>
-                                            <p class="content-paragraph">
-                                                <code class="inline">font-family</code> - 設定字體，常見的有 Arial, Helvetica, Times New Roman 等等。通常會一次設定多組，防止瀏覽器不支援該字體或是該字體沒有支援特定語言文字，只要無法帶入就會依序嘗試下一個字體。
-                                            </p>
+                                            <code class="inline">font-family</code> - 設定字體，常見的有 Arial, Helvetica, Times New Roman 等等。通常會一次設定多組，防止瀏覽器不支援該字體或是該字體沒有支援特定語言文字，只要無法帶入就會依序嘗試下一個字體。
                                         </li>
                                         <li>
-                                            <p class="content-paragraph">
-                                                <code class="inline">font-size</code> - 設定字體大小，通常使用像素(px)或是相對單位(em, rem) - em是相較於parents元素的字體大小，rem則是相較於root元素的字體大小，如果想跟root元素同大小就設成1rem。
-                                            </p>
+                                            <code class="inline">font-size</code> - 設定字體大小，通常使用像素(px)或是相對單位(em, rem) - em是相較於parents元素的字體大小，rem則是相較於root元素的字體大小，如果想跟root元素同大小就設成1rem。
                                         </li>
                                         <li>
-                                            <p class="content-paragraph">
-                                                <code class="inline">line-height</code> - 設定行高，這會影響到段落的可讀性。</li>
-                                            </p>
+                                            <code class="inline">line-height</code> - 設定行高，這會影響到段落的可讀性。</li>
                                         </li>
                                         <li>
-                                            <p class="content-paragraph">
-                                                <code class="inline">font-weight</code> - 設定字體粗細，可以是 normal、bold、lighter，或是直接指定數值 (1~1000)，normal = 400, bold = 700。
-                                            </p>
+                                            <code class="inline">font-weight</code> - 設定字體粗細，可以是 normal、bold、lighter，或是直接指定數值 (1~1000)，normal = 400, bold = 700。
                                         </li>
                                     </ul>
                                 </p>
@@ -455,7 +439,7 @@
     }
                                 </code></pre>
                                 <p class="content-paragraph">
-                                    <ul class="content-ul">
+                                    <ul class="content-ul marginx1p5">
                                         <li>
                                             <code class="inline">color</code> - 設定文字顏色，可以使用顏色名稱 (ex: white, green)、HEX數值 (ex: #b1b1b1)、rgb($R, $G, $B)，也可進階設定透明度: rgba($R, $G, $B, $A)。
                                         </li>

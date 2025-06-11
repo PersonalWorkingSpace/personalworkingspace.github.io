@@ -76,7 +76,7 @@ function createAnchor(text, link) {
 // Update agenda section status to display read progress
 function updateReadProgress() {
     let titles = getTitles();
-    let bullets = document.querySelectorAll("#agenda > li");
+    let bullets = document.querySelectorAll("#agenda li");
     let scrolly = window.scrollY;
 
     // agenda hasn't be generated

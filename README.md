@@ -7,10 +7,9 @@
 * 2025/05/18 完成第一篇文章
 * 2025/05/30 完成category, tag system
 * 2025/06/01 完成front page
+* 2025/06/10 完成第二篇文章
 
 ## TODO
-* 撰寫第二篇文章
-* 使用不同li class來取代p in li
 * 目錄自動展開第二階層
 * 左側時間軸調整
 * 左右比例調整
@@ -23,6 +22,5 @@
 * CSS參數化
 * round corner
 * timezone
-* ol vs. li css
 * hover
 * aspect ration of whole pages
