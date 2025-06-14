@@ -30,6 +30,7 @@ body {
 .wrapper {
     flex: 1 1 calc(var(--center-width) + 2*var(--aside-width));
     max-width: calc(var(--center-width) + 2*var(--aside-width));
+    min-width: 0px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -65,7 +66,7 @@ body {
 
 .post-header .post-meta {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: left;
     font-size: 16px;
     color: #9b9c9c;
@@ -99,7 +100,7 @@ body {
 
 .post .post-meta {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: left;
     font-size: 13px;
     color: #9b9c9c;
@@ -238,9 +239,24 @@ a {
     font-weight: 400;
 }
 
+@media (max-width: 1000px) {
+    #left-area {
+        display: none;
+    }
+
+    #right-area {
+        display: none;
+    }
+
+    #site-nav {
+        display: none;
+    }
+}
+
 #left-area {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
+    min-width: 0px;
     padding: 1rem;
     margin-top: 2rem;
     /* border: 3px solid rgb(223, 55, 55); */
@@ -249,6 +265,7 @@ a {
 #center-area {
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
+    min-width: 0px;
     padding: 1rem;
     margin-top: 2rem;
     /* border: 3px solid rgb(43, 179, 38); */
@@ -257,6 +274,7 @@ a {
 #right-area {
     flex: 2 2 var(--aside-width);
     max-width: var(--aside-width);
+    min-width: 0px;
     padding: 1rem;
     margin-top: 2rem;
     /* border: 3px solid rgb(35, 48, 168); */
@@ -288,7 +306,7 @@ p.content-paragraph {
 p.note {
     font-size: var(--note-font-size);
     margin-top: 0.5rem;
-    line-height: 1rem;
+    line-height: 2rem;
     color: rgb(127, 126, 126);
 }
 

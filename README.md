@@ -10,8 +10,10 @@
 * 2025/06/10 完成第二篇文章
 
 ## TODO
+* 響應式網頁設計
+    * 左側時間軸調整
+    * subpage大綱標籤分離
 * 目錄自動展開第二階層
-* 左側時間軸調整
 * 左右比例調整
 * light box for click figure
 * code copy function

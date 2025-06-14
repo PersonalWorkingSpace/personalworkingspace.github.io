@@ -84,7 +84,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: stretch;
-    height: 100px; /* Set a height to see the stretch effect */
+    height: 120px; /* Set a height to see the stretch effect */
 }
 
 #align-baseline-container {
@@ -92,15 +92,19 @@
     flex-direction: row;
     justify-content: center;
     align-items: baseline;
-    height: 100px;
+    height: 120px;
 }
 
-.text28 {
-    font-size: 28px;
+.text14 {
+    font-size: 14px;
 }
 
-.text36 {
-    font-size: 36px;
+.text24 {
+    font-size: 24px;
+}
+
+.text32 {
+    font-size: 32px;
 }
 
 .no-radius {
