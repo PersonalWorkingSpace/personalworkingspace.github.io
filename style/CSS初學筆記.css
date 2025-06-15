@@ -1,3 +1,7 @@
+#flex-demo {
+    height: 140px;
+}
+
 #row-flex-container {
     display: flex;
     flex-direction: row;
@@ -93,6 +97,13 @@
     justify-content: center;
     align-items: baseline;
     height: 120px;
+}
+
+@media (max-width: 768px) {
+   #demo-justify-center {
+        flex-basis: 100%;
+        margin-top: 1rem;
+    }
 }
 
 .text14 {

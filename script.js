@@ -4,10 +4,10 @@ import { NumberToMonth } from './module/common.js';
 
 window.onload = function() {
     updatePosts();
-    updateAgenda();
+    updateTimeline();
     updateCategory();
     updateTag();
-    registerAgendaToggleEvent();
+    registerTimelineToggleEvent();
 }
 
 window.addEventListener('scroll', function() {
@@ -61,24 +61,27 @@ function updatePosts() {
     }
 }
 
-
 function getPostMeta(post) {
     let postMeta = document.createElement("div");
     let created = document.createElement("time");
     let date = new Date(post["created"]);
     
     created.setAttribute("datetime", date);
-    created.innerHTML = `${NumberToMonth[date.getMonth() + 1]} ${date.getDate()}, ${date.getFullYear()}`
+    created.innerHTML = `${NumberToMonth[date.getMonth() + 1]} ${date.getDate()}, ${date.getFullYear()} | `
     postMeta.appendChild(created);
 
-    let textNode = document.createTextNode(`\xa0 |\xa0 category: \xa0`);
-    postMeta.appendChild(textNode);
-    
+    let categoryICON = document.createElement("img");
+    categoryICON.setAttribute("src", "./image/CATEGORY-ICON.png");
+    categoryICON.setAttribute("class", "inline-icon");
+    postMeta.appendChild(categoryICON);
+
     let categoryBar = getPostCategory(post["category"]);
     postMeta.appendChild(categoryBar);
 
-    textNode = document.createTextNode(`\xa0 |\xa0 tags: \xa0`);
-    postMeta.appendChild(textNode);
+    let tagICON = document.createElement("img");
+    tagICON.setAttribute("src", "./image/TAG-ICON.png");
+    tagICON.setAttribute("class", "inline-icon");
+    postMeta.appendChild(tagICON);
 
     let tagBar = getPostTag(post["tag"]);
     postMeta.appendChild(tagBar);
@@ -87,7 +90,7 @@ function getPostMeta(post) {
 
 function getPostCategory(category) {
     let bar = document.createElement("span");
-    bar.setAttribute("id", "category-bar");
+    bar.setAttribute("class", "category-bar");
 
     let anchor = createAnchor(category, "#");
     anchor.setAttribute("class", "tag");
@@ -99,7 +102,7 @@ function getPostCategory(category) {
 
 function getPostTag(tags) {
     let bar = document.createElement("nav");
-    bar.setAttribute("id", "tag-bar");
+    bar.setAttribute("class", "tag-bar");
     let taglist = tags.split(",");
 
     for (let i = 0; i < taglist.length; i++) {
@@ -160,9 +163,9 @@ function updateTag() {
     }
 }
 
-// Generate agenda: articles published in past twelve months
-function updateAgenda() {
-    let agenda = document.getElementById("agenda");
+// Generate timeline: articles published in past twelve months
+function updateTimeline() {
+    let timeline = document.getElementById("timeline");
     let now = new Date();
     let month = now.getMonth() + 1; // January gives 0
     let year = now.getFullYear();
@@ -184,25 +187,23 @@ function updateAgenda() {
         
         if (pageMonth != selectMonth) {
             selectMonth = pageMonth;
-            let newNode = document.createElement("li");
-            let symbol = "▶";
             let state = "collapsed";
+            let symbol = "▶";
             if (i == 0) {
-                symbol = "▽";
                 state = "expanded";
+                symbol = "▽";
             }
 
             let key = `${symbol} ${pageYear} ${NumberToMonth[pageMonth]}`;
             toggleList = createToggle(key, state);
-            newNode.appendChild(toggleList);
-            agenda.appendChild(newNode);
+            timeline.appendChild(toggleList);
         }
 
-        let ol = toggleList.childNodes[1];
+        let ul = toggleList.childNodes[1];
         let newNode = document.createElement("li");
         let anchor = createAnchor(page["title"], `${url}/category/${page["category"]}/${page["title"]}.html`); 
         newNode.appendChild(anchor);
-        ol.appendChild(newNode);
+        ul.appendChild(newNode);
     }
 }
 
@@ -214,9 +215,9 @@ function createAnchor(text, link) {
 }
 
 function createToggle(title, state) {
-    let toggleList = document.createElement("div");
+    let toggleList = document.createElement("li");
     let header = document.createElement("h1");
-    let member = document.createElement("ol");
+    let member = document.createElement("ul");
     header.setAttribute("class", "toggleTitle");
     member.setAttribute("class", "toggleMemberBullet");
 
@@ -228,15 +229,15 @@ function createToggle(title, state) {
 }
 
 // register toggle event for timeline
-function registerAgendaToggleEvent() {
-    let toggles = document.querySelectorAll("#agenda .toggleTitle");
+function registerTimelineToggleEvent() {
+    let toggles = document.querySelectorAll("#timeline .toggleTitle");
     
     for (let i = 0; i < toggles.length; i++) {
         let toggle = toggles[i];
         toggle.addEventListener(
             "click", (event) => {
                 let clickedTC = event.target.parentElement;
-                let toggleContainers = document.querySelectorAll("#agenda li div");
+                let toggleContainers = document.querySelectorAll("#timeline li");
                 for (let i = 0; i < toggleContainers.length; i++) {
                     let tc = toggleContainers[i];
                     let h1 = tc.childNodes[0];

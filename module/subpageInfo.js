@@ -6,7 +6,7 @@ const Pages = [
         "category": "網頁設計",
         "tag": "初學筆記, CSS",
         "thumbnail": "https://images.unsplash.com/photo-1610986603166-f78428624e76?q=80&w=2658&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "description": "在上一篇文章中，我們學到了網頁基本的HTML框架，本篇則是要介紹CSS，這個用來美化網頁的語言，如果說HTML是網頁的建材，CSS則是..."
+        "description": "本篇將會介紹CSS，這個用來美化網頁的語言，如果說HTML是網頁的建材，CSS則是..."
     },
     {
         "file": "category/網頁設計/HTML初學筆記.html",
@@ -15,7 +15,7 @@ const Pages = [
         "category": "網頁設計",
         "tag": "初學筆記, HTML",
         "thumbnail": "https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        "description": "歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於..."
+        "description": "本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於..."
     }
 ];
 

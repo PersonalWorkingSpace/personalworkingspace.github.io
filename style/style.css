@@ -1,40 +1,36 @@
 :root {
     --center-width : 800px;
-    --aside-width: 350px;
+    --left-width: 300px;
+    --right-width: 350px;
     --default-font-size: 18px;
     --note-font-size: 18px;
-    --timeline-font-size: 16px;
-    --color-bg-base-reverse: 0 0% 100%;
+    --timeline-font-size: 18px;
 }
 
 body {
     font-family: genyogothictw, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    /* width: 100%;  vw includes the scrollbar
-    height: 100vh; */
     color: #333;
     font-size: 24px;
+    background-color: #ffffff;
 }
 
 .banner {
     background: #424141;
-    padding: 1rem 2rem;
-    text-align: center;
-    line-height: 60.75px;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
 }
 
 .wrapper {
-    flex: 1 1 calc(var(--center-width) + 2*var(--aside-width));
-    max-width: calc(var(--center-width) + 2*var(--aside-width));
+    max-width: calc(var(--center-width) + var(--left-width) + var(--right-width));
     min-width: 0px;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    /* border: 3px solid red; */
 }
 
 #site-logo {
@@ -54,7 +50,7 @@ body {
 
 #site-nav a {
     color: #fff;
-    margin: 0 1rem;
+    margin: 0rem 0rem 0rem 2rem;
     text-decoration: none;
 }
 
@@ -88,11 +84,16 @@ body {
     font-size: 24px;
     font-weight: 700;
     color: black;
-    margin: 0.2rem 1rem 0rem 0rem;
+    margin: 0rem 1rem 0rem 0rem;
 }
 
 .post .post-description {
-    font-size: 14px;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 16px;
     font-weight: 400;
     color: #727474;
     margin: 0.2rem 1rem 0rem 0rem;
@@ -102,7 +103,7 @@ body {
     display: flex;
     flex-flow: row wrap;
     justify-content: left;
-    font-size: 13px;
+    font-size: 16px;
     color: #9b9c9c;
     margin: 0.75rem 0rem;
 }
@@ -117,6 +118,13 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.inline-icon {
+    height: 1.1rem;
+    margin: 0rem 0.35rem 0rem 0.35rem;
+    position: relative;
+    top: 0.2em;
 }
 
 a[class=tag] {
@@ -137,9 +145,9 @@ a[class=tag] {
 
 .main-container {
     display: flex;
+    margin: 0 auto;
     flex-flow: row nowrap;
     justify-content: center;
-    background-color: #ffffff;
 }
 
 #agenda-wrapper {
@@ -196,28 +204,33 @@ a {
     font-weight: 300;
 }
 
-#agenda .collapsed .toggleTitle {
+#timeline {
+    list-style: none;
+    font-size: var(--default-font-size);
+    margin: 0rem;
+    padding: 0rem;
+}
+
+#timeline-title {
+    font-size: 18px;
+    margin-top: 0rem;
+}
+
+#timeline .collapsed .toggleTitle {
     font-size: 18px;
     color:rgb(0, 0, 0);
-    background-color: #ffffff00;
-    border-radius: 0.35rem;
-    padding-left: 1rem;
-    font-weight: 400;
+    /* border-radius: 0.35rem; */
 }
 
-#agenda .expanded .toggleTitle {
+#timeline .expanded .toggleTitle {
     font-size: 18px;
-    color:rgb(228, 224, 220);
-    background-color: #333;
-    border-radius: 0.35rem;
-    padding-left: 1rem;
-    font-weight: 400;
+    color:rgb(0, 0, 0);
+    /* border-radius: 0.35rem; */
 }
 
-#agenda .toggleTitle:hover, #agenda .toggleMemberBullet li:hover {
+#timeline .toggleTitle:hover, #timeline .toggleMemberBullet li:hover {
     cursor: pointer;
     color:rgb(0, 0, 0);
-    background-color: #64d4d8;
     border-radius: 0.35rem;
 }
 
@@ -228,8 +241,8 @@ a {
 .expanded .toggleMemberBullet {
     list-style: none;
     font-size: var(--timeline-font-size);
-    margin: 1rem 0rem 1rem 1.25rem;
-    padding: 0rem;
+    margin-left: 0.5rem;
+    padding-left: 0.75rem;
     border-left: 3px solid rgb(38, 40, 41);
 }
 
@@ -254,11 +267,12 @@ a {
 }
 
 #left-area {
-    flex: 2 2 var(--aside-width);
-    max-width: var(--aside-width);
+    flex: 1 1 var(--left-width);
+    max-width: var(--left-width);
     min-width: 0px;
-    padding: 1rem;
-    margin-top: 2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    /* margin: 2rem 2rem 0rem 0rem; */
     /* border: 3px solid rgb(223, 55, 55); */
 }
 
@@ -266,17 +280,19 @@ a {
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
     min-width: 0px;
-    padding: 1rem;
-    margin-top: 2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    /* margin: 2rem 0rem 0rem 0rem; */
     /* border: 3px solid rgb(43, 179, 38); */
 }
 
 #right-area {
-    flex: 2 2 var(--aside-width);
-    max-width: var(--aside-width);
+    flex: 1 1 var(--right-width);
+    max-width: var(--right-width);
     min-width: 0px;
-    padding: 1rem;
-    margin-top: 2rem;
+    padding: 2rem;
+    box-sizing: border-box;
+    /* margin: 2rem 0rem 0rem 2rem; */
     /* border: 3px solid rgb(35, 48, 168); */
 }
 
@@ -367,11 +383,11 @@ code[class=prop] {
 
 div.demo-container {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 div.demo {
@@ -381,6 +397,7 @@ div.demo {
     border: 3px solid #b1b1b1;
     margin: 0 0.5rem;
     height: 100%;
+    flex: 1 1 20%;
 }
 
 div.demo h1 {
