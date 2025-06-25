@@ -1,0 +1,29 @@
+#demo-input {
+    font-size: 18px;
+    text-align: center;
+    border-radius: 0.5rem;
+    width: 8rem;
+}
+
+#demo-button {
+    font-size:  32px;
+    color: rgb(131, 211, 131);
+    background-color: transparent;
+    border: 0px;
+}
+
+#js-demo-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin: 1rem;
+}
+
+#demo-display {
+    font-size: 32px;
+    color: red;
+    background-color: rgb(255, 237, 216);
+    border: 2px dashed #333;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+}

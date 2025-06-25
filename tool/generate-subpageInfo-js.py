@@ -47,7 +47,7 @@ if __name__ == "__main__":
             main_content = soup.find('article', id='main-content')
             first_img = None
             if main_content:
-                img_tag = main_content.find('img')
+                img_tag = main_content.find('img', id='cover')
                 if img_tag and img_tag.has_attr('src'):
                     first_img = img_tag['src']
               

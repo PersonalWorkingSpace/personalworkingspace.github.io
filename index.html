@@ -1,67 +1,72 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-    <head>
-        <title>Internet NPC</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="auther" content="MJ CHEN">
-        <meta name="description" content="在此記錄我的所學，希望自己能夠像個NPC一樣持續做好自己的事情，不要中斷~~~">
-        <meta name="keywords" content="Internet NPC">
-        <link href="image/INPC-ICON.png" rel="icon" type="image/x-icon">
-        <link href="./style/style.css" rel="stylesheet" type="text/css">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/dark.min.css" rel="stylesheet" >
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        <script type="module" src="script.js"></script>
-        <script>hljs.highlightAll();</script>
-    </head>
-    <body>
-        <header class="banner">
-            <div class="wrapper">
-                <a id="site-logo" href="index.html">
-                    <img width=40px src="image/INPC-ICON.png" alt="inpc-icon">
-                    <span>&nbsp&nbsp</span>
-                    Internet NPC
-                </a>
-                <nav id="site-nav">
-                    <a href="./index.html">Home</a>
-                    <a href="#">Posts</a>
-                    <a href="#">Categories</a>
-                    <a href="#">Tags</a>
-                </nav>
-            </div>
-        </header>
 
-        <div class="main-container">
-            <aside id="left-area">  <!-- 這是時間軸 -->
-                <h1 id="timeline-title"><img src="./image/CALENDAR-ICON.png" class="inline-icon">Last 12 months</h1>
-                <hr>
-                <ul id="timeline">
-                </ul>
-            </aside>
+<head>
+    <title>Internet NPC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="在此記錄我的所學，希望自己能夠像個NPC一樣持續做好自己的事情，不要中斷~~~">
+    <meta name="keywords" content="Internet NPC">
+    <link href="image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="./style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script type="module" src="script.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
 
-            <main id="center-area">
-                <article id="main-content">
-                </article>
-            </main>
-
-            <aside id="right-area">
-                <div id="category-warpper">
-                    <h1 id="category-title"><img src="./image/CATEGORY-ICON.png" class="inline-icon">Categories</h1>
-                    <hr>
-                    <div id="category-list">
-                    </div>
-                </div>
-                <div id="tag-warpper">
-                    <h1 id="tag-title"><img src="./image/TAG-ICON.png" class="inline-icon">Tags</h1>
-                    <hr>
-                    <div id="tag-list">
-                    </div>
-                </div>
-            </aside>
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="index.html">
+                <img width=40px src="image/INPC-ICON.png" alt="inpc-icon">
+                <span>&nbsp&nbsp</span> Internet NPC
+            </a>
+            <nav id="site-nav">
+                <a href="./index.html">Home</a>
+                <a href="#">Posts</a>
+                <a href="#">Categories</a>
+                <a href="#">Tags</a>
+            </nav>
         </div>
+    </header>
 
-        <footer>
-            <p>隨筆紀錄我的學習過程</p>
-        </footer>
-    </body>
+    <div class="main-container">
+        <aside id="left-area">
+            <!-- 這是時間軸 -->
+            <h1 id="timeline-title"><img src="./image/CALENDAR-ICON.png" class="inline-icon">Last 12 months</h1>
+            <hr>
+            <ul id="timeline">
+            </ul>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+            </article>
+        </main>
+
+        <aside id="right-area">
+            <div id="category-warpper">
+                <h1 id="category-title"><img src="./image/CATEGORY-ICON.png" class="inline-icon">Categories</h1>
+                <hr>
+                <div id="category-list">
+                </div>
+            </div>
+            <div id="tag-warpper">
+                <h1 id="tag-title"><img src="./image/TAG-ICON.png" class="inline-icon">Tags</h1>
+                <hr>
+                <div id="tag-list">
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>隨筆紀錄我的學習過程</p>
+    </footer>
+</body>
+
 </html>

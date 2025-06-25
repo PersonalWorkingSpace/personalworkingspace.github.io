@@ -34,7 +34,7 @@ function updateTag() {
     let bar = document.getElementById("tag-bar");
     let tags = document.querySelector('meta[name="keywords"]').content
     let taglist = tags.split(",")
-    
+
     for (let i = 0; i < taglist.length; i++) {
         let tag = taglist[i].trim();
         let anchor = createAnchor(tag, "#");
@@ -87,16 +87,16 @@ function updateReadProgress() {
     let reachTop = false;
     let reachBottom = false;
     if (scrolly < titles[0].offsetTop) {
-       reachTop = true;
+        reachTop = true;
     } else if ((window.innerHeight + scrolly) >= document.body.offsetHeight - 30) { // minus 30 for stability
         reachBottom = true;
     }
-    
+
     for (let i = 0; i < titles.length - 1; i++) {
-        let bullet = bullets[i];                 
+        let bullet = bullets[i];
         let title = titles[i];
         let nextTitle = titles[i + 1];
-        if (i == 0 && reachTop || 
+        if (i == 0 && reachTop ||
             scrolly >= (title.offsetTop - 10) && scrolly < (nextTitle.offsetTop - 10) && !reachBottom) { // minus 10 for stability
             bullet.className = "focus-section";
         } else {

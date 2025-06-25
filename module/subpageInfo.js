@@ -1,5 +1,14 @@
 const Pages = [
     {
+        "file": "category/網頁設計/Javascript初學筆記.html",
+        "created": "2025-06-21T00:00:00+08:00",
+        "title": "Javascript初學筆記",
+        "category": "網頁設計",
+        "tag": "初學筆記, Javascript",
+        "thumbnail": "https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的..."
+    },
+    {
         "file": "category/網頁設計/CSS初學筆記.html",
         "created": "2025-06-07T00:00:00+08:00",
         "title": "CSS初學筆記",
@@ -21,6 +30,7 @@ const Pages = [
 
 const Categories = {
     "網頁設計": [
+        "category/網頁設計/Javascript初學筆記.html",
         "category/網頁設計/CSS初學筆記.html",
         "category/網頁設計/HTML初學筆記.html"
     ]
@@ -28,8 +38,12 @@ const Categories = {
 
 const Tags = {
     "初學筆記": [
+        "category/網頁設計/Javascript初學筆記.html",
         "category/網頁設計/CSS初學筆記.html",
         "category/網頁設計/HTML初學筆記.html"
+    ],
+    "Javascript": [
+        "category/網頁設計/Javascript初學筆記.html"
     ],
     "CSS": [
         "category/網頁設計/CSS初學筆記.html"
