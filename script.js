@@ -19,7 +19,7 @@ function updatePosts() {
     let url = decodeURIComponent(window.location.href);
     url = url.replace("/index.html", "/"); // for local test
 
-    for (let i = 0; i < Pages.length; i++) {
+    for (let i = Pages.length - 1; i >= 0; i--) {
         let page = Pages[i];
         let anchor = createAnchor("", `${url}category/${page["category"]}/${page["title"]}.html`);
         anchor.setAttribute("class", "post");
@@ -53,7 +53,7 @@ function updatePosts() {
         anchor.appendChild(thumbnail);
         container.appendChild(anchor);
 
-        if (i != Pages.length - 1) {
+        if (i != 0) {
             let hr = document.createElement("hr");
             hr.setAttribute("class", "post-hr");
             container.appendChild(hr);
@@ -65,7 +65,7 @@ function getPostMeta(post) {
     let postMeta = document.createElement("div");
     let created = document.createElement("time");
     let date = new Date(post["created"]);
-    
+
     created.setAttribute("datetime", date);
     created.innerHTML = `${NumberToMonth[date.getMonth() + 1]} ${date.getDate()}, ${date.getFullYear()} | `
     postMeta.appendChild(created);
@@ -135,7 +135,7 @@ function getPostThumbnail(thumbnail) {
 function updateCategory() {
     let container = document.getElementById("category-list");
     for (const [cg, listOfPages] of Object.entries(Categories)) {
-        let anchor = createAnchor(`${cg} (${listOfPages.length})`, "#");
+        let anchor = createAnchor(`${cg} (${listOfPages["name"].length})`, "#");
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[cg]["font"];
         anchor.style.backgroundColor = colorCode[cg]["bg"];
@@ -151,7 +151,7 @@ function updateCategory() {
 function updateTag() {
     let container = document.getElementById("tag-list");
     for (const [tag, listOfPages] of Object.entries(Tags)) {
-        let anchor = createAnchor(`${tag} (${listOfPages.length})`, "#");
+        let anchor = createAnchor(`${tag} (${listOfPages["name"].length})`, "#");
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];
@@ -172,10 +172,9 @@ function updateTimeline() {
     let selectMonth = -1;
     let toggleList;
 
-    let url = decodeURIComponent(window.location.href);
-    url = url.replace("/index.html", ""); // for local test
+    let url = decodeURIComponent(new URL(window.location.href).origin);
 
-    for (let i = 0; i < Pages.length; i++) {
+    for (let i = Pages.length - 1; i >= 0; i--) {
         let page = Pages[i];
         let created = new Date(page["created"]);
         let pageYear = created.getFullYear();
@@ -184,12 +183,12 @@ function updateTimeline() {
         if ((year - pageYear) * 12 + (month - pageMonth) > 12) {
             break;
         }
-        
+
         if (pageMonth != selectMonth) {
             selectMonth = pageMonth;
             let state = "collapsed";
             let symbol = "▶";
-            if (i == 0) {
+            if (i == Pages.length - 1) {
                 state = "expanded";
                 symbol = "▽";
             }
@@ -201,7 +200,7 @@ function updateTimeline() {
 
         let ul = toggleList.childNodes[1];
         let newNode = document.createElement("li");
-        let anchor = createAnchor(page["title"], `${url}/category/${page["category"]}/${page["title"]}.html`); 
+        let anchor = createAnchor(page["title"], `${url}/${page["file"]}`);
         newNode.appendChild(anchor);
         ul.appendChild(newNode);
     }
@@ -231,7 +230,7 @@ function createToggle(title, state) {
 // register toggle event for timeline
 function registerTimelineToggleEvent() {
     let toggles = document.querySelectorAll("#timeline .toggleTitle");
-    
+
     for (let i = 0; i < toggles.length; i++) {
         let toggle = toggles[i];
         toggle.addEventListener(
@@ -241,7 +240,7 @@ function registerTimelineToggleEvent() {
                 for (let i = 0; i < toggleContainers.length; i++) {
                     let tc = toggleContainers[i];
                     let h1 = tc.childNodes[0];
-                    
+
                     if (tc == clickedTC) {
                         tc.setAttribute("class", "expanded");
                         h1.innerHTML = h1.innerHTML.replace("▶", "▽");

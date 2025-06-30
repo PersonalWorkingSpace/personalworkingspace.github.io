@@ -10,20 +10,28 @@
 * 2025/06/10 完成第二篇文章: CSS
 * 2025/06/18 RWD第一版完成
 * 2025/06/15 完成第三篇文章: Javascript
+* 2025/06/30 加入 category/tag 建議文章
 
 ## Article Goal
 
 
-## TODO
-* 上滑顯示bar
-* 調整背景顏色
+## CLEAN
+* 用詞修正 page to article
 * tool, example 分離repo
+* timezone
+* CSS參數化
+
+## FIX
+* 修正左右高度不一
+* 表格 RWD
+
+## TODO
+* category / tag 頁面
+* tag list 改成 隨機產生
+* 上滑顯示bar
 * 目錄自動展開第二階層
 * light box for click figure
 * code 右上角顯示語言
 * code copy function
 * code download
-* 標頭只在上滾顯示
-* CSS參數化
-* timezone
-* hover
+* 標頭在上滾顯示

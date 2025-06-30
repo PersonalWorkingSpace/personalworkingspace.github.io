@@ -1,15 +1,40 @@
 import { colorCode } from './colorization.js';
+import { Pages, Categories, Tags } from '../module/subpageInfo.js';
 
 window.onload = function() {
-    updateCategory();
-    updateTag();
-    updateAgenda();
+    init();
+    setCategory();
+    setTags();
+    setAgenda();
     updateReadProgress();
+    setCategoryArticles();
+    setTagArticles();
 }
 
 window.addEventListener('scroll', function() {
     updateReadProgress();
 })
+
+const NUM_CATEGORY_ARTICLE = 7;
+
+var g_url;
+var g_origin;
+var g_path;
+var g_file;
+var g_category;
+var g_tags;
+
+function init() {
+    g_url = decodeURIComponent(window.location.href);
+    g_origin = decodeURIComponent(new URL(g_url).origin)
+    g_path = decodeURIComponent(new URL(g_url).pathname.slice(1));
+    g_file = g_path.split('/').pop().replace('.html', '');
+    g_category = g_url.split("/category/")[1].split("/")[0];
+
+    let tags = document.querySelector('meta[name="keywords"]').content;
+    g_tags = [];
+    tags.split(",").forEach((t) => { g_tags.push(t.trim()); });
+}
 
 function getTitles() {
     let postTitles = Array.from(document.getElementsByClassName("post-title"));
@@ -17,40 +42,32 @@ function getTitles() {
     return postTitles.concat(sectionTitles);
 }
 
-// Generate category
-function updateCategory() {
-    let url = decodeURIComponent(window.location.href);
-    let category = url.split("/category/")[1].split("/")[0];
+// Set category bar
+function setCategory() {
     let bar = document.getElementById("category-bar");
-    let anchor = createAnchor(category, "#");
+    let anchor = createAnchor(g_category, "#");
     anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[category]["font"];
-    anchor.style.backgroundColor = colorCode[category]["bg"];
+    anchor.style.color = colorCode[g_category]["font"];
+    anchor.style.backgroundColor = colorCode[g_category]["bg"];
     bar.appendChild(anchor);
 }
 
-// Generate tag
-function updateTag() {
+// Set tag bar
+function setTags() {
     let bar = document.getElementById("tag-bar");
-    let tags = document.querySelector('meta[name="keywords"]').content
-    let taglist = tags.split(",")
 
-    for (let i = 0; i < taglist.length; i++) {
-        let tag = taglist[i].trim();
+    for (let i = 0; i < g_tags.length; i++) {
+        let tag = g_tags[i]
         let anchor = createAnchor(tag, "#");
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];
         bar.appendChild(anchor);
-        if (i != taglist.length - 1) {
-            let textNode = document.createTextNode(" ");
-            bar.appendChild(textNode);
-        }
     }
 }
 
-// Generate agenda
-function updateAgenda() {
+// Set agenda
+function setAgenda() {
     let agenda = document.getElementById("agenda");
 
     let titles = getTitles();
@@ -72,6 +89,98 @@ function createAnchor(text, link) {
     return anchor;
 }
 
+// Display articles from the same category
+function setCategoryArticles() {
+    let category = Categories[g_category];
+    let idx = category["name"].indexOf(g_file);
+
+    if (idx == -1) {
+        console.log(`Failed to "${g_file}" find the file in "${g_category}" category list`);
+        return;
+    }
+
+    let lower = Math.max(0, idx - Math.floor(NUM_CATEGORY_ARTICLE / 2));
+    let upper = Math.min(category["name"].length, lower + NUM_CATEGORY_ARTICLE);
+
+    let title = document.getElementById("category-title");
+    let anchor = createAnchor(g_category, "#");
+    anchor.setAttribute("class", "tag");
+    anchor.style.color = colorCode[g_category]["font"];
+    anchor.style.backgroundColor = colorCode[g_category]["bg"];
+
+    title.appendChild(anchor);
+
+    let related = document.getElementById("same-category-list");
+    related.setAttribute("class", "related-article");
+
+    for (let i = lower; i < upper; i++) {
+        let page = Pages[category["pageID"][i]];
+        let li = document.createElement("li");
+        let a = createAnchor(`Day${i+1} - ${page["title"]}`, `${g_origin}/${page["file"]}`);
+
+        if (i == idx) {
+            a.setAttribute("class", "this-article");
+        }
+
+        li.appendChild(a);
+        related.appendChild(li);
+    }
+}
+
+
+// Display articles from the same tags
+function setTagArticles() {
+
+    for (let i = 0; i < g_tags.length; i++) {
+        let tag = Tags[g_tags[i]];
+        let tag_name = g_tags[i];
+        let idx = tag["name"].indexOf(g_file);
+
+        if (idx == -1) {
+            console.log(`Failed to "${g_file}" find the file in "${tag_name}" category list`);
+            return;
+        }
+
+        let lower = Math.max(0, idx - Math.floor(NUM_CATEGORY_ARTICLE / 2));
+        let upper = Math.min(tag["name"].length, lower + NUM_CATEGORY_ARTICLE);
+
+        if (lower == upper - 1) {
+            continue;
+        }
+
+        let title = document.createElement("h1");
+        let icon = document.createElement("img");
+        title.setAttribute("class", "tag-title");
+        icon.setAttribute("src", "../../image/TAG-ICON.png");
+        icon.setAttribute("class", "inline-icon");
+        title.appendChild(icon);
+
+        let anchor = createAnchor(tag_name, "#");
+        anchor.setAttribute("class", "tag");
+        anchor.style.color = colorCode[tag_name]["font"];
+        anchor.style.backgroundColor = colorCode[tag_name]["bg"];
+        title.appendChild(anchor);
+
+        let tagRegion = document.getElementById("tag-wrapper");
+
+        tagRegion.appendChild(title);
+        tagRegion.appendChild(document.createElement("hr"));
+
+        let tagList = document.createElement("ul");
+        tagList.setAttribute("class", "same-tag-list");
+        tagRegion.appendChild(tagList);
+
+        for (let i = lower; i < upper; i++) {
+            if (i != idx) {
+                let page = Pages[tag["pageID"][i]];
+                let li = document.createElement("li");
+                let a = createAnchor(`${page["title"]}`, `${g_origin}/${page["file"]}`);
+                li.appendChild(a);
+                tagList.appendChild(li);
+            }
+        }
+    }
+}
 
 // Update agenda section status to display read progress
 function updateReadProgress() {

@@ -132,6 +132,7 @@ body {
 a[class=tag] {
     border-radius: 0.35rem;
     padding: 0rem 0.3rem;
+    margin-right: 0.3rem;
     font-weight: 400;
 }
 
@@ -152,17 +153,16 @@ a[class=tag] {
     justify-content: center;
 }
 
+#timeline-wrapper,
 #agenda-wrapper {
-    position: sticky;
-    width: 80%;
-    top: 10px;
+    width: 90%;
 }
 
 .agenda-title {
     font-size: 28px;
     font-weight: 400;
-    line-height: 38px;
-    margin: 0.2rem 0rem 0rem 0rem;
+    padding: 0rem;
+    margin: 0rem;
 }
 
 #agenda {
@@ -173,7 +173,7 @@ a[class=tag] {
 }
 
 #agenda li {
-    width: 80%;
+    /* width: 80%; */
     padding: 0.25rem 1rem;
 }
 
@@ -196,9 +196,22 @@ a {
     font-weight: 600;
 }
 
+
+/* add agenda anchors to prevent color overwrite */
+
+a:hover,
+#agenda .focus-section a:hover,
+#agenda .non-focus-section a:hover,
+#same-category-list a:hover,
+.same-tag-list a:hover,
+.toggleMemberBullet a:hover {
+    color: rgb(120, 186, 243);
+    text-decoration: underline;
+}
+
 #agenda .focus-section a {
     color: rgb(77, 75, 73);
-    font-weight: 400;
+    font-weight: 450;
 }
 
 #agenda .non-focus-section a {
@@ -268,10 +281,14 @@ a {
 }
 
 #left-area {
+    position: sticky;
+    top: 30px;
+    height: 20%;
     flex: 1 1 var(--left-width);
     max-width: var(--left-width);
     min-width: 0px;
-    padding: 2rem;
+    padding: 0rem;
+    margin: 2rem;
     box-sizing: border-box;
     /* margin: 2rem 2rem 0rem 0rem; */
     /* border: 3px solid rgb(223, 55, 55); */
@@ -288,17 +305,22 @@ a {
 }
 
 #right-area {
+    position: sticky;
+    top: 30px;
+    height: 20%;
     flex: 1 1 var(--right-width);
     max-width: var(--right-width);
     min-width: 0px;
-    padding: 2rem;
+    padding: 0rem;
+    margin: 2rem;
     box-sizing: border-box;
     /* margin: 2rem 0rem 0rem 2rem; */
     /* border: 3px solid rgb(35, 48, 168); */
 }
 
 #category-title,
-#tag-title {
+#tag-title,
+.tag-title {
     font-size: 18px;
     border-radius: 0.35rem;
     font-weight: 600;
@@ -307,12 +329,19 @@ a {
 
 #category-list,
 #tag-list {
+    display: flex;
+    flex-flow: row wrap;
     font-size: var(--timeline-font-size);
     border-radius: 0.35rem;
     font-weight: 600;
 }
 
-#tag-warpper {
+#category-list .tag,
+#tag-list .tag {
+    margin-bottom: 0.5rem;
+}
+
+#tag-wrapper {
     margin-top: 3rem;
 }
 
@@ -344,7 +373,7 @@ hr {
     background-color: rgb(208, 214, 214);
     height: 1px;
     width: 98%;
-    margin: 2rem 0rem 2rem 0rem;
+    margin: 2rem auto;
 }
 
 footer {
@@ -460,4 +489,28 @@ table.content-table tbody>tr:nth-child(2n) {
 
 table.content-table td:nth-child(1) {
     font-weight: bold;
+}
+
+#same-category-list,
+.same-tag-list {
+    margin: 0rem;
+    padding-left: 1.5rem;
+}
+
+#same-category-list li,
+.same-tag-list li {
+    font-size: var(--default-font-size);
+    margin: 0.25rem 0rem;
+}
+
+#same-category-list a,
+.same-tag-list a {
+    color: rgb(86, 84, 82);
+    font-weight: 300;
+}
+
+#same-category-list a.this-article {
+    background-color: rgba(83, 216, 216, 0.5);
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+    font-weight: 450;
 }

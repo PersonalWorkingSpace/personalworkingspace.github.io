@@ -56,7 +56,7 @@ if __name__ == "__main__":
                     f"Missing field in file {file}: "
                     f"title={title}, keywords={keywords}, description={description}, "
                     f"datetime={createdDate}, first_image={first_img}"
-                )
+                )             
 
             subpage_info.append({
                 'file': normalize_path(file),
@@ -68,24 +68,21 @@ if __name__ == "__main__":
                 'description': description,
             })
 
-    subpage_info.sort(key=lambda x: x['created'], reverse=True)
+    subpage_info.sort(key=lambda x: x['created'], reverse=False)
     
-    # Create category and tag list
-    categoryDict = defaultdict(list)
-    tagDict = defaultdict(list)
-    for subpage in subpage_info:
-        if 'category' not in subpage:
-            raise ValueError(f"Missing category in subpage: {subpage}")
+    # Create category and tag list      
+    categoryDict = defaultdict(lambda: { "name": [], "pageID": [] })
+    tagDict = defaultdict(lambda: { "name": [], "pageID": [] })
+    for idx, si in enumerate(subpage_info):
+        filename = os.path.basename(si['file']).split(".")[0]
+        categoryDict[si['category']]["name"].append(filename)
+        categoryDict[si['category']]["pageID"].append(idx)
         
-        if 'tag' not in subpage:
-            raise ValueError(f"Missing tag in subpage: {subpage}")
-        
-        categoryDict[subpage['category']].append(subpage['file'])
-        
-        for tag in subpage['tag'].split(','):
+        for tag in si['tag'].split(','):
             tag = tag.strip()
             if tag:
-                tagDict[tag].append(subpage['file'])
+                tagDict[tag]["name"].append(filename)
+                tagDict[tag]["pageID"].append(idx)
     
     # Export to JS file
     with open('../module/subpageInfo.js', 'w', encoding='utf-8') as f:
