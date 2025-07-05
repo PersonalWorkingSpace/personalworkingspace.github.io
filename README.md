@@ -11,6 +11,7 @@
 * 2025/06/18 RWD第一版完成
 * 2025/06/15 完成第三篇文章: Javascript
 * 2025/06/30 加入 category/tag 建議文章
+* 2025/07/05 加入 category/tag entrypoint
 
 ## Article Goal
 
@@ -26,7 +27,9 @@
 * 表格 RWD
 
 ## TODO
-* category / tag 頁面
+* clean code
+* 撰寫 rwd
+* 簡化 timeline toggle 事件寫法
 * tag list 改成 隨機產生
 * 上滑顯示bar
 * 目錄自動展開第二階層

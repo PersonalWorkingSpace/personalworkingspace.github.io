@@ -1,5 +1,4 @@
-const Pages = [
-    {
+const Pages = [{
         "file": "category/網頁設計/HTML初學筆記.html",
         "created": "2025-05-11T00:00:00+08:00",
         "title": "HTML初學筆記",
@@ -39,6 +38,18 @@ const Categories = {
             0,
             1,
             2
+        ]
+    },
+    "test": {
+        "name": [
+            "HTML初學筆記",
+            "CSS初學筆記",
+            "Javascript初學筆記",
+            "CSS初學筆記",
+            "Javascript初學筆記"
+        ],
+        "pageID": [
+            0, 1, 2, 1, 2
         ]
     }
 };

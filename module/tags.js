@@ -1,14 +1,12 @@
-import { colorCode } from './module/colorization.js';
-import { Pages, Categories, Tags } from './module/subpageInfo.js';
-import { NumberToMonth } from './module/common.js';
+import { colorCode } from '../module/colorization.js';
+import { Pages, Tags } from '../module/subpageInfo.js';
+import { NumberToMonth } from '../module/common.js';
 
 window.onload = function() {
     init();
-    updatePosts();
-    updateTimeline();
-    updateCategory();
     updateTag();
-    registerTimelineToggleEvent();
+    registerTagToggleEvent();
+    updatePosts();
 }
 
 var g_url;
@@ -25,10 +23,14 @@ function init() {
 
 function updatePosts() {
     let container = document.getElementById("main-content");
-    let url = decodeURIComponent(window.location.href);
+    container.innerHTML = "";
 
-    for (let i = Pages.length - 1; i >= 0; i--) {
-        let page = Pages[i];
+    let selectedTag = document.querySelector("#tag-list #selected-tag");
+    let tag = selectedTag.innerText.split(" ")[0];
+    let pageID = Tags[tag]["pageID"];
+
+    for (let i = 0; i < pageID.length; i++) {
+        let page = Pages[pageID[i]];
         let anchor = createAnchor("", `${g_origin}/${page["file"]}`);
         anchor.setAttribute("class", "post");
 
@@ -61,7 +63,7 @@ function updatePosts() {
         anchor.appendChild(thumbnail);
         container.appendChild(anchor);
 
-        if (i != 0) {
+        if (i != pageID.length - 1) {
             let hr = document.createElement("hr");
             hr.setAttribute("class", "post-hr");
             container.appendChild(hr);
@@ -79,7 +81,7 @@ function getPostMeta(post) {
     postMeta.appendChild(created);
 
     let categoryICON = document.createElement("img");
-    categoryICON.setAttribute("src", "./image/CATEGORY-ICON.png");
+    categoryICON.setAttribute("src", "../image/CATEGORY-ICON.png");
     categoryICON.setAttribute("class", "inline-icon");
     postMeta.appendChild(categoryICON);
 
@@ -87,7 +89,7 @@ function getPostMeta(post) {
     postMeta.appendChild(categoryBar);
 
     let tagICON = document.createElement("img");
-    tagICON.setAttribute("src", "./image/TAG-ICON.png");
+    tagICON.setAttribute("src", "../image/TAG-ICON.png");
     tagICON.setAttribute("class", "inline-icon");
     postMeta.appendChild(tagICON);
 
@@ -139,30 +141,27 @@ function getPostThumbnail(thumbnail) {
     return thumbnailContainer;
 }
 
-// Generate category
-function updateCategory() {
-    let container = document.getElementById("category-list");
-    for (const [cg, listOfPages] of Object.entries(Categories)) {
-        let anchor = createAnchor(`${cg} (${listOfPages["name"].length})`, `${g_origin}/entrypoint/categories.html?category=${cg}`);
-        anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[cg]["font"];
-        anchor.style.backgroundColor = colorCode[cg]["bg"];
-        if (container.childNodes.length > 0) {
-            let textNode = document.createTextNode(" ");
-            container.appendChild(textNode);
-        }
-        container.appendChild(anchor);
-    }
-}
-
 // Generate tag
 function updateTag() {
     let container = document.getElementById("tag-list");
-    for (const [tag, listOfPages] of Object.entries(Tags)) {
-        let anchor = createAnchor(`${tag} (${listOfPages["name"].length})`, `${g_origin}/entrypoint/tags.html?tag=${tag}`);
-        anchor.setAttribute("class", "tag");
+    let tagList = Object.entries(Tags);
+    tagList.sort(function(a, b) {
+        return b[1]["name"].length - a[1]["name"].length;
+    })
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedTag = urlParams.get('tag');
+
+    for (const [tag, listOfPages] of tagList) {
+        let anchor = createAnchor(`${tag} (${listOfPages["name"].length})`, "#");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];
+        anchor.setAttribute("class", "tag");
+
+        if (tag == selectedTag || selectedTag == null && container.childNodes.length == 0) {
+            anchor.setAttribute("id", "selected-tag");
+        }
+
         if (container.childNodes.length > 0) {
             let textNode = document.createTextNode(" ");
             container.appendChild(textNode);
@@ -171,44 +170,18 @@ function updateTag() {
     }
 }
 
-// Generate timeline: articles published in past twelve months
-function updateTimeline() {
-    let timeline = document.getElementById("timeline");
-    let now = new Date();
-    let month = now.getMonth() + 1; // January gives 0
-    let year = now.getFullYear();
-    let selectMonth = -1;
-    let toggleList;
-
-    for (let i = Pages.length - 1; i >= 0; i--) {
-        let page = Pages[i];
-        let created = new Date(page["created"]);
-        let pageYear = created.getFullYear();
-        let pageMonth = created.getMonth() + 1;
-
-        if ((year - pageYear) * 12 + (month - pageMonth) > 12) {
-            break;
-        }
-
-        if (pageMonth != selectMonth) {
-            selectMonth = pageMonth;
-            let state = "collapsed";
-            let symbol = "▶";
-            if (i == Pages.length - 1) {
-                state = "expanded";
-                symbol = "▽";
+function registerTagToggleEvent() {
+    let toggles = document.querySelectorAll("#tag-list .tag");
+    for (let i = 0; i < toggles.length; i++) {
+        let toggle = toggles[i];
+        toggle.addEventListener(
+            "click", (event) => {
+                let selectedCG = document.querySelector("#tag-list #selected-tag");
+                selectedCG.removeAttribute("id");
+                toggle.setAttribute("id", "selected-tag");
+                updatePosts();
             }
-
-            let key = `${symbol} ${pageYear} ${NumberToMonth[pageMonth]}`;
-            toggleList = createToggle(key, state);
-            timeline.appendChild(toggleList);
-        }
-
-        let ul = toggleList.childNodes[1];
-        let newNode = document.createElement("li");
-        let anchor = createAnchor(page["title"], `${g_origin}/${page["file"]}`);
-        newNode.appendChild(anchor);
-        ul.appendChild(newNode);
+        );
     }
 }
 
@@ -217,45 +190,4 @@ function createAnchor(text, link) {
     anchor.innerHTML = text;
     anchor.setAttribute("href", link);
     return anchor;
-}
-
-function createToggle(title, state) {
-    let toggleList = document.createElement("li");
-    let header = document.createElement("h1");
-    let member = document.createElement("ul");
-    header.setAttribute("class", "toggleTitle");
-    member.setAttribute("class", "toggleMemberBullet");
-
-    header.innerText = title;
-    toggleList.setAttribute("class", state);
-    toggleList.appendChild(header);
-    toggleList.appendChild(member);
-    return toggleList;
-}
-
-// register toggle event for timeline
-function registerTimelineToggleEvent() {
-    let toggles = document.querySelectorAll("#timeline .toggleTitle");
-
-    for (let i = 0; i < toggles.length; i++) {
-        let toggle = toggles[i];
-        toggle.addEventListener(
-            "click", (event) => {
-                let clickedTC = event.target.parentElement;
-                let toggleContainers = document.querySelectorAll("#timeline li");
-                for (let i = 0; i < toggleContainers.length; i++) {
-                    let tc = toggleContainers[i];
-                    let h1 = tc.childNodes[0];
-
-                    if (tc == clickedTC) {
-                        tc.setAttribute("class", "expanded");
-                        h1.innerHTML = h1.innerHTML.replace("▶", "▽");
-                    } else {
-                        tc.setAttribute("class", "collapsed");
-                        h1.innerHTML = h1.innerHTML.replace("▽", "▶");
-                    }
-                }
-            }
-        );
-    }
 }
