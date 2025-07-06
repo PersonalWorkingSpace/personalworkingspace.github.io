@@ -1,8 +1,11 @@
 import { colorCode } from './colorization.js';
 import { Pages, Categories, Tags } from '../module/subpageInfo.js';
+import { Init, CreateAnchor, WinURL } from '../module/common.js';
+
 
 window.onload = function() {
-    init();
+    Init();
+    GetProperty();
     setCategory();
     setTags();
     setAgenda();
@@ -17,23 +20,14 @@ window.addEventListener('scroll', function() {
 
 const NUM_CATEGORY_ARTICLE = 7;
 
-var g_url;
-var g_origin;
-var g_path;
-var g_file;
-var g_category;
-var g_tags;
+var category;
+var tagArray;
 
-function init() {
-    g_url = decodeURIComponent(window.location.href);
-    g_origin = decodeURIComponent(new URL(g_url).origin)
-    g_path = decodeURIComponent(new URL(g_url).pathname.slice(1));
-    g_file = g_path.split('/').pop().replace('.html', '');
-    g_category = g_url.split("/category/")[1].split("/")[0];
-
+function GetProperty() {
+    category = WinURL["path"].split("category/")[1].split("/")[0];
     let tags = document.querySelector('meta[name="keywords"]').content;
-    g_tags = [];
-    tags.split(",").forEach((t) => { g_tags.push(t.trim()); });
+    tagArray = [];
+    tags.split(",").forEach((t) => { tagArray.push(t.trim()); });
 }
 
 function getTitles() {
@@ -45,10 +39,10 @@ function getTitles() {
 // Set category bar
 function setCategory() {
     let bar = document.getElementById("category-bar");
-    let anchor = createAnchor(g_category, "#");
+    let anchor = CreateAnchor(category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
     anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[g_category]["font"];
-    anchor.style.backgroundColor = colorCode[g_category]["bg"];
+    anchor.style.color = colorCode[category]["font"];
+    anchor.style.backgroundColor = colorCode[category]["bg"];
     bar.appendChild(anchor);
 }
 
@@ -56,9 +50,9 @@ function setCategory() {
 function setTags() {
     let bar = document.getElementById("tag-bar");
 
-    for (let i = 0; i < g_tags.length; i++) {
-        let tag = g_tags[i]
-        let anchor = createAnchor(tag, "#");
+    for (let i = 0; i < tagArray.length; i++) {
+        let tag = tagArray[i]
+        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?category=${tag}`);
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];
@@ -74,7 +68,7 @@ function setAgenda() {
     for (let i = 0; i < titles.length; i++) {
         let title = titles[i];
         let newNode = document.createElement("li");
-        let anchor = createAnchor(title.innerHTML, "#" + title.innerHTML);
+        let anchor = CreateAnchor(title.innerHTML, "#" + title.innerHTML);
 
         title.setAttribute("id", title.innerHTML);
         newNode.appendChild(anchor);
@@ -82,41 +76,35 @@ function setAgenda() {
     }
 }
 
-function createAnchor(text, link) {
-    let anchor = document.createElement("a");
-    anchor.innerHTML = text;
-    anchor.setAttribute("href", link);
-    return anchor;
-}
-
 // Display articles from the same category
 function setCategoryArticles() {
-    let category = Categories[g_category];
-    let idx = category["name"].indexOf(g_file);
+    let categoryPosts = Categories[category];
+    let idx = categoryPosts["name"].indexOf(WinURL["file"]);
 
     if (idx == -1) {
-        console.log(`Failed to "${g_file}" find the file in "${g_category}" category list`);
+        console.log(`Failed to "${WinURL["file"]}" find the file in "${category}" category list`);
         return;
     }
 
     let lower = Math.max(0, idx - Math.floor(NUM_CATEGORY_ARTICLE / 2));
-    let upper = Math.min(category["name"].length, lower + NUM_CATEGORY_ARTICLE);
+    let upper = Math.min(categoryPosts["name"].length, lower + NUM_CATEGORY_ARTICLE);
 
     let title = document.getElementById("category-title");
-    let anchor = createAnchor(g_category, "#");
+    let anchor = CreateAnchor(category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
     anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[g_category]["font"];
-    anchor.style.backgroundColor = colorCode[g_category]["bg"];
+    anchor.style.color = colorCode[category]["font"];
+    anchor.style.backgroundColor = colorCode[category]["bg"];
 
     title.appendChild(anchor);
 
     let related = document.getElementById("same-category-list");
     related.setAttribute("class", "related-article");
 
-    for (let i = lower; i < upper; i++) {
-        let page = Pages[category["pageID"][i]];
+    let len = categoryPosts["pageID"].length;
+    for (let i = upper - 1; i >= lower; i--) {
+        let page = Pages[categoryPosts["pageID"][i]];
         let li = document.createElement("li");
-        let a = createAnchor(`Day${i+1} - ${page["title"]}`, `${g_origin}/${page["file"]}`);
+        let a = CreateAnchor(`Day${len - i} - ${page["title"]}`, `${WinURL["origin"]}/${page["file"]}`);
 
         if (i == idx) {
             a.setAttribute("class", "this-article");
@@ -131,18 +119,18 @@ function setCategoryArticles() {
 // Display articles from the same tags
 function setTagArticles() {
 
-    for (let i = 0; i < g_tags.length; i++) {
-        let tag = Tags[g_tags[i]];
-        let tag_name = g_tags[i];
-        let idx = tag["name"].indexOf(g_file);
+    for (let i = 0; i < tagArray.length; i++) {
+        let tag = tagArray[i];
+        let tagPosts = Tags[tag];
+        let idx = tagPosts["name"].indexOf(WinURL["file"]);
 
         if (idx == -1) {
-            console.log(`Failed to "${g_file}" find the file in "${tag_name}" category list`);
+            console.log(`Failed to "${WinURL["file"]}" find the file in "${tag}" tag list`);
             return;
         }
 
         let lower = Math.max(0, idx - Math.floor(NUM_CATEGORY_ARTICLE / 2));
-        let upper = Math.min(tag["name"].length, lower + NUM_CATEGORY_ARTICLE);
+        let upper = Math.min(tagPosts["name"].length, lower + NUM_CATEGORY_ARTICLE);
 
         if (lower == upper - 1) {
             continue;
@@ -155,10 +143,10 @@ function setTagArticles() {
         icon.setAttribute("class", "inline-icon");
         title.appendChild(icon);
 
-        let anchor = createAnchor(tag_name, "#");
+        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?category=${tag}`);
         anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[tag_name]["font"];
-        anchor.style.backgroundColor = colorCode[tag_name]["bg"];
+        anchor.style.color = colorCode[tag]["font"];
+        anchor.style.backgroundColor = colorCode[tag]["bg"];
         title.appendChild(anchor);
 
         let tagRegion = document.getElementById("tag-wrapper");
@@ -170,11 +158,11 @@ function setTagArticles() {
         tagList.setAttribute("class", "same-tag-list");
         tagRegion.appendChild(tagList);
 
-        for (let i = lower; i < upper; i++) {
+        for (let i = upper - 1; i >= lower; i--) {
             if (i != idx) {
-                let page = Pages[tag["pageID"][i]];
+                let page = Pages[tagPosts["pageID"][i]];
                 let li = document.createElement("li");
-                let a = createAnchor(`${page["title"]}`, `${g_origin}/${page["file"]}`);
+                let a = CreateAnchor(`${page["title"]}`, `${WinURL["origin"]}/${page["file"]}`);
                 li.appendChild(a);
                 tagList.appendChild(li);
             }

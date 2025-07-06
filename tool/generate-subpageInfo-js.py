@@ -68,7 +68,7 @@ if __name__ == "__main__":
                 'description': description,
             })
 
-    subpage_info.sort(key=lambda x: x['created'], reverse=False)
+    subpage_info.sort(key=lambda x: x['created'], reverse=True)
     
     # Create category and tag list      
     categoryDict = defaultdict(lambda: { "name": [], "pageID": [] })

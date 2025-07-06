@@ -17,7 +17,7 @@
 
 
 ## CLEAN
-* 用詞修正 page to article
+* 用詞修正 page to post
 * tool, example 分離repo
 * timezone
 * CSS參數化
@@ -27,7 +27,6 @@
 * 表格 RWD
 
 ## TODO
-* clean code
 * 撰寫 rwd
 * 簡化 timeline toggle 事件寫法
 * tag list 改成 隨機產生

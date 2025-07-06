@@ -1,149 +1,21 @@
 import { colorCode } from './module/colorization.js';
 import { Pages, Categories, Tags } from './module/subpageInfo.js';
-import { NumberToMonth } from './module/common.js';
+import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor } from './module/common.js';
 
 window.onload = function() {
-    init();
-    updatePosts();
+    Init();
+    UpdatePosts(Pages, false);
     updateTimeline();
     updateCategory();
     updateTag();
     registerTimelineToggleEvent();
 }
 
-var g_url;
-var g_origin;
-var g_path;
-var g_file;
-
-function init() {
-    g_url = decodeURIComponent(window.location.href);
-    g_origin = decodeURIComponent(new URL(g_url).origin)
-    g_path = decodeURIComponent(new URL(g_url).pathname.slice(1));
-    g_file = g_path.split('/').pop().replace('.html', '');
-}
-
-function updatePosts() {
-    let container = document.getElementById("main-content");
-    let url = decodeURIComponent(window.location.href);
-
-    for (let i = Pages.length - 1; i >= 0; i--) {
-        let page = Pages[i];
-        let anchor = createAnchor("", `${g_origin}/${page["file"]}`);
-        anchor.setAttribute("class", "post");
-
-        /* post
-            post-title   |
-            description  |    img
-            post-meta    |
-        */
-
-        let leftPart = document.createElement("div");
-        leftPart.setAttribute("class", "left-part");
-        let postTitle = document.createElement("h1");
-        postTitle.setAttribute("class", "post-title");
-        postTitle.innerHTML = page["title"];
-
-        let description = document.createElement("p");
-        description.setAttribute("class", "post-description");
-        description.innerHTML = page["description"];
-
-        let postMeta = getPostMeta(page);
-        postMeta.setAttribute("class", "post-meta");
-
-        leftPart.appendChild(postTitle);
-        leftPart.appendChild(description);
-        leftPart.appendChild(postMeta);
-
-        let thumbnail = getPostThumbnail(page["thumbnail"]);
-
-        anchor.appendChild(leftPart);
-        anchor.appendChild(thumbnail);
-        container.appendChild(anchor);
-
-        if (i != 0) {
-            let hr = document.createElement("hr");
-            hr.setAttribute("class", "post-hr");
-            container.appendChild(hr);
-        }
-    }
-}
-
-function getPostMeta(post) {
-    let postMeta = document.createElement("div");
-    let created = document.createElement("time");
-    let date = new Date(post["created"]);
-
-    created.setAttribute("datetime", date);
-    created.innerHTML = `${NumberToMonth[date.getMonth() + 1]} ${date.getDate()}, ${date.getFullYear()} | `
-    postMeta.appendChild(created);
-
-    let categoryICON = document.createElement("img");
-    categoryICON.setAttribute("src", "./image/CATEGORY-ICON.png");
-    categoryICON.setAttribute("class", "inline-icon");
-    postMeta.appendChild(categoryICON);
-
-    let categoryBar = getPostCategory(post["category"]);
-    postMeta.appendChild(categoryBar);
-
-    let tagICON = document.createElement("img");
-    tagICON.setAttribute("src", "./image/TAG-ICON.png");
-    tagICON.setAttribute("class", "inline-icon");
-    postMeta.appendChild(tagICON);
-
-    let tagBar = getPostTag(post["tag"]);
-    postMeta.appendChild(tagBar);
-    return postMeta;
-}
-
-function getPostCategory(category) {
-    let bar = document.createElement("span");
-    bar.setAttribute("class", "category-bar");
-
-    let anchor = createAnchor(category, `${g_origin}/entrypoint/categories.html?category=${category}`);
-    anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[category]["font"];
-    anchor.style.backgroundColor = colorCode[category]["bg"];
-    bar.appendChild(anchor);
-    return bar;
-}
-
-function getPostTag(tags) {
-    let bar = document.createElement("nav");
-    bar.setAttribute("class", "tag-bar");
-    let taglist = tags.split(",");
-
-    for (let i = 0; i < taglist.length; i++) {
-        let tag = taglist[i].trim();
-        let anchor = createAnchor(tag, `${g_origin}/entrypoint/tags.html?tag=${tag}`);
-        anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[tag]["font"];
-        anchor.style.backgroundColor = colorCode[tag]["bg"];
-        bar.appendChild(anchor);
-        if (i != taglist.length - 1) {
-            let textNode = document.createTextNode(" ");
-            bar.appendChild(textNode);
-        }
-    }
-
-    return bar;
-}
-
-function getPostThumbnail(thumbnail) {
-    let thumbnailContainer = document.createElement("div");
-    let thumbnailImg = document.createElement("img");
-    thumbnailImg.setAttribute("src", thumbnail);
-    thumbnailImg.setAttribute("alt", "thumbnail");
-    thumbnailContainer.setAttribute("class", "thumbnail-container");
-    thumbnailContainer.appendChild(thumbnailImg);
-    return thumbnailContainer;
-}
-
 // Generate category
 function updateCategory() {
     let container = document.getElementById("category-list");
     for (const [cg, listOfPages] of Object.entries(Categories)) {
-        let anchor = createAnchor(`${cg} (${listOfPages["name"].length})`, `${g_origin}/entrypoint/categories.html?category=${cg}`);
+        let anchor = CreateAnchor(`${cg} (${listOfPages["name"].length})`, `${WinURL["origin"]}/entrypoint/categories.html?category=${cg}`);
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[cg]["font"];
         anchor.style.backgroundColor = colorCode[cg]["bg"];
@@ -159,7 +31,7 @@ function updateCategory() {
 function updateTag() {
     let container = document.getElementById("tag-list");
     for (const [tag, listOfPages] of Object.entries(Tags)) {
-        let anchor = createAnchor(`${tag} (${listOfPages["name"].length})`, `${g_origin}/entrypoint/tags.html?tag=${tag}`);
+        let anchor = CreateAnchor(`${tag} (${listOfPages["name"].length})`, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];
@@ -180,7 +52,7 @@ function updateTimeline() {
     let selectMonth = -1;
     let toggleList;
 
-    for (let i = Pages.length - 1; i >= 0; i--) {
+    for (let i = 0; i < Pages.length; i++) {
         let page = Pages[i];
         let created = new Date(page["created"]);
         let pageYear = created.getFullYear();
@@ -194,7 +66,7 @@ function updateTimeline() {
             selectMonth = pageMonth;
             let state = "collapsed";
             let symbol = "▶";
-            if (i == Pages.length - 1) {
+            if (i == 0) {
                 state = "expanded";
                 symbol = "▽";
             }
@@ -206,18 +78,12 @@ function updateTimeline() {
 
         let ul = toggleList.childNodes[1];
         let newNode = document.createElement("li");
-        let anchor = createAnchor(page["title"], `${g_origin}/${page["file"]}`);
+        let anchor = CreateAnchor(page["title"], `${WinURL["origin"]}/${page["file"]}`);
         newNode.appendChild(anchor);
         ul.appendChild(newNode);
     }
 }
 
-function createAnchor(text, link) {
-    let anchor = document.createElement("a");
-    anchor.innerHTML = text;
-    anchor.setAttribute("href", link);
-    return anchor;
-}
 
 function createToggle(title, state) {
     let toggleList = document.createElement("li");
