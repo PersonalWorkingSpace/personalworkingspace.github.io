@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
 
 <head>
-    <title>HTML初學筆記</title>
+    <title>HTML 初學筆記</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="auther" content="MJ CHEN">
@@ -48,7 +48,7 @@
         <main id="center-area">
             <article id="main-content">
                 <header class="post-header">
-                    <h1 class="post-title">HTML初學筆記</h1>
+                    <h1 class="post-title">HTML 初學筆記</h1>
                     <div class="post-meta">
                         <time datetime="2025-05-11T00:00:00+08:00" itemprop="datePublished"> May 11, 2025 </time> &nbsp | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
                         <img src="../../image/TAG-ICON.png" class="inline-icon">
@@ -57,7 +57,9 @@
                 </header>
 
                 <section class="L1-section">
-                    <img id="cover" width="100%" height="400px" src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
+                    <div id="cover-container">
+                        <img id="cover" src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
+                    </div>
                     <p class="content-paragraph">
                         歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下<a href="https://developer.mozilla.org/en-US/">MDN</a>來看看spec或是詢問AI工具即可。
                     </p>
@@ -105,7 +107,7 @@
                     <p class="content-paragraph">
                         <ul class="content-ul marginx2">
                             <li>
-                                <code class="inline">&lt;title&gt;...&lt;/title&gt;</code> - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是"HTML初學筆記"。
+                                <code class="inline">&lt;title&gt;...&lt;/title&gt;</code> - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是"HTML 初學筆記"。
                             </li>
                             <li>
                                 <code class="inline">&lt;meta $key=$val&gt;</code> - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:
@@ -176,34 +178,32 @@
                     <h1 class="L1-section-title">範例</h1>
                     <hr>
                     <p class="content-paragraph">
-                        在了解HTML文件的架構以及標籤後，可能還是不曉得要怎樣去運用這些標籤寫出一份網頁，因此這個章節要來實際描述一下本網站的HTML架構來供讀者參考，下圖為本網站簡化後的架構:
+                        在了解HTML文件的架構以及標籤後，可能還是不曉得要怎樣去運用這些標籤寫出一份網頁，這個章節要來實際描述一下本網站的HTML架構來供讀者參考，下圖為簡化的架構:
+                        <img class="content-img" style="margin-top: 2rem;" src="../../image/web-001_html-arch.png" alt="此網站的架構圖">
                     </p>
-                    <p>
-                        <img width="100%" src="../../image/web-001_html-arch.png" alt="此網站的架構圖">
-                        <p class="content-paragraph">
-                            基本上都是用前面提過的標籤搭建，整個網頁可以分成五大區塊:
-                            <ul class="content-ul">
-                                <li>
-                                    <b>頁首</b>: 放置連結與logo、網站名稱等資訊。
-                                </li>
-                                <li>
-                                    <b>頁尾</b>: 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。
-                                </li>
-                                <li>
-                                    <b>左側欄位</b>: 提供文章章節以及閱讀進度等。
-                                </li>
-                                <li>
-                                    <b>右側欄位</b>: 提供news或推薦相關文章等。
-                                </li>
-                                <li>
-                                    <b>主要內文</b>: 以多個section組成，每個section又包含一個title/image加上多個paragraph。
-                                </li>
-                            </ul>
-                        </p>
+                    <p class="content-paragraph">
+                        基本上都是用前面提過的標籤搭建，整個網頁可以分成五大區塊:
+                        <ul class="content-ul">
+                            <li>
+                                <b>頁首</b>: 放置連結與logo、網站名稱等資訊。
+                            </li>
+                            <li>
+                                <b>頁尾</b>: 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。
+                            </li>
+                            <li>
+                                <b>左側欄位</b>: 提供文章章節以及閱讀進度等。
+                            </li>
+                            <li>
+                                <b>右側欄位</b>: 提供news或推薦相關文章等。
+                            </li>
+                            <li>
+                                <b>主要內文</b>: 以多個section組成，每個section又包含一個title/image加上多個paragraph。
+                            </li>
+                        </ul>
                     </p>
 
                     <p class="content-paragraph">
-                        底下提供此架構的HTML程式碼，建議讀者可以下載或是複製成一個HTML檔案 (ex: index.html)，然後用瀏覽器開啟後，你就會發現......整個跟這個網頁一點也不像XDD，甚至連架構都跟上面的圖不一樣，這是因為沒有適當的排版/美化，也就是下一篇要介紹的CSS負責處理的。
+                        底下提供此架構的HTML程式碼，建議讀者可以複製成一個HTML檔案 (ex: index.html)，然後用瀏覽器開啟後，你就會發現......整個跟這個網頁一點也不像XDD，甚至連架構都跟上面的圖不一樣，這是因為沒有適當的排版/美化，也就是下一篇要介紹的CSS負責處理的。
                         <p class="note">也許你有注意到&lt;div&gt;標籤，他雖然沒有語意上的意義，但他可是排版用神器!!!</p>
                         <pre><code class="html">
     &lt;!DOCTYPE html&gt;

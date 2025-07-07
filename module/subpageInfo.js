@@ -1,26 +1,35 @@
 const Pages = [
     {
-        "file": "category/網頁設計/Javascript初學筆記.html",
+        "file": "category/網頁設計/Github-Pages.html",
+        "created": "2025-07-06T00:00:00+08:00",
+        "title": "網頁部署 - Github Pages",
+        "category": "網頁設計",
+        "tag": "網頁部署, Github",
+        "thumbnail": "https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "介紹一下要如何透過 Github Pages 來發布個人網頁。"
+    },
+    {
+        "file": "category/網頁設計/Javascript-Beginner.html",
         "created": "2025-06-21T00:00:00+08:00",
-        "title": "Javascript初學筆記",
+        "title": "Javascript 初學筆記",
         "category": "網頁設計",
         "tag": "初學筆記, Javascript",
         "thumbnail": "https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的..."
     },
     {
-        "file": "category/網頁設計/CSS初學筆記.html",
+        "file": "category/網頁設計/CSS-Beginner.html",
         "created": "2025-06-07T00:00:00+08:00",
-        "title": "CSS初學筆記",
+        "title": "CSS 初學筆記",
         "category": "網頁設計",
         "tag": "初學筆記, CSS",
         "thumbnail": "https://images.unsplash.com/photo-1610986603166-f78428624e76?q=80&w=2658&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         "description": "本篇將會介紹CSS，這個用來美化網頁的語言，如果說HTML是網頁的建材，CSS則是..."
     },
     {
-        "file": "category/網頁設計/HTML初學筆記.html",
+        "file": "category/網頁設計/HTML-Beginner.html",
         "created": "2025-05-11T00:00:00+08:00",
-        "title": "HTML初學筆記",
+        "title": "HTML 初學筆記",
         "category": "網頁設計",
         "tag": "初學筆記, HTML",
         "thumbnail": "https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -31,53 +40,71 @@ const Pages = [
 const Categories = {
     "網頁設計": {
         "name": [
-            "Javascript初學筆記",
-            "CSS初學筆記",
-            "HTML初學筆記"
+            "Github-Pages",
+            "Javascript-Beginner",
+            "CSS-Beginner",
+            "HTML-Beginner"
         ],
         "pageID": [
             0,
             1,
-            2
+            2,
+            3
         ]
     }
 };
 
 const Tags = {
-    "初學筆記": {
+    "網頁部署": {
         "name": [
-            "Javascript初學筆記",
-            "CSS初學筆記",
-            "HTML初學筆記"
-        ],
-        "pageID": [
-            0,
-            1,
-            2
-        ]
-    },
-    "Javascript": {
-        "name": [
-            "Javascript初學筆記"
+            "Github-Pages"
         ],
         "pageID": [
             0
         ]
     },
-    "CSS": {
+    "Github": {
         "name": [
-            "CSS初學筆記"
+            "Github-Pages"
+        ],
+        "pageID": [
+            0
+        ]
+    },
+    "初學筆記": {
+        "name": [
+            "Javascript-Beginner",
+            "CSS-Beginner",
+            "HTML-Beginner"
+        ],
+        "pageID": [
+            1,
+            2,
+            3
+        ]
+    },
+    "Javascript": {
+        "name": [
+            "Javascript-Beginner"
         ],
         "pageID": [
             1
         ]
     },
-    "HTML": {
+    "CSS": {
         "name": [
-            "HTML初學筆記"
+            "CSS-Beginner"
         ],
         "pageID": [
             2
+        ]
+    },
+    "HTML": {
+        "name": [
+            "HTML-Beginner"
+        ],
+        "pageID": [
+            3
         ]
     }
 };

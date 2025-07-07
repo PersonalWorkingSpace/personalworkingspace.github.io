@@ -52,7 +52,7 @@ function setTags() {
 
     for (let i = 0; i < tagArray.length; i++) {
         let tag = tagArray[i]
-        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?category=${tag}`);
+        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];
@@ -143,7 +143,7 @@ function setTagArticles() {
         icon.setAttribute("class", "inline-icon");
         title.appendChild(icon);
 
-        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?category=${tag}`);
+        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[tag]["font"];
         anchor.style.backgroundColor = colorCode[tag]["bg"];

@@ -12,9 +12,10 @@
 * 2025/06/15 完成第三篇文章: Javascript
 * 2025/06/30 加入 category/tag 建議文章
 * 2025/07/05 加入 category/tag entrypoint
+* 2025/07/07 完成第四篇文章: Github Pages
 
 ## Article Goal
-
+* RWD
 
 ## CLEAN
 * 用詞修正 page to post
@@ -28,6 +29,7 @@
 
 ## TODO
 * 撰寫 rwd
+* LICENSE
 * 簡化 timeline toggle 事件寫法
 * tag list 改成 隨機產生
 * 上滑顯示bar

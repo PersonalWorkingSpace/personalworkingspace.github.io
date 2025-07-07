@@ -4,7 +4,8 @@ const colorCode = {
     "HTML": { "font": "#707070", "bg": "#a3e4d7" },
     "CSS": { "font": "#707070", "bg": "#ebdef0" },
     "Javascript": { "font": "#707070", "bg": "#ebf381" },
-    "test": { "font": "#000000", "bg": "#cfd4c5" }
+    "網頁部署": { "font": "#D0D0D0", "bg": "#802ebf" },
+    "Github": { "font": "#F0F0F0", "bg": "#909090" }
 };
 
 export { colorCode };

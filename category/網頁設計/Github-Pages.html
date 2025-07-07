@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>網頁部署 - Github Pages</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="介紹一下要如何透過 Github Pages 來發布個人網頁。">
+    <meta name="keywords" content="網頁部署, Github">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/subpage.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon">
+                <span>&nbsp&nbsp</span> Internet NPC
+            </a>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">In this article</h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">網頁部署 - Github Pages</h1>
+                    <div class="post-meta">
+                        <time datetime="2025-07-06T00:00:00+08:00" itemprop="datePublished"> Jul 6, 2025 </time> &nbsp | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="https://images.unsplash.com/photo-1647166545674-ce28ce93bdca?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
+                    </div>
+                    <p class="content-paragraph">
+                        在花費許多心力開發完網頁後，是時候該讓其他人來欣賞一下了 (ﾉ&gt;ω&lt;)ﾉ，之前我們所撰寫的 HTML、CSS、JS 都屬於 local 檔案，要讓這些檔案能夠被網際網路存取，對於新手來說最簡單的方式就是透過 Github Pages 的方式來進行。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">網頁知識補充</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        一個網頁能呈現在你我眼前是經過一連串步驟:
+                        <ol class="content-ol marginx1p5">
+                            <li>
+                                透過搜尋引擎找到網站網址 (ex: <code class=inline>www.example.com</code>)，這個網址就像是「郵政系統中的門牌號碼」，用來標示網頁的位置。
+                            </li>
+                            <li>
+                                經由 DNS (網域名稱系統) 查詢對應的 IP 位址 (ex: <code class=inline>185.199.109.153</code>)，IP 位址就像是「經緯度座標」，可以精確指向伺服器在網路上的位置。
+                            </li>
+                            <li>
+                                資料經過多個路由器傳輸，尋找該 IP 所對應的伺服器，這個過程類似快遞包裹經由不同的轉運站被送往目的地。
+                            </li>
+                            <li>
+                                收到我們的請求後，伺服器以同樣的手法把 HTML、CSS、JS 等檔案回傳過來。
+                            </li>
+                            <li>
+                                瀏覽器接收到這些資料後，進行解析與渲染，最終將它們呈現在螢幕上，成為我們所看到的網頁。
+                            </li>
+                        </ol>
+                    </p>
+                    <p class="content-paragraph">
+                        如果想自己架設伺服器提供網頁資料，除了機器本身要維運外，還需要去申請IP以及網址 (域名)，這些都要花錢去跟網際網路服務供應商 (ISP) 買的。沒錢沒心力嗎~~~ 這時候就要靠 <b>Github Pages</b> - 能免費提供伺服器跟IP/域名的服務。
+                    </p>
+                    <p class="note">
+                        Local 開啟的網頁 IP 都是 127.0.0.1，這是 loopback address，代表本地端的意思。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Github Pages</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        你可以把它想成是一種由 GitHub 提供的「免費靜態網頁託管服務」，能夠將你的 repository 中的網頁資料轉換成一個公開的網站。所謂的「靜態網站」代表它無法進行伺服器端的動態處理，但對於blog、作品集等用途來說已經夠用了，以下介紹如何將 repository 轉成 Github Pages:
+                        <img width="100%" style="margin-top: 1.5rem;" src="../../image/github pages.jpg" alt="github pages">
+                    </p>
+                    <p class="content-paragraph">
+                        由於免費帳號的 Github Pages 只支援公開專案，所以設定前請先確認 repository 的 visibility 是 public，確定後只需要簡單四步就能完成設定:
+                        <ol class="content-ol">
+                            <li>前往 repository 的設定。</li>
+                            <li>點選 Pages。</li>
+                            <li>選擇要使用哪個 branch 以及 repository路徑 當作網頁資料來源。</li>
+                            <li>耐心等待一段時間後，上方會顯示出你的網站網址以及上傳人跟日期，網址一般會是 <code class="inline">${github_account}.github.io/${repository name}/</code>。</li>
+                        </ol>
+                    </p>
+                    <p class="note">
+                        網站內容不會立刻同步 repository，通常每次上傳會需要等個數分鐘到10幾分鐘才會慢慢同步。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">功能補充</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        <ul class="content-ul">
+                            <li>
+                                <b>縮短網址</b> - 有人可能會覺得網址內還要包含 repository name 會太長，Github Pages 允許將一個 repostory 的名稱取成 <code class="inline">${github_account}.github.io/</code>，那這個 Page 的網址就會直接等於 <code class="inline">${github_account}.github.io/</code>。
+                            </li>
+                            <li>
+                                <b>Custom domain</b> - 如果有自己去申請 域名 (domain name)，Github Pages 也可以幫你套用，就填在上圖的底下那個欄位中。
+                            </li>
+                            <li>
+                                <b>多分頁架構</b> - 指定的 Github Pages 路徑底下都算是網站的內容，可以透過修改網址路徑連到不同資料夾底下的網頁檔案，例如: 本網址 <code class="inline">personalworkingspace.github.io/</code> + <code class="inline">category/網頁設計/Github Pages.html</code> 代表此 HTML 文件是放在 repo
+                                中的 category/網頁設計 資料夾底下。
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Limitation</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        身為一個免費的服務，自然會有一些小小限制，底下列舉了一些重要限制，完整內容可以參考<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits">官網說明</a>:
+                        <ul class="content-ul">
+                            <li>
+                                <b>repository 大小不可超過 1GB</b> - 對於一般文件檔案來說是夠用了，但做為網站會有不少的圖片/影片，如果直接放上來會佔不少空間，建議是上傳到其他地方再用連結引用。 另外隨著時間拉長，repo 的 Git History 所占用的空間會變得相當可觀，建議是額外開個 repo 來進行版本管控，Page 就顯示最終內容就好。
+                            </li>
+                            <li>
+                                <b>每月限流 100GB</b> - 這裡的流量是網頁載入到瀏覽器所產生的，假設網頁大小是 10MB，那你的網頁每月最多只能提供 10,000 人辦訪，超過 Github 可能會暫時封鎖，這個額度對於個人網頁算相當夠用了。
+                            </li>
+                            <li>
+                                <b>每小時最多 10 次建立</b> - 這邊的建立是我們推 commit 到 Github Pages 指定的 branch 後所觸發的，代表一個小時內最多推 10 次這樣，超過就會被忽略，所以先在 local 做好全部變更後再一次上傳喔~~~。
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        Github Pages 可說是相當佛心的服務，能透過簡單幾步驟就將我們平常用的 repository 轉成個人網站，更重要的是還免費!!! 看到這裡大家應該都了解到如何利用 Github Pages 來發布自己的網站了吧 ，趕緊去試試看吧 (๑•̀ㅂ•́)و✧。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>隨筆紀錄我的學習過程</p>
+    </footer>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 <html lang="zh-Hant-TW">
 
 <head>
-    <title>Javascript初學筆記</title>
+    <title>Javascript 初學筆記</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="auther" content="MJ CHEN">
@@ -10,12 +10,12 @@
     <meta name="keywords" content="初學筆記, Javascript">
     <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
     <link href="../../style/style.css" rel="stylesheet" type="text/css">
-    <link href="../../style/Javascript初學筆記.css" rel="stylesheet" type="text/css">
+    <link href="../../style/article/Javascript-Beginner.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
     <script type="module" src="../../module/subpage.js"></script>
-    <script type="module" src="../../module/article/Javascript初學筆記.js"></script>
+    <script type="module" src="../../module/article/Javascript-Beginner.js"></script>
     <script>
         hljs.highlightAll();
     </script>
@@ -51,7 +51,7 @@
         <main id="center-area">
             <article id="main-content">
                 <header class="post-header">
-                    <h1 class="post-title">Javascript初學筆記</h1>
+                    <h1 class="post-title">Javascript 初學筆記</h1>
                     <div class="post-meta">
                         <time datetime="2025-06-21T00:00:00+08:00" itemprop="datePublished"> Jun 21, 2025 </time> &nbsp | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
                         <img src="../../image/TAG-ICON.png" class="inline-icon">
@@ -60,7 +60,9 @@
                 </header>
 
                 <section class="L1-section">
-                    <img id="cover" width="100%" height="400px" src="https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
+                    <div id="cover-container">
+                        <img id="cover" src="https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
+                    </div>
                     <p class="content-paragraph">
                         透過 HTML 和 CSS 能夠搭建出一個美美的網頁，用來呈現資訊算夠用了，但如果是要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的元素資訊並動態的新增和修改 HTML/CSS 的內容。
                     </p>
