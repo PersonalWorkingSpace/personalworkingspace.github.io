@@ -1,17 +1,22 @@
+:root {
+    --sidebar-font-size: 16px;
+}
+
 #category-list {
     display: flex;
     flex-flow: column wrap;
 }
 
-#selected-category {
-    border: 2px solid #615a5a;
+#category-list .tag {
+    font-size: var(--sidebar-font-size);
+    font-weight: 400;
+}
+
+#category-list #selected-category {
+    border: 2px solid #403c3c;
     font-weight: 500;
 }
 
 #selected-category::before {
     content: "➣ ";
-}
-
-.day {
-    color: #a19b9b;
 }

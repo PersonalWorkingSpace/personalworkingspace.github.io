@@ -5,6 +5,7 @@
     --default-font-size: 18px;
     --note-font-size: 18px;
     --timeline-font-size: 18px;
+    --sidebar-font-size: 14px;
 }
 
 body {
@@ -147,11 +148,14 @@ img.content-img {
     top: 0.2em;
 }
 
+button[class=tag],
 a[class=tag] {
     border-radius: 0.35rem;
+    border: 0px;
     padding: 0rem 0.3rem;
     margin-right: 0.3rem;
     font-weight: 400;
+    text-align: left;
 }
 
 .L1-section-title {
