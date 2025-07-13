@@ -1,4 +1,4 @@
-import { colorCode } from './module/colorization.js';
+import { colorCode, categoryName } from './module/projection.js';
 import { Pages, Categories, Tags } from './module/subpageInfo.js';
 import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor } from './module/common.js';
 
@@ -15,7 +15,7 @@ window.onload = function() {
 function updateCategory() {
     let container = document.getElementById("category-list");
     for (const [cg, listOfPages] of Object.entries(Categories)) {
-        let anchor = CreateAnchor(`${cg} (${listOfPages["name"].length})`, `${WinURL["origin"]}/entrypoint/categories.html?category=${cg}`);
+        let anchor = CreateAnchor(`${categoryName[cg]} (${listOfPages["name"].length})`, `${WinURL["origin"]}/entrypoint/categories.html?category=${cg}`);
         anchor.setAttribute("class", "tag");
         anchor.style.color = colorCode[cg]["font"];
         anchor.style.backgroundColor = colorCode[cg]["bg"];

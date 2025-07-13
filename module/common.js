@@ -1,4 +1,4 @@
-import { colorCode } from './colorization.js';
+import { colorCode, categoryName } from './projection.js';
 
 const NumberToMonth = {
     1: "Jan",
@@ -108,7 +108,7 @@ function getPostCategory(category) {
     let bar = document.createElement("span");
     bar.setAttribute("class", "category-bar");
 
-    let anchor = CreateAnchor(category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
+    let anchor = CreateAnchor(categoryName[category], `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
     anchor.setAttribute("class", "tag");
     anchor.style.color = colorCode[category]["font"];
     anchor.style.backgroundColor = colorCode[category]["bg"];

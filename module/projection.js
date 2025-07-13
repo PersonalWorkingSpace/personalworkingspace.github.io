@@ -1,5 +1,5 @@
 const colorCode = {
-    "網頁設計": { "font": "#707070", "bg": "#fae5d3" },
+    "Web-Design": { "font": "#707070", "bg": "#fae5d3" },
     "初學筆記": { "font": "#707070", "bg": "#ebf5fb" },
     "HTML": { "font": "#707070", "bg": "#a3e4d7" },
     "CSS": { "font": "#707070", "bg": "#ebdef0" },
@@ -8,4 +8,8 @@ const colorCode = {
     "Github": { "font": "#F0F0F0", "bg": "#909090" }
 };
 
-export { colorCode };
+const categoryName = {
+    "Web-Design": "網頁設計"
+}
+
+export { colorCode, categoryName };

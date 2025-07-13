@@ -1,4 +1,4 @@
-import { colorCode } from '../module/colorization.js';
+import { colorCode, categoryName } from './projection.js';
 import { Pages, Categories } from '../module/subpageInfo.js';
 import { Init, UpdatePosts, CreateAnchor } from '../module/common.js';
 
@@ -11,7 +11,7 @@ window.onload = function() {
 
 function fetchPosts() {
     let selectedCG = document.querySelector("#category-list #selected-category");
-    let cg = selectedCG.innerText.split(" ")[0];
+    let cg = selectedCG.dataset.category;
     let pageID = Categories[cg]["pageID"];
 
     let posts = [];
@@ -34,10 +34,11 @@ function updateCategory() {
     const selectedCG = urlParams.get('category');
 
     for (const [cg, listOfPages] of cgList) {
-        let anchor = CreateAnchor(`${cg} (${listOfPages["name"].length})`, "#");
+        let anchor = CreateAnchor(`${categoryName[cg]} (${listOfPages["name"].length})`, "#");
         anchor.style.color = colorCode[cg]["font"];
         anchor.style.backgroundColor = colorCode[cg]["bg"];
         anchor.setAttribute("class", "tag");
+        anchor.setAttribute("data-category", cg);
 
         if (cg == selectedCG || selectedCG == null && container.childNodes.length == 0) {
             anchor.setAttribute("id", "selected-category");

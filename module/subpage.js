@@ -1,4 +1,4 @@
-import { colorCode } from './colorization.js';
+import { colorCode, categoryName } from './projection.js';
 import { Pages, Categories, Tags } from '../module/subpageInfo.js';
 import { Init, CreateAnchor, WinURL } from '../module/common.js';
 
@@ -39,7 +39,7 @@ function getTitles() {
 // Set category bar
 function setCategory() {
     let bar = document.getElementById("category-bar");
-    let anchor = CreateAnchor(category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
+    let anchor = CreateAnchor(categoryName[category], `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
     anchor.setAttribute("class", "tag");
     anchor.style.color = colorCode[category]["font"];
     anchor.style.backgroundColor = colorCode[category]["bg"];
@@ -90,7 +90,7 @@ function setCategoryArticles() {
     let upper = Math.min(categoryPosts["name"].length, lower + NUM_CATEGORY_ARTICLE);
 
     let title = document.getElementById("category-title");
-    let anchor = CreateAnchor(category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
+    let anchor = CreateAnchor(categoryName[category], `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
     anchor.setAttribute("class", "tag");
     anchor.style.color = colorCode[category]["font"];
     anchor.style.backgroundColor = colorCode[category]["bg"];

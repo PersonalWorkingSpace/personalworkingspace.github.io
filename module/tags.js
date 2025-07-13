@@ -1,4 +1,4 @@
-import { colorCode } from '../module/colorization.js';
+import { colorCode } from './projection.js';
 import { Pages, Tags } from '../module/subpageInfo.js';
 import { Init, UpdatePosts, CreateAnchor } from '../module/common.js';
 
