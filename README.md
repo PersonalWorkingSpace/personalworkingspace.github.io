@@ -18,7 +18,6 @@
 * RWD
 
 ## CLEAN
-* 用詞修正 page to post
 * tool, example 分離repo
 * timezone
 * CSS參數化

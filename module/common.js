@@ -31,8 +31,8 @@ function UpdatePosts(posts, showDayNumber) {
     container.innerHTML = "";
 
     for (let i = 0; i < posts.length; i++) {
-        let page = posts[i];
-        let anchor = CreateAnchor("", `${WinURL["origin"]}/${page["file"]}`);
+        let post = posts[i];
+        let anchor = CreateAnchor("", `${WinURL["origin"]}/${post["file"]}`);
         anchor.setAttribute("class", "post");
 
         /* post
@@ -47,23 +47,23 @@ function UpdatePosts(posts, showDayNumber) {
         postTitle.setAttribute("class", "post-title");
 
         if (showDayNumber == true) {
-            postTitle.innerHTML = `Day${i+1} - ${page["title"]}`;
+            postTitle.innerHTML = `Day${i+1} - ${post["title"]}`;
         } else {
-            postTitle.innerHTML = page["title"];
+            postTitle.innerHTML = post["title"];
         }
 
         let description = document.createElement("p");
         description.setAttribute("class", "post-description");
-        description.innerHTML = page["description"];
+        description.innerHTML = post["description"];
 
-        let postMeta = getPostMeta(page);
+        let postMeta = getPostMeta(post);
         postMeta.setAttribute("class", "post-meta");
 
         leftPart.appendChild(postTitle);
         leftPart.appendChild(description);
         leftPart.appendChild(postMeta);
 
-        let thumbnail = getPostThumbnail(page["thumbnail"]);
+        let thumbnail = getPostThumbnail(post["thumbnail"]);
 
         anchor.appendChild(leftPart);
         anchor.appendChild(thumbnail);

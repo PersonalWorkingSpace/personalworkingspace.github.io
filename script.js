@@ -1,10 +1,10 @@
 import { categoryName } from './module/projection.js';
-import { Pages, Categories, Tags } from './module/subpageInfo.js';
+import { Posts, Categories, Tags } from './module/post-info.js';
 import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton } from './module/common.js';
 
 window.onload = function() {
     Init();
-    UpdatePosts(Pages, false);
+    UpdatePosts(Posts, false);
     updateTimeline();
     updateCategory();
     updateTag();
@@ -14,8 +14,8 @@ window.onload = function() {
 // Generate category
 function updateCategory() {
     let container = document.getElementById("category-list");
-    for (const [cg, listOfPages] of Object.entries(Categories)) {
-        let button = CreateColorfulButton(`${categoryName[cg]} (${listOfPages["name"].length})`, cg, `${WinURL["origin"]}/entrypoint/categories.html?category=${cg}`);
+    for (const [cg, listOfPosts] of Object.entries(Categories)) {
+        let button = CreateColorfulButton(`${categoryName[cg]} (${listOfPosts["name"].length})`, cg, `${WinURL["origin"]}/entrypoint/categories.html?category=${cg}`);
         container.appendChild(button);
     }
 }
@@ -23,8 +23,8 @@ function updateCategory() {
 // Generate tag
 function updateTag() {
     let container = document.getElementById("tag-list");
-    for (const [tag, listOfPages] of Object.entries(Tags)) {
-        let button = CreateColorfulButton(`${tag} (${listOfPages["name"].length})`, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
+    for (const [tag, listOfPosts] of Object.entries(Tags)) {
+        let button = CreateColorfulButton(`${tag} (${listOfPosts["name"].length})`, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
         container.appendChild(button);
     }
 }
@@ -38,18 +38,18 @@ function updateTimeline() {
     let selectMonth = -1;
     let toggleList;
 
-    for (let i = 0; i < Pages.length; i++) {
-        let page = Pages[i];
-        let created = new Date(page["created"]);
-        let pageYear = created.getFullYear();
-        let pageMonth = created.getMonth() + 1;
+    for (let i = 0; i < Posts.length; i++) {
+        let post = Posts[i];
+        let created = new Date(post["created"]);
+        let postYear = created.getFullYear();
+        let postMonth = created.getMonth() + 1;
 
-        if ((year - pageYear) * 12 + (month - pageMonth) > 12) {
+        if ((year - postYear) * 12 + (month - postMonth) > 12) {
             break;
         }
 
-        if (pageMonth != selectMonth) {
-            selectMonth = pageMonth;
+        if (postMonth != selectMonth) {
+            selectMonth = postMonth;
             let state = "collapsed";
             let symbol = "▶";
             if (i == 0) {
@@ -57,14 +57,14 @@ function updateTimeline() {
                 symbol = "▽";
             }
 
-            let key = `${symbol} ${pageYear} ${NumberToMonth[pageMonth]}`;
+            let key = `${symbol} ${postYear} ${NumberToMonth[postMonth]}`;
             toggleList = createToggle(key, state);
             timeline.appendChild(toggleList);
         }
 
         let ul = toggleList.childNodes[1];
         let newNode = document.createElement("li");
-        let anchor = CreateAnchor(page["title"], `${WinURL["origin"]}/${page["file"]}`);
+        let anchor = CreateAnchor(post["title"], `${WinURL["origin"]}/${post["file"]}`);
         newNode.appendChild(anchor);
         ul.appendChild(newNode);
     }

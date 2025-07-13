@@ -1,4 +1,4 @@
-const Pages = [
+const Posts = [
     {
         "file": "category/Web-Design/Github-Pages.html",
         "created": "2025-07-06T00:00:00+08:00",
@@ -45,7 +45,7 @@ const Categories = {
             "CSS-Beginner",
             "HTML-Beginner"
         ],
-        "pageID": [
+        "postID": [
             0,
             1,
             2,
@@ -59,7 +59,7 @@ const Tags = {
         "name": [
             "Github-Pages"
         ],
-        "pageID": [
+        "postID": [
             0
         ]
     },
@@ -67,7 +67,7 @@ const Tags = {
         "name": [
             "Github-Pages"
         ],
-        "pageID": [
+        "postID": [
             0
         ]
     },
@@ -77,7 +77,7 @@ const Tags = {
             "CSS-Beginner",
             "HTML-Beginner"
         ],
-        "pageID": [
+        "postID": [
             1,
             2,
             3
@@ -87,7 +87,7 @@ const Tags = {
         "name": [
             "Javascript-Beginner"
         ],
-        "pageID": [
+        "postID": [
             1
         ]
     },
@@ -95,7 +95,7 @@ const Tags = {
         "name": [
             "CSS-Beginner"
         ],
-        "pageID": [
+        "postID": [
             2
         ]
     },
@@ -103,10 +103,10 @@ const Tags = {
         "name": [
             "HTML-Beginner"
         ],
-        "pageID": [
+        "postID": [
             3
         ]
     }
 };
 
-export { Pages, Categories, Tags };
+export { Posts, Categories, Tags };

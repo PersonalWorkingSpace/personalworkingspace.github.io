@@ -1,4 +1,4 @@
-import { Pages, Tags } from '../module/subpageInfo.js';
+import { Posts, Tags } from '../module/post-info.js';
 import { Init, UpdatePosts, CreateColorfulButton } from '../module/common.js';
 
 window.onload = function() {
@@ -11,11 +11,11 @@ window.onload = function() {
 function fetchPosts() {
     let selectedCG = document.querySelector("#tag-list #selected-tag");
     let tag = selectedCG.dataset.tag;
-    let pageID = Tags[tag]["pageID"];
+    let postID = Tags[tag]["postID"];
 
     let posts = [];
-    for (let i = pageID.length - 1; i >= 0; i--) {
-        posts.push(Pages[pageID[i]]);
+    for (let i = postID.length - 1; i >= 0; i--) {
+        posts.push(Posts[postID[i]]);
     }
 
     return posts;
@@ -32,8 +32,8 @@ function updateTag() {
     const urlParams = new URLSearchParams(window.location.search);
     const selectedTag = urlParams.get('tag');
 
-    for (const [tag, listOfPages] of tagList) {
-        let button = CreateColorfulButton(`${tag} (${listOfPages["name"].length})`, tag);
+    for (const [tag, listOfPosts] of tagList) {
+        let button = CreateColorfulButton(`${tag} (${listOfPosts["name"].length})`, tag);
         button.setAttribute("data-tag", tag);
 
         if (tag == selectedTag || selectedTag == null && container.childNodes.length == 0) {

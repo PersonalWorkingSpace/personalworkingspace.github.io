@@ -1,6 +1,6 @@
 import { categoryName } from './projection.js';
-import { Pages, Categories, Tags } from '../module/subpageInfo.js';
-import { Init, WinURL, CreateAnchor, CreateColorfulButton } from '../module/common.js';
+import { Posts, Categories, Tags } from '../module/post-info.js';
+import { Init, WinURL, CreateAnchor, CreateColorfulButton } from './common.js';
 
 
 window.onload = function() {
@@ -90,11 +90,11 @@ function setCategoryArticles() {
     let related = document.getElementById("same-category-list");
     related.setAttribute("class", "related-article");
 
-    let len = categoryPosts["pageID"].length;
+    let len = categoryPosts["postID"].length;
     for (let i = upper - 1; i >= lower; i--) {
-        let page = Pages[categoryPosts["pageID"][i]];
+        let post = Posts[categoryPosts["postID"][i]];
         let li = document.createElement("li");
-        let a = CreateAnchor(`Day${len - i} - ${page["title"]}`, `${WinURL["origin"]}/${page["file"]}`);
+        let a = CreateAnchor(`Day${len - i} - ${post["title"]}`, `${WinURL["origin"]}/${post["file"]}`);
 
         if (i == idx) {
             a.setAttribute("class", "this-article");
@@ -147,9 +147,9 @@ function setTagArticles() {
 
         for (let i = upper - 1; i >= lower; i--) {
             if (i != idx) {
-                let page = Pages[tagPosts["pageID"][i]];
+                let post = Posts[tagPosts["postID"][i]];
                 let li = document.createElement("li");
-                let a = CreateAnchor(`${page["title"]}`, `${WinURL["origin"]}/${page["file"]}`);
+                let a = CreateAnchor(`${post["title"]}`, `${WinURL["origin"]}/${post["file"]}`);
                 li.appendChild(a);
                 tagList.appendChild(li);
             }

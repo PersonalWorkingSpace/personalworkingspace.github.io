@@ -158,6 +158,12 @@ a[class=tag] {
     text-align: left;
 }
 
+button[class=tag]:hover,
+a[class=tag]:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .L1-section-title {
     font-size: 32px;
     margin: 3rem 0rem 1rem 0rem;

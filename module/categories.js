@@ -1,5 +1,5 @@
 import { categoryName } from './projection.js';
-import { Pages, Categories } from '../module/subpageInfo.js';
+import { Posts, Categories } from '../module/post-info.js';
 import { Init, UpdatePosts, CreateColorfulButton } from '../module/common.js';
 
 window.onload = function() {
@@ -12,11 +12,11 @@ window.onload = function() {
 function fetchPosts() {
     let selectedCG = document.querySelector("#category-list #selected-category");
     let cg = selectedCG.dataset.category;
-    let pageID = Categories[cg]["pageID"];
+    let postID = Categories[cg]["postID"];
 
     let posts = [];
-    for (let i = pageID.length - 1; i >= 0; i--) {
-        posts.push(Pages[pageID[i]]);
+    for (let i = postID.length - 1; i >= 0; i--) {
+        posts.push(Posts[postID[i]]);
     }
 
     return posts;
@@ -33,8 +33,8 @@ function updateCategory() {
     const urlParams = new URLSearchParams(window.location.search);
     const selectedCG = urlParams.get('category');
 
-    for (const [cg, listOfPages] of cgList) {
-        let button = CreateColorfulButton(`${categoryName[cg]} (${listOfPages["name"].length})`, cg);
+    for (const [cg, listOfPosts] of cgList) {
+        let button = CreateColorfulButton(`${categoryName[cg]} (${listOfPosts["name"].length})`, cg);
         button.setAttribute("data-category", cg);
 
         if (cg == selectedCG || selectedCG == null && container.childNodes.length == 0) {
