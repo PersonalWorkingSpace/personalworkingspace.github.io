@@ -1,6 +1,6 @@
-import { colorCode, categoryName } from './projection.js';
+import { categoryName } from './projection.js';
 import { Pages, Categories } from '../module/subpageInfo.js';
-import { Init, UpdatePosts, CreateAnchor } from '../module/common.js';
+import { Init, UpdatePosts, CreateColorfulButton } from '../module/common.js';
 
 window.onload = function() {
     Init();
@@ -34,21 +34,18 @@ function updateCategory() {
     const selectedCG = urlParams.get('category');
 
     for (const [cg, listOfPages] of cgList) {
-        let anchor = CreateAnchor(`${categoryName[cg]} (${listOfPages["name"].length})`, "#");
-        anchor.style.color = colorCode[cg]["font"];
-        anchor.style.backgroundColor = colorCode[cg]["bg"];
-        anchor.setAttribute("class", "tag");
-        anchor.setAttribute("data-category", cg);
+        let button = CreateColorfulButton(`${categoryName[cg]} (${listOfPages["name"].length})`, cg);
+        button.setAttribute("data-category", cg);
 
         if (cg == selectedCG || selectedCG == null && container.childNodes.length == 0) {
-            anchor.setAttribute("id", "selected-category");
+            button.setAttribute("id", "selected-category");
         }
 
         if (container.childNodes.length > 0) {
             let textNode = document.createTextNode(" ");
             container.appendChild(textNode);
         }
-        container.appendChild(anchor);
+        container.appendChild(button);
     }
 }
 

@@ -1,6 +1,5 @@
-import { colorCode } from './projection.js';
 import { Pages, Tags } from '../module/subpageInfo.js';
-import { Init, UpdatePosts, CreateAnchor } from '../module/common.js';
+import { Init, UpdatePosts, CreateColorfulButton } from '../module/common.js';
 
 window.onload = function() {
     Init();
@@ -11,7 +10,7 @@ window.onload = function() {
 
 function fetchPosts() {
     let selectedCG = document.querySelector("#tag-list #selected-tag");
-    let tag = selectedCG.innerText.split(" ")[0];
+    let tag = selectedCG.dataset.tag;
     let pageID = Tags[tag]["pageID"];
 
     let posts = [];
@@ -34,20 +33,18 @@ function updateTag() {
     const selectedTag = urlParams.get('tag');
 
     for (const [tag, listOfPages] of tagList) {
-        let anchor = CreateAnchor(`${tag} (${listOfPages["name"].length})`, "#");
-        anchor.style.color = colorCode[tag]["font"];
-        anchor.style.backgroundColor = colorCode[tag]["bg"];
-        anchor.setAttribute("class", "tag");
+        let button = CreateColorfulButton(`${tag} (${listOfPages["name"].length})`, tag);
+        button.setAttribute("data-tag", tag);
 
         if (tag == selectedTag || selectedTag == null && container.childNodes.length == 0) {
-            anchor.setAttribute("id", "selected-tag");
+            button.setAttribute("id", "selected-tag");
         }
 
         if (container.childNodes.length > 0) {
             let textNode = document.createTextNode(" ");
             container.appendChild(textNode);
         }
-        container.appendChild(anchor);
+        container.appendChild(button);
     }
 }
 

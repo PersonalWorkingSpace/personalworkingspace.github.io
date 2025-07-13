@@ -108,10 +108,7 @@ function getPostCategory(category) {
     let bar = document.createElement("span");
     bar.setAttribute("class", "category-bar");
 
-    let anchor = CreateAnchor(categoryName[category], `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
-    anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[category]["font"];
-    anchor.style.backgroundColor = colorCode[category]["bg"];
+    let anchor = CreateColorfulButton(categoryName[category], category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
     bar.appendChild(anchor);
     return bar;
 }
@@ -123,18 +120,25 @@ function getPostTag(tags) {
 
     for (let i = 0; i < taglist.length; i++) {
         let tag = taglist[i].trim();
-        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
-        anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[tag]["font"];
-        anchor.style.backgroundColor = colorCode[tag]["bg"];
-        bar.appendChild(anchor);
-        if (i != taglist.length - 1) {
-            let textNode = document.createTextNode(" ");
-            bar.appendChild(textNode);
-        }
+        let button = CreateColorfulButton(tag, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
+        bar.appendChild(button);
     }
 
     return bar;
+}
+
+function CreateColorfulButton(text, code, href) {
+    let button;
+    if (typeof href === "undefined") {
+        button = document.createElement("button");
+        button.innerText = text;
+    } else {
+        button = CreateAnchor(text, href);
+    }
+    button.setAttribute("class", "tag");
+    button.style.color = colorCode[code]["font"];
+    button.style.backgroundColor = colorCode[code]["bg"];
+    return button;
 }
 
 function getPostThumbnail(thumbnail) {
@@ -154,4 +158,4 @@ function CreateAnchor(text, link) {
     return anchor;
 }
 
-export { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor };
+export { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton };

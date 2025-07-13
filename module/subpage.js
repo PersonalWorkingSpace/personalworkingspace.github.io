@@ -1,6 +1,6 @@
-import { colorCode, categoryName } from './projection.js';
+import { categoryName } from './projection.js';
 import { Pages, Categories, Tags } from '../module/subpageInfo.js';
-import { Init, CreateAnchor, WinURL } from '../module/common.js';
+import { Init, WinURL, CreateAnchor, CreateColorfulButton } from '../module/common.js';
 
 
 window.onload = function() {
@@ -39,11 +39,8 @@ function getTitles() {
 // Set category bar
 function setCategory() {
     let bar = document.getElementById("category-bar");
-    let anchor = CreateAnchor(categoryName[category], `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
-    anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[category]["font"];
-    anchor.style.backgroundColor = colorCode[category]["bg"];
-    bar.appendChild(anchor);
+    let button = CreateColorfulButton(categoryName[category], category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
+    bar.appendChild(button);
 }
 
 // Set tag bar
@@ -52,11 +49,8 @@ function setTags() {
 
     for (let i = 0; i < tagArray.length; i++) {
         let tag = tagArray[i]
-        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
-        anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[tag]["font"];
-        anchor.style.backgroundColor = colorCode[tag]["bg"];
-        bar.appendChild(anchor);
+        let button = CreateColorfulButton(tag, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
+        bar.appendChild(button);
     }
 }
 
@@ -90,12 +84,8 @@ function setCategoryArticles() {
     let upper = Math.min(categoryPosts["name"].length, lower + NUM_CATEGORY_ARTICLE);
 
     let title = document.getElementById("category-title");
-    let anchor = CreateAnchor(categoryName[category], `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
-    anchor.setAttribute("class", "tag");
-    anchor.style.color = colorCode[category]["font"];
-    anchor.style.backgroundColor = colorCode[category]["bg"];
-
-    title.appendChild(anchor);
+    let button = CreateColorfulButton(categoryName[category], category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
+    title.appendChild(button);
 
     let related = document.getElementById("same-category-list");
     related.setAttribute("class", "related-article");
@@ -143,11 +133,8 @@ function setTagArticles() {
         icon.setAttribute("class", "inline-icon");
         title.appendChild(icon);
 
-        let anchor = CreateAnchor(tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
-        anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[tag]["font"];
-        anchor.style.backgroundColor = colorCode[tag]["bg"];
-        title.appendChild(anchor);
+        let button = CreateColorfulButton(tag, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
+        title.appendChild(button);
 
         let tagRegion = document.getElementById("tag-wrapper");
 

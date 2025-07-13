@@ -24,7 +24,6 @@
 * CSS參數化
 
 ## FIX
-* 移除 category 中文
 * 修正左右高度不一
 * 表格 RWD
 

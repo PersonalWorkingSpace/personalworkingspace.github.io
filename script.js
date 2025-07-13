@@ -1,6 +1,6 @@
-import { colorCode, categoryName } from './module/projection.js';
+import { categoryName } from './module/projection.js';
 import { Pages, Categories, Tags } from './module/subpageInfo.js';
-import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor } from './module/common.js';
+import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton } from './module/common.js';
 
 window.onload = function() {
     Init();
@@ -15,15 +15,8 @@ window.onload = function() {
 function updateCategory() {
     let container = document.getElementById("category-list");
     for (const [cg, listOfPages] of Object.entries(Categories)) {
-        let anchor = CreateAnchor(`${categoryName[cg]} (${listOfPages["name"].length})`, `${WinURL["origin"]}/entrypoint/categories.html?category=${cg}`);
-        anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[cg]["font"];
-        anchor.style.backgroundColor = colorCode[cg]["bg"];
-        if (container.childNodes.length > 0) {
-            let textNode = document.createTextNode(" ");
-            container.appendChild(textNode);
-        }
-        container.appendChild(anchor);
+        let button = CreateColorfulButton(`${categoryName[cg]} (${listOfPages["name"].length})`, cg, `${WinURL["origin"]}/entrypoint/categories.html?category=${cg}`);
+        container.appendChild(button);
     }
 }
 
@@ -31,15 +24,8 @@ function updateCategory() {
 function updateTag() {
     let container = document.getElementById("tag-list");
     for (const [tag, listOfPages] of Object.entries(Tags)) {
-        let anchor = CreateAnchor(`${tag} (${listOfPages["name"].length})`, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
-        anchor.setAttribute("class", "tag");
-        anchor.style.color = colorCode[tag]["font"];
-        anchor.style.backgroundColor = colorCode[tag]["bg"];
-        if (container.childNodes.length > 0) {
-            let textNode = document.createTextNode(" ");
-            container.appendChild(textNode);
-        }
-        container.appendChild(anchor);
+        let button = CreateColorfulButton(`${tag} (${listOfPages["name"].length})`, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
+        container.appendChild(button);
     }
 }
 
