@@ -1,5 +1,6 @@
 :root {
     --sidebar-font-size: 16px;
+    --default-font-size: 18px;
 }
 
 #category-list {
@@ -19,4 +20,30 @@
 
 #selected-category::before {
     content: "➣ ";
+}
+
+.category-dropdown {
+    display: none;
+    flex-flow: row nowrap;
+}
+
+#category-select {
+    width: 100%;
+    margin-left: 1rem;
+    border-radius: 0.35rem;
+    border: none;
+    background-color: #e3dcdc;
+    text-align: right;
+    font-size: var(--sidebar-font-size);
+    outline: none;
+}
+
+#category-select option {
+    font-size: var(--sidebar-font-size);
+}
+
+@media (max-width: 1000px) {
+    .category-dropdown {
+        display: flex;
+    }
 }

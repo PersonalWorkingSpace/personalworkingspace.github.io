@@ -24,3 +24,29 @@
 #selected-tag::before {
     content: "➣ ";
 }
+
+.tag-dropdown {
+    display: none;
+    flex-flow: row nowrap;
+}
+
+#tag-select {
+    width: 100%;
+    margin-left: 1rem;
+    border-radius: 0.35rem;
+    border: none;
+    background-color: #e3dcdc;
+    text-align: right;
+    font-size: var(--sidebar-font-size);
+    outline: none;
+}
+
+#tag-select option {
+    font-size: var(--sidebar-font-size);
+}
+
+@media (max-width: 1000px) {
+    .tag-dropdown {
+        display: flex;
+    }
+}

@@ -158,4 +158,31 @@ function CreateAnchor(text, link) {
     return anchor;
 }
 
-export { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton };
+function RegisterNavToggleEvent() {
+    let menu = document.getElementById("hamburger");
+    menu.addEventListener(
+        "click", (event) => {
+            let siteNav = document.getElementById("site-nav");
+            siteNav.classList.toggle('open');
+        }
+    );
+
+    // close nav when click any place on the screen
+    document.addEventListener('click', (event) => {
+        let siteNav = document.getElementById("site-nav");
+        const isClickInsideMenu = siteNav.contains(event.target) || hamburger.contains(event.target);
+        if (!isClickInsideMenu) {
+            siteNav.classList.remove("open");
+        }
+    });
+
+    // when the burger is hidden, open classes will be removed
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 1000) {
+            let siteNav = document.getElementById("site-nav");
+            siteNav.classList.remove('open');
+        }
+    });
+}
+
+export { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent };

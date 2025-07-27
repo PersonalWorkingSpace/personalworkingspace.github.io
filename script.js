@@ -1,6 +1,6 @@
 import { categoryName } from './module/projection.js';
 import { Posts, Categories, Tags } from './module/post-info.js';
-import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton } from './module/common.js';
+import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent } from './module/common.js';
 
 window.onload = function() {
     Init();
@@ -9,6 +9,7 @@ window.onload = function() {
     updateCategory();
     updateTag();
     registerTimelineToggleEvent();
+    RegisterNavToggleEvent();
 }
 
 // Generate category
