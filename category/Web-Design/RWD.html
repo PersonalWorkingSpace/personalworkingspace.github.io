@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>RWD 響應式網頁設計</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="在此文章中你會學到如何透過 CSS 的 @media 來設計出響應式網頁...">
+    <meta name="keywords" content="初學筆記, CSS">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon">
+                <span>&nbsp&nbsp</span> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">In this article</h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">RWD 響應式網頁設計</h1>
+                    <div class="post-meta">
+                        <time datetime="2025-08-02T00:00:00+08:00" itemprop="datePublished"> Aug 2, 2025 </time> &nbsp | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
+                    </div>
+                    <p class="content-paragraph">
+                        一個好的網頁必須考慮到使用者會藉由不同螢幕大小的裝置來檢視，像是電腦、平板、手機等螢幕尺寸差異會很大，可能你的網頁在電腦上看是正常的，到了手機上就擠成一團，所以我們得引入 RWD 的概念來讓網頁在不同螢幕尺寸時有不同的顯示方式。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">RWD</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        全名為 Responsive Web Design / 響應式網頁設計，主要是希望網頁在不同尺寸的裝置上都能有適當的呈現方式，減少使用者滑動或縮放的操作，我很喜歡 wiki 上的圖片說明:
+                    </p>
+                    <img class="content-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Content-is-like-water.svg/1920px-Content-is-like-water.svg.png" alt="wiki說明圖">
+                    <p class="content-paragraph">
+                        <b>內容就像水一樣，能夠根據裝置變化為合適的樣貌</b>，要達成這點最常見的處理方式就是偵測網頁的寬度，當寬度縮小到一個下限時，就把部分資訊欄位隱藏或是收縮起來。
+                    </p>
+                    <p class="content-paragraph">
+                        以本網頁為例，如果是在電腦上看應該會在左側看到目錄、右側看到相關文章推薦，如果將頁面的寬度慢慢下降到 <code class="inline">1000px</code> 以下，兩側欄位會直接隱藏，避免內文被擠壓過頭，此外頁首的部分也會把 <code class="inline">nav</code> 收縮起來，改成以下拉式選單呈現。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">CSS @media</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        想要實現 RWD 的網頁設計，最簡單的方式是透過 CSS 內建的 <code class="inline">@media</code> rule 達成; 它能根據裝置的 media type 來決定是否套用部分 CSS styles，在 RWD 中就是以網頁寬度來控制:
+                        <pre><code class="css">
+    /* CSS */
+    @media (max-width: 1000px) {
+        #side-area {
+            display: none;
+        }
+        ...
+    }
+                        </code></pre>
+                    </p>
+                    <p class="content-paragraph">
+                        使用上很直觀:
+                        <ul class="content-ul">
+                            <li>
+                                <b>設定條件</b> - 條件由 () 所包起來，螢幕寬度可以設定成 <code class="inline">min-width</code> (&gt;= 我觸發) <code class="inline">max-width</code> (&lt; 我觸發)，並透過 <code class="inline">and</code>, <code class="inline">or</code>來實現複雜邏輯。以上設定為寬度小於
+                                1000px 時觸發。
+                            </li>
+                            <li>
+                                <b>要套用的 sytles</b> - 可以接多個 style，這邊就是把一些區塊的顯示關掉。
+                            </li>
+                        </ul>
+                    </p>
+                    <p class="content-paragraph">
+                        你可能會覺得這個 min-width, max-width 不太直觀，放心你不孤獨XD，在 CSS Media Queries Level 4 後就有提供以下這種更方便的寫法，底下是當螢幕尺寸介於 480px 跟 1000px 才會套用的寫法，數學式就就直觀多了 (^u^)
+                        <pre><code class="css">
+    /* CSS */
+    @media (480px <= width <= 1000px) {
+        ...
+    }
+                        </code></pre>
+                    </p>
+                    <p class="note">
+                        由於 CSS 是放在後面的 style 能夠複寫前面的，建議是把 @media 區塊放在後面。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">範例</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        在此介紹一下本網頁如何實作寬度縮小時，標頭的連結 (Home, Posts, Categories, Tags) 自動轉成下拉選單 (menu):
+                        <br><br>
+                        <img class="content-img" src="../../image/dropdown-menu.png" alt="dropdown-menu">
+                        <ol class="content-ol">
+                            <li> 先產生出下拉清單的符號 (hamburger menu) 跟連結 nav，初始狀態是只顯示 nav、不顯示 menu:
+                                <pre><code class="html">
+    &lt;!-- HTML --&gt;
+    &lt;button id="hamburger"&gt;&#9776;&lt;/button&gt;
+    &lt;nav id="site-nav"&gt;
+        ...
+    &lt;/nav&gt;
+                                </code></pre>
+                                <pre><code class="css">
+    /* CSS */
+    #hamburger {
+        display: none;
+    }
+                        </code></pre>
+                            </li>
+                            <li> 設定 @media 網頁寬度小於 1000px 時的 style，讓 nav 隱藏並顯示出 menu，此外還修改了 nav 的顯示屬性，使其變成每個連結都是單獨一行:
+                                <pre><code class="css">
+    /* CSS */                               
+    @media (width < 1000px) {
+        #site-nav {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+        }
+        #hamburger {
+            display: block;
+        }
+    }
+                                </code></pre> 這麼做的目的是當 nav 的 display 打開就會有下拉的清單出現， 值得注意的是裝 nav 的外部元素必須採用 <code class="inline">flex-flow: row wrap;</code>，這樣才會使 nav 自動換到下一行。
+                            </li>
+                            <li> 接下來要設定點擊後 menu 修改 nav 的 display，我們可以先設定一個 class 為 open 的屬性顯示，然後用 JS 幫 nav 加上 open class 即可:
+                                <pre><code class="css">
+    /* CSS */
+    #site-nav.open {
+        display: flex;
+    }
+                                </code></pre>
+                                <pre><code class="javascript">
+    // javascript
+    let menu = document.getElementById("hamburger");
+    menu.addEventListener(
+        "click", (event) => {
+            let siteNav = document.getElementById("site-nav");
+            // 如果 class 有包含 open 則移除，沒有則加入 open
+            siteNav.classList.toggle('open');
+        }
+    );
+                                </code></pre>
+                            </li>
+                        </ol>
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        以上就是透過 @media 來達成 RWD 網頁的介紹，透過 @media 來設定寬度條件並動態套用 style，讓網頁在手機等裝置上也能清楚呈現，並結合 JS 來實踐下拉選單將資訊保留，騰出更多版面給你的內文。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>隨筆紀錄我的學習過程</p>
+    </footer>
+</body>
+
+</html>

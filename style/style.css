@@ -562,7 +562,7 @@ table.content-table td:nth-child(1) {
     font-weight: 450;
 }
 
-@media (max-width: 1000px) {
+@media (width < 1000px) {
     #left-area {
         display: none;
     }

@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Web-Design/RWD.html",
+        "created": "2025-08-02T00:00:00+08:00",
+        "title": "RWD 響應式網頁設計",
+        "category": "Web-Design",
+        "tag": "初學筆記, CSS",
+        "thumbnail": "https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        "description": "在此文章中你會學到如何透過 CSS 的 @media 來設計出響應式網頁..."
+    },
+    {
         "file": "category/Web-Design/Github-Pages.html",
         "created": "2025-07-06T00:00:00+08:00",
         "title": "網頁部署 - Github Pages",
@@ -40,6 +49,7 @@ const Posts = [
 const Categories = {
     "Web-Design": {
         "name": [
+            "RWD",
             "Github-Pages",
             "Javascript-Beginner",
             "CSS-Beginner",
@@ -49,18 +59,43 @@ const Categories = {
             0,
             1,
             2,
-            3
+            3,
+            4
         ]
     }
 };
 
 const Tags = {
+    "初學筆記": {
+        "name": [
+            "RWD",
+            "Javascript-Beginner",
+            "CSS-Beginner",
+            "HTML-Beginner"
+        ],
+        "postID": [
+            0,
+            2,
+            3,
+            4
+        ]
+    },
+    "CSS": {
+        "name": [
+            "RWD",
+            "CSS-Beginner"
+        ],
+        "postID": [
+            0,
+            3
+        ]
+    },
     "網頁部署": {
         "name": [
             "Github-Pages"
         ],
         "postID": [
-            0
+            1
         ]
     },
     "Github": {
@@ -68,32 +103,12 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            0
-        ]
-    },
-    "初學筆記": {
-        "name": [
-            "Javascript-Beginner",
-            "CSS-Beginner",
-            "HTML-Beginner"
-        ],
-        "postID": [
-            1,
-            2,
-            3
+            1
         ]
     },
     "Javascript": {
         "name": [
             "Javascript-Beginner"
-        ],
-        "postID": [
-            1
-        ]
-    },
-    "CSS": {
-        "name": [
-            "CSS-Beginner"
         ],
         "postID": [
             2
@@ -104,7 +119,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            3
+            4
         ]
     }
 };
