@@ -9,10 +9,11 @@
     <meta name="description" content="在此記錄我的所學，希望自己能夠像個NPC一樣持續做好自己的事情，不要中斷~~~">
     <meta name="keywords" content="Internet NPC">
     <link href="image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="./style/variables.css" rel="stylesheet" type="text/css">
     <link href="./style/style.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./module/script.js"></script>
     <script>
         hljs.highlightAll();
     </script>
@@ -22,8 +23,7 @@
     <header class="banner">
         <div class="wrapper">
             <a id="site-logo" href="./index.html">
-                <img width=40px src="image/INPC-ICON.png" alt="inpc-icon">
-                <span>&nbsp&nbsp</span> Internet NPC
+                <img width=40px src="image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
             </a>
             <button id="hamburger">&#9776;</button>
             <nav id="site-nav">
@@ -36,7 +36,7 @@
     </header>
 
     <div class="main-container">
-        <aside id="left-area">
+        <aside id="left-area" class="sidebar">
             <!-- 這是時間軸 -->
             <div id="timeline-wrapper">
                 <h1 id="timeline-title"><img src="./image/CALENDAR-ICON.png" class="inline-icon">Last 12 months</h1>
@@ -49,14 +49,14 @@
             <article id="main-content"></article>
         </main>
 
-        <aside id="right-area">
+        <aside id="right-area" class="sidebar">
             <div id="category-wrapper">
                 <h1 id="category-title"><img src="./image/CATEGORY-ICON.png" class="inline-icon">Categories</h1>
                 <hr>
                 <div id="category-list"></div>
             </div>
             <div id="tag-wrapper">
-                <h1 id="tag-title"><img src="./image/TAG-ICON.png" class="inline-icon">Tags</h1>
+                <h1 class="tag-title"><img src="./image/TAG-ICON.png" class="inline-icon">Tags</h1>
                 <hr>
                 <div id="tag-list"></div>
             </div>

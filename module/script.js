@@ -1,6 +1,6 @@
-import { categoryName } from './module/projection.js';
-import { Posts, Categories, Tags } from './module/post-info.js';
-import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent } from './module/common.js';
+import { categoryName } from './projection.js';
+import { Posts, Categories, Tags } from './post-info.js';
+import { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent } from './common.js';
 
 window.onload = function() {
     Init();
@@ -37,7 +37,7 @@ function updateTimeline() {
     let month = now.getMonth() + 1; // January gives 0
     let year = now.getFullYear();
     let selectMonth = -1;
-    let toggleList;
+    let toggle;
 
     for (let i = 0; i < Posts.length; i++) {
         let post = Posts[i];
@@ -59,52 +59,50 @@ function updateTimeline() {
             }
 
             let key = `${symbol} ${postYear} ${NumberToMonth[postMonth]}`;
-            toggleList = createToggle(key, state);
-            timeline.appendChild(toggleList);
+            toggle = createToggle(key, state);
+            timeline.appendChild(toggle);
         }
 
-        let ul = toggleList.childNodes[1];
-        let newNode = document.createElement("li");
+        let toggleContainer = toggle.childNodes[1];
         let anchor = CreateAnchor(post["title"], `${WinURL["origin"]}/${post["file"]}`);
-        newNode.appendChild(anchor);
-        ul.appendChild(newNode);
+        toggleContainer.appendChild(anchor);
     }
 }
 
 
 function createToggle(title, state) {
-    let toggleList = document.createElement("li");
+    let toggle = document.createElement("li");
     let header = document.createElement("h1");
-    let member = document.createElement("ul");
+    let container = document.createElement("div");
     header.setAttribute("class", "toggleTitle");
-    member.setAttribute("class", "toggleMemberBullet");
+    container.setAttribute("class", "toggleContainer");
 
     header.innerText = title;
-    toggleList.setAttribute("class", state);
-    toggleList.appendChild(header);
-    toggleList.appendChild(member);
-    return toggleList;
+    toggle.setAttribute("class", state);
+    toggle.appendChild(header);
+    toggle.appendChild(container);
+    return toggle;
 }
 
 // register toggle event for timeline
 function registerTimelineToggleEvent() {
-    let toggles = document.querySelectorAll("#timeline .toggleTitle");
+    let toggles = document.querySelectorAll("#timeline li .toggleTitle");
 
     for (let i = 0; i < toggles.length; i++) {
         let toggle = toggles[i];
         toggle.addEventListener(
             "click", (event) => {
-                let clickedTC = event.target.parentElement;
-                let toggleContainers = document.querySelectorAll("#timeline li");
-                for (let i = 0; i < toggleContainers.length; i++) {
-                    let tc = toggleContainers[i];
-                    let h1 = tc.childNodes[0];
+                let clickedToggle = event.target.parentElement;
+                let toggles = document.querySelectorAll("#timeline li");
+                for (let i = 0; i < toggles.length; i++) {
+                    let toggle = toggles[i];
+                    let h1 = toggle.childNodes[0];
 
-                    if (tc == clickedTC) {
-                        tc.setAttribute("class", "expanded");
+                    if (toggle == clickedToggle) {
+                        toggle.setAttribute("class", "expanded");
                         h1.innerHTML = h1.innerHTML.replace("▶", "▽");
                     } else {
-                        tc.setAttribute("class", "collapsed");
+                        toggle.setAttribute("class", "collapsed");
                         h1.innerHTML = h1.innerHTML.replace("▽", "▶");
                     }
                 }

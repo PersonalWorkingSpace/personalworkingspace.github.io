@@ -1,24 +1,18 @@
-:root {
-    --center-width: 800px;
-    --left-width: 300px;
-    --right-width: 350px;
-    --default-font-size: 18px;
-    --note-font-size: 18px;
-    --timeline-font-size: 18px;
-    --sidebar-font-size: 14px;
-}
-
 body {
     font-family: genyogothictw, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     margin: 0;
     padding: 0;
-    color: #333;
-    font-size: 24px;
-    background-color: #ffffff;
+    font-size: var(--default-font-size);
+    color: var(--dark-color);
+    background-color: var(--bright-color);
 }
 
 .banner {
-    background: #424141;
+    background: var(--gray-background);
+}
+
+time[itemprop=datePublished] {
+    margin-right: 0.5rem;
 }
 
 .wrapper {
@@ -35,13 +29,14 @@ body {
 }
 
 #site-logo {
-    font-weight: 800;
-    font-size: 29.25px;
-    color: #fff;
+    font-weight: var(--logo-font-weight);
+    font-size: var(--logo-font-size);
+    color: var(--bright-color);
     text-decoration: none;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+    gap: 1rem;
     align-items: center;
 }
 
@@ -54,29 +49,29 @@ body {
 }
 
 #site-nav a {
-    color: #fff;
+    color: var(--bright-color);
+    font-size: var(--default-font-size);
     margin: 0rem 0rem 0rem 2rem;
     text-decoration: none;
 }
 
 #site-nav.open a {
     margin: 0rem;
-    /* border: 1px solid white; */
-    background-color: #333;
+    background-color: var(--dark-color);
 }
 
 .post-header .post-title {
-    font-size: 38px;
-    line-height: 38px;
+    font-size: var(--post-header-size);
+    line-height: var(--post-header-size);
     margin: 0.2rem 0rem 0rem 0rem;
 }
 
-.post-header .post-meta {
+.post-meta {
     display: flex;
     flex-flow: row wrap;
     justify-content: left;
-    font-size: 16px;
-    color: #9b9c9c;
+    font-size: var(--post-meta-size);
+    color: var(--note-color);
     margin: 0.75rem 0rem;
 }
 
@@ -92,9 +87,8 @@ body {
 }
 
 .post .post-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: black;
+    font-size: var(--post-title-size);
+    color: var(--dark-color);
     margin: 0rem 1rem 0rem 0rem;
 }
 
@@ -104,19 +98,10 @@ body {
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    font-size: 16px;
-    font-weight: 400;
-    color: #727474;
+    font-size: var(--post-meta-size);
+    font-weight: var(--post-meta-weight);
+    color: var(--note-color);
     margin: 0.2rem 1rem 0rem 0rem;
-}
-
-.post .post-meta {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: left;
-    font-size: 16px;
-    color: #9b9c9c;
-    margin: 0.75rem 0rem;
 }
 
 
@@ -124,7 +109,7 @@ body {
 
 #cover-container {
     width: 100%;
-    height: 400px;
+    height: var(--image-height);
 }
 
 #cover-container img {
@@ -142,7 +127,7 @@ img.content-img {
 
 .post .thumbnail-container {
     width: 25%;
-    height: 120px;
+    height: var(--thumbnail-height);
 }
 
 .post .thumbnail-container img {
@@ -158,13 +143,19 @@ img.content-img {
     top: 0.2em;
 }
 
+a {
+    color: var(--link-color);
+    font-weight: var(--link-font-weight);
+    text-decoration: none;
+}
+
 button[class=tag],
 a[class=tag] {
-    border-radius: 0.35rem;
+    border-radius: var(--symbol-border-radius);
     border: 0px;
     padding: 0rem 0.3rem;
     margin-right: 0.3rem;
-    font-weight: 400;
+    font-weight: var(--symbol-font-weight);
     text-align: left;
 }
 
@@ -175,12 +166,12 @@ a[class=tag]:hover {
 }
 
 .L1-section-title {
-    font-size: 32px;
+    font-size: var(--l1-title-size);
     margin: 3rem 0rem 1rem 0rem;
 }
 
 .L2-section-title {
-    font-size: 26px;
+    font-size: var(--l2-title-size);
     margin: 2rem 0rem -0.5rem 0rem;
 }
 
@@ -197,8 +188,8 @@ a[class=tag]:hover {
 }
 
 .agenda-title {
-    font-size: 28px;
-    font-weight: 400;
+    font-size: var(--agenda-title-size);
+    font-weight: var(--agenda-title-weight);
     padding: 0rem;
     margin: 0rem;
 }
@@ -211,27 +202,28 @@ a[class=tag]:hover {
 }
 
 #agenda li {
-    /* width: 80%; */
     padding: 0.25rem 1rem;
 }
 
 #agenda .focus-section {
-    border-left: 3px solid rgb(31, 203, 234);
-    background-color: rgba(83, 216, 216, 0.5);
-    border-radius: 0rem 0.5rem 0.5rem 0rem;
-    font-weight: 700;
+    border-left: var(--toggle-border-size) solid var(--blue-border);
+    background-color: var(--blue-background);
+    border-radius: 0rem var(--symbol-border-radius) var(--symbol-border-radius) 0rem;
 }
 
 #agenda .non-focus-section {
-    border-left: 3px solid rgb(218, 226, 228);
-    background-color: rgba(255, 255, 255, 0);
-    font-weight: 400;
+    border-left: var(--toggle-border-size) solid var(--gray-border);
+    background-color: var(--transparent);
 }
 
-a {
-    color: rgb(98, 149, 216);
-    text-decoration: none;
-    font-weight: 500;
+#agenda .focus-section a {
+    color: var(--dark-color);
+    font-weight: var(--agenda-focus-weight);
+}
+
+#agenda .non-focus-section a {
+    color: var(--note-color);
+    font-weight: var(--agenda-nonfocus-weight);
 }
 
 
@@ -242,68 +234,51 @@ a:hover,
 #agenda .non-focus-section a:hover,
 #same-category-list a:hover,
 .same-tag-list a:hover,
-.toggleMemberBullet a:hover {
-    color: rgb(120, 186, 243);
+.toggleContainer a:hover {
+    cursor: pointer;
+    color: var(--link-color);
     text-decoration: underline;
 }
 
-#agenda .focus-section a {
-    color: rgb(77, 75, 73);
-    font-weight: 450;
-}
-
-#agenda .non-focus-section a {
-    color: rgb(86, 84, 82);
-    font-weight: 300;
+#timeline-title {
+    font-size: var(--sidebar-title-size);
+    margin-top: 0rem;
 }
 
 #timeline {
     list-style: none;
-    font-size: var(--default-font-size);
+    font-size: var(--sidebar-font-size);
+    color: var(--dark-color);
     margin: 0rem;
     padding: 0rem;
 }
 
-#timeline-title {
-    font-size: 18px;
-    margin-top: 0rem;
+#timeline .toggleTitle {
+    font-size: var(--sidebar-font-size);
 }
 
-#timeline .collapsed .toggleTitle {
-    font-size: 18px;
-    color: rgb(0, 0, 0);
-    /* border-radius: 0.35rem; */
-}
-
-#timeline .expanded .toggleTitle {
-    font-size: 18px;
-    color: rgb(0, 0, 0);
-    /* border-radius: 0.35rem; */
-}
-
-#timeline .toggleTitle:hover,
-#timeline .toggleMemberBullet li:hover {
+#timeline li:hover {
     cursor: pointer;
-    color: rgb(0, 0, 0);
-    border-radius: 0.35rem;
 }
 
-.collapsed .toggleMemberBullet {
+.toggleContainer {
+    display: flex;
+    flex-flow: column wrap;
+    font-size: var(--sidebar-font-size);
+    line-height: 2rem;
+    margin-left: 0.5rem;
+    padding-left: 0.75rem;
+    border-left: var(--toggle-border-size) solid var(--dark-color);
+}
+
+.collapsed .toggleContainer {
     display: none;
 }
 
-.expanded .toggleMemberBullet {
-    list-style: none;
-    font-size: var(--timeline-font-size);
-    margin-left: 0.5rem;
-    padding-left: 0.75rem;
-    border-left: 3px solid rgb(38, 40, 41);
-}
-
-.toggleMemberBullet li a {
-    color: rgb(86, 87, 90);
+.toggleContainer a {
+    color: var(--dark-color);
     text-decoration: none;
-    font-weight: 400;
+    font-weight: var(--link-font-weight);
 }
 
 #hamburger {
@@ -320,17 +295,19 @@ a:hover,
     margin: 2rem 0rem;
 }
 
-#left-area {
+.sidebar {
     position: sticky;
-    top: 30px;
+    top: var(--sidebar-sticky-top);
     height: 20%;
-    flex: 1 1 var(--left-width);
-    max-width: var(--left-width);
     min-width: 0px;
     padding: 0rem;
     margin: 2rem;
     box-sizing: border-box;
-    /* margin: 2rem 2rem 0rem 0rem; */
+}
+
+#left-area {
+    flex: 1 1 var(--left-width);
+    max-width: var(--left-width);
     /* border: 3px solid rgb(223, 55, 55); */
 }
 
@@ -340,30 +317,18 @@ a:hover,
     min-width: 0px;
     padding: 2rem;
     box-sizing: border-box;
-    /* margin: 2rem 0rem 0rem 0rem; */
     /* border: 3px solid rgb(43, 179, 38); */
 }
 
 #right-area {
-    position: sticky;
-    top: 30px;
-    height: 20%;
     flex: 1 1 var(--right-width);
     max-width: var(--right-width);
-    min-width: 0px;
-    padding: 0rem;
-    margin: 2rem;
-    box-sizing: border-box;
-    /* margin: 2rem 0rem 0rem 2rem; */
     /* border: 3px solid rgb(35, 48, 168); */
 }
 
 #category-title,
-#tag-title,
 .tag-title {
-    font-size: 18px;
-    border-radius: 0.35rem;
-    font-weight: 600;
+    font-size: var(--sidebar-title-size);
     margin: 0rem;
 }
 
@@ -371,9 +336,7 @@ a:hover,
 #tag-list {
     display: flex;
     flex-flow: row wrap;
-    font-size: var(--timeline-font-size);
-    border-radius: 0.35rem;
-    font-weight: 600;
+    font-size: var(--sidebar-font-size);
 }
 
 #category-list .tag,
@@ -395,7 +358,7 @@ p.note {
     font-size: var(--note-font-size);
     margin-top: 0.5rem;
     line-height: 2rem;
-    color: rgb(127, 126, 126);
+    color: var(--note-color);
 }
 
 p.note::before {
@@ -403,15 +366,15 @@ p.note::before {
 }
 
 hr {
-    height: 3px;
     border: none;
-    background-color: rgb(46, 48, 49);
+    height: var(--hr-thick-size);
+    background-color: var(--dark-color);
 }
 
 .post-hr {
     border: none;
-    background-color: rgb(208, 214, 214);
-    height: 1px;
+    height: var(--hr-thin-size);
+    background-color: var(--fog-color);
     width: 98%;
     margin: 2rem auto;
 }
@@ -422,8 +385,8 @@ footer {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #333;
-    color: #ffffff;
+    background-color: var(--dark-color);
+    color: var(--bright-color);
     margin-top: 2rem;
     padding: 5rem;
 }
@@ -431,7 +394,7 @@ footer {
 .hljs {
     /* must set font emplicitly when <html lang="zh-Hant-TW"> */
     font-family: Consolas;
-    font-size: 14px;
+    font-size: var(--code-font-size);
 }
 
 code {
@@ -441,17 +404,17 @@ code {
 code[class=inline] {
     font-family: Consolas;
     font-size: var(--default-font-size);
-    border-radius: 0.35rem;
-    background-color: #f9f2f4;
-    color: #c7254e;
+    border-radius: var(--symbol-border-radius);
+    background-color: var(--code-background);
+    color: var(--code-color);
 }
 
 code[class=prop] {
     font-family: Consolas;
     font-size: var(--default-font-size);
-    border-radius: 0.35rem;
-    background-color: #565568;
-    color: rgb(166, 214, 169);
+    border-radius: var(--symbol-border-radius);
+    background-color: var(--prop-background);
+    color: var(--prop-color);
 }
 
 div.demo-container {
@@ -466,8 +429,8 @@ div.demo-container {
 div.demo {
     flex: 1 1 var(--center-width);
     font-size: var(--default-font-size);
-    border-radius: 0.5rem;
-    border: 3px solid #b1b1b1;
+    border-radius: var(--demo-border-radius);
+    border: var(--demo-border-size) solid var(--note-color);
     margin: 0 0.5rem;
     height: 100%;
     flex: 1 1 20%;
@@ -477,7 +440,7 @@ div.demo h1 {
     font-size: var(--default-font-size);
     margin: 0.5rem 0rem;
     text-align: center;
-    color: #565656;
+    color: var(--note-color);
 }
 
 ol.content-ol>li,
@@ -503,18 +466,18 @@ table.content-table {
     white-space: nowrap;
     font-size: var(--default-font-size);
     border-collapse: collapse;
-    border: 2px solid #7d7d7e;
+    border: var(--table-border-size) solid var(--note-color);
 }
 
 table.content-table th,
 table.content-table td {
-    border: 2px solid #7d7d7e;
+    border: var(--table-border-size) solid var(--note-color);
 }
 
 table.content-table thead>tr {
-    /* background-color: rgb(110, 226, 220); */
-    background-color: rgb(44, 100, 165);
-    color: #e6e6e6;
+    background-color: var(--dark-blue-background);
+    color: var(--bright-color);
+    text-align: left;
 }
 
 table.content-table th,
@@ -523,11 +486,11 @@ table.content-table td {
 }
 
 table.content-table tbody>tr:nth-child(2n+1) {
-    background-color: #ffffff;
+    background-color: var(--bright-color);
 }
 
 table.content-table tbody>tr:nth-child(2n) {
-    background-color: rgb(177, 227, 236);
+    background-color: var(--blue-background);
 }
 
 table.content-table td:nth-child(1) {
@@ -548,18 +511,15 @@ table.content-table td:nth-child(1) {
 
 #same-category-list a,
 .same-tag-list a {
-    color: rgb(86, 84, 82);
-    font-weight: 300;
-}
-
-.tag-title {
-    margin: 2rem 0rem 0rem 0rem;
+    color: var(--note-color);
+    font-weight: var(--agenda-nonfocus-weight);
 }
 
 #same-category-list a.this-article {
-    background-color: rgba(83, 216, 216, 0.5);
-    border-radius: 0rem 0.5rem 0.5rem 0rem;
-    font-weight: 450;
+    color: var(--dark-color);
+    background-color: var(--blue-background);
+    border-radius: var(--symbol-border-radius);
+    font-weight: var(--agenda-focus-weight);
 }
 
 @media (width < 1000px) {

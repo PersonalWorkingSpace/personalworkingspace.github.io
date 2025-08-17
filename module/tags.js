@@ -51,10 +51,6 @@ function updateTag() {
             selector.value = tag;
         }
 
-        if (container.childNodes.length > 0) {
-            let textNode = document.createTextNode(" ");
-            container.appendChild(textNode);
-        }
         container.appendChild(button);
     }
 }

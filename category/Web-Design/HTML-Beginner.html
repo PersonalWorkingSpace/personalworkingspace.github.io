@@ -9,6 +9,7 @@
     <meta name="description" content="本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於...">
     <meta name="keywords" content="初學筆記, HTML">
     <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
     <link href="../../style/style.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -22,8 +23,7 @@
     <header class="banner">
         <div class="wrapper">
             <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon">
-                <span>&nbsp&nbsp</span> Internet NPC
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
             </a>
             <button id="hamburger">&#9776;</button>
             <nav id="site-nav">
@@ -36,7 +36,7 @@
     </header>
 
     <div class="main-container">
-        <aside id="left-area">
+        <aside id="left-area" class="sidebar">
             <!-- 這是大綱 -->
             <div id="agenda-wrapper">
                 <h1 class="agenda-title">In this article</h1>
@@ -51,7 +51,7 @@
                 <header class="post-header">
                     <h1 class="post-title">HTML 初學筆記</h1>
                     <div class="post-meta">
-                        <time datetime="2025-05-11T00:00:00+08:00" itemprop="datePublished"> May 11, 2025 </time> &nbsp | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <time datetime="2025-05-11T00:00:00+08:00" itemprop="datePublished"> May 11, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
                         <img src="../../image/TAG-ICON.png" class="inline-icon">
                         <nav id="tag-bar"></nav>
                     </div>
@@ -258,7 +258,7 @@
             </article>
         </main>
 
-        <aside id="right-area">
+        <aside id="right-area" class="sidebar">
             <div id="category-wrapper">
                 <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
                 <hr>

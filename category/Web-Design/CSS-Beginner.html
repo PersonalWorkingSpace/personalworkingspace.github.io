@@ -9,6 +9,7 @@
     <meta name="description" content="本篇將會介紹CSS，這個用來美化網頁的語言，如果說HTML是網頁的建材，CSS則是...">
     <meta name="keywords" content="初學筆記, CSS">
     <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
     <link href="../../style/style.css" rel="stylesheet" type="text/css">
     <link href="../../style/article/CSS-Beginner.css" rel="stylesheet" type="text/css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
@@ -23,8 +24,7 @@
     <header class="banner">
         <div class="wrapper">
             <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon">
-                <span>&nbsp&nbsp</span> Internet NPC
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
             </a>
             <button id="hamburger">&#9776;</button>
             <nav id="site-nav">
@@ -37,7 +37,7 @@
     </header>
 
     <div class="main-container">
-        <aside id="left-area">
+        <aside id="left-area" class="sidebar">
             <!-- 這是大綱 -->
             <div id="agenda-wrapper">
                 <h1 class="agenda-title">In this article</h1>
@@ -52,7 +52,7 @@
                 <header class="post-header">
                     <h1 class="post-title">CSS 初學筆記</h1>
                     <div class="post-meta">
-                        <time datetime="2025-06-07T00:00:00+08:00" itemprop="datePublished"> Jun 07, 2025 </time> &nbsp | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <time datetime="2025-06-07T00:00:00+08:00" itemprop="datePublished"> Jun 07, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
                         <img src="../../image/TAG-ICON.png" class="inline-icon">
                         <nav id="tag-bar"></nav>
                     </div>
@@ -174,11 +174,11 @@
                             <code class="inline">element</code>、<code class="inline">class</code>、<code class="inline">id</code> 可以結合使用，達成更為精準的選取:
                             <ul class="content-ul marginx2">
                                 <li>
-                                    &lt;h1 class=intro&gt;, &lt;p class=intro&gt; 兩者class相同，但標題與段落要套用不同樣式，要區分就得同時指定標籤和class: <code class="inline"> h1[class="intro"] </code>、<code class="inline"> p[class="intro"] </code>，這種selector代表class只能等於"intro"，不能同時有其他class，如果想要表達包含
-                                    intro class，則可以使用<code class="inline"> h1.intro </code>。
+                                    &lt;h1 class=intro&gt;, &lt;p class=intro&gt; 兩者class相同，但標題與段落要套用不同樣式，要區分就得同時指定標籤和class: <code class="inline">h1[class="intro"]</code>、<code class="inline">p[class="intro"]</code>，這種selector代表class只能等於"intro"，不能同時有其他class，如果想要表達包含
+                                    intro class，則可以使用<code class="inline">h1.intro</code>。
                                 </li>
                                 <li>
-                                    由於HTML是有階層的，所以CSS選擇器也支援多階層的指定: <code class="inline"> #main &gt; .subsection1 &gt; p </code> - 選取id為main內部class為subsection1的全部&lt;p&gt;元素，結構上可以想像成:
+                                    由於HTML是有階層的，所以CSS選擇器也支援多階層的指定: <code class="inline">#main &gt; .subsection1 &gt; p</code> - 選取id為main內部class為subsection1的全部&lt;p&gt;元素，結構上可以想像成:
                                     <pre><code class="html">
     &lt;div id="main"&gt;
         &lt;div class="subsection1"&gt;
@@ -189,7 +189,7 @@
                                 </li>
                                 <li>
                                     <p class="content-paragraph">
-                                        當有一個以上的selector想套用同樣的樣式，我們可以透過逗號去分隔他們: <code class="inline"> selector-1, selector-2 { ... </code>。
+                                        當有一個以上的selector想套用同樣的樣式，我們可以透過逗號去分隔他們: <code class="inline">selector-1, selector-2 { ...</code>。
                                     </p>
                                 </li>
                             </ul>
@@ -549,7 +549,7 @@
             </article>
         </main>
 
-        <aside id="right-area">
+        <aside id="right-area" class="sidebar">
             <div id="category-wrapper">
                 <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
                 <hr>

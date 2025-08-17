@@ -52,14 +52,7 @@ function updateCategory() {
             selector.value = cg;
         }
 
-        if (container.childNodes.length > 0) {
-            let textNode = document.createTextNode(" ");
-            container.appendChild(textNode);
-        }
-
         container.appendChild(button);
-
-
     }
 }
 

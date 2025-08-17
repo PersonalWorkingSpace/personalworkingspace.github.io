@@ -1,0 +1,55 @@
+:root {
+    /* hw size */
+    --center-width: 800px;
+    --left-width: 300px;
+    --right-width: 350px;
+    --image-height: 400px;
+    --thumbnail-height: 120px;
+    --sidebar-sticky-top: 30px;
+    /* font size */
+    --l1-title-size: 32px;
+    --l2-title-size: 26px;
+    --agenda-title-size: 24px;
+    --logo-font-size: 29.25px;
+    --default-font-size: 18px;
+    --note-font-size: 18px;
+    --sidebar-title-size: 18px;
+    --sidebar-font-size: 18px;
+    --post-header-size: 38px;
+    --post-title-size: 24px;
+    --post-meta-size: 16px;
+    --code-font-size: 14px;
+    /* shape */
+    --symbol-border-radius: 0.35rem;
+    --demo-border-radius: 0.5rem;
+    --toggle-border-size: 3px;
+    --demo-border-size: 3px;
+    --hr-thick-size: 3px;
+    --hr-thin-size: 1px;
+    --table-border-size: 2px;
+    --selected-border-size: 2px;
+    /* font weight */
+    --logo-font-weight: 800;
+    --post-meta-weight: 400;
+    --symbol-font-weight: 400;
+    --agenda-title-weight: 400;
+    --agenda-focus-weight: 500;
+    --agenda-nonfocus-weight: 400;
+    --link-font-weight: 500;
+    /* color */
+    --dark-color: #333333;
+    --bright-color: #ffffff;
+    --blue-border: #1fccea;
+    --gray-border: #dae2e4;
+    --dark-blue-background: #2c64a5;
+    --blue-background: #cceeee;
+    --gray-background: #424141;
+    --code-background: #f9f2f4;
+    --code-color: #c7254e;
+    --prop-background: #565568;
+    --prop-color: #a6d6a9;
+    --fog-color: #dfe3e3;
+    --note-color: #9b9c9c;
+    --link-color: #6da1e6;
+    --transparent: #00000000;
+}

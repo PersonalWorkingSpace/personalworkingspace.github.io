@@ -1,8 +1,3 @@
-:root {
-    --sidebar-font-size: 16px;
-    --default-font-size: 18px;
-}
-
 #category-list {
     display: flex;
     flex-flow: column wrap;
@@ -10,12 +5,12 @@
 
 #category-list .tag {
     font-size: var(--sidebar-font-size);
-    font-weight: 400;
+    font-weight: var(--symbol-font-weight);
 }
 
 #category-list #selected-category {
-    border: 2px solid #403c3c;
-    font-weight: 500;
+    border: var(--selected-border-size) solid var(--gray-background);
+    font-weight: var(--link-font-weight);
 }
 
 #selected-category::before {
@@ -30,9 +25,9 @@
 #category-select {
     width: 100%;
     margin-left: 1rem;
-    border-radius: 0.35rem;
+    border-radius: var(--symbol-border-radius);
     border: none;
-    background-color: #e3dcdc;
+    background-color: var(--fog-color);
     text-align: right;
     font-size: var(--sidebar-font-size);
     outline: none;

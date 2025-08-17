@@ -145,6 +145,7 @@ function setTagArticles() {
         let tagList = document.createElement("ul");
         tagList.setAttribute("class", "same-tag-list");
         tagRegion.appendChild(tagList);
+        tagRegion.appendChild(document.createElement("br"));
 
         for (let i = upper - 1; i >= lower; i--) {
             if (i != idx) {
