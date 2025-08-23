@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>空洞騎士重現 - 素材準備</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="在開始重現空洞騎士中的場景與環節前，我們得先準備一下要用到的素材，如同上一篇提到的，我們會借助社群提供的 sprites 來...">
+    <meta name="keywords" content="GameMake">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area" class="sidebar">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">In this article</h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">空洞騎士重現 - 素材準備</h1>
+                    <div class="post-meta">
+                        <time datetime="2025-08-19T00:00:00+08:00" itemprop="datePublished"> Aug 19, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="../../image/hw-sprite.png" alt="空洞騎士-sprite">
+                    </div>
+                    <p class="content-paragraph">
+                        在開始重現空洞騎士中的場景與環節前，我們得先準備一下要用到的素材，如同上一篇提到的，我們會借助社群提供的 sprites 來提高還原度，而這篇文章就來講講什麼是 sprite，以及要怎樣在 Unity 中使用。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Sprite 是什麼</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        Sprite 是指用於遊戲畫面使用的拼貼圖 - 將複數張小圖合併在一張大圖裡面，此文的封面圖就是空洞騎士中敵人的 sprite，sprite 主要是用來呈現遊戲中的場景與人物，至於為何要把多張圖片拼在一起，常見有兩種理由:
+                        <ul class="content-ul">
+                            <li>
+                                <b>呈現動畫</b> - 由於動畫就是由連續圖片組合而成，把連續圖片拼貼在同一張圖片內，可以方便檢視動作，也方便匯入到 Unity 的動畫視窗。
+                            </li>
+                            <li>
+                                <b>加速載入</b> - 當遊戲要呈現一個畫面時，必須先把要使用的圖檔從硬碟載入記憶體，一個場景內出現的物件越多，就得越頻繁的去硬碟翻資料，這是相當費時的，所以說減少圖檔的數量就相當重要，為此可以將出現在同一個場景的圖片拼成一個 sprite，一次讀取就能載入全部的物件，然後在記憶體內進行分割。
+                            </li>
+                        </ul>
+                        不過 sprite 並非越大越好，太大的檔案也會導致讀取過久，必須做到在有限的空間內把想塞的圖片都放進來，可以看到 team cherry 會把圖片翻轉、調整位置來塞好塞滿，但也導致了本來動畫的可讀性降低，要在 Unity 內使用也需要額外的處理。
+                    </p>
+
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Sprite 處理</h1>
+                    <hr>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">匯入 Sprite</h1>
+                        <p class="content-paragraph">
+                            當我們要把 sprite 用在遊戲裡時，得先告訴遊戲引擎怎樣去分割這些影像，在 Unity 可以透過以下步驟達成:
+                            <ol class="content-ol">
+                                <li>
+                                    <b>匯入圖檔</b> - 把外部的圖檔放到 Unity 專案底下，這裡擺到 Assets 底下並開了一個 Knight 資料夾，使用的 sprite 來源為 <a href="https://drive.google.com/drive/folders/1kyg661EDV45McoJQNmwbIXqYgniN48PU">hollow knight sprite</a>。
+                                </li>
+                                <img class="content-img" src="../../image/asset-sprite.png" alt="資料夾">
+                                <li>
+                                    <b>Open Sprite Editor</b> - 點選 sprite 檔案，選擇 sprite 類型為 multiple，代表此圖是由多張圖片組成，然後點擊 Open Sprite Editor。
+                                </li>
+                                <img class="content-img" src="../../image/sprite-setting.png" alt="sprite setting">
+                                <li>
+                                    <b>調整分割座標</b> - 如前面提到的，空洞騎士的 sprite 內的圖檔有經過大量翻轉與移位，沒辦法以定格的方式去分割，所以這邊靠 Unity 自動分割 (Automatic) 來進行，下圖的白框就是分割結果。
+                                </li>
+                                <img class="content-img" src="../../image/sprite-editor.png" alt="sprite editor">
+                            </ol>
+                            從上圖結果可以看出自動分割不太準確，因此得手動調整這些框框，這是一個大工程，更別提分割完後還要分類出哪些圖片屬於哪個動作，因此在此系列文章不會這樣取得素材。
+                        </p>
+                    </section>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">使用分割好的圖檔</h1>
+                        <p class="content-paragraph">
+                            由於前面提到的分割複雜度問題，在此會更傾向於使用分割好的圖檔，這樣雖然會失去 sprite 載入速度的好處，但可以省去許多功夫，讓我們的學習更方便~~~
+                        </p>
+                        <p class="content-paragraph">
+                            在針對主角 (稱他為<b>小騎士</b>吧) 的動作會使用 <a href="https://docs.google.com/document/d/1Zjc8Nh_6u4zBtJ22r_8YunRgP24_1UQBPabFiG8PZ5A/edit?tab=t.0#heading=h.z22g4kzbo0r">hollow knight mod material</a> 整理好的資料，包含小騎士的各種動作圖檔，至於為何會有這個東西呢? 主要是為了小騎士的外觀更換，網路上有很多模組是修改腳色的
+                            sprite 來達成外觀變換，但如果直接修改 sprite 難度有點高，因此會先分割 sprite 然後針對每個動作的小圖修改，然後再合成回 sprite 並包回遊戲裡。
+                        </p>
+                        <img class="content-img" src="../../image/remove-red-border.png" alt="紅框去除示意圖">
+                        <p class="content-paragraph">
+                            你可能會注意到這些圖檔有些會包含紅色框框，這是在說明能進行修改的範圍，超過的部分合回 sprite 時就會被覆蓋掉。但我們現在是要直接使用這些圖檔，得去除紅框才行，我有撰寫一個簡單的 <a href="https://github.com/PersonalWorkingSpace/inpc-blog-demo/tree/master/remove_red_border">python 程式</a> 來去除紅框，效果如上圖所示，有需要的讀者歡迎使用。
+                        </p>
+                    </section>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        到此我們就取得了重現空洞騎士所需的素材，下一篇就會開始針對部分橋段進行重現，來了解遊戲環節是怎樣製作出來的~~~ 最後還是要強調本文使用與提到的圖檔皆為 team cherry 所繪製，沒有他們就不會有空洞騎士，此外資料來源是由廣大社群努力建構而成，由衷感謝他們讓後人能更理解這部神作的巧思與奧秘。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area" class="sidebar">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>隨筆紀錄我的學習過程</p>
+    </footer>
+</body>
+
+</html>

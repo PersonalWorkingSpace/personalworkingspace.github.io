@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>空洞騎士重現 - 初衷</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="相信不少人小時候都有幻想過要做出自己的遊戲，我也不例外XDD，這次就來學學怎樣製作遊戲吧。但如果只是做做貪食蛇、下樓梯等小遊戲實在無法燃起我對遊戲的熱忱，也沒辦法幫助我深入遊戲製作的精隨，所以打算來學習如何重現一款我非常喜愛的神作: 那便是大名鼎鼎的空洞騎士...">
+    <meta name="keywords" content="GameMake">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area" class="sidebar">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">In this article</h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">空洞騎士重現 - 初衷</h1>
+                    <div class="post-meta">
+                        <time datetime="2025-08-17T00:00:00+08:00" itemprop="datePublished"> Aug 17, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="https://gaming-cdn.com/images/products/2198/orig/hollow-knight-pc-mac-game-steam-cover.jpg?v=1705490619" alt="空洞騎士">
+                    </div>
+                    <p class="content-paragraph">
+                        相信不少人小時候都有幻想過要做出自己的遊戲，我也不例外XDD，這次就來學學怎樣製作遊戲吧。但如果只是做做貪食蛇、下樓梯等小遊戲實在無法燃起我對遊戲的熱忱，也沒辦法幫助我深入遊戲製作的精隨，所以打算來學習如何重現一款我非常喜愛的神作: 那便是大名鼎鼎的「<a href="https://zh.wikipedia.org/zh-tw/%E7%A9%BA%E6%B4%9E%E9%A8%8E%E5%A3%AB">空洞騎士 (Hollow Knight)</a>」。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">為什麼是空洞騎士</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        之所以選擇空洞騎士當成目標有很多理由呢，接下來就開始吹捧空洞騎士了~~~
+                        <ul class="content-ul">
+                            <li>
+                                <b>好玩</b> - 最簡單也最重要的理由，在學習時有熱忱是很重要的，因此選擇自己有興趣的題材來練習才會有效，當然這裡並不會真的把整套空洞騎士重現，那難度實在太高了，這個系列的目標是挑選遊戲內出現的橋段與場景去重現當中的設計/機制。
+                            </li>
+                            <li>
+                                <b>2D平台遊戲</b> - 空洞騎士是一款 2D 平台遊戲，相較於 3D 遊戲來說對於開發入門難度較低，此外主要遊戲內容又分成 探索、平台跳躍、戰鬥 三大元素，對於開發會是很全面的練習題呢。
+                            </li>
+                            <li>
+                                <b>獨立遊戲</b> - 空洞騎士的地圖之豐富、場景與人物設定之獨特，構建出一套獨一無二的地下世界風貌，並在全球達成超過3百萬份銷量，如此驚人的作品背後僅由三人團隊 (<a href="https://www.teamcherry.com.au/">team cherry</a>) 所完成!!! 可是獨立遊戲的楷模阿，值得我們借鏡。
+                            </li>
+                            <li>
+                                <b>豐富素材</b> - 此遊戲有許多死忠粉絲替其開發模組 (也可能是因為遲遲等不到續作(☍﹏⁰))，因此網路上能找到不少解包出來的資源，以教學為前提下，我們可以借助這些素材來提升復刻遊戲內容的完整度。
+                            </li>
+                            <li>
+                                <b style="color: red">續作要出來了</b> - ヽ(✿ﾟ▽ﾟ)ノ，應該就在 2025 年下半年我們就可以看到這部許多人等待6年的大作了: 絲綢之歌，在等待之餘來研讀第一部作品也別有一番風趣呢，不過我還是先帶著我的小丑鼻好了。
+                                <img class="content-img" src="https://pbs.twimg.com/media/Gm-92ERawAAeeAu?format=jpg&name=large" alt="害怕期待落空的梗圖">
+                            </li>
+                        </ul>
+                    </p>
+
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">遊戲引擎</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        工欲善其事、必先利其器，如果要重現空洞騎士的內容最好是使用一樣的遊戲引擎，而根據官網的 <a href="https://www.teamcherry.com.au/faq">FAQ</a> 可以曉得他們是採用 Unity，而 Unity 在 2D 遊戲開發上確實有著相當多的教學資源，且中文化的也很多，學習門檻相對較低。
+                    </p>
+                    <p class="content-paragraph">
+                        這邊補充一件趣聞，也就是惡名昭彰的 runtime fee 事件，unity 宣布要在 2024/01/01 修改收費標準，原先是採用訂閱制，開發者繳交月費來使用 unity 軟體，修改後改成以遊戲下載次數收費，此收費改動當時受到大量開發者抵制，甚至傳出 team cherry 打算把絲綢之歌改用其他遊戲引擎開發，因此會延期發售，最後 unity 抵不住大眾壓力與股價暴跌收回公告結案，但絲綢之歌還是照樣延期...
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">素材</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        我認為空洞騎士之所以會如此的成功，有很大的一點在於其美術設計，能夠將蟲子這種日常生活看到就會反感的生物呈現的如此可愛且多樣化，如此獨特且大量的手繪圖要靠自己去重繪實在不切實際，而本系列的探討範圍主要是要專注在遊戲機制的重現上，所以不會去重繪腳色與場景。
+                    </p>
+                    <p class="content-paragraph">
+                        雖然說只透過幾何圖形也能夠重現遊戲內的機制，但實際結果實在有點令人沮喪，也難以看出遊戲製作中的細節，因此這邊就要透過廣大社群的幫助了!!! 網路上有許多好心人替我們整理出了遊戲中使用到的圖檔並進行分門別類，可以用於學習或是模組製作，本系列文章主要會借用以下兩個資源:
+                        <ul class="content-ul">
+                            <li>
+                                <a href="https://drive.google.com/drive/folders/1lx02_w9TFTYdR3aggI1gbXcLr69roaNV">遊戲中的 sprites</a> - 此連結中紀錄了遊戲中使用的 sprites，包含背景物件、腳色、BOSS等等，可說是相當的完整。
+                            </li>
+                            <li>
+                                <a href="https://docs.google.com/document/d/1Zjc8Nh_6u4zBtJ22r_8YunRgP24_1UQBPabFiG8PZ5A/edit?tab=t.0#heading=h.z22g4kzbo0r">已分類的主角圖檔</a> - 雖然上一個是最完整的資源，但 sprites 並沒有事先進行分割也沒針對動作進行分類，因此要實際拿來使用難度也不低，尤其是主角的動作超級豐富的 (讚嘆 team
+                                cherry)。這時就要借助 mod 群組的力量，為了幫主角替換皮膚，mod 開發人員已經把主角的圖檔針對不同動作分門別類了，非常感謝他們的努力!!!
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">補充</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        另外補充一下這個系列並不是篇初學筆記，所以不會從頭說明遊戲引擎的操作，而是假定在一定的基礎上去解釋遊戲內的橋段是怎樣實現的，至於遊戲引擎方面的操作，這邊推薦 Unity 官方教學系列以及兩個我之前看的教學影片，相信看完後你們也會對 Unity 略知一二:
+                        <ul class="content-ul">
+                            <li><a href="https://learn.unity.com/">Unity Learning</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=nPW6tKeapsM&list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1">Unity 3小時製作一個遊戲</a></li>
+                            <li><a href="https://www.youtube.com/watch?v=vOCCtfZtlzk&list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1&index=5"> Unity 遊戲開發零基礎入門</a></li>
+                        </ul>
+                        另外大部分情況我也不會去翻空洞騎士的程式碼 (我現在也不曉得要怎樣翻XDD)，僅會針對遊戲上顯示的畫面去推測可能的實作方式，這是為了增加自己的思考與想像能力，而不是一味的複製貼上，這樣就不叫學習了。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        如果你是對開發遊戲有熱忱或是喜愛空洞騎士這款神作的，那歡迎你跟隨這篇系列文章，讓我們探討這款遊戲內的細節與開發遊戲的巧思，最後一定提到的就是 <b>"非常感謝 team cherry，少了他們，我或許不會曉得獨立遊戲能做到如此高的水準，更不會理解聖巢的美妙與奧秘"</b>。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area" class="sidebar">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <p>隨筆紀錄我的學習過程</p>
+    </footer>
+</body>
+
+</html>

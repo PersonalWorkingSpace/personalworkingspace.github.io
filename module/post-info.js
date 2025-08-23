@@ -1,5 +1,23 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/sprite.html",
+        "created": "2025-08-19T00:00:00+08:00",
+        "title": "空洞騎士重現 - 素材準備",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-sprite.png",
+        "description": "在開始重現空洞騎士中的場景與環節前，我們得先準備一下要用到的素材，如同上一篇提到的，我們會借助社群提供的 sprites 來..."
+    },
+    {
+        "file": "category/Hollow-Knight/begin.html",
+        "created": "2025-08-17T00:00:00+08:00",
+        "title": "空洞騎士重現 - 初衷",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "https://gaming-cdn.com/images/products/2198/orig/hollow-knight-pc-mac-game-steam-cover.jpg?v=1705490619",
+        "description": "相信不少人小時候都有幻想過要做出自己的遊戲，我也不例外XDD，這次就來學學怎樣製作遊戲吧。但如果只是做做貪食蛇、下樓梯等小遊戲實在無法燃起我對遊戲的熱忱，也沒辦法幫助我深入遊戲製作的精隨，所以打算來學習如何重現一款我非常喜愛的神作: 那便是大名鼎鼎的空洞騎士..."
+    },
+    {
         "file": "category/Web-Design/RWD.html",
         "created": "2025-08-02T00:00:00+08:00",
         "title": "RWD 響應式網頁設計",
@@ -47,6 +65,16 @@ const Posts = [
 ];
 
 const Categories = {
+    "Hollow-Knight": {
+        "name": [
+            "sprite",
+            "begin"
+        ],
+        "postID": [
+            0,
+            1
+        ]
+    },
     "Web-Design": {
         "name": [
             "RWD",
@@ -56,16 +84,26 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            0,
-            1,
             2,
             3,
-            4
+            4,
+            5,
+            6
         ]
     }
 };
 
 const Tags = {
+    "GameMake": {
+        "name": [
+            "sprite",
+            "begin"
+        ],
+        "postID": [
+            0,
+            1
+        ]
+    },
     "初學筆記": {
         "name": [
             "RWD",
@@ -74,10 +112,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            0,
             2,
-            3,
-            4
+            4,
+            5,
+            6
         ]
     },
     "CSS": {
@@ -86,8 +124,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            0,
-            3
+            2,
+            5
         ]
     },
     "網頁部署": {
@@ -95,7 +133,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            1
+            3
         ]
     },
     "Github": {
@@ -103,7 +141,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            1
+            3
         ]
     },
     "Javascript": {
@@ -111,7 +149,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            2
+            4
         ]
     },
     "HTML": {
@@ -119,7 +157,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            4
+            6
         ]
     }
 };
