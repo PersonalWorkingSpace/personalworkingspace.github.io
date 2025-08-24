@@ -19,6 +19,8 @@
     --post-title-size: 24px;
     --post-meta-size: 16px;
     --code-font-size: 14px;
+    --cc-font-size: 14px;
+    --footer-title-size: 24px;
     /* shape */
     --symbol-border-radius: 0.35rem;
     --demo-border-radius: 0.5rem;
@@ -31,6 +33,8 @@
     /* font weight */
     --logo-font-weight: 800;
     --post-meta-weight: 400;
+    --cc-font-weight: 400;
+    --footer-title-weight: 400;
     --symbol-font-weight: 400;
     --agenda-title-weight: 400;
     --agenda-focus-weight: 500;

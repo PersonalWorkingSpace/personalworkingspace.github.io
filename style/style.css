@@ -379,18 +379,6 @@ hr {
     margin: 2rem auto;
 }
 
-footer {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: var(--dark-color);
-    color: var(--bright-color);
-    margin-top: 2rem;
-    padding: 5rem;
-}
-
 .hljs {
     /* must set font emplicitly when <html lang="zh-Hant-TW"> */
     font-family: Consolas;
@@ -545,4 +533,33 @@ table.content-table td:nth-child(1) {
     .dropdown-hr {
         display: block;
     }
+}
+
+footer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--dark-color);
+    color: var(--bright-color);
+    margin-top: 2rem;
+    padding: 5rem;
+}
+
+footer h1 {
+    font-size: var(--footer-title-size);
+    font-weight: var(--footer-title-weight);
+}
+
+p.cc {
+    color: var(--note-color);
+    font-size: var(--cc-font-size);
+    margin-top: 0rem;
+    line-height: 1.5rem;
+}
+
+p.cc a {
+    color: var(--note-color);
+    font-weight: var(--cc-font-weight);
 }
