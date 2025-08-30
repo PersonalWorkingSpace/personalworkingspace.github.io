@@ -8,6 +8,7 @@ window.onload = function() {
     GetProperty();
     setCategory();
     setTags();
+    adjustAgendaPosistion();
     setAgenda();
     updateReadProgress();
     setCategoryArticles();
@@ -17,6 +18,10 @@ window.onload = function() {
 
 window.addEventListener('scroll', function() {
     updateReadProgress();
+})
+
+window.addEventListener('resize', function() {
+    adjustAgendaPosistion();
 })
 
 const NUM_CATEGORY_ARTICLE = 7;
@@ -32,9 +37,8 @@ function GetProperty() {
 }
 
 function getTitles() {
-    let postTitles = Array.from(document.getElementsByClassName("post-title"));
     let sectionTitles = Array.from(document.getElementsByClassName("L1-section-title"));
-    return postTitles.concat(sectionTitles);
+    return sectionTitles;
 }
 
 // Set category bar
@@ -52,6 +56,18 @@ function setTags() {
         let tag = tagArray[i]
         let button = CreateColorfulButton(tag, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
         bar.appendChild(button);
+    }
+}
+
+function adjustAgendaPosistion() {
+    let agenda = document.getElementById("agenda-wrapper");
+    let intro = document.querySelector(".L1-section");
+    let leftRegion = document.getElementById("left-area");
+
+    if (window.matchMedia("(max-width: 1000px)").matches) {
+        intro.insertAdjacentElement("afterend", agenda);
+    } else {
+        leftRegion.appendChild(agenda);
     }
 }
 

@@ -533,6 +533,10 @@ table.content-table td:nth-child(1) {
     .dropdown-hr {
         display: block;
     }
+    #agenda-wrapper {
+        width: 100%;
+        margin-top: 2rem;
+    }
 }
 
 footer {
