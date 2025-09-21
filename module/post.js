@@ -1,6 +1,6 @@
 import { categoryName } from './projection.js';
 import { Posts, Categories, Tags } from '../module/post-info.js';
-import { Init, WinURL, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent } from './common.js';
+import { Init, WinURL, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent, RegisterImageClickEvent } from './common.js';
 
 
 window.onload = function() {
@@ -14,6 +14,7 @@ window.onload = function() {
     setCategoryArticles();
     setTagArticles();
     RegisterNavToggleEvent();
+    RegisterImageClickEvent();
 }
 
 window.addEventListener('scroll', function() {

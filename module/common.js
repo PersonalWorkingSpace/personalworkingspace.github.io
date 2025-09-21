@@ -185,4 +185,45 @@ function RegisterNavToggleEvent() {
     });
 }
 
-export { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent };
+function RegisterImageClickEvent() {
+    let images = document.querySelectorAll("img");
+
+    images.forEach(function(image, index) {
+        if (image.getAttribute("id") != "cover" && image.getAttribute("class") != "content-img") {
+            return;
+        }
+
+        image.addEventListener(
+            "click", (event) => {
+                let img = document.createElement("img");
+                img.setAttribute("src", event.target.src);
+                img.setAttribute("alt", event.target.alt);
+
+                let closeBtn = document.createElement("span");
+                closeBtn.setAttribute("class", "close-btn");
+                closeBtn.innerHTML = "&times;"
+
+                let lightbox = document.createElement("div");
+                lightbox.setAttribute("class", "lightbox");
+                lightbox.addEventListener('click', (event) => {
+                    switch (event.target.getAttribute("class")) {
+                        case "lightbox":
+                            event.target.remove();
+                            break;
+                        case "close-btn":
+                            event.target.parentElement.remove();
+                            break;
+                        default:
+                            break;
+                    };
+                });
+                lightbox.appendChild(img);
+                lightbox.appendChild(closeBtn);
+
+                document.body.appendChild(lightbox);
+            }
+        );
+    });
+}
+
+export { NumberToMonth, WinURL, Init, UpdatePosts, CreateAnchor, CreateColorfulButton, RegisterNavToggleEvent, RegisterImageClickEvent };

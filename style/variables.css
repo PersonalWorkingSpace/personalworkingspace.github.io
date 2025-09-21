@@ -21,9 +21,11 @@
     --code-font-size: 14px;
     --cc-font-size: 14px;
     --footer-title-size: 24px;
+    --symbol-title-size: 36px;
     /* shape */
     --symbol-border-radius: 0.35rem;
     --demo-border-radius: 0.5rem;
+    --img-border-radius: 8px;
     --toggle-border-size: 3px;
     --demo-border-size: 3px;
     --hr-thick-size: 3px;
@@ -56,4 +58,5 @@
     --note-color: #9b9c9c;
     --link-color: #6da1e6;
     --transparent: #00000000;
+    --hidden_background: #000000d9;
 }
