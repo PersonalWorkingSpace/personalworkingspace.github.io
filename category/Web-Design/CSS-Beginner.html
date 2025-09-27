@@ -81,7 +81,6 @@
                     <hr>
                     <p class="content-paragraph">全名為Cascading Style Sheet，如果說HTML是網頁的建材，CSS則是施工藍圖以及後續裝潢，讓我們能夠將HTML標籤所構成的網頁內容擺到正確的位置並且進行美化，讓整個網頁看起來更像是我們心中所想的樣子。舉例來說，底下是用CSS描述HTML文件中&lt;h1&gt;標籤的文字大小以及顏色:</p>
                     <pre><code class="css">
-    /* CSS */
     h1 {
         font-size: 32px;
         color: rgb(255, 0, 0);
@@ -91,7 +90,6 @@
                         導入這個CSS設定後，所有的&lt;h1&gt;標籤都會變成紅色字體，大小為32px，至於導入CSS到HTML的方式，建議是額外存成一個檔案 (ex: style.css)，然後在HTML的head區域使用以下標籤來導入:
 
                         <pre><code class="html">
-    &lt;!-- HTML --&gt;
     &lt;html lang="en"&gt;
         &lt;head&gt;
             &lt;link href="style.css" rel="stylesheet" type="text/css"&gt; &lt;!-- 導入CSS檔案 --&gt;
@@ -129,7 +127,6 @@
                                 <li>
                                     要能選取特定的標籤，我們必須先在HTML標籤中加入一些屬性，最常用的就是 <code class="inline">class</code> 屬性，底下替兩種顏色的標題設定不同的class:
                                     <pre><code class="html">
-&lt;!-- HTML --&gt;
 &lt;h1 class="black-title"&gt; 黑色標題 &lt;/h1&gt;
 &lt;h1 class="red-title"&gt; 紅色標題 &lt;/h1&gt;
                                     </code></pre>
@@ -137,7 +134,7 @@
                                 <li>
                                     將原先CSS指定標籤的寫法改成使用class名稱來選擇，selector的寫法上是一個小數點加class名稱 (".$className"):
                                     <pre><code class="css">
-/* CSS */
+
 .black-title {
     font-size: 32px;
     color: rgb(0, 0, 0);
@@ -158,12 +155,10 @@
                             <p class="content-paragraph">
                                 除了class選擇器外，另一個常用的選擇器是 <code class="inline">id</code> 選擇器。與class不同，id選擇器只用於選取具有唯一標識的元素，也就是說一份HTML文件中標籤的id不能重複。使用方法與class類似，但在HTML中使用id屬性，並在CSS中以井號(#)開頭來選擇:
                                 <pre><code class="html">
-    &lt;!-- HTML --&gt;
     &lt;h1 id="first-title"&gt; 第一個標題 &lt;/h1&gt;
     &lt;h1 id="second-title"&gt; 第二個標題 &lt;/h1&gt;
                                 </code></pre>
                                 <pre><code class="css">
-    /* CSS */
     #first-title {
         font-size: 24px;
     }
@@ -216,7 +211,6 @@
                     <p class="content-paragraph">
                         Flexbox允許我們將元素放在一個容器中，並且可以輕鬆地控制它們的排列、對齊方式以及間距，並且可以自動調整大小以適應容器的寬度或高度。在這篇初學筆記會介紹其中最重要的幾個屬性，為了展現效果會用底下3個block的HTML架構來當範例:
                         <pre><code class="html">
-    &lt;!-- HTML --&gt;
     &lt;div class="container"&gt;
         &lt;div class="block1"&gt;區塊1&lt;/div&gt;
         &lt;div class="block2"&gt;區塊2&lt;/div&gt;
@@ -229,7 +223,6 @@
                             <p class="content-paragraph">
                                 我們有一個容器內有三個區塊，可以透過設定 <code class="inline">flex-direction</code> 來改變排列方式:
                                 <pre><code class="css">
-    /* CSS */
     .container {
         display: flex;          /* 啟用Flexbox */
         flex-direction: XXX;    /* 填入想要的模式 */
@@ -272,7 +265,6 @@
                             <p class="content-paragraph">
                                 除了改變排列方式外，還能透過 <code class="inline">justify-content</code> 來調整元素水平方向的對齊方式:
                                 <pre><code class="css">
-    /* CSS */
     .container {
         display: flex;          /* 啟用Flexbox */
         flex-direction: row;    /* 假定使用row */
@@ -341,7 +333,6 @@
                             <p class="content-paragraph">
                                 相較於<code class="inline">justify-content</code> 是來調整水平方向的對齊方式，<code class="inline">align-items</code> 則是用來調整垂直方向的對齊方式:
                                 <pre><code class="css">
-    /* CSS */
     .container {
         display: flex;          /* 啟用Flexbox */
         flex-direction: row;    /* 假定使用row */
@@ -418,7 +409,6 @@
                         <h1 class="L2-section-title">Font</h2>
                             <p class="content-paragraph">
                                 <pre><code class="css">
-    /* CSS */
     $your-selector {                    /* 改成自己的selector */
         font-family: Arial, sans-serif; /* 設定字體 */
         font-size: 16px;                /* 設定字體大小 */
@@ -448,7 +438,6 @@
                         <h1 class="L2-section-title">Color</h2>
                             <p class="content-paragraph">
                                 <pre><code class="css">
-    /* CSS */
     $your-selector {                            /* 改成自己的selector */
         color: rgb(0, 0, 0);                    /* 設定文字顏色 */
         background-color: rgb(255, 255, 255);   /* 設定背景顏色 */
@@ -470,7 +459,6 @@
                     <section class="L2-section">
                         <h1 class="L2-section-title">Box</h2>
                             <pre><code class="css">
-    /* CSS */
     $your-selector {                    /* 改成自己的selector */
         padding: 10px 30px;             /* 設定內邊距 */
         border: 1px solid rgb(0, 0, 0); /* 設定邊框 */
@@ -571,7 +559,16 @@
     </div>
 
     <footer>
-        <h1>隨筆紀錄我的學習過程</h1>
+        <div id="contact-info">
+            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
+            <a class="github" href="https://github.com/PersonalWorkingSpace">
+                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
+                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+                    </svg>
+                <span>Github</span>
+            </a>
+            <span>隨筆紀錄我的學習過程</span>
+        </div>
         <p class="cc">
             本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
         </p>

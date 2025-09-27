@@ -13,6 +13,7 @@ window.onload = function() {
     updateReadProgress();
     setCategoryArticles();
     setTagArticles();
+    setCodeBlock();
     RegisterNavToggleEvent();
     RegisterImageClickEvent();
 }
@@ -214,4 +215,36 @@ function updateReadProgress() {
     } else {
         lastBullet.className = "non-focus-section";
     }
+}
+
+/* add language title and copy button for code block */
+function setCodeBlock() {
+    const codes = document.querySelectorAll('code:not(.inline):not(.prop)');
+
+    codes.forEach(code => {
+        let codebar = document.createElement("div");
+        codebar.setAttribute("class", "code-bar");
+
+        let langTitle = document.createElement("h4");
+
+        if (code.classList.length == 0) {
+            console.log(code);
+        }
+        langTitle.textContent = code.classList[0].toUpperCase();
+
+        let copyButton = document.createElement("button");
+        copyButton.textContent = "Copy"
+        copyButton.addEventListener("click", (event) => {
+            navigator.clipboard.writeText(code.textContent);
+            const originalText = event.target.textContent;
+            event.target.textContent = "✓ Copied";
+            setTimeout(() => {
+                event.target.textContent = originalText;
+            }, 900);
+        });
+
+        codebar.appendChild(langTitle);
+        codebar.appendChild(copyButton);
+        code.insertAdjacentElement("beforebegin", codebar);
+    });
 }

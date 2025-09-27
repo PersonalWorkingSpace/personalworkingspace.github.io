@@ -18,6 +18,7 @@
     --post-header-size: 38px;
     --post-title-size: 24px;
     --post-meta-size: 16px;
+    --code-bar-size: 16px;
     --code-font-size: 14px;
     --cc-font-size: 14px;
     --footer-title-size: 24px;
@@ -28,6 +29,7 @@
     --img-border-radius: 8px;
     --toggle-border-size: 3px;
     --demo-border-size: 3px;
+    --copyBtn-border-size: 1px;
     --hr-thick-size: 3px;
     --hr-thin-size: 1px;
     --table-border-size: 2px;
@@ -36,7 +38,7 @@
     --logo-font-weight: 800;
     --post-meta-weight: 400;
     --cc-font-weight: 400;
-    --footer-title-weight: 400;
+    --footer-font-weight: 400;
     --symbol-font-weight: 400;
     --agenda-title-weight: 500;
     --agenda-focus-weight: 500;
@@ -50,12 +52,14 @@
     --dark-blue-background: #2c64a5;
     --blue-background: #cceeee;
     --gray-background: #424141;
+    --codebar-background: #e9edee;
     --code-background: #f9f2f4;
     --code-color: #c7254e;
     --prop-background: #565568;
     --prop-color: #a6d6a9;
     --fog-color: #dfe3e3;
     --note-color: #9b9c9c;
+    --btn-select-color: #c7cdce;
     --link-color: #6da1e6;
     --transparent: #00000000;
     --hidden_background: #000000d9;

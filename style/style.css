@@ -7,6 +7,12 @@ body {
     background-color: var(--bright-color);
 }
 
+pre,
+button {
+    /* inherit font from body */
+    font-family: inherit;
+}
+
 .banner {
     background: var(--gray-background);
 }
@@ -419,6 +425,37 @@ code {
     line-height: 1.2rem;
 }
 
+.code-bar {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--codebar-background);
+    border-radius: var(--symbol-border-radius) var(--symbol-border-radius) 0rem 0rem;
+}
+
+.code-bar h4 {
+    font-weight: var(--symbol-font-weight);
+    font-size: var(--code-bar-size);
+    padding: 0.1rem 0.75rem;
+    margin: 0rem;
+}
+
+.code-bar button {
+    background-color: var(--transparent);
+    border-radius: var(--symbol-border-radius);
+    border: var(--copyBtn-border-size) solid var(--dark-color);
+    font-weight: var(--symbol-font-weight);
+    font-size: var(--code-bar-size);
+    padding: 0.1rem 0.5rem 0.35rem 0.5rem;
+    margin: 0.5rem;
+}
+
+.code-bar button:hover {
+    cursor: pointer;
+    background-color: var(--btn-select-color);
+}
+
 code[class=inline] {
     font-family: Consolas;
     font-size: var(--default-font-size);
@@ -583,14 +620,43 @@ footer {
 
 footer h1 {
     font-size: var(--footer-title-size);
-    font-weight: var(--footer-title-weight);
+    font-weight: var(--footer-font-weight);
+}
+
+footer svg {
+    fill: var(--fog-color);
+}
+
+footer a {
+    color: var(--fog-color);
+    font-weight: var(--footer-font-weight);
+}
+
+a.github {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+#contact-info {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    row-gap: 0.5rem;
+    column-gap: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 p.cc {
     color: var(--note-color);
     font-size: var(--cc-font-size);
-    margin-top: 0rem;
     line-height: 1.5rem;
+    margin: 0rem;
 }
 
 p.cc a {
