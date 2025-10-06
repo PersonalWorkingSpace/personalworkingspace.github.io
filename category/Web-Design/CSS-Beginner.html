@@ -81,21 +81,21 @@
                     <hr>
                     <p class="content-paragraph">全名為Cascading Style Sheet，如果說HTML是網頁的建材，CSS則是施工藍圖以及後續裝潢，讓我們能夠將HTML標籤所構成的網頁內容擺到正確的位置並且進行美化，讓整個網頁看起來更像是我們心中所想的樣子。舉例來說，底下是用CSS描述HTML文件中&lt;h1&gt;標籤的文字大小以及顏色:</p>
                     <pre><code class="css">
-    h1 {
-        font-size: 32px;
-        color: rgb(255, 0, 0);
-    }
+h1 {
+    font-size: 32px;
+    color: rgb(255, 0, 0);
+}
                     </code></pre>
                     <p class="content-paragraph">
                         導入這個CSS設定後，所有的&lt;h1&gt;標籤都會變成紅色字體，大小為32px，至於導入CSS到HTML的方式，建議是額外存成一個檔案 (ex: style.css)，然後在HTML的head區域使用以下標籤來導入:
 
                         <pre><code class="html">
-    &lt;html lang="en"&gt;
-        &lt;head&gt;
-            &lt;link href="style.css" rel="stylesheet" type="text/css"&gt; &lt;!-- 導入CSS檔案 --&gt;
-        &lt;/head&gt;
-        ...
-    &lt;/html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;link href="style.css" rel="stylesheet" type="text/css"&gt; &lt;!-- 導入CSS檔案 --&gt;
+    &lt;/head&gt;
+    ...
+&lt;/html&gt;
                         </code></pre>
                     </p>
                     <p class="content-paragraph">
@@ -134,7 +134,6 @@
                                 <li>
                                     將原先CSS指定標籤的寫法改成使用class名稱來選擇，selector的寫法上是一個小數點加class名稱 (".$className"):
                                     <pre><code class="css">
-
 .black-title {
     font-size: 32px;
     color: rgb(0, 0, 0);
@@ -159,13 +158,13 @@
     &lt;h1 id="second-title"&gt; 第二個標題 &lt;/h1&gt;
                                 </code></pre>
                                 <pre><code class="css">
-    #first-title {
-        font-size: 24px;
-    }
-    
-    #second-title {
-        font-size: 20px;
-    }
+#first-title {
+    font-size: 24px;
+}
+
+#second-title {
+    font-size: 20px;
+}
                                 </code></pre>
                             </p>
                             <p class="content-paragraph">
@@ -184,11 +183,11 @@
                                 <li>
                                     由於HTML是有階層的，所以CSS選擇器也支援多階層的指定: <code class="inline">#main &gt; .subsection1 &gt; p</code> - 選取id為main內部class為subsection1的全部&lt;p&gt;元素，結構上可以想像成:
                                     <pre><code class="html">
-    &lt;div id="main"&gt;
-        &lt;div class="subsection1"&gt;
-            &lt;p&gt;這是第一段落&lt;/p&gt; &lt;!-- 這個會被選取 --&gt;
-            &lt;p&gt;這是第二段落&lt;/p&gt; &lt;!-- 這個會被選取 --&gt;
-    ...
+&lt;div id="main"&gt;
+    &lt;div class="subsection1"&gt;
+        &lt;p&gt;這是第一段落&lt;/p&gt; &lt;!-- 這個會被選取 --&gt;
+        &lt;p&gt;這是第二段落&lt;/p&gt; &lt;!-- 這個會被選取 --&gt;
+...
                                         </code></pre>
                                 </li>
                                 <li>
@@ -211,11 +210,11 @@
                     <p class="content-paragraph">
                         Flexbox允許我們將元素放在一個容器中，並且可以輕鬆地控制它們的排列、對齊方式以及間距，並且可以自動調整大小以適應容器的寬度或高度。在這篇初學筆記會介紹其中最重要的幾個屬性，為了展現效果會用底下3個block的HTML架構來當範例:
                         <pre><code class="html">
-    &lt;div class="container"&gt;
-        &lt;div class="block1"&gt;區塊1&lt;/div&gt;
-        &lt;div class="block2"&gt;區塊2&lt;/div&gt;
-        &lt;div class="block3"&gt;區塊3&lt;/div&gt;
-    &lt;/div&gt;
+&lt;div class="container"&gt;
+    &lt;div class="block1"&gt;區塊1&lt;/div&gt;
+    &lt;div class="block2"&gt;區塊2&lt;/div&gt;
+    &lt;div class="block3"&gt;區塊3&lt;/div&gt;
+&lt;/div&gt;
                             </code></pre>
                     </p>
                     <section class="L2-section">
@@ -223,10 +222,10 @@
                             <p class="content-paragraph">
                                 我們有一個容器內有三個區塊，可以透過設定 <code class="inline">flex-direction</code> 來改變排列方式:
                                 <pre><code class="css">
-    .container {
-        display: flex;          /* 啟用Flexbox */
-        flex-direction: XXX;    /* 填入想要的模式 */
-    }
+.container {
+    display: flex;          /* 啟用Flexbox */
+    flex-direction: XXX;    /* 填入想要的模式 */
+}
                             </code></pre>
                             </p>
                             <p class="content-paragraph">
@@ -265,11 +264,11 @@
                             <p class="content-paragraph">
                                 除了改變排列方式外，還能透過 <code class="inline">justify-content</code> 來調整元素水平方向的對齊方式:
                                 <pre><code class="css">
-    .container {
-        display: flex;          /* 啟用Flexbox */
-        flex-direction: row;    /* 假定使用row */
-        justify-content: XXX;   /* 填入想要的對齊方式 */
-    }
+.container {
+    display: flex;          /* 啟用Flexbox */
+    flex-direction: row;    /* 假定使用row */
+    justify-content: XXX;   /* 填入想要的對齊方式 */
+}
                             </code></pre>
                             </p>
                             <p class="content-paragraph">
@@ -333,12 +332,12 @@
                             <p class="content-paragraph">
                                 相較於<code class="inline">justify-content</code> 是來調整水平方向的對齊方式，<code class="inline">align-items</code> 則是用來調整垂直方向的對齊方式:
                                 <pre><code class="css">
-    .container {
-        display: flex;          /* 啟用Flexbox */
-        flex-direction: row;    /* 假定使用row */
-        justify-content: center;/* 假定使用center */
-        align-items: XXX;       /* 填入想要的對齊方式 */
-    }
+.container {
+    display: flex;          /* 啟用Flexbox */
+    flex-direction: row;    /* 假定使用row */
+    justify-content: center;/* 假定使用center */
+    align-items: XXX;       /* 填入想要的對齊方式 */
+}
                             </code></pre>
                             </p>
                             <p class="content-paragraph">
@@ -409,12 +408,12 @@
                         <h1 class="L2-section-title">Font</h2>
                             <p class="content-paragraph">
                                 <pre><code class="css">
-    $your-selector {                    /* 改成自己的selector */
-        font-family: Arial, sans-serif; /* 設定字體 */
-        font-size: 16px;                /* 設定字體大小 */
-        line-height: 1.5;               /* 設定行高 */
-        font-weight: normal;            /* 設定字體粗細，normal為正常粗細 */
-    }
+$your-selector {                    /* 改成自己的selector */
+    font-family: Arial, sans-serif; /* 設定字體 */
+    font-size: 16px;                /* 設定字體大小 */
+    line-height: 1.5;               /* 設定行高 */
+    font-weight: normal;            /* 設定字體粗細，normal為正常粗細 */
+}
                                 </code></pre>
                                 <p class="content-paragraph">
                                     <ul class="content-ul marginx1p5">
@@ -438,10 +437,10 @@
                         <h1 class="L2-section-title">Color</h2>
                             <p class="content-paragraph">
                                 <pre><code class="css">
-    $your-selector {                            /* 改成自己的selector */
-        color: rgb(0, 0, 0);                    /* 設定文字顏色 */
-        background-color: rgb(255, 255, 255);   /* 設定背景顏色 */
-    }
+$your-selector {                            /* 改成自己的selector */
+    color: rgb(0, 0, 0);                    /* 設定文字顏色 */
+    background-color: rgb(255, 255, 255);   /* 設定背景顏色 */
+}
                                 </code></pre>
                                 <p class="content-paragraph">
                                     <ul class="content-ul marginx1p5">
@@ -459,12 +458,12 @@
                     <section class="L2-section">
                         <h1 class="L2-section-title">Box</h2>
                             <pre><code class="css">
-    $your-selector {                    /* 改成自己的selector */
-        padding: 10px 30px;             /* 設定內邊距 */
-        border: 1px solid rgb(0, 0, 0); /* 設定邊框 */
-        border-radius: 5px;             /* 設定圓角 */
-        margin: 30px 15px 20px 5px;     /* 設定外邊距 */
-    }
+$your-selector {                    /* 改成自己的selector */
+    padding: 10px 30px;             /* 設定內邊距 */
+    border: 1px solid rgb(0, 0, 0); /* 設定邊框 */
+    border-radius: 5px;             /* 設定圓角 */
+    margin: 30px 15px 20px 5px;     /* 設定外邊距 */
+}
                                 </code></pre>
                             <div class="demo-box-model">
                                 <div class="demo-box-margin">

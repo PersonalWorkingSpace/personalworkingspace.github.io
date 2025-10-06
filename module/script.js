@@ -77,7 +77,7 @@ function createToggle(title, state) {
     header.setAttribute("class", "toggleTitle");
     container.setAttribute("class", "toggleContainer");
 
-    header.innerText = title;
+    header.textContent = title;
     toggle.setAttribute("class", state);
     toggle.appendChild(header);
     toggle.appendChild(container);
@@ -91,8 +91,8 @@ function registerTimelineToggleEvent() {
     for (let i = 0; i < toggles.length; i++) {
         let toggle = toggles[i];
         toggle.addEventListener(
-            "click", (event) => {
-                let clickedToggle = event.target.parentElement;
+            "click", () => {
+                let clickedToggle = toggle.parentElement;
                 let toggles = document.querySelectorAll("#timeline li");
                 for (let i = 0; i < toggles.length; i++) {
                     let toggle = toggles[i];

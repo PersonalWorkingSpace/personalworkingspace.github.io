@@ -105,8 +105,8 @@
                     <p class="content-paragraph">
                         為了能夠讀取使用者輸入的資料，JS 必須先知道要選取哪個元素，這部分可以透過元素設定的 <code class="inline">id</code>、<code class="inline">class</code> 來辨識，底下列出常見的兩種方式:
                         <pre><code class="javascript">
-    let element = document.getElementById("$ELEMENT ID");
-    let collection = document.getElementsByClassName("$ELEMENT CLASSNAME");
+let element = document.getElementById("$ELEMENT ID");
+let collection = document.getElementsByClassName("$ELEMENT CLASSNAME");
                         </code></pre>
                     </p>
                     <p class="content-paragraph">
@@ -130,8 +130,8 @@
                     <p class="content-paragraph">
                         如果想透過類似 CSS Selector 去選取物件，JS 也有提供以下兩種方法，用法上相對彈性可以支援階層式/條件式的選取，兩者的差異在於 <code class="inline">querySelector</code> 只會回傳第一個符合條件的元素， <code class="inline">querySelectorAll</code> 則是全部回傳。
                         <pre><code class="javascript">
-    let element = document.querySelector("$YOUR SELECTOR");
-    let nodelist = document.querySelectorAll("$YOUR SELECTOR");
+let element = document.querySelector("$YOUR SELECTOR");
+let nodelist = document.querySelectorAll("$YOUR SELECTOR");
                         </code></pre>
                         <p class="note">getElementBy 跟 querySelector 傳回的資料型態不太一樣，不過初學時先忽略吧~~。</p>
                     </p>
@@ -149,12 +149,12 @@
                             程式語言中常見的基本型別: 整數、浮點數、字串、布林、陣列、物件，雖然宣告上看起來有整數與浮點數之分，但數值資料都是double格式存儲。
                         </p>
                         <pre><code class="javascript">
-    let x1 = 10;
-    let x2 = 10.7;
-    let x3 = "my string";
-    let x4 = true;
-    let x5 = ["A", "B", "C"];
-    let x6 = { "type": "NPC", "job": "Coding"};
+let x1 = 10;
+let x2 = 10.7;
+let x3 = "my string";
+let x4 = true;
+let x5 = ["A", "B", "C"];
+let x6 = { "type": "NPC", "job": "Coding"};
                         </code></pre>
                     </section>
                     <section class="L2-section">
@@ -163,11 +163,11 @@
                             除了基本的四則運算，JS 運算子與C語言很像，同樣有 <code class="inline">++i</code>、<code class="inline">i++</code>，
                         </p>
                         <pre><code class="javascript">
-    let x1 = 0;
-    let x2 = x1 + 0.5;
-    let x3 -= x2++;
-    let x4 = x2 * 2;
-    let x5 = x4 / 3;
+let x1 = 0;
+let x2 = x1 + 0.5;
+let x3 -= x2++;
+let x4 = x2 * 2;
+let x5 = x4 / 3;
                         </code></pre>
                     </section>
                     <section class="L2-section">
@@ -176,16 +176,16 @@
                             底下展示的是最常用的 <code class="inline">if-else</code> 跟 <code class="inline">for-loop</code> 的範例: 遍歷一個物件陣列，然後再根據 value 大小進行統計。
                         </p>
                         <pre><code class="javascript">
-    // elements是陣列，內部元素是物件
-    for (let i = 0; i < elements.length; i++) {
-        if (elements[i]["value"] > 10) {
-            a++;
-        } else if (elements[i]["value"] > 3) {
-            b++;
-        } else {
-            c++;
-        }
+// elements是陣列，內部元素是物件
+for (let i = 0; i < elements.length; i++) {
+    if (elements[i]["value"] > 10) {
+        a++;
+    } else if (elements[i]["value"] > 3) {
+        b++;
+    } else {
+        c++;
     }
+}
                         </code></pre>
                     </section>
                     <section class="L2-section">
@@ -269,20 +269,33 @@
                     <section class="L2-section">
                         <h1 class="L2-section-title">修改 HTML 元素</h1>
                         <p class="content-paragraph">
-                            前兩個方法的用途比較特殊，最常見的顯示方式還是直接修改 HTML 網頁資料，要修改現有元素的資料只需要指定此元素的 <code class="inline">innerText</code> or <code class="inline">innterHTML</code>:
+                            前兩個方法的用途比較特殊，最常見的顯示方式還是直接修改 HTML 網頁資料，要修改現有元素的資料只需要指定此元素的 <code class="inline">textContent</code>, <code class="inline">innerText</code>, <code class="inline">innterHTML</code>:
                             <pre><code class="javascript">
-    // diplay是元素
-    display.innerText = "demo message";
-    display.innerHTML = "&lt;b&gt;demo message&lt;/b&gt;";
+// diplay是元素
+display.textContent = "demo message";
+display.innerText = "demo message";
+display.innerHTML = "&lt;b&gt;demo message&lt;/b&gt;";
                             </code></pre>
                         </p>
                         <p class="content-paragraph">
-                            兩種方式差別在於 <code class="inline">innerText</code> 只會把內容物當純文字，而 <code class="inline">innterHTML</code> 則是會將內容物當成 HTML 標籤，所以&lt;b&gt;&lt;/b&gt;會視為加粗文字的標籤。當然我們也可以透過這種方式添加多層的 HTML 元素，但以程式的角度來說不太方便管理，通常會採用另一種方式:
+                            <code class="inline">textContent</code> 跟 <code class="inline">innerText</code> 只會把內容物當純文字，兩者間的差異在於 innerText 會額外考慮渲染 (render) 的結果，因此會額外考慮 CSS 的設定，這點在取得元素內容時才會顯現，在以下的範例中，<code class="inline">textContent</code> 得到的是 hello，而
+                            <code class="inline">innerText</code> 則是 HELLO。
+                        </p>
+                        <pre><code class="html">
+&lt;h1 class="uppercase"&gt;hello&lt;h1&gt;
+                        </code></pre>
+                        <pre><code class="css">
+h1.uppercase {
+    text-transform: uppercase;
+}
+                        </code></pre>
+                        <p class="content-paragraph">
+                            至於 <code class="inline">innterHTML</code> 則是會將內容物當成 HTML 標籤，所以&lt;b&gt;demo message&lt;/b&gt;會視為加粗文字的標籤。當然我們也可以透過這種方式添加多層的 HTML 元素，但以程式的角度來說不太方便管理，通常會採用另一種方式:
                             <pre><code class="javascript">
-    anchor = document.createElement("a");
-    anchor.innerHTML = "my web";
-    anchor.setAttribute("href", "https://personalworkingspace.github.io/");
-    anchor.style.color = "blue";
+anchor = document.createElement("a");
+anchor.innerHTML = "my web";
+anchor.setAttribute("href", "https://personalworkingspace.github.io/");
+anchor.style.color = "blue";
                             </code></pre>
                             <p class="content-paragraph">
                                 <code class="inline">document.createElement</code> 用來創造 HTML 的元素，上面創造一個 anchor，創造出來的元素跟我們用 getElementBy 取得的是一樣的，能夠替他設定 innerHTML、attribute 以及 style。
@@ -297,28 +310,28 @@
                     <p class="content-paragraph">
                         要引用 JS code 到 HTML 文件中，首先得創立一個 JS 檔案 ex: script.js，然後在 head 或 body 內填入以下內容:
                         <pre><code class="html">
-    &lt;script src="script.js"&gt;&lt;/script&gt; &lt;!-- 載入 JS 檔案 --&gt;
-                        </code></pre>
+&lt;script src="script.js"&gt;&lt;/script&gt; &lt;!-- 載入 JS 檔案 --&gt;
+                    </code></pre>
                     </p>
 
                     <p class="content-paragraph">
                         至於 script.js 的內容，底下提供 Demo 的 JS 範例:
                         <pre><code class="javascript">
-    window.onload = function() {
-        setDemo();
-    }
+window.onload = function() {
+    setDemo();
+}
 
-    function setDemo() {
-        let button = document.getElementById("demo-button");
-        button.onclick = updateDemoDisplay;
-    }
+function setDemo() {
+    let button = document.getElementById("demo-button");
+    button.onclick = updateDemoDisplay;
+}
 
-    function updateDemoDisplay() {
-        let text = document.getElementById("demo-input");
-        let value = text.value;
-        let display = document.getElementById("demo-display");
-        display.innerText = value;
-    }
+function updateDemoDisplay() {
+    let text = document.getElementById("demo-input");
+    let value = text.value;
+    let display = document.getElementById("demo-display");
+    display.textContent = value;
+}
                         </code></pre>
                     </p>
 

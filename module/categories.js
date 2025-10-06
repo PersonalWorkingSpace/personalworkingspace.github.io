@@ -41,7 +41,7 @@ function updateCategory() {
 
         let option = document.createElement("option");
         option.value = cg;
-        option.innerText = display;
+        option.textContent = display;
         selector.appendChild(option);
 
         let button = CreateColorfulButton(display, cg);
@@ -61,7 +61,7 @@ function registerCategoryToggleEvent() {
     for (let i = 0; i < toggles.length; i++) {
         let toggle = toggles[i];
         toggle.addEventListener(
-            "click", (event) => {
+            "click", () => {
                 let selectedCG = document.querySelector("#category-list #selected-category");
                 let selector = document.getElementById("category-select");
                 selectedCG.removeAttribute("id");

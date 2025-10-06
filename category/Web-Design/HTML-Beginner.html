@@ -80,15 +80,15 @@
                     <hr>
                     <p class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 章節標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個標籤的形式呈現在文件中，以下是最基本的架構:</p>
                     <pre><code class="html">
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
-        &lt;head&gt;
-            ...
-        &lt;/head&gt;
-        &lt;body&gt;
-            ...
-        &lt;/body&gt;
-    &lt;/html&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        ...
+    &lt;/head&gt;
+    &lt;body&gt;
+        ...
+    &lt;/body&gt;
+&lt;/html&gt;
                         </code></pre>
                     <p class="content-paragraph">
                         <ul class="content-ul marginx1p5">
@@ -162,11 +162,11 @@
                             <li>
                                 <code class="inline">&lt;ul&gt;... &lt;/ul&gt; & &lt;li&gt;... &lt;/li&gt;</code> - 使用於body，呈現項目符號 (bullet)，也就是本章節的那些黑色小圓圈，ul定義出項目的範圍，每組li則是一個項目，所以整個格式會是:
                                 <pre><code class="html">
-    &lt;ul&gt;
-        &lt;li&gt;...&lt;/li&gt; &lt;!--項目1--&gt;
-        &lt;li&gt;...&lt;/li&gt; &lt;!--項目2--&gt;
-        &lt;li&gt;...&lt;/li&gt; &lt;!--項目3--&gt;
-    &lt;/ul&gt;
+&lt;ul&gt;
+    &lt;li&gt;...&lt;/li&gt; &lt;!--項目1--&gt;
+    &lt;li&gt;...&lt;/li&gt; &lt;!--項目2--&gt;
+    &lt;li&gt;...&lt;/li&gt; &lt;!--項目3--&gt;
+&lt;/ul&gt;
                                     </code></pre>
                             </li>
                             <li>
@@ -216,45 +216,45 @@
                         底下提供此架構的HTML程式碼，建議讀者可以複製成一個HTML檔案 (ex: index.html)，然後用瀏覽器開啟後，你就會發現......整個跟這個網頁一點也不像XDD，甚至連架構都跟上面的圖不一樣，這是因為沒有適當的排版/美化，也就是下一篇要介紹的CSS負責處理的。
                         <p class="note">也許你有注意到&lt;div&gt;標籤，他雖然沒有語意上的意義，但他可是排版用神器!!!</p>
                         <pre><code class="html">
-    &lt;!DOCTYPE html&gt;
-    &lt;html lang="zh-Hant-TW"&gt;
-        &lt;head&gt;
-            &lt;title&gt;MyWeb&lt;/title&gt; &lt;!--網頁名稱--&gt;
-            &lt;meta charset="UTF-8"&gt;
-            &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-        &lt;/head&gt;
-        &lt;body&gt;
-            &lt;header&gt; &lt;!--頁首區域--&gt;
-                &lt;h1&gt; Header &lt;/h1&gt;
-            &lt;/header&gt;
-            &lt;div&gt;
-                &lt;aside&gt; &lt;!--左側區域--&gt;
-                    &lt;h1&gt; Aside &lt;/h1&gt;
-                &lt;/aside&gt;
-                
-                &lt;main&gt;  &lt;!--主要內文區域--&gt;
-                    &lt;h1&gt;Title&lt;/h1&gt;
-                    &lt;section&gt; &lt;!--介紹，顯示一張lego圖片--&gt;
-                        &lt;img width="200px" src="https://images.unsplash.com/photo-1560961911-a21c4f35443f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="這是一張lego積木"&gt;
-                        &lt;p&gt; Paragraph Introduce &lt;/p&gt;
-                    &lt;/section&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-Hant-TW"&gt;
+    &lt;head&gt;
+        &lt;title&gt;MyWeb&lt;/title&gt; &lt;!--網頁名稱--&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;header&gt; &lt;!--頁首區域--&gt;
+            &lt;h1&gt; Header &lt;/h1&gt;
+        &lt;/header&gt;
+        &lt;div&gt;
+            &lt;aside&gt; &lt;!--左側區域--&gt;
+                &lt;h1&gt; Aside &lt;/h1&gt;
+            &lt;/aside&gt;
+            
+            &lt;main&gt;  &lt;!--主要內文區域--&gt;
+                &lt;h1&gt;Title&lt;/h1&gt;
+                &lt;section&gt; &lt;!--介紹，顯示一張lego圖片--&gt;
+                    &lt;img width="200px" src="https://images.unsplash.com/photo-1560961911-a21c4f35443f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="這是一張lego積木"&gt;
+                    &lt;p&gt; Paragraph Introduce &lt;/p&gt;
+                &lt;/section&gt;
 
-                    &lt;section&gt; &lt;!--第一段落--&gt;
-                        &lt;h1&gt;Section Title 1&lt;/h1&gt;
-                        &lt;p&gt;Paragraph 1&lt;/p&gt;
-                        &lt;p&gt;Paragraph 2&lt;/p&gt;
-                    &lt;/section&gt;
-                &lt;/main&gt;
+                &lt;section&gt; &lt;!--第一段落--&gt;
+                    &lt;h1&gt;Section Title 1&lt;/h1&gt;
+                    &lt;p&gt;Paragraph 1&lt;/p&gt;
+                    &lt;p&gt;Paragraph 2&lt;/p&gt;
+                &lt;/section&gt;
+            &lt;/main&gt;
 
-                &lt;aside&gt; &lt;!--右側區域--&gt;
-                    &lt;h1&gt; Aside &lt;/h1&gt;
-                &lt;/aside&gt;
-            &lt;/div&gt;
-            &lt;footer&gt; &lt;!--頁尾區域--&gt;
-                &lt;h1&gt;Footer&lt;/h1&gt;
-            &lt;/footer&gt;
-        &lt;/body&gt;
-    &lt;/html&gt;
+            &lt;aside&gt; &lt;!--右側區域--&gt;
+                &lt;h1&gt; Aside &lt;/h1&gt;
+            &lt;/aside&gt;
+        &lt;/div&gt;
+        &lt;footer&gt; &lt;!--頁尾區域--&gt;
+            &lt;h1&gt;Footer&lt;/h1&gt;
+        &lt;/footer&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
                             </code></pre>
                     </p>
                 </section>

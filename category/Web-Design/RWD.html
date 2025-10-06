@@ -97,12 +97,12 @@
                     <p class="content-paragraph">
                         想要實現 RWD 的網頁設計，最簡單的方式是透過 CSS 內建的 <code class="inline">@media</code> rule 達成; 它能根據裝置的 media type 來決定是否套用部分 CSS styles，在 RWD 中就是以網頁寬度來控制:
                         <pre><code class="css">
-    @media (max-width: 1000px) {
-        #side-area {
-            display: none;
-        }
-        ...
+@media (max-width: 1000px) {
+    #side-area {
+        display: none;
     }
+    ...
+}
                         </code></pre>
                     </p>
                     <p class="content-paragraph">
@@ -120,9 +120,9 @@
                     <p class="content-paragraph">
                         你可能會覺得這個 min-width, max-width 不太直觀，放心你不孤獨XD，在 CSS Media Queries Level 4 後就有提供以下這種更方便的寫法，底下是當螢幕尺寸介於 480px 跟 1000px 才會套用的寫法，數學式就就直觀多了 (^u^)
                         <pre><code class="css">
-    @media (480px <= width <= 1000px) {
-        ...
-    }
+@media (480px <= width <= 1000px) {
+    ...
+}
                         </code></pre>
                     </p>
                     <p class="note">
@@ -140,46 +140,46 @@
                         <ol class="content-ol">
                             <li> 先產生出下拉清單的符號 (hamburger menu) 跟連結 nav，初始狀態是只顯示 nav、不顯示 menu:
                                 <pre><code class="html">
-    &lt;button id="hamburger"&gt;&#9776;&lt;/button&gt;
-    &lt;nav id="site-nav"&gt;
-        ...
-    &lt;/nav&gt;
+&lt;button id="hamburger"&gt;&#9776;&lt;/button&gt;
+&lt;nav id="site-nav"&gt;
+    ...
+&lt;/nav&gt;
                                 </code></pre>
                                 <pre><code class="css">
-    #hamburger {
-        display: none;
-    }
+#hamburger {
+    display: none;
+}
                         </code></pre>
                             </li>
                             <li> 設定 @media 網頁寬度小於 1000px 時的 style，讓 nav 隱藏並顯示出 menu，此外還修改了 nav 的顯示屬性，使其變成每個連結都是單獨一行:
                                 <pre><code class="css">                               
-    @media (width < 1000px) {
-        #site-nav {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-        }
-        #hamburger {
-            display: block;
-        }
+@media (width < 1000px) {
+    #site-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
     }
+    #hamburger {
+        display: block;
+    }
+}
                                 </code></pre> 這麼做的目的是當 nav 的 display 打開就會有下拉的清單出現， 值得注意的是裝 nav 的外部元素必須採用 <code class="inline">flex-flow: row wrap;</code>，這樣才會使 nav 自動換到下一行。
                             </li>
                             <li> 接下來要設定點擊後 menu 修改 nav 的 display，我們可以先設定一個 class 為 open 的屬性顯示，然後用 JS 幫 nav 加上 open class 即可:
                                 <pre><code class="css">
-    #site-nav.open {
-        display: flex;
-    }
+#site-nav.open {
+    display: flex;
+}
                                 </code></pre>
                                 <pre><code class="javascript">
-    let menu = document.getElementById("hamburger");
-    menu.addEventListener(
-        "click", (event) => {
-            let siteNav = document.getElementById("site-nav");
-            // 如果 class 有包含 open 則移除，沒有則加入 open
-            siteNav.classList.toggle('open');
-        }
-    );
+let menu = document.getElementById("hamburger");
+menu.addEventListener(
+    "click", () => {
+        let siteNav = document.getElementById("site-nav");
+        // 如果 class 有包含 open 則移除，沒有則加入 open
+        siteNav.classList.toggle('open');
+    }
+);
                                 </code></pre>
                             </li>
                         </ol>

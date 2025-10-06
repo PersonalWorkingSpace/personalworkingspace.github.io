@@ -131,7 +131,7 @@ function CreateColorfulButton(text, code, href) {
     let button;
     if (typeof href === "undefined") {
         button = document.createElement("button");
-        button.innerText = text;
+        button.textContent = text;
     } else {
         button = CreateAnchor(text, href);
     }
@@ -160,17 +160,17 @@ function CreateAnchor(text, link) {
 
 function RegisterNavToggleEvent() {
     let menu = document.getElementById("hamburger");
+    let siteNav = document.getElementById("site-nav");
+
     menu.addEventListener(
-        "click", (event) => {
-            let siteNav = document.getElementById("site-nav");
+        "click", () => {
             siteNav.classList.toggle('open');
         }
     );
 
     // close nav when click any place on the screen
     document.addEventListener('click', (event) => {
-        let siteNav = document.getElementById("site-nav");
-        const isClickInsideMenu = siteNav.contains(event.target) || hamburger.contains(event.target);
+        const isClickInsideMenu = siteNav.contains(event.target) || menu.contains(event.target);
         if (!isClickInsideMenu) {
             siteNav.classList.remove("open");
         }
@@ -179,7 +179,6 @@ function RegisterNavToggleEvent() {
     // when the burger is hidden, open classes will be removed
     window.addEventListener('resize', () => {
         if (window.innerWidth > 1000) {
-            let siteNav = document.getElementById("site-nav");
             siteNav.classList.remove('open');
         }
     });
@@ -194,10 +193,10 @@ function RegisterImageClickEvent() {
         }
 
         image.addEventListener(
-            "click", (event) => {
+            "click", () => {
                 let img = document.createElement("img");
-                img.setAttribute("src", event.target.src);
-                img.setAttribute("alt", event.target.alt);
+                img.setAttribute("src", image.src);
+                img.setAttribute("alt", image.alt);
 
                 let closeBtn = document.createElement("span");
                 closeBtn.setAttribute("class", "close-btn");

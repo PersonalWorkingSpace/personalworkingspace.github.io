@@ -40,7 +40,7 @@ function updateTag() {
 
         let option = document.createElement("option");
         option.value = tag;
-        option.innerText = display;
+        option.textContent = display;
         selector.appendChild(option);
 
         let button = CreateColorfulButton(display, tag);
@@ -60,7 +60,7 @@ function registerTagToggleEvent() {
     for (let i = 0; i < toggles.length; i++) {
         let toggle = toggles[i];
         toggle.addEventListener(
-            "click", (event) => {
+            "click", () => {
                 let selectedCG = document.querySelector("#tag-list #selected-tag");
                 let selector = document.getElementById("tag-select");
                 selectedCG.removeAttribute("id");

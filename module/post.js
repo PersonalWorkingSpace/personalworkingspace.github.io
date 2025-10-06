@@ -27,6 +27,7 @@ window.addEventListener('resize', function() {
 })
 
 const NUM_CATEGORY_ARTICLE = 7;
+const NUM_TAG_ARTICLE = 5;
 
 var category;
 var tagArray;
@@ -103,11 +104,10 @@ function setCategoryArticles() {
     let upper = Math.min(categoryPosts["name"].length, lower + NUM_CATEGORY_ARTICLE);
 
     let title = document.getElementById("category-title");
-    let button = CreateColorfulButton(categoryName[category], category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
+    let button = CreateColorfulButton(`${categoryName[category]} (${categoryPosts["name"].length})`, category, `${WinURL["origin"]}/entrypoint/categories.html?category=${category}`);
     title.appendChild(button);
 
     let related = document.getElementById("same-category-list");
-    related.setAttribute("class", "related-article");
 
     let len = categoryPosts["postID"].length;
     for (let i = upper - 1; i >= lower; i--) {
@@ -127,7 +127,6 @@ function setCategoryArticles() {
 
 // Display articles from the same tags
 function setTagArticles() {
-
     for (let i = 0; i < tagArray.length; i++) {
         let tag = tagArray[i];
         let tagPosts = Tags[tag];
@@ -138,10 +137,7 @@ function setTagArticles() {
             return;
         }
 
-        let lower = Math.max(0, idx - Math.floor(NUM_CATEGORY_ARTICLE / 2));
-        let upper = Math.min(tagPosts["name"].length, lower + NUM_CATEGORY_ARTICLE);
-
-        if (lower == upper - 1) {
+        if (tagPosts["name"].length == 1) {
             continue;
         }
 
@@ -152,7 +148,7 @@ function setTagArticles() {
         icon.setAttribute("class", "inline-icon");
         title.appendChild(icon);
 
-        let button = CreateColorfulButton(tag, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
+        let button = CreateColorfulButton(`${tag} (${tagPosts["name"].length})`, tag, `${WinURL["origin"]}/entrypoint/tags.html?tag=${tag}`);
         title.appendChild(button);
 
         let tagRegion = document.getElementById("tag-wrapper");
@@ -165,8 +161,13 @@ function setTagArticles() {
         tagRegion.appendChild(tagList);
         tagRegion.appendChild(document.createElement("br"));
 
-        for (let i = upper - 1; i >= lower; i--) {
-            if (i != idx) {
+        let maxDisplay = Math.min(tagPosts["name"].length, NUM_TAG_ARTICLE + 1); // plus 1 to exclude post itself
+        let uniqueIdx = new Set([idx]);
+        while (uniqueIdx.size < maxDisplay) {
+            let i = Math.floor(Math.random() * tagPosts["name"].length);
+
+            if (uniqueIdx.has(i) == false) {
+                uniqueIdx.add(i);
                 let post = Posts[tagPosts["postID"][i]];
                 let li = document.createElement("li");
                 let a = CreateAnchor(`${post["title"]}`, `${WinURL["origin"]}/${post["file"]}`);
@@ -202,18 +203,18 @@ function updateReadProgress() {
         let nextTitle = titles[i + 1];
         if (i == 0 && reachTop ||
             scrolly >= (title.offsetTop - 10) && scrolly < (nextTitle.offsetTop - 10) && !reachBottom) { // minus 10 for stability
-            bullet.className = "focus-section";
+            bullet.setAttribute("class", "focus-section");
         } else {
-            bullet.className = "non-focus-section";
+            bullet.setAttribute("class", "non-focus-section");
         }
     }
 
     let lastTitle = titles[titles.length - 1];
     let lastBullet = bullets[titles.length - 1];
     if (scrolly >= lastTitle.offsetTop || reachBottom) {
-        lastBullet.className = "focus-section";
+        lastBullet.setAttribute("class", "focus-section");
     } else {
-        lastBullet.className = "non-focus-section";
+        lastBullet.setAttribute("class", "non-focus-section");
     }
 }
 
@@ -226,20 +227,18 @@ function setCodeBlock() {
         codebar.setAttribute("class", "code-bar");
 
         let langTitle = document.createElement("h4");
-
-        if (code.classList.length == 0) {
-            console.log(code);
-        }
         langTitle.textContent = code.classList[0].toUpperCase();
 
         let copyButton = document.createElement("button");
         copyButton.textContent = "Copy"
-        copyButton.addEventListener("click", (event) => {
+        copyButton.addEventListener("click", () => {
             navigator.clipboard.writeText(code.textContent);
-            const originalText = event.target.textContent;
-            event.target.textContent = "✓ Copied";
+            const originalText = copyButton.textContent;
+            copyButton.textContent = "✓ Copied";
+            copyButton.classList.add("checked");
             setTimeout(() => {
-                event.target.textContent = originalText;
+                copyButton.textContent = originalText;
+                copyButton.classList.remove("checked");
             }, 900);
         });
 

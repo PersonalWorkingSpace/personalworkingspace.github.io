@@ -15,7 +15,7 @@ function updateDemoDisplay() {
     let text = document.getElementById("demo-input");
     let value = text.value;
     let display = document.getElementById("demo-display");
-    display.innerText = value;
+    display.textContent = value;
 }
 
 function sayHi() {
