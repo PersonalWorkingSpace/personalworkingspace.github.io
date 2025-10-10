@@ -198,7 +198,6 @@ a[class=tag] {
 button[class=tag]:hover,
 a[class=tag]:hover {
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .L1-section-title {
@@ -212,10 +211,14 @@ a[class=tag]:hover {
 }
 
 .main-container {
+    max-width: calc(var(--center-width) + var(--left-width) + var(--right-width));
+    min-width: 0px;
     display: flex;
     margin: 0 auto;
     flex-flow: row nowrap;
     justify-content: center;
+    box-sizing: border-box;
+    /* border: 3px solid rgb(43, 179, 38); */
 }
 
 #timeline-wrapper,
@@ -273,7 +276,6 @@ a:hover,
 .toggleContainer a:hover {
     cursor: pointer;
     color: var(--link-color);
-    text-decoration: underline;
 }
 
 #timeline-title {
@@ -351,7 +353,8 @@ a:hover,
     flex: 1 1 var(--center-width);
     max-width: var(--center-width);
     min-width: 0px;
-    padding: 2rem;
+    padding: 0rem;
+    margin: 2rem;
     box-sizing: border-box;
     /* border: 3px solid rgb(43, 179, 38); */
 }
@@ -585,6 +588,9 @@ table.content-table td:nth-child(1) {
     }
     #right-area {
         display: none;
+    }
+    #center-area {
+        max-width: 90%;
     }
     #site-nav {
         display: none;
