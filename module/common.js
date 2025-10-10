@@ -186,39 +186,71 @@ function RegisterNavToggleEvent() {
 
 function RegisterImageClickEvent() {
     let images = document.querySelectorAll("img");
+    let validImages = [];
 
     images.forEach(function(image, index) {
         if (image.getAttribute("id") != "cover" && image.getAttribute("class") != "content-img") {
             return;
         }
+        validImages.push(image);
+    })
 
+    validImages.forEach(function(image, index) {
         image.addEventListener(
             "click", () => {
-                let img = document.createElement("img");
-                img.setAttribute("src", image.src);
-                img.setAttribute("alt", image.alt);
+                let indexLabel = document.createElement("span");
+                indexLabel.setAttribute("class", "lightbox-index");
+                indexLabel.textContent = `${index+1} / ${validImages.length}`
 
                 let closeBtn = document.createElement("span");
                 closeBtn.setAttribute("class", "close-btn");
                 closeBtn.innerHTML = "&times;"
 
+                let displayBar = document.createElement("div");
+                displayBar.setAttribute("class", "lightbox-displaybar");
+                displayBar.appendChild(indexLabel);
+                displayBar.appendChild(closeBtn);
+
+                let img = document.createElement("img");
+                img.setAttribute("class", "lightbox-img");
+                img.setAttribute("src", image.src);
+                img.setAttribute("alt", image.alt);
+
+                let prevBtn = document.createElement("span");
+                prevBtn.setAttribute("class", "lightbox-btn prev");
+                prevBtn.textContent = "←";
+
+                let nextBtn = document.createElement("span");
+                nextBtn.setAttribute("class", "lightbox-btn next");
+                nextBtn.textContent = "→";
+
+                let contentRegion = document.createElement("div");
+                contentRegion.setAttribute("class", "lightbox-content");
+                contentRegion.appendChild(prevBtn);
+                contentRegion.appendChild(img);
+                contentRegion.appendChild(nextBtn);
+
                 let lightbox = document.createElement("div");
                 lightbox.setAttribute("class", "lightbox");
                 lightbox.addEventListener('click', (event) => {
                     switch (event.target.getAttribute("class")) {
-                        case "lightbox":
-                            event.target.remove();
+                        case "lightbox-img":
                             break;
-                        case "close-btn":
-                            event.target.parentElement.remove();
+                        case "lightbox-btn prev":
+                            validImages[(index + validImages.length - 1) % validImages.length].click();
+                            lightbox.remove();
+                            break;
+                        case "lightbox-btn next":
+                            validImages[(index + 1) % validImages.length].click();
+                            lightbox.remove();
                             break;
                         default:
+                            lightbox.remove();
                             break;
                     };
                 });
-                lightbox.appendChild(img);
-                lightbox.appendChild(closeBtn);
-
+                lightbox.appendChild(displayBar);
+                lightbox.appendChild(contentRegion);
                 document.body.appendChild(lightbox);
             }
         );
