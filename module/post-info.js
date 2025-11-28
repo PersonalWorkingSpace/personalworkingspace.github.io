@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/idle.html",
+        "created": "2025-11-23T00:00:00+08:00",
+        "title": "空洞騎士重現 - IDLE Scene",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-idle-cover.png",
+        "description": "第一次重現就先忽略腳色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了腳色/環境的動畫外..."
+    },
+    {
         "file": "category/Hollow-Knight/sprite.html",
         "created": "2025-08-19T00:00:00+08:00",
         "title": "空洞騎士重現 - 素材準備",
@@ -67,12 +76,14 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "idle",
             "sprite",
             "begin"
         ],
         "postID": [
             0,
-            1
+            1,
+            2
         ]
     },
     "Web-Design": {
@@ -84,11 +95,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            2,
             3,
             4,
             5,
-            6
+            6,
+            7
         ]
     }
 };
@@ -96,12 +107,14 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "idle",
             "sprite",
             "begin"
         ],
         "postID": [
             0,
-            1
+            1,
+            2
         ]
     },
     "初學筆記": {
@@ -112,10 +125,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            2,
-            4,
+            3,
             5,
-            6
+            6,
+            7
         ]
     },
     "CSS": {
@@ -124,8 +137,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            2,
-            5
+            3,
+            6
         ]
     },
     "網頁部署": {
@@ -133,7 +146,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            3
+            4
         ]
     },
     "Github": {
@@ -141,7 +154,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            3
+            4
         ]
     },
     "Javascript": {
@@ -149,7 +162,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            4
+            5
         ]
     },
     "HTML": {
@@ -157,7 +170,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            6
+            7
         ]
     }
 };
