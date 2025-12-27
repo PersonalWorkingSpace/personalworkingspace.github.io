@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>空洞騎士重現 - 移動</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、腳色的物理數值、以及鏡頭等等...">
+    <meta name="keywords" content="GameMake">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area" class="sidebar">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <line x1="9" y1="10" x2="20" y2="10"></line>
+                        <line x1="9" y1="16" x2="20" y2="16"></line>
+                        <line x1="9" y1="22" x2="20" y2="22"></line>
+                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
+                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
+                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
+                    </svg> In this article
+                </h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">空洞騎士重現 - 移動</h1>
+                    <div class="post-meta">
+                        <time datetime="2025-12-20T00:00:00+08:00" itemprop="datePublished"> Dec 20, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="../../image/hw-move-cover.png" alt="空洞騎士">
+                    </div>
+                    <p class="content-paragraph">
+                        上一篇學會了空洞騎士中的基本場景建置後，這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、腳色的物理數值、以及鏡頭等等，內容有點多，所以這篇文章會專注介紹腳色的水平移動處理，至於鏡頭以及比較複雜的跳躍就等後續介紹了~~~</p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">重現場景</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        <iframe class="content-iframe" src="https://www.youtube.com/embed/XuME1BPuCt8?si=2OEQRjyH77htoApk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>這次把場景換到了宮殿廣場，就是位在白色宮殿入口左側的地方，實際上重建布景需要用到的 sprite 如下:
+                        <ul class="content-ul">
+                            <li>
+                                <b><a href="https://drive.google.com/drive/folders/13IRMcWuLMAa3D53s8GHTUKEdip56YYUA">宮殿廣場場景</a></b> - 前景背景 sprite 都是取自這邊，有意思的是 sprite 其實與白色宮殿使用的一模一樣，只是透過調整色調來產生差異，蠻合理的，畢竟兩邊其實是同個地方不同時代而已。
+                            </li>
+                            <li>
+                                <b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">小騎士 Move 動畫</a></b> - 會使用 005.Run, 048.Turn, 049.Run To Idle，部分畫面有紅框框，可以參考 <a href="sprite.html">Day2</a> 去除，另外就是找到的 Run 畫面與原版影片不符，動作上比較像是快走，所以重現上會有點落差
+                                &gt;&lt;。
+                            </li>
+                        </ul>
+
+                        至於構圖不是本篇重點就不多提了，但補充一點本次發現的小技巧，小騎士身上具有光源，但假如背景色調就是全黑，光打上去也不會有任何效果，就會導致小騎士身體與背景融合成一片黑 (下圖左)，這時候可以在整個背景與小騎士之間加上一個半透明的全白屏幕，當光打到這個屏幕上時，會讓小騎士的小腳顯露出來 (下圖右)。
+                    </p>
+                    <img class="content-img" src="../../image/hw-move-filter.png" alt="overlay effect">
+
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Rigidbody & Collider</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        為了讓小騎士能在地面上進行移動，需要替他加上兩個 components:
+                        <ul class="content-ul">
+                            <li>
+                                <b>Rigidbody 2D</b> - 賦予物件物理性質，像是速度、重量等等，這些特性都能在程式中透過 rigidbody 進行操作，有些預設值可以先設定:
+                                <ul class="content-ul">
+                                    <li><b>Mass</b> - 質量，跟著名的物理公式 F = ma 有關，可以想成質量越大，受力後加速度會越小，這邊就設一個定值就不要再調整了，後續控制力的大小來決定加速度。</li>
+                                    <li><b>Linear Damping</b> - 線性阻力係數，當物體移動時會出現一個反方向的阻力，就是這個力量決定了物體會花多久才停下來，推薦觀看這部<a href="https://www.youtube.com/watch?v=KKGdDBFcu0Q&list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1&index=13">影片</a>介紹關於阻力與慣性對遊戲操作的影響，在空洞騎士中，小騎士的水平移動幾乎是立即反應的，按下按鈕就前進、放開按鈕就停下，立即前進可以透過加大施力達成，至於要立即停下來就得透過這個
+                                        linear damping 了。</li>
+                                    <li><b>Angular Damping & Rotation Z</b> - 由於小騎士並不會有旋轉方面的特效與移動，所以關於角度的設定都是關閉的 => Freeze Rotation Z。</li>
+                                    <li><b>Gravity Scale</b> - Unity 提供操控重力的大小，這很有用，尤其當我們把 linear damping 調大後，導致預設的重力大小不足以讓腳色快速落下，因此我們調大 20 倍，主要會在之後的跳躍與落下派上用場。</li>
+                                </ul>
+                            </li>
+                            <img class="content-img" src="../../image/hw-move-rigidbody2d.png" alt="rigidbody2d">
+                            <li>
+                                <b>Box Collider 2D</b> - 賦予物件碰撞的功能，也就是常聽到的碰撞箱，點選 edit collider 後會出現下圖這種框線，預設通常會很準確框住小騎士，但這邊會把下框線稍微拉高一點，這樣才不會出現腳色懸空的問題，此外要讓腳色與地板產生碰撞，每塊地板都得加上 box collider 才行。
+                            </li>
+                            <img class="content-img" src="../../image/hw-move-boxcollider.png" alt="box collider 2d">
+                        </ul>
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">InputSystem</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        網路上有介紹很多讀取鍵盤指令的方式，但現在 unity 專案都有內建一個 InputSystem 的檔案能幫助創作者快速地取得輸入事件，此檔案通常位於<code class="inline">Assets/InputSystem_Actions.inputactions</code>，快速點擊檔案兩下會開啟編輯視窗，可以看到底下這種內容，會發現他已經預設好了基本的 WASD 跟方向鍵了!!!
+                    </p>
+                    <img class="content-img" src="../../image/hw-move-inputsystem.png" alt="input system">
+                    <p class="content-paragraph">
+                        唯一要做的事情是在 Inspect 視窗中點選生成 C# Class，如下圖:
+                    </p>
+                    <img class="content-img" src="../../image/hw-move-exportInputsystem.png" alt="input system export code">
+                    <p class="content-paragraph">
+                        這樣可以讓 Player 的控制程式去 import 然後就能透過 controls 來取得鍵盤的操作了:
+                    </p>
+                    <pre><code class="c#">
+using UnityEngine;
+using PlayerControlScript;
+
+public class Player : MonoBehaviour
+{
+    PlayerControls controls;
+    void Awake() 
+    {
+        controls = new PlayerControls();
+    }
+}
+                    </code></pre>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Move Script</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        取得 InputSystem 後，在 Awake 內替 controls 設定按鍵觸發時要呼叫的 function，Move 是 InputSystem 預設的 Action，不論是按 WASD 還是方向鍵都會執行 performed 設定的 function - 將按鍵代表的二維向量保存下來到一個全域 Vector2 變數 moveInput，當放開按鍵，就把保存數值歸零:
+                    </p>
+                    <pre><code class="c#">
+controls.Player.Move.performed += ctx =&gt; moveInput = ctx.ReadValue&lt;Vector2&gt;();
+controls.Player.Move.canceled += ctx =&gt; moveInput = Vector2.zero;
+                    </code></pre>
+                    <p class="content-paragraph">
+                        之後就可以在 FixedUpdate 裡面根據 moveInput.x 來判定現在是往右往左或是靜止不動，這邊同樣透過 force + 限制速度的方式來實現，兩個數值都設定為 10，另外在向右移動時，會把 sprite 水平翻轉，為了讓小騎士面對右邊移動，完成到這個部分後，你會得到一個會隨方向鍵水平漂移的鬼魂，接著是加上跑步的動畫來讓移動更自然。
+                    </p>
+                    <pre><code class="c#">
+
+// rb = GetComponent&lt;Rigidbody2D&gt;();
+// sr = GetComponent&lt;SpriteRenderer&gt;();
+
+void FixedUpdate()
+{
+    Vector2 force = Vector2.zero;
+    
+    if ( moveInput.x > 0 ) // move right
+    {
+        force.x = MOVEFORCE;
+        sr.flipX = true;
+    }
+    else if ( moveInput.x < 0 ) // move left
+    {
+        force.x = -MOVEFORCE;
+        sr.flipX = false;
+    }
+
+    rb.AddForce(force, ForceMode2D.Impulse);
+
+    Vector2 vel = rb.linearVelocity;
+    vel.x = Mathf.Clamp(vel.x, -MAXSPEED, MAXSPEED);
+    rb.linearVelocity = vel;
+}
+                    </code></pre>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Animation State Machine</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        小騎士移動的動畫其實涉及到多段畫面的轉換，得透過 Animator 的狀態機來表示:
+                    </p>
+                    <img class="content-img" src="../../image/hw-move-animator.png" alt="animator state machine">
+                    <ul class="content-ul">
+                        <li><b>IDLE</b> - 這是前一篇文章用到的小騎士靜止狀態身體抖動的畫面。</li>
+                        <li><b>TURN</b> - 這是短暫狀態，當小騎士改變移動方向時，會插入兩幀的轉身畫面，<code class="inline">IDLE -> TURN</code> 的觸發條件如下，我們希望立刻進行轉身，所以把 exit time 關閉，同時是當一個 animotr variable - turn 設為 true 時才會觸發:</li>
+                        <img class="content-img" src="../../image/hw-move-idle2turn.png" alt="animator idle to turn">
+                        <div style="margin-top:1rem">turn 只有當按鈕方向與本來腳色面對的方向不一樣時才會設為 true，且一段時間後就該改回 false，我們可以用 async task 來達成，另外為了避免連續觸發，這邊也確保 turn 還是 true 時不會重複執行:</div>
+                        <pre><code class="c#">
+using System.Threading.Tasks;
+// sr = GetComponent&lt;SpriteRenderer&gt;();
+// anime = GetComponent&lt;Animator&gt;();
+
+void FixedUpdate()
+{
+    if ( anime.GetBool("turn") != true && 
+        ( moveInput.x &gt; 0 && sr.flipX == false || moveInput.x &lt; 0 && sr.flipX == true ))
+    {
+        #pragma warning disable 4014
+        TurnAround(200);
+        #pragma warning restore 4014
+    }
+    ...
+}
+
+async Task TurnAround(int ms)
+{
+    anime.SetBool("turn", true);
+    await Task.Delay(ms);
+    anime.SetBool("turn", false);
+}
+                        </code></pre>
+                        <p class="note">TurnAround function 會被偵測到 "warning this call is not awaited"，所以才加上 #pragam 來忽略檢查。
+                            <li><b>READY TO RUN</b> - 這同樣是一個過渡狀態，小騎士在起步時會有一段低身衝刺的畫面，之後才會轉回正常跑步，如下圖所示，我們將前四幀當成 ready to run 的起步畫面，另外 <code class="inline">IDLE -> READY_TO_RUN</code> 的設計跟前面一樣，不過 <code class="inline">TURN -> READY_TO_RUN</code> 時得讓 TURN 動畫播完才起步，需要有
+                                exit time = 1，然後 Condition 就不用設定:</li>
+                            <img class="content-img" src="../../image/hw-move-idle2run.png" alt="animator idle to run">
+                            <li><b>RUN</b> - 起步完成後的穩定跑步狀態，只有當按鍵放開才會結束，從 <code class="inline">READY_TO_RUN -> RUN</code> 也是得等前面動畫播完，所以也需要 exit time = 1。</li>
+                            <li><b>RUN TO IDLE</b> - 另一個小細節，當小騎士停下來時會有一段煞車畫面，<code class="inline">RUN -> RUN TO IDLE</code> 可以透過新增一個 animator variable - run 來判定，可以透過 moveInput.x 或是 force.x 來判定:</li>
+                            <pre><code class="c#">
+if ( force.x != 0 )
+{
+    anime.SetBool("run", true);
+} 
+else
+{
+    anime.SetBool("run", false);    
+}
+                        </code></pre>
+                            <div>
+                                另外煞車有時候是為了直接轉向，因此出去的路有兩條，一般情況下等 exit time 結束直接進 IDLE，但如果 turn = true 就直接進 TURN 狀態。
+                            </div>
+                    </ul>
+                    <p class="note">Animation 最後一幀通常不會停留，可以透過重複最後一幀的方式來讓畫面顯示。</p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Particle System</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        到了這個階段小騎士的移動已經很不錯了，但仔細看原版的畫面會發現移動時地上會揚起煙塵，真是很棒的細節呢，為了達成這個效果，我們需要替小騎士新增一個子物件 - Particle System 也就是顆粒特效，推薦可以看這部<a href="https://www.youtube.com/watch?v=52hW2y6D8sw&list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1&index=22">影片</a>來認識基本設定，我簡單說明一下重點設定:
+                        <ul class="content-ul">
+                            <li><b>材質</b> - 預設的粒子系統是白色方格，我們要替換成雲霧的材質，首先創造一個 Material，然後在 inspect 視窗中設定 Diffuse，我是從 <a href="https://drive.google.com/drive/folders/1kyg661EDV45McoJQNmwbIXqYgniN48PU"> hollow knight sprite </a> 中拿一個像是雲霧的 sprite (檔名為 wp_fog):</li>
+                            <img class="content-img" src="../../image/hw-move-fog.png" alt="diffuse setting">
+
+                            <li><b>位置</b> - 雲霧是在腳色後方產生的，粒子系統的 x 軸得要偏移向後，但由於腳色會左右移動，因此得設定兩組數據，由於是子物件，偏移量是相對於小騎士，腳色向右時: (-0.27f, -0.796f) 跟腳色向左時: (0.27f, -0.796f)。</li>
+                            <li><b>數量</b> - 注意 Max Prticles 這個參數不能太小，如果你發現產生的煙塵斷斷續續的話就加大這個數值。</li>
+                            <li><b>受力</b> - 由於煙塵產生後是向上漂移的，可以打開 Force over Lifetime，加上一個 y 軸向上的力量。</li>
+                            <li><b>大小/顏色</b> - 觀察小騎士跑出去後，煙塵是會慢慢縮小且變透明，因此可以額外再設定 Color and size over Lifetime。</li>
+                            <img class="content-img" src="../../image/hw-move-ps.png" alt="particle system setting">
+                        </ul>
+                    </p>
+                    <p class="content-paragraph">
+                        接下來根據腳色移動情況來執行粒子系統，將本來的 Player 腳本加上一個外部變數把剛剛設定好的 Particle System 物件放進來，然後修改一下 FixedUpdate function 來根據腳色朝向哪邊調整粒子系統的位置，除了剛剛提到的要放在腳色後方以外，粒子系統會有一個噴射方向，得旋轉他不然會變成煙往前噴，最後就是在奔跑時才啟動。
+                    </p>
+
+                    <pre><code class="c#">
+
+// [SerializeField] ParticleSystem dustEffect;                        
+
+if ( moveInput.x &gt; 0 ) // move right
+{
+    force.x = MOVEFORCE;
+    dustEffect.transform.localPosition = particlePosRight; // (-0.27f, -0.796f, 0f)
+    dustEffect.transform.localRotation = Quaternion.Euler(0f, 0f, 150f);
+    sr.flipX = true;
+}
+else if ( moveInput.x &lt; 0 ) // move left
+{
+    force.x = -MOVEFORCE;
+    dustEffect.transform.localPosition = particlePosLeft; // (0.27f, -0.796f, 0f)
+    dustEffect.transform.localRotation = Quaternion.Euler(0f, 0f, 30f);
+    sr.flipX = false;
+}
+
+if ( force.x != 0 )
+{
+    dustEffect.Play();
+    anime.SetBool("run", true);
+} 
+else
+{
+    dustEffect.Stop();
+    anime.SetBool("run", false);    
+}
+                </code></pre>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">成品</h1>
+                    <hr>
+                    <iframe class="content-iframe" src="https://www.youtube.com/embed/7wy3MVRxu8w?si=IBW1ZdZHqDf77TmW" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p class="content-paragraph">
+                        以上就是本次的完成品ヽ(・×・´)ゞ 如果單就移動來說，我覺得有 75% 的完成度，比較大的瑕疵是粒子系統使用的 sprite 不太符合原本的紋理，以及小騎士目前的移動動畫比較像快走，感覺不該產生那麼多煙塵XD。
+
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        這次學習了 InputSystem、Animation Transition、Particle System 等重要的遊戲工具來實現小騎士的水平移動，但這樣其實還不算完成，目前遊戲的鏡頭都是固定不變的，還得加上運鏡來讓畫面會隨著小騎士移動而有所改變，因此我們的下一篇文章就來介紹鏡頭系統吧。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area" class="sidebar">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div id="contact-info">
+            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
+            <a class="github" href="https://github.com/PersonalWorkingSpace">
+                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
+                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+                    </svg>
+                <span>Github</span>
+            </a>
+            <span>隨筆紀錄我的學習過程</span>
+        </div>
+        <p class="cc">
+            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
+        </p>
+        <p class="cc">
+            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
+            please include the original link.
+        </p>
+    </footer>
+</body>
+
+</html>

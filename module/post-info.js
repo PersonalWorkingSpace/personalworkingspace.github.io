@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/move.html",
+        "created": "2025-12-20T00:00:00+08:00",
+        "title": "空洞騎士重現 - 移動",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-move-cover.png",
+        "description": "這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、腳色的物理數值、以及鏡頭等等..."
+    },
+    {
         "file": "category/Hollow-Knight/idle.html",
         "created": "2025-11-23T00:00:00+08:00",
         "title": "空洞騎士重現 - IDLE Scene",
@@ -76,6 +85,7 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "move",
             "idle",
             "sprite",
             "begin"
@@ -83,7 +93,8 @@ const Categories = {
         "postID": [
             0,
             1,
-            2
+            2,
+            3
         ]
     },
     "Web-Design": {
@@ -95,11 +106,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            3,
             4,
             5,
             6,
-            7
+            7,
+            8
         ]
     }
 };
@@ -107,6 +118,7 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "move",
             "idle",
             "sprite",
             "begin"
@@ -114,7 +126,8 @@ const Tags = {
         "postID": [
             0,
             1,
-            2
+            2,
+            3
         ]
     },
     "初學筆記": {
@@ -125,10 +138,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            3,
-            5,
+            4,
             6,
-            7
+            7,
+            8
         ]
     },
     "CSS": {
@@ -137,8 +150,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            3,
-            6
+            4,
+            7
         ]
     },
     "網頁部署": {
@@ -146,7 +159,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            4
+            5
         ]
     },
     "Github": {
@@ -154,7 +167,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            4
+            5
         ]
     },
     "Javascript": {
@@ -162,7 +175,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            5
+            6
         ]
     },
     "HTML": {
@@ -170,7 +183,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            7
+            8
         ]
     }
 };

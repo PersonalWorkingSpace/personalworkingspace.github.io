@@ -70,7 +70,7 @@
 
                 <section class="L1-section">
                     <div id="cover-container">
-                        <img id="cover" src="../../image/hw-idle-cover.png" alt="空洞騎士-sprite">
+                        <img id="cover" src="../../image/hw-idle-cover.png" alt="空洞騎士">
                     </div>
                     <p class="content-paragraph">
                         在經歷了超棒的絲綢之歌ヽ(✿ﾟ▽ﾟ)ノ後，是時候繼續我們的學習之旅了~~~ 第一次重現就先忽略腳色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了腳色/環境的動畫外，那多層次的堆疊所達成的景深或許才是關鍵呢，此次重現就讓我們試圖捕捉其皮毛吧 >
@@ -148,7 +148,7 @@ public class wind : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        RB = transform.GetComponent<Rigidbody2D>();
+        RB = transform.GetComponent&lt;Rigidbody2D&gt;();
     }
 
     void FixedUpdate()

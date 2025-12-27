@@ -505,6 +505,7 @@ code[class=inline] {
 
 code[class=prop] {
     font-family: Consolas;
+    text-wrap: wrap;
     font-size: var(--default-font-size);
     border-radius: var(--symbol-border-radius);
     background-color: var(--prop-background);
