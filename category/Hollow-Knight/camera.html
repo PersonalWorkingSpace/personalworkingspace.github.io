@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>空洞騎士重現 - 運鏡</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，雖然在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光...">
+    <meta name="keywords" content="GameMake">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area" class="sidebar">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <line x1="9" y1="10" x2="20" y2="10"></line>
+                        <line x1="9" y1="16" x2="20" y2="16"></line>
+                        <line x1="9" y1="22" x2="20" y2="22"></line>
+                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
+                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
+                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
+                    </svg> In this article
+                </h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">空洞騎士重現 - 運鏡</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-01-01T00:00:00+08:00" itemprop="datePublished"> Jan 01, 2026 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="../../image/hw-camera-cover.png" alt="空洞騎士">
+                    </div>
+                    <p class="content-paragraph">
+                        今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，雖然在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光大，現在就來學習空洞騎士中最基本的運鏡吧。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">重現場景</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        <iframe class="content-iframe" src="https://www.youtube.com/embed/V2Czncxa0X8?si=y0g0iq7Py7nR0B3K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>這次要重現的場景跟<a href="move.html">上一篇</a>一樣是宮殿廣場，我們可以直接沿用搭好場景，但由於這次鏡頭會移動，所以得考慮到 <b>parallex scrolling</b>，要了解這個現象可以仔細看影片中背景燈柱與前面橋墩的尖刺，會發現隨著鏡頭移動，兩者間的距離會改變甚至重疊，這點符合現實世界中的遠景動得比較慢。
+                    </p>
+                    <p class="content-paragraph">
+                        這算是使用 perspective camera 的好處，但沒有設定好適當的 z 軸深度，當鏡頭動起來後就會發現某些東西移動不太同步，這通常是因為我們把東西放太遠然後直接把尺寸放大彌補，靜止時看不出來，但一動起來就很突兀。遇到時再調整就好，至於本次要重現的運鏡，包含兩種: 水平移動、仰望與俯視。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Camera Controller</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        在介紹要怎樣控制鏡頭前，我強烈推薦可以去看這個<a href="https://www.youtube.com/watch?v=9dzBrLUIF8g&list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1&index=19">介紹影片</a>，內容不僅介紹了 unity 的運鏡系統 (Cinemachine) 而且還是以空洞騎士為主題，真的太合適了XD，不過由於目前我們的場景還算是半開放式，還用不到那麼強大的功能，因此本篇會先用土法煉鋼的方式來處理運鏡!!!
+                    </p>
+                    <p class="content-paragraph">
+                        首先從目標影片開頭會發現在角色移動之前，鏡頭就已經展現了影響力，當角色面向左邊或右邊時鏡頭會稍微偏移，以下圖為例會發現當面朝左邊時其實畫面正中央是落在小騎士左側，這讓畫面的左側透漏更多資訊，就彷彿玩家真的向左邊眺望，反之面朝右會讓右側佔有更多空間。
+                    </p>
+                    <img class="content-img" src="../../image/hw-camera-left-view.png" alt="camera when facing left">
+                    <p class="content-paragraph">
+                        為了辦到這點，先替 camera 新增一個 script，內容如下，先新增一個 Player 物件變數，然後從 Inspect 上將 Player 物件拖進來，讓我們能夠直接讀取到 Player 座標以及狀態，此外在 Player class 中加上一個 public 變數 <code class="inline">IsFacingRight</code> 來方便判定角色面向哪邊，另外可以注意採用這邊採用的是 <code class="inline">LateUpdate</code>，這個函數是在
+                        Update 呼叫完後才會執行，也就是確保 Camera 位置的更新是在 Player 任何行動之後:
+                    </p>
+                    <pre><code class="c#">
+[SerializeField] Player player;
+[SerializeField] float SmoothTrans = 5f;
+[SerializeField] float BiasX = 0.75f;
+[SerializeField] float BiasY = 1f;
+
+void LateUpdate()
+{
+    Vector3 camPos = transform.position;
+
+    if  ( player.IsFacingRight ) // face to right
+    {
+        camPos.x = player.transform.position.x + BiasX;
+    }
+    else // face to left
+    {
+        camPos.x = player.transform.position.x - BiasX;
+    }
+
+    camPos.y = player.transform.position.y + BiasY;
+
+    transform.position = Vector3.Lerp(
+        transform.position,
+        camPos,
+        SmoothTrans * Time.deltaTime
+    );
+}
+                    </code></pre>
+                    <p class="content-paragraph">
+                        Bias 在 x 軸就根據面向哪邊來調整，至於 y 軸就預設偏高，因為小騎士很矮XD，此外這裡使用 <code class="inline">Vector3.Lerp</code> 來線性內插，此函數的功能等於 <code class="inline">V = A + (B − A) × t</code>，讓鏡頭的座標慢慢朝預設的位置移動，避免瞬間跳過去造成畫面斷裂感，可以調整 <code class="inline">SmoothTrans</code>                        來感覺一下效果。
+                    </p>
+                    <img class="content-img" src="../../image/hw-camera-run-view.png" alt="camera when running">
+                    <p class="content-paragraph">
+                        同時可以講一下空洞騎士運鏡的另一特點，就是當小騎士在移動時，它的位置會落在畫面正中央，象徵他已經追上鏡頭了，同時這會讓移動的動畫更加清楚，要達成這點其實稍微調整一下 <code class="inline">SmoothTrans</code> 即可達成。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">重直視角控制</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        我蠻喜歡的一個細節是當按下上下時，小騎士會有對應的動作，然後過一會鏡頭會移動!!! 讓玩家感覺角色的視野是同步的，要辦到這點可以結合上次學到的 Input System 跟 Animation State Machine，先擴增 animator 的狀態，新增 lookdown、lookup 分別會用到社群提供的 <a href="https://drive.google.com/drive/folders/1Yt6ywcpnSoPVw4gziQwn-ItB8Oe4uHsW">013.LookDown</a>、
+                        <a href="https://drive.google.com/drive/folders/1e7RaGznmFBOu_SOurW0oQUTChoKyx0uV">014.LookUp</a> sprites。
+                    </p>
+                    <img class="content-img" src="../../image/hw-camera-animator.png" alt="animator">
+                    <p class="content-paragraph">
+                        至於 lookup-back、lookdown-back 則是反向播放的動畫，為了是當玩家放開上下鍵時，讓小騎士把頭轉為原位，至於要如何反向播放可以參考:
+                        <ul class="content-ul">
+                            <li><b>Speed</b> - 預設通常是 1，修改成負數就會反向播放，設定成 -2 是希望能快點把頭轉回來，我覺得這是 team cherry 設計巧思，當玩家要檢視上下環境時，通常是為了謹慎行事，所以會比較有耐心等動畫播完，但確認完後，就會立刻行動，這時候慢慢等動畫就有點惱人。</li>
+                            <li><b>Cycle Offset</b> - 0~1 的浮點數，這是控制動畫要從哪一幀播放，因為是要反著播，所以設 1 -> 最後一幀。</li>
+                        </ul>
+                    </p>
+                    <img class="content-img" src="../../image/hw-camera-lookup-back.png" alt="lookup-back animation setting">
+                    <p class="content-paragraph">
+                        為了讓 Player 能接收到向上與向下看的動作，這邊設定了新的 Action - Look，清除掉本來無關的 Binding 並新增 "Up Down" 加上 Interaction - Hold，這是為了透過 hold time 來創造出時間差，讓小騎士先做出動作，過一會才讓鏡頭移動，之後就是新增鍵盤偵測 up、down。
+                    </p>
+                    <p class="note">hold 設定參數的 press point 用於輸入要按壓到甚麼程度才算觸發，對於搖桿等輸入裝置比較有意義，hold time 則是觸發多久才會執行。</p>
+                    <img class="content-img" src="../../image/hw-camera-inputsystem.png" alt="input system">
+                    <p class="content-paragraph">
+                        輸入設定好了之後就針對 Player script 撰寫相關的 event handler，<code class="inline">started</code> 是當 press 發生後立刻觸發，而 <code class="inline">performed</code> 則是 hold time 過了才觸發，然後兩者會對不同的變數賦值，lookInput 可以用在 Update:
+                    </p>
+                    <pre><code class="c#">
+// Player.cs
+void Awake() 
+{
+    ...
+    controls.Player.Look.started += ctx => lookInput = ctx.ReadValue&lt;Vector2&gt;();
+    controls.Player.Look.performed += ctx => ViewInput = ctx.ReadValue&lt;Vector2&gt;();
+    controls.Player.Look.canceled += ctx => { lookInput = Vector2.zero; ViewInput = Vector2.zero; };
+}
+
+void Update()
+{
+    ...
+    if ( lookInput.y &gt; 0 )
+    {
+        anime.SetBool("lookup", true);
+    }
+    else if ( lookInput.y &lt; 0 )
+    {
+        anime.SetBool("lookdown", true);
+    }
+    else
+    {
+        anime.SetBool( "lookup", false);
+        anime.SetBool( "lookdown", false);
+    }
+    ...
+}
+                    </code></pre>
+                    <p class="content-paragraph">
+                        <code class="inline">lookInput</code> 的數值可以用來更新 animator 的參數 - lookup, lookdown，這些參數就可以用來設定甚麼時候從 IDLE 狀態切到 LOOKUP / LOOkDOWN 以及切回，至於 <code class="inline">ViewInput</code> public 變數則是用來設定 Camera 的 Y 軸偏移，且只會在 hold time 之後才會更新數值:
+                    </p>
+                    <pre><code class="c#">
+// CameraPositionController.cs
+void LateUpdate() 
+{
+    ...
+    float delta = 0f;
+    if ( player.ViewInput.y &gt; 0 )
+    {
+        delta = ViewUpY; // 3
+    }
+    else if ( player.ViewInput.y &lt; 0 )
+    {
+        delta = -ViewDownY; // 5
+    }
+
+    camPos.y = player.transform.position.y + BiasY + delta;
+    ...
+}
+                    </code></pre>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">成品</h1>
+                    <hr>
+                    <iframe class="content-iframe" src="https://www.youtube.com/embed/f_3RBDMXnN4?si=wS_VaOX0d7GXN7k3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p class="content-paragraph">
+                        這是最終成品，成功完成了水平方向的運鏡並加上仰望與俯視的視角，開發到這個地步後就會注意到一些程式上的 BUG，像是影片中快速左右切換再奔跑，有一小段時間小騎士是直接水平滑行，推測是前面的動畫還沒播完，就直接開始移位了，看起來還有很多地方要注意呢!! 順邊說一些其他需要注意的地方:
+                        <ul class="content-ul">
+                            <li><b>清晰的動畫</b> - 空洞騎士中，即使小騎士在奔跑中，他本身的動作依舊是清晰的，不過在本次重現過程，會感覺當鏡頭移動時，角色動畫也變得模糊，可以試著降低動畫速度來改善。</li>
+                            <li><b>Frame rate</b> - 如果測試過程有發現鏡頭移動時，畫面會出現短暫水平分割線，這通常是因為 GPU 更新畫面速度比螢幕還要快導致的，可以檢查右上角的 Stats 看看 frame rate (FPS) 是不是超過螢幕上限，如果超過的話可以點選左上角的畫質設定，把 VSync 打開，這樣會確保畫面更新得等到螢幕顯示完成，另外也可以在任意物件中進行底下強制設定 FPS / VSync:
+                                <pre><code class="c#">
+void Awake() 
+{
+    QualitySettings.vSyncCount = 60;
+    Application.targetFrameRate = 1;
+}
+                                </code></pre>
+                            </li>
+                        </ul>
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        恭喜完成了水平向的小騎士控制了ヽ(●´∀`●)ﾉ，接下來要朝進階課題 - 垂直運動邁進，也就是空洞騎士中最重要的跳躍，包含短跳、長跳、二段跳、落下，以及垂直軸的場景構圖等等。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area" class="sidebar">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div id="contact-info">
+            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
+            <a class="github" href="https://github.com/PersonalWorkingSpace">
+                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
+                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+                    </svg>
+                <span>Github</span>
+            </a>
+            <span>隨筆紀錄我的學習過程</span>
+        </div>
+        <p class="cc">
+            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
+        </p>
+        <p class="cc">
+            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
+            please include the original link.
+        </p>
+    </footer>
+</body>
+
+</html>
