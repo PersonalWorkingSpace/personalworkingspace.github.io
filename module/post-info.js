@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/camera.html",
+        "created": "2026-01-01T00:00:00+08:00",
+        "title": "空洞騎士重現 - 運鏡",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-camera-cover.png",
+        "description": "今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光..."
+    },
+    {
         "file": "category/Hollow-Knight/move.html",
         "created": "2025-12-20T00:00:00+08:00",
         "title": "空洞騎士重現 - 移動",
@@ -85,6 +94,7 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "camera",
             "move",
             "idle",
             "sprite",
@@ -94,7 +104,8 @@ const Categories = {
             0,
             1,
             2,
-            3
+            3,
+            4
         ]
     },
     "Web-Design": {
@@ -106,11 +117,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            4,
             5,
             6,
             7,
-            8
+            8,
+            9
         ]
     }
 };
@@ -118,6 +129,7 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "camera",
             "move",
             "idle",
             "sprite",
@@ -127,7 +139,8 @@ const Tags = {
             0,
             1,
             2,
-            3
+            3,
+            4
         ]
     },
     "初學筆記": {
@@ -138,10 +151,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            4,
-            6,
+            5,
             7,
-            8
+            8,
+            9
         ]
     },
     "CSS": {
@@ -150,8 +163,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            4,
-            7
+            5,
+            8
         ]
     },
     "網頁部署": {
@@ -159,7 +172,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            5
+            6
         ]
     },
     "Github": {
@@ -167,7 +180,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            5
+            6
         ]
     },
     "Javascript": {
@@ -175,7 +188,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            6
+            7
         ]
     },
     "HTML": {
@@ -183,7 +196,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            8
+            9
         ]
     }
 };
