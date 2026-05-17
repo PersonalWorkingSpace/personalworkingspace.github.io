@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/jump.html",
+        "created": "2026-05-10T00:00:00+08:00",
+        "title": "空洞騎士重現 - Jump",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-jump-cover.png",
+        "description": "Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍..."
+    },
+    {
         "file": "category/Hollow-Knight/camera.html",
         "created": "2026-01-01T00:00:00+08:00",
         "title": "空洞騎士重現 - 運鏡",
@@ -15,7 +24,7 @@ const Posts = [
         "category": "Hollow-Knight",
         "tag": "GameMake",
         "thumbnail": "../../image/hw-move-cover.png",
-        "description": "這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、腳色的物理數值、以及鏡頭等等..."
+        "description": "這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、角色的物理數值、以及鏡頭等等..."
     },
     {
         "file": "category/Hollow-Knight/idle.html",
@@ -24,7 +33,7 @@ const Posts = [
         "category": "Hollow-Knight",
         "tag": "GameMake",
         "thumbnail": "../../image/hw-idle-cover.png",
-        "description": "第一次重現就先忽略腳色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了腳色/環境的動畫外..."
+        "description": "第一次重現就先忽略角色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了角色/環境的動畫外..."
     },
     {
         "file": "category/Hollow-Knight/sprite.html",
@@ -94,6 +103,7 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "jump",
             "camera",
             "move",
             "idle",
@@ -105,7 +115,8 @@ const Categories = {
             1,
             2,
             3,
-            4
+            4,
+            5
         ]
     },
     "Web-Design": {
@@ -117,11 +128,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            5,
             6,
             7,
             8,
-            9
+            9,
+            10
         ]
     }
 };
@@ -129,6 +140,7 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "jump",
             "camera",
             "move",
             "idle",
@@ -140,7 +152,8 @@ const Tags = {
             1,
             2,
             3,
-            4
+            4,
+            5
         ]
     },
     "初學筆記": {
@@ -151,10 +164,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            5,
-            7,
+            6,
             8,
-            9
+            9,
+            10
         ]
     },
     "CSS": {
@@ -163,8 +176,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            5,
-            8
+            6,
+            9
         ]
     },
     "網頁部署": {
@@ -172,7 +185,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            6
+            7
         ]
     },
     "Github": {
@@ -180,7 +193,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            6
+            7
         ]
     },
     "Javascript": {
@@ -188,7 +201,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            7
+            8
         ]
     },
     "HTML": {
@@ -196,7 +209,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            9
+            10
         ]
     }
 };

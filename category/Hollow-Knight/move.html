@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、腳色的物理數值、以及鏡頭等等...">
+    <meta name="description" content="這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、角色的物理數值、以及鏡頭等等...">
     <meta name="keywords" content="GameMake">
     <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
     <link href="../../style/variables.css" rel="stylesheet" type="text/css">
@@ -73,7 +73,7 @@
                         <img id="cover" src="../../image/hw-move-cover.png" alt="空洞騎士">
                     </div>
                     <p class="content-paragraph">
-                        上一篇學會了空洞騎士中的基本場景建置後，這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、腳色的物理數值、以及鏡頭等等，內容有點多，所以這篇文章會專注介紹腳色的水平移動處理，至於鏡頭以及比較複雜的跳躍就等後續介紹了~~~</p>
+                        上一篇學會了空洞騎士中的基本場景建置後，這回來讓我們的小騎士動起來吧，一旦玩家按下的方向鍵，許多事情會一起發生，包含動畫、粒子特效、角色的物理數值、以及鏡頭等等，內容有點多，所以這篇文章會專注介紹角色的水平移動處理，至於鏡頭以及比較複雜的跳躍就等後續介紹了~~~</p>
                 </section>
 
                 <section class="L1-section">
@@ -111,12 +111,12 @@
                                     <li><b>Linear Damping</b> - 線性阻力係數，當物體移動時會出現一個反方向的阻力，就是這個力量決定了物體會花多久才停下來，推薦觀看這部<a href="https://www.youtube.com/watch?v=KKGdDBFcu0Q&list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1&index=13">影片</a>介紹關於阻力與慣性對遊戲操作的影響，在空洞騎士中，小騎士的水平移動幾乎是立即反應的，按下按鈕就前進、放開按鈕就停下，立即前進可以透過加大施力達成，至於要立即停下來就得透過這個
                                         linear damping 了。</li>
                                     <li><b>Angular Damping & Rotation Z</b> - 由於小騎士並不會有旋轉方面的特效與移動，所以關於角度的設定都是關閉的 => Freeze Rotation Z。</li>
-                                    <li><b>Gravity Scale</b> - Unity 提供操控重力的大小，這很有用，尤其當我們把 linear damping 調大後，導致預設的重力大小不足以讓腳色快速落下，因此我們調大 20 倍，主要會在之後的跳躍與落下派上用場。</li>
+                                    <li><b>Gravity Scale</b> - Unity 提供操控重力的大小，這很有用，尤其當我們把 linear damping 調大後，導致預設的重力大小不足以讓角色快速落下，因此我們調大 20 倍，主要會在之後的跳躍與落下派上用場。</li>
                                 </ul>
                             </li>
                             <img class="content-img" src="../../image/hw-move-rigidbody2d.png" alt="rigidbody2d">
                             <li>
-                                <b>Box Collider 2D</b> - 賦予物件碰撞的功能，也就是常聽到的碰撞箱，點選 edit collider 後會出現下圖這種框線，預設通常會很準確框住小騎士，但這邊會把下框線稍微拉高一點，這樣才不會出現腳色懸空的問題，此外要讓腳色與地板產生碰撞，每塊地板都得加上 box collider 才行。
+                                <b>Box Collider 2D</b> - 賦予物件碰撞的功能，也就是常聽到的碰撞箱，點選 edit collider 後會出現下圖這種框線，預設通常會很準確框住小騎士，但這邊會把下框線稍微拉高一點，這樣才不會出現角色懸空的問題，此外要讓角色與地板產生碰撞，每塊地板都得加上 box collider 才行。
                             </li>
                             <img class="content-img" src="../../image/hw-move-boxcollider.png" alt="box collider 2d">
                         </ul>
@@ -203,7 +203,7 @@ void FixedUpdate()
                         <li><b>IDLE</b> - 這是前一篇文章用到的小騎士靜止狀態身體抖動的畫面。</li>
                         <li><b>TURN</b> - 這是短暫狀態，當小騎士改變移動方向時，會插入兩幀的轉身畫面，<code class="inline">IDLE -> TURN</code> 的觸發條件如下，我們希望立刻進行轉身，所以把 exit time 關閉，同時是當一個 animotr variable - turn 設為 true 時才會觸發:</li>
                         <img class="content-img" src="../../image/hw-move-idle2turn.png" alt="animator idle to turn">
-                        <div style="margin-top:1rem">turn 只有當按鈕方向與本來腳色面對的方向不一樣時才會設為 true，且一段時間後就該改回 false，我們可以用 async task 來達成，另外為了避免連續觸發，這邊也確保 turn 還是 true 時不會重複執行:</div>
+                        <div style="margin-top:1rem">turn 只有當按鈕方向與本來角色面對的方向不一樣時才會設為 true，且一段時間後就該改回 false，我們可以用 async task 來達成，另外為了避免連續觸發，這邊也確保 turn 還是 true 時不會重複執行:</div>
                         <pre><code class="c#">
 using System.Threading.Tasks;
 // sr = GetComponent&lt;SpriteRenderer&gt;();
@@ -259,7 +259,7 @@ else
                             <li><b>材質</b> - 預設的粒子系統是白色方格，我們要替換成雲霧的材質，首先創造一個 Material，然後在 inspect 視窗中設定 Diffuse，我是從 <a href="https://drive.google.com/drive/folders/1kyg661EDV45McoJQNmwbIXqYgniN48PU"> hollow knight sprite </a> 中拿一個像是雲霧的 sprite (檔名為 wp_fog):</li>
                             <img class="content-img" src="../../image/hw-move-fog.png" alt="diffuse setting">
 
-                            <li><b>位置</b> - 雲霧是在腳色後方產生的，粒子系統的 x 軸得要偏移向後，但由於腳色會左右移動，因此得設定兩組數據，由於是子物件，偏移量是相對於小騎士，腳色向右時: (-0.27f, -0.796f) 跟腳色向左時: (0.27f, -0.796f)。</li>
+                            <li><b>位置</b> - 雲霧是在角色後方產生的，粒子系統的 x 軸得要偏移向後，但由於角色會左右移動，因此得設定兩組數據，由於是子物件，偏移量是相對於小騎士，角色向右時: (-0.27f, -0.796f) 跟角色向左時: (0.27f, -0.796f)。</li>
                             <li><b>數量</b> - 注意 Max Prticles 這個參數不能太小，如果你發現產生的煙塵斷斷續續的話就加大這個數值。</li>
                             <li><b>受力</b> - 由於煙塵產生後是向上漂移的，可以打開 Force over Lifetime，加上一個 y 軸向上的力量。</li>
                             <li><b>大小/顏色</b> - 觀察小騎士跑出去後，煙塵是會慢慢縮小且變透明，因此可以額外再設定 Color and size over Lifetime。</li>
@@ -267,7 +267,7 @@ else
                         </ul>
                     </p>
                     <p class="content-paragraph">
-                        接下來根據腳色移動情況來執行粒子系統，將本來的 Player 腳本加上一個外部變數把剛剛設定好的 Particle System 物件放進來，然後修改一下 FixedUpdate function 來根據腳色朝向哪邊調整粒子系統的位置，除了剛剛提到的要放在腳色後方以外，粒子系統會有一個噴射方向，得旋轉他不然會變成煙往前噴，最後就是在奔跑時才啟動。
+                        接下來根據角色移動情況來執行粒子系統，將本來的 Player 腳本加上一個外部變數把剛剛設定好的 Particle System 物件放進來，然後修改一下 FixedUpdate function 來根據角色朝向哪邊調整粒子系統的位置，除了剛剛提到的要放在角色後方以外，粒子系統會有一個噴射方向，得旋轉他不然會變成煙往前噴，最後就是在奔跑時才啟動。
                     </p>
 
                     <pre><code class="c#">

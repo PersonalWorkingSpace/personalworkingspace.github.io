@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>空洞騎士重現 - Jump</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍...">
+    <meta name="keywords" content="GameMake">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area" class="sidebar">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <line x1="9" y1="10" x2="20" y2="10"></line>
+                        <line x1="9" y1="16" x2="20" y2="16"></line>
+                        <line x1="9" y1="22" x2="20" y2="22"></line>
+                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
+                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
+                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
+                    </svg> In this article
+                </h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">空洞騎士重現 - Jump</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-05-10T00:00:00+08:00" itemprop="datePublished"> May 10, 2026 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="../../image/hw-jump-cover.png" alt="空洞騎士">
+                    </div>
+                    <p class="content-paragraph">
+                        Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍，不過我發現了一些開發上的重大問題 !! 文末說明，因此本次的內容會少一點，封面中的二跳也不會出現在本次實作 &gt;&lt;。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">重現場景</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        <iframe class="content-iframe" src="https://www.youtube.com/embed/9u27L1I6BhE?si=Mk24sPbzxqrvfWqj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                      這次要重現的場景可說是空洞騎士中最複雜、使用最多 sprites 的區域 - 蒼綠之徑，不論是背景還是前景的細節都多到爆，但就跟之前的場景一樣是靠少少幾個 sprite 堆出來的:
+                        
+                        <ul class="content-ul">
+                            <li>
+                                <b><a href="https://drive.google.com/drive/folders/1kqTElD6h8Sy4imJQS85-cVXZZQZ4Khin">蒼綠之鏡場景</a></b> - 前景背景 sprite 都是取自這邊，我主要用了 0126 ~ 0133 圖檔來堆疊出那一堆的植物景色。
+                            </li>
+                            <li>
+                                <b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">小騎士 Move 動畫</a></b> - 會使用 003.Airborne, 011.Land, 061.Fall，部分畫面有紅框框，可以參考 <a href="sprite.html">Day2</a> 去除，其中 Airborne 前半段是起跳的動作，後半段則是空中墜落的畫面，另外有需要二跳可以用 098.Double Jump, 100.Double Jump Wings 2。
+                            </li>
+                        </ul>
+                        
+                        另外要特別提那湖面<a href="https://drive.google.com/drive/folders/1Tp-ejdaey2Tbg-qP4qSDL5kO5GWLzM12">波光粼粼</a>原來是一段細長的白點 (下圖)，用 30 個 sprite 做出來的動畫，這個畫面有太多可以學的了，也許下次再好好的重現畫面吧，這次只做個大概，把精力專注在小騎士的跳躍 @@。
+                    </p>
+                    <img class="content-img" style="background: #000;" src="../../image/hw-jump-acid.png" alt="acid">
+                </section>
+                
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Dynamic Jump</h1>
+                    <hr>
+                    <br>
+                    <img class="content-img" src="../../image/hw-jump-height.png" alt="jump hight difference">
+                    <p class="content-paragraph">
+                        空洞騎士中的跳躍如上圖所示是有程度差異的，跳躍鍵按得越久跳得越高，短跳讓小騎士不會撞到頭上的尖刺、長跳讓小騎士能飛越峽谷，提供玩家更多可控性，要達成這種效果:
+                        <ul class="content-ul">
+                            <li>
+                                <b>Jump Input System</b> - 跟之前一樣替我們 Player 的輸入添加 Jump 按鍵，這裡用跟遊戲預設的一樣 z 按鍵。
+                            </li>
+                            <img class="content-img" style="background: #000;" src="../../image/hw-jump-input-system.png" alt="jump input system">
+                            <li>
+                                <b>跳躍效果</b> - 只要玩家按下跳躍鍵就將按鍵狀態存到 <code class="inline">jumpInput</code>，並在固定更新的時間去檢查只要玩家持續按著跳躍鍵就施加向上的力，就可以做出 dynamic jump height 的效果，但會導致小騎士變成飛天火箭 🚀，所以要設一個上限，只要超過施力的次數就停止。
+                            </li>
+                            <pre><code class="c#">
+// Player.cs
+void Awake() 
+{
+    ...
+    jumpCou = 0;
+    jumpInput = 0f;
+    controls.Player.Jump.performed += ctx =&gt; jumpInput = ctx.ReadValue&lt;float&gt;();
+    controls.Player.Jump.canceled += ctx =&gt; jumpInput = 0f;
+}
+
+ void FixedUpdate()
+{
+    Vector2 force = Vector2.zero;
+    
+    ...
+    if ( jumpInput &gt; 0 && jumpCou &lt; JUMPLIMIT )
+    {
+        force.y = JUMPFORCE;
+        jumpCou += 1;
+    }
+    else
+    {
+        force.y = 0;
+        jumpCou = 0;
+    }
+
+    ...
+}
+                            </code></pre>
+                            <li>
+                                <b>動畫效果</b> - 如下圖，前面提到的 jump 的 sprite 是使用 003.Airborne 前 8 張，動作其實沒到很複雜，是配合起跳後的地面特效才顯得很多變，至於 Animation 的轉換會變得很複雜，因為小騎士可以從各種狀態轉換成跳躍 - 原地起跳、奔跑起跳等等，完整狀態機等結合 Falling & Land 再一起展示 ~~~
+                            </li>
+                            <img class="content-img" style="background: #000;" src="../../image/hw-jump-sprite.png" alt="jump sprites">
+                        </ul>
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Falling & Land</h1>
+                    <hr>
+                    <br>
+                    <img class="content-img" src="../../image/hw-jump-animator.png" alt="animator">
+                    <p class="content-paragraph">
+                        起跳後會有兩個額外的動作需要考慮，當小騎士下墜後動作會切成 Falling，以及最後接觸地面時轉換成 Land，把這些都考慮進去後就會得到上面那張蜘蛛網 XD，不過實際上只多了四種轉換而已:
+                    </p>
+                    <p class="content-paragraph">
+                        <ul class="content-ul">
+                            
+                            <li><b>水平移動狀態 -> jump</b> - 由於小騎士可以在各種情況下起跳，就直接把以前創建的水平移動狀態都拉了一條 Transition 到 jump，至於觸發狀態就是當 <code class="inline">jumpInput > 0</code>。</li>
+                            <li><b>jump -> fall</b> - 角色何時會落下呢? 可以直接檢查當下的 y 軸速度，當速度轉負就代表角色開始向下移動，而在空洞騎士中只代表下墜。</li>
+                            <pre><code class="c#">
+// Player.cs
+void Update()
+{
+    Vector2 vec = rb.linearVelocity;
+    ...
+    if ( vec.y &lt; 0 )
+    {
+        anime.SetBool("fall", true);
+    }
+    else
+    {
+        anime.SetBool("fall", false);
+    }
+    ...
+}
+                            </code></pre>
+                            <li><b>fall -> land</b> - 至於要在甚麼時候著陸，當然是等角色停止落下!! 在目前的開發中，落下要結束只可能是著陸，所以可以簡單判定當 <code class="inline">fall = false</code> 就切換為 land。</li>
+                            <li><b>land -> idle</b> - land 只是一個暫時狀態，播放完畢就可以切換為一般狀態了，不過有個有趣的細節可以分享，當小騎士從很高的地方落下，著陸後會花比較長的時間才能進行移動，要達成這個效果就需要額外設定狀態參數了~~~</li>
+                        </ul>
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Ground Detection</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        眼尖的讀者會發現其實上面的實作會有一個重大的問題 !!! 就是玩家可以進行無限次的空中跳躍，因為只要放開跳躍鍵 jumpCou 就會歸零，然後就可以再按一次跳躍了，為了確保玩家還沒拿到帝王之翼就在那邊二段跳，必須確保停止跳躍後只能等著陸後才能再次觸發。
+                    </p>
+                    <p class="content-paragraph">
+                        當然我們可以用前面提到的 y 軸速度來判定是否已經著陸了，但這在後續的應用中會比較難成立，例如攀牆會慢慢往下滑，但攀牆時應該要能跳躍才對，因此這裡要介紹的是最常見的做法: <a href="https://www.youtube.com/watch?v=P_6W-36QfLA">Raycast Ground Check</a>，連結是一個淺顯易懂的教學影片，推薦觀看。
+                    </p>
+                    <pre><code class="c#">
+// Player.cs
+bool isGrounded()
+{
+    if (Physics2D.BoxCast(transform.position, RayCastBoxSize, 0, -transform.up, RayCastDistance, GroundLayer))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void OnDrawGizmos()
+{
+    Gizmos.color = Color.red;
+    Gizmos.DrawWireCube(transform.position - transform.up * RayCastDistance, RayCastBoxSize);
+}
+                    </code></pre>
+                     <p class="content-paragraph">
+                        具體來說我們要新增上面兩個函數，前者是用來判定是否著陸、後者則是視覺化設定的參數: 
+                        <ul class="content-ul">
+                            <li>
+                                <b>transform.position</b> - 代表小騎士的位置 (x, y)。
+                            </li>
+                            <li>
+                                <b>RayCastBoxSize</b> - Vector2, 產生的 box 長寬 (w, h)。
+                            </li>
+                            <li>
+                                <b>RayCastDistance</b> - float，產生的 box 偏移量，前面有設定 <code class="inline">-transform.up</code>，代表是向下偏移。
+                            </li>
+                            <li>
+                                <b>GroundLayer</b> - LayerMask，代表要偵測的 layer。
+                            </li>
+                        </ul>
+                        底下是實際配值，如果 OnDrawGizmons 設定沒錯且 Gizmons 顯示有打開，就可以在螢幕上看到小騎士的腳邊有一個紅色框框:                        
+                    </p>
+                    <img class="content-img" src="../../image/hw-jump-raycastbox.png" alt="raycast paremeters">
+                    <img class="content-img" src="../../image/hw-jump-raycast.png" alt="raycast box">
+                    <p class="content-paragraph">
+                        到這邊就可以理解到 Raycast 就是在幫我們計算這個 box 是否與該 layer 的 collidar 有所接觸，只要有任何一個接觸到就代表小騎士著陸了，可以透過這個 isGrounded 函數來控制玩家的跳躍鍵放開後只能等著陸才能再次觸發 ~~~ 當然有了二跳之後可以允許多跳一次。
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">成品</h1>
+                    <hr>
+                    <br>
+                    <iframe class="content-iframe" src="https://www.youtube.com/embed/4ZiBFG_eLSM?si=jBJZBRyEpaI0-sJd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p class="content-paragraph">
+                        這次的最終成品有點 ... @@，我評分為 50 分不及格，除了包含二跳以外的一堆東西都沒弄，主要在動作切換上有點不順暢，且跳躍的參數控制也沒有調整好，整個跳躍與落下都不自然，這主要是由於目前的 rigidbody 設定問題以及隨著角色的動作越來越複雜，現在的程式沒有引入整體的狀態機導致程式架構凌亂，這些問題都需要修正阿 !
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        本次簡單且久違的介紹了遊戲中的跳躍機制，不過也讓我意識到目前的專案架構問題，下次就讓我好好整理一下發現的問題以及如何修正，讓這個重現專案更有樣子點。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area" class="sidebar">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div id="contact-info">
+            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
+            <a class="github" href="https://github.com/PersonalWorkingSpace">
+                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
+                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+                    </svg>
+                <span>Github</span>
+            </a>
+            <span>隨筆紀錄我的學習過程</span>
+        </div>
+        <p class="cc">
+            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
+        </p>
+        <p class="cc">
+            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
+            please include the original link.
+        </p>
+    </footer>
+</body>
+
+</html>

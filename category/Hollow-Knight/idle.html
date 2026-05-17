@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="第一次重現就先忽略腳色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了腳色/環境的動畫外...">
+    <meta name="description" content="第一次重現就先忽略角色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了角色/環境的動畫外...">
     <meta name="keywords" content="GameMake">
     <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
     <link href="../../style/variables.css" rel="stylesheet" type="text/css">
@@ -73,7 +73,7 @@
                         <img id="cover" src="../../image/hw-idle-cover.png" alt="空洞騎士">
                     </div>
                     <p class="content-paragraph">
-                        在經歷了超棒的絲綢之歌ヽ(✿ﾟ▽ﾟ)ノ後，是時候繼續我們的學習之旅了~~~ 第一次重現就先忽略腳色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了腳色/環境的動畫外，那多層次的堆疊所達成的景深或許才是關鍵呢，此次重現就讓我們試圖捕捉其皮毛吧 >
+                        在經歷了超棒的絲綢之歌ヽ(✿ﾟ▽ﾟ)ノ後，是時候繼續我們的學習之旅了~~~ 第一次重現就先忽略角色操作，單純重現空洞騎士的精髓 - 那無與倫比的美術層次，即便在沒有操作的情況下，整個場景依舊栩栩如生，除了角色/環境的動畫外，那多層次的堆疊所達成的景深或許才是關鍵呢，此次重現就讓我們試圖捕捉其皮毛吧 >
                         <。 </p>
                 </section>
 
@@ -106,11 +106,11 @@
                     <iframe class="content-iframe" src="https://www.youtube.com/embed/I8OwLFUnGbU?si=cIsYRwP9itasabwE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     <p class="content-paragraph">
-                        大概分成 5 個階層 - 底色、遠景、後方裝飾、腳色與地板、前景，細節上為了控制哪層在前面還會微調 z 軸數值，另外不曉得是不是 unity perspective 的 bug，有時候物件是離鏡頭較遠卻會蓋過前面的物件，這時得用 sorting layer order 來處理，整體 render 出來的效果如下:
+                        大概分成 5 個階層 - 底色、遠景、後方裝飾、角色與地板、前景，細節上為了控制哪層在前面還會微調 z 軸數值，另外不曉得是不是 unity perspective 的 bug，有時候物件是離鏡頭較遠卻會蓋過前面的物件，這時得用 sorting layer order 來處理，整體 render 出來的效果如下:
                     </p>
                     <img class="content-img" src="../../image/hw-idle-recreate-plain.png" alt="重現的構圖">
                     <p class="content-paragraph">
-                        感覺有個 50 分了XD，不過看上去會覺得不夠鮮明，遠景跟腳色的對比性不夠，這點會透過光影、視覺強化處理，實際排版才發現了整個裝飾只要用到幾個物件重複排列就完成了，其中最令我 shock 的是，地板只用到兩種 (下圖左二，右三用來繪製地底紋路) 搭配水平翻轉就能延伸出整片地板，銜接有瑕疵就用前景物件擋一下。
+                        感覺有個 50 分了XD，不過看上去會覺得不夠鮮明，遠景跟角色的對比性不夠，這點會透過光影、視覺強化處理，實際排版才發現了整個裝飾只要用到幾個物件重複排列就完成了，其中最令我 shock 的是，地板只用到兩種 (下圖左二，右三用來繪製地底紋路) 搭配水平翻轉就能延伸出整片地板，銜接有瑕疵就用前景物件擋一下。
                     </p>
                     <img class="content-img" src="../../image/hw-idle-floor.png" alt="地板用的 sprite">
                 </section>
@@ -231,7 +231,7 @@ public class wind : MonoBehaviour
                     <h1 class="L1-section-title">總結</h1>
                     <hr>
                     <p class="content-paragraph">
-                        經歷了這篇教學，實際操作了圖層、動畫、光影、跟 post processing，最終的達成了 70 分的成品，這讓我理解到美學是要需要鍛鍊的，尤其本文使用的圖檔還皆為 team cherry 所繪製，因此路還很遙遠呢~~~ 剩下的得靠自己琢磨了，畫面呈現的部分就先暫時告一段落，下一篇介紹腳色基礎操作。
+                        經歷了這篇教學，實際操作了圖層、動畫、光影、跟 post processing，最終的達成了 70 分的成品，這讓我理解到美學是要需要鍛鍊的，尤其本文使用的圖檔還皆為 team cherry 所繪製，因此路還很遙遠呢~~~ 剩下的得靠自己琢磨了，畫面呈現的部分就先暫時告一段落，下一篇介紹角色基礎操作。
                     </p>
                 </section>
             </article>
