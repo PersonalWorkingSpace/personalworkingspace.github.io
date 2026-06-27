@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>空洞騎士重現 - Kinematic Rigidbody</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="在上次慘痛的成品後，我開始思索開發上遇到的各種問題，其中一點便是難以控制的角色運動，所以本篇要推翻前面使用的 dynamic rigidbody (force) 改用更簡化的 kinematic rigidbody (movement)">
+    <meta name="keywords" content="GameMake">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area" class="sidebar">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <line x1="9" y1="10" x2="20" y2="10"></line>
+                        <line x1="9" y1="16" x2="20" y2="16"></line>
+                        <line x1="9" y1="22" x2="20" y2="22"></line>
+                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
+                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
+                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
+                    </svg> In this article
+                </h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">空洞騎士重現 - Kinematic Rigidbody</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-06-27T00:00:00+08:00" itemprop="datePublished"> Jun 27, 2026 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="../../image/hw-kinematic-cover.png" alt="空洞騎士">
+                    </div>
+                    <p class="content-paragraph">
+                        在上次慘痛的成品後，我開始思索開發上遇到的各種問題，其中一點便是難以控制的角色運動，由於目前使用 force 來移動角色，當改變移動方向時就需要施加反方向更大的力，在跳躍時更是明顯，為了讓角色能更快的下墜，我是把小騎士的重力係數上調超大，但就需要同步上調跳躍力才能正常起跳，就是這樣彼此拉扯、牽一髮動全身，這麼麻煩還不如直接控制角色的 movement (移位) 更簡單，所以本篇要推翻前面使用的 dynamic rigidbody (force) 改用更簡化的 <b>kinematic rigidbody (movement)</b>。
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Kinematic RigidBody</h1>
+                    <hr>
+                    <br>
+                    <img class="content-img" src="../../image/hw-kinematic-rigidbody.png" alt="kinematic rigidbody">
+                    <p class="content-paragraph">
+                        在小騎士的 rigidbody body type 選項中，有三種類型:
+                        <ul class="content-ul">
+                            <li>
+                                <b>Dynamic</b> - 接近現實物理模型，物體具有質量且能對力做出反應，有加速度、速度、重力、摩擦力等屬性，並且會處理物體間的碰撞反彈，同時消耗較多的運算資源。
+                            </li>
+                            <li>
+                                <b>Kinematic</b> - 不具備力與速度，而是直接控制物體的位置，這樣的好處在於直觀且無須多餘的計算，物體完全由開發人員控制。
+                            </li>
+                            <li>
+                                <b>Static</b> - 完全靜態的物件，不會移動，可以套用在地面與牆壁等物件，基本上等同於 no rigidbody 但多了彈性可以切換成其他 type。
+                            </li>
+                        </ul>
+                        為了讓開發能更順暢，Kinematic rigidbody 是 best choice，但有一個 "小問題"，少了物理模擬，很多原本系統幫你做掉的事情現在得自己處理了，像是重力、物體碰撞等等，所以接下來就是一步一步實踐這些功能。
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">MovePosition</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        首先直接把小騎士的 body type 改成 kinematic，就會發現會跟封面圖一樣卡在半空中維持落下的動作，這是因為現在沒有重力了，必須撰寫程式讓他落下:
+                        <pre><code class="c#">
+// Player.cs
+void FixedUpdate()
+{
+    Vector2 speed = Vector2.zero;
+
+    if ( !isGrounded() )
+    {
+        speed.y = FallSpeed; // -5
+    }
+
+    Vector2 newPosition = rb.position + speed * Time.fixedDeltaTime;
+    rb.MovePosition(newPosition);
+}
+                        </code></pre> Kinematic rigidbody 只能透過 <code class="inline">MovePosition</code> 的方式來進行移動，而程式就是替小騎士計算一個新的座標 - 隨時間往下降的座標，另外由於現在沒有任何碰撞機制，所以落到地面也會直接穿過去，得自己偵測是否已經著陸 - 使用上次撰寫的 <a href="jump.html#raycast-para">raycast ground detection</a>，已經著陸就停止座標下降。
+                    </p>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">補充 Ground Detection</h1>
+                        <p class="content-paragraph">
+                            補充一下除了 raycast 外更簡單的 Ground Detection 方法，就是透過小騎士身上的 collider，前面雖然有說 kinematic rigidbody 不會產生碰撞等物理現象，但依舊可以取得碰撞當下的 event - 啟用 <code class="inline">Use Full Kinematic Contacts</code>，透過這個 event 就能判別是否碰撞到地面。
+                        </p>
+                        <p class="note">kinematic 和 dynamic rigidbody 間的碰撞本來就會觸發 collision event，"Use Full Kinematic Contacts" 則是讓 kinematic 能與 kinematic / static rigidbody 也能產生!!</p>
+                        <img class="content-img" src="../../image/hw-kinematic-fullcontacts.png" alt="fullcontacts">
+                        <p class="content-paragraph">
+                            為了確保碰撞的是地面，在 <code class="inline">OnCollisionEnter2D</code> 碰撞觸發時，偵測碰撞對象的 tag 是否為 Floor; 為了避免接觸到的是牆壁 (tag 一樣)，偵測碰撞時方向是向下 (法向量向上); 同時記住接觸時的物件，因為在 <code class="inline">OnCollisionExit2D</code> 時無法偵測方向，必須確保是離開接觸時的地面，不然碰到牆壁離開也會判定成離開地面 !!!
+                        </p>
+                        <pre><code class="c#">
+bool touchGround;
+GameObject lastTouchedGround;
+
+void OnCollisionEnter2D(Collision2D other)
+{
+    if ( other.gameObject.CompareTag("Floor") && other.GetContact(0).normal == Vector2.up )
+    {
+        touchGround = true;
+        lastTouchedGround = other.gameObject;
+    }
+}
+
+void OnCollisionExit2D(Collision2D other)
+{
+    if ( lastTouchedGround != null && other.gameObject == lastTouchedGround )
+    {
+        touchGround = false;
+        lastTouchedGround = null;
+    }
+}
+                        </code></pre>
+                        <p class="content-paragraph">
+                            這個方法雖然不用像 raycast 要調整參數，但會產生許多判定上的問題，像是如果地面是傾斜的，判定條件得修改，另外地面 sprite 沒有切齊，很可能會有誤判，加上只在 collision 發生與結束時判定，一旦誤判就會有嚴重問題，像是角色直接穿過地面，因此之後還是會使用 raycast 的方式來實作 ~~~
+                        </p>
+                    </section>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Get Maximum Movement</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        由於前面的 Ground Detection 只是偵測碰到地板了，加上角色移動速度太快，可能會發生角色已經一半身體都卡進地板才停下來，所以除了要計算是否接觸地面，還得要計算每次移動是否會穿牆並限制移動的距離，同樣透過 ray cast 實作:
+                        <ul class="content-ul">
+                            <li><code class="inline">rb.Cast</code> - 以角色的碰撞箱根據移動方向、距離去計算是否會碰撞給定類型的物件，將碰撞的結果由近到遠保存在 hitResults，並回傳碰撞數量。</li>
+                            <li>對每個碰撞的物件去計算是否為水平或是垂直方向碰撞，因為是由近到遠，所以兩者都遇到過就可以提前結束計算。判斷碰撞方向是根據法向量的角度，跟之前的 ground detection 一樣。
+                            </li>
+                            <li>發生碰撞後根據碰撞物體的距離 <code class="inline">closestHit.distance</code> 來限制移動，重點在於不要直接移動到碰撞的座標，這樣會導致下次計算時無法移動，例如角色站在地面上時會無法左右移動，因為 y 軸會導致每次 <code class="inline">closestHit.distance = 0</code>，即便根本沒有向下移動，所以每次移動都離碰撞點多一個小數字 (MiniGap)。</li>
+                        </ul>
+                        <pre><code class="c#">
+// Player.cs
+[SerializeField] LayerMask GroundLayer;
+[SerializeField] float MiniGap = 0.02f;
+RaycastHit2D[] hitResults = new RaycastHit2D[10];
+
+void FixedUpdate()
+{
+    ...
+
+    Vector2 newPosition = rb.position + GetMaximumMovement(speed * Time.fixedDeltaTime);
+    rb.MovePosition(newPosition);
+
+    ...
+}
+
+Vector2 GetMaximumMovement(Vector2 movement)
+{
+    if (movement.magnitude &lt; MiniGap) return Vector2.zero;
+
+    Vector2 direction = movement.normalized;
+
+    int hitCount = rb.Cast(direction, GroundFilter, hitResults, movement.magnitude);
+
+    bool xClamped = false, yClamped = false;
+    for ( int i = 0 ;  i &lt; hitCount ; i++ )
+    {
+        RaycastHit2D closestHit = hitResults[i];
+        Vector2 clampMovement = direction * closestHit.distance;
+        float angle = Vector2.SignedAngle(closestHit.normal, Vector2.up); // from normal to up (-180 ~ 180)
+
+        if ( angle &lt; 10f && angle &gt; -10f && !yClamped )
+        {
+            movement.y = clampMovement.y + MiniGap;
+            yClamped = true;
+        }
+        else if ( angle &gt; 170f || angle &lt; -170f && !yClamped )
+        {
+            movement.y = clampMovement.y - MiniGap;
+            yClamped = true;
+        }
+
+        if ( angle &lt; 100f && angle &gt; 80f && !xClamped )
+        {
+            movement.x = clampMovement.x + MiniGap;
+            xClamped = true;
+        }
+        else if ( angle &lt; -80f && angle &gt; -100f && !xClamped )
+        {
+            movement.x = clampMovement.x - MiniGap;
+            xClamped = true;
+        }
+
+        if ( xClamped && yClamped )
+        {
+            return movement;
+        }
+    }
+
+    return movement;
+}
+                        </code></pre>
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Player State Machine</h1>
+                    <hr>
+                    <br>
+                    <img class="content-img" src="../../image/hw-jump-animator.png" alt="animator">
+                    <p class="content-paragraph">
+                        接下來就是去實作移動與跳躍等操作，但為了避免每個操作所施加的速度彼此打架，我們要引入狀態機的概念，類似之前實作的 animator 的狀態機 (上圖)，每次角色只會處在一個狀態中，然後根據不同狀態來設定輸出的速度與動畫，這樣的好處很多，不僅能解決操作的手感問題，還能大幅簡化 animator 狀態機的複雜度，因為現在狀態機是由程式控制的。
+                    </p>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">State</h1>
+                        <p class="content-paragraph">
+                            <pre><code class="c#">
+// StateMachine.cs
+public abstract class State
+{
+    protected Configuration Config;
+    protected OutputData outputs;
+    protected float elapsedTime;
+
+    protected State(Configuration config, int animeCode)
+    {
+        Config = config;
+        outputs = new(Vector2.zero, Vector2.zero, animeCode);
+    }
+
+    public void Enter(InputData inputs, PropagateData pdata)
+    {
+        elapsedTime = 0f;
+        OnEnter(inputs, pdata);
+    }
+
+    protected virtual void OnEnter(InputData inputs, PropagateData pdata) {}
+
+    public void Exit()
+    {
+        OnExit();
+    }
+    
+    protected virtual void OnExit() {}
+
+    public abstract StateCode Transition(InputData inputs, PropagateData pdata, float dtime);
+    public virtual OutputData GetAction()
+    {
+        return outputs;
+    }
+}
+                            </code></pre>
+                            由於程式量有點大就不一一細說，完整的狀態機 <a href="https://github.com/PersonalWorkingSpace/inpc-blog-demo/blob/master/Hollow-Knight-Recreate/day7-kinematic-rigidbody.cs">程式碼</a> 放在這邊供各位參考，簡單說就是把每個狀態都依照上述的模板創建出來，一個狀態包含四大功能:
+                            <ul class="content-ul">
+                                <li><b>初始化</b> - 目前每個狀態都只是繼承模板的設定，將角色的設定檔讀進來，例如移動速度、等待時間等等，方便進行後續調參，並且初始化輸出: movement vector、rotate vector、以及最重要的 animation code，讓程式能直接根據狀態播放動畫。</li>
+                                <li><b>進入狀態</b> - 預設是會將進入狀態的計時歸零，然後執行每個狀態自訂的 OnEnter function。</li>
+                                <li><b>轉換狀態</b> - 這就是最重要的部分了!! 撰寫達成哪些條件才會切換成其他的狀態，會根據 <code class="inline">inputs</code> - 玩家的操作 & 環境的回饋、<code class="inline">pdata</code> - 前面狀態的紀錄共同決定下一個狀態，這邊回傳的是 enum 的代碼，外部會再根據代碼選擇對應的狀態。</li>
+                                <li><b>離開狀態</b> - 離開狀態時採取的行動，暫時沒有用到 ~~~</li>
+                                <li><b>取得行動</b> - 暫時只是用來讀取 outputs 的數據。</li>
+                            </ul>
+                        </p>
+                        <p class="content-paragraph">
+                            以前面提到的墜落狀態為例，進入此狀態時會設定 y 軸速度，其實可以在初始化設定就好，但為了在執行時調整參數，所以才改成這樣，另外狀態切換的部分分成兩條路:
+                            <ul class="content-ul">
+                                <li><b>著陸</b> - 角色落地了，直接切到著陸的狀態。 </li>
+                                <li><b>二段跳</b> - 玩家按下的跳躍鍵並且還沒有二段跳才能切過去，在進入二段跳狀態時會把 <code class="inline">pdata.isDoubleJumped = true</code>，然後在進入著陸後的狀態才切回 false，以此避免空中連續跳躍，至於 <code class="inline">jumpButtonPress</code> 是為了避免玩家一直壓著跳躍鍵影響手感 - 起跳後要先放開跳躍鍵再按一次才會變成二段跳。</li>
+                            </ul>
+                            <pre><code class="c#">
+// StateMachine.cs
+public class FallState : State
+{
+    static readonly int animeCode = Animator.StringToHash("Fall"); 
+    
+    public FallState(Configuration config) : base(config, animeCode) {}
+
+    protected override void OnEnter(InputData inputs, PropagateData pdata)
+    {
+        outputs.speed.y = -Config.fallSpeed;
+    }
+
+    public override StateCode Transition(InputData inputs, PropagateData pdata, float dtime)
+    {
+        if ( inputs.onGround )
+        {
+            return StateCode.Land;
+        }
+        else if ( inputs.movement.y &gt; 0 && inputs.jumpButtonPress && !pdata.isDoubleJumped )
+        {
+            return StateCode.DoubleJump;
+        }
+
+        return StateCode.Fall;
+    }
+}
+                            </code></pre>
+                        </p>
+                    </section>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">State Machine</h1>
+                        <p class="content-paragraph">
+                            底下是最終實作出狀態機，正確來說是<span style="color: red">兩個</span>狀態機，分成垂直與水平運動兩個獨立的狀態機，會這樣區分主要是因為很多動作發生在空中或是地面其實差不多，像是你在空中也能進行水平移動、轉身、攻擊等等，如果弄成單獨狀態數量會變太多，不如分開管理，至於在動畫播放上垂直狀態機的優先權比較高，除非垂直狀態的動畫沒設定 (ex: OnGround state) 才會播放水平狀態的動畫。
+                        </p>
+                        <p class="content-paragraph">
+                            至於各個狀態大概就是字面上的意思，但有兩個想特別說明:
+                            <ul class="content-ul">
+                                <li><b>Glide</b> - 這個狀態是當玩家長時間按著跳躍鍵到最後，會讓小騎士跳到最高點後有一小段制空的時間，落下速度會較慢，同樣當二段跳如果也按夠久也能夠進入此狀態。</li>
+                                <li><b>Turn around</b> - 代表玩家水平移動改變方向，一開始我並沒設定可以直接從 Move 狀態切換過去，我以為 unity 中按鍵讀取是沒辦法直接左右轉換，必須先放開本來的按鍵不然會兩者抵銷，也就會先切到 Idle 狀態才會到 Turn around，但實測上確實有機會按出左右直接切換 => <b>左右抵銷的時間短到狀態機還沒補捉到 !!</b> 然後就會導致小騎士直接上演月球漫步 XD</li>
+                            </ul>
+                        </p>
+                        <img class="content-img" src="../../image/hw-kinematic-state-machine.png" alt="state-machine">
+                    </section>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Animation State Machine</h1>
+                    <hr>
+                    <br>
+                    <img class="content-img" src="../../image/hw-kinematic-animation-state-machine.png" alt="simpified animator">
+                    <p class="content-paragraph">
+                        當我們完成角色在程式中的狀態機後，再回頭過來修正動畫狀態機，就會發現一個天大的好處，動畫狀態機變得超簡單的 ~~~ 大部分動畫都是獨立，主要就是配合程式內的狀態機輸出來達成動畫切換:
+                    </p>
+                    <pre><code class="c#">
+// Player.cs
+void Update()
+{
+    overallStateMachine.Transition(inputs, Time.deltaTime);
+    OutputData outputs = overallStateMachine.GetAction();
+
+    if ( outputs.currAnimationCode != outputs.nextAnimationCode )
+    {
+        animator.Play(outputs.nextAnimationCode, 0, 0);
+    }
+
+    ...
+}
+                    </code></pre>
+                    <p class="content-paragraph">
+                        <code class="inline">overallStateMachine</code> 就是前面提到兩個狀態機的包裝，對全部狀態機更新後，如果輸出動畫與當下播放的不同，則改播新的動畫，<code class="inline">animator.Play(..., 0, 0);</code> 的第一個 0 是代表 animator 的第一個 layer，而第二個 0 則是從第一個 frame 開始播放。
+                    </p>
+                    
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">補充帝王之翼動畫</h1>
+                        <p class="content-paragraph">
+                            原先以為二段跳也只是一般的動畫播放，但實作時發現整個動畫是由兩段獨立的 sprites 構成，小騎士的跳躍動作以及額外翅膀的動畫。
+                        </p>
+                        <img class="content-img" src="../../image/hw-kinematic-doubleJump.png" alt="double jump">
+                        <img class="content-img" src="../../image/hw-kinematic-wing.png" alt="double jump wing">
+                        <p class="content-paragraph">
+                            為了讓翅膀與小騎士的動畫能匹配上，需要借助 unity 動畫視窗的 property 功能:
+                            <ol class="content-ol">
+                                <li>將翅膀的 sprites 設定成小騎士的子物件。</li>
+                                <li>
+                                    <code class="inline">Add Property > Wing > Sprite</code>，然後將動畫 sprites 放過去。
+                                    <br>
+                                    <img class="content-img" style="margin-top: 1em;" src="../../image/hw-kinematic-doubleJumpAnimation.png" alt="double jump wing animation">
+                                </li>
+                                <li>對齊兩邊動畫的時間點。</li>
+                                <li>使用 <b>錄製功能</b> 在每一個 key frame 上調整翅膀的位置，會自動產生出 <code class="inline">Wing:Position property</code>。</li>
+                                <li>我們只希望動畫播放時翅膀才出現，在錄製第一個 frame 時才把翅膀 Enable，然後最一個 frame 在 Disable。</li>
+                                <li>
+                                    Unity 動畫錄製時位置的變動預設是線性移動，所以播放時翅膀會慢慢地飄移，看起來會很奇特，所以這邊改成瞬間移動到指定位置，點選 <code class="inline">Wing:Position property</code> 的每一個 key frame，然後修改 <code class="inline">Both Tangents > Constant</code>。
+                                    <img class="content-img" style="margin-top: 1em;" src="../../image/hw-kinematic-wingAnimationConstantMove.png" alt="double jump wing animation constant move">
+                                </li>
+                            </ol>
+                        </p>
+                        
+                    </section>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">成品</h1>
+                    <hr>
+                    <br>
+                    <iframe class="content-iframe" src="https://www.youtube.com/embed/rqqDn-rVs5Q?si=jTinV67JlnxVeV4m" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <p class="content-paragraph">
+                        可以看到採用了 Kinematic Rigidbody 以及狀態機後移動、跳躍、落下都相當順暢，並沒有出現穿牆、卡住等問題，另外把上次欠各位的二段跳完成了，更重要的是整個程式框架相當容易擴充，能讓我們後續重現各種功能時更為快速 ~~~
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        本次花了點時間把過去實作的功能進行程式架構的優化，導入了 Kinematic Rigidbody 以及狀態機來讓角色的移位更加順暢，下次就來探討鏡頭的優化 - 導入 cinemachine & pixel perfect camera。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area" class="sidebar">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div id="contact-info">
+            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
+            <a class="github" href="https://github.com/PersonalWorkingSpace">
+                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
+                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+                    </svg>
+                <span>Github</span>
+            </a>
+            <span>隨筆紀錄我的學習過程</span>
+        </div>
+        <p class="cc">
+            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
+        </p>
+        <p class="cc">
+            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
+            please include the original link.
+        </p>
+    </footer>
+</body>
+
+</html>

@@ -81,22 +81,24 @@
                     <h1 class="L1-section-title">重現場景</h1>
                     <hr>
                     <p class="content-paragraph">
-                        <iframe class="content-iframe" src="https://www.youtube.com/embed/9u27L1I6BhE?si=Mk24sPbzxqrvfWqj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                      這次要重現的場景可說是空洞騎士中最複雜、使用最多 sprites 的區域 - 蒼綠之徑，不論是背景還是前景的細節都多到爆，但就跟之前的場景一樣是靠少少幾個 sprite 堆出來的:
-                        
+                        <iframe class="content-iframe" src="https://www.youtube.com/embed/9u27L1I6BhE?si=Mk24sPbzxqrvfWqj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 這次要重現的場景可說是空洞騎士中最複雜、使用最多 sprites 的區域 - 蒼綠之徑，不論是背景還是前景的細節都多到爆，但就跟之前的場景一樣是靠少少幾個 sprite 堆出來的:
+
                         <ul class="content-ul">
                             <li>
                                 <b><a href="https://drive.google.com/drive/folders/1kqTElD6h8Sy4imJQS85-cVXZZQZ4Khin">蒼綠之鏡場景</a></b> - 前景背景 sprite 都是取自這邊，我主要用了 0126 ~ 0133 圖檔來堆疊出那一堆的植物景色。
                             </li>
                             <li>
-                                <b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">小騎士 Move 動畫</a></b> - 會使用 003.Airborne, 011.Land, 061.Fall，部分畫面有紅框框，可以參考 <a href="sprite.html">Day2</a> 去除，其中 Airborne 前半段是起跳的動作，後半段則是空中墜落的畫面，另外有需要二跳可以用 098.Double Jump, 100.Double Jump Wings 2。
+                                <b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">小騎士 Move 動畫</a></b> - 會使用 003.Airborne, 011.Land, 061.Fall，部分畫面有紅框框，可以參考 <a href="sprite.html">Day2</a> 去除，其中 Airborne 前半段是起跳的動作，後半段則是空中墜落的畫面，另外有需要二跳可以用
+                                098.Double Jump, 100.Double Jump Wings 2。
                             </li>
                         </ul>
-                        
+
                         另外要特別提那湖面<a href="https://drive.google.com/drive/folders/1Tp-ejdaey2Tbg-qP4qSDL5kO5GWLzM12">波光粼粼</a>原來是一段細長的白點 (下圖)，用 30 個 sprite 做出來的動畫，這個畫面有太多可以學的了，也許下次再好好的重現畫面吧，這次只做個大概，把精力專注在小騎士的跳躍 @@。
                     </p>
                     <img class="content-img" style="background: #000;" src="../../image/hw-jump-acid.png" alt="acid">
                 </section>
-                
+
                 <section class="L1-section">
                     <h1 class="L1-section-title">Dynamic Jump</h1>
                     <hr>
@@ -160,7 +162,7 @@ void Awake()
                     </p>
                     <p class="content-paragraph">
                         <ul class="content-ul">
-                            
+
                             <li><b>水平移動狀態 -> jump</b> - 由於小騎士可以在各種情況下起跳，就直接把以前創建的水平移動狀態都拉了一條 Transition 到 jump，至於觸發狀態就是當 <code class="inline">jumpInput > 0</code>。</li>
                             <li><b>jump -> fall</b> - 角色何時會落下呢? 可以直接檢查當下的 y 軸速度，當速度轉負就代表角色開始向下移動，而在空洞騎士中只代表下墜。</li>
                             <pre><code class="c#">
@@ -191,7 +193,7 @@ void Update()
                     <p class="content-paragraph">
                         眼尖的讀者會發現其實上面的實作會有一個重大的問題 !!! 就是玩家可以進行無限次的空中跳躍，因為只要放開跳躍鍵 jumpCou 就會歸零，然後就可以再按一次跳躍了，為了確保玩家還沒拿到帝王之翼就在那邊二段跳，必須確保停止跳躍後只能等著陸後才能再次觸發。
                     </p>
-                    <p class="content-paragraph">
+                    <p class="content-paragraph" id="raycast-para">
                         當然我們可以用前面提到的 y 軸速度來判定是否已經著陸了，但這在後續的應用中會比較難成立，例如攀牆會慢慢往下滑，但攀牆時應該要能跳躍才對，因此這裡要介紹的是最常見的做法: <a href="https://www.youtube.com/watch?v=P_6W-36QfLA">Raycast Ground Check</a>，連結是一個淺顯易懂的教學影片，推薦觀看。
                     </p>
                     <pre><code class="c#">
@@ -214,8 +216,8 @@ void OnDrawGizmos()
     Gizmos.DrawWireCube(transform.position - transform.up * RayCastDistance, RayCastBoxSize);
 }
                     </code></pre>
-                     <p class="content-paragraph">
-                        具體來說我們要新增上面兩個函數，前者是用來判定是否著陸、後者則是視覺化設定的參數: 
+                    <p class="content-paragraph">
+                        具體來說我們要新增上面兩個函數，前者是用來判定是否著陸、後者則是視覺化設定的參數:
                         <ul class="content-ul">
                             <li>
                                 <b>transform.position</b> - 代表小騎士的位置 (x, y)。
@@ -230,7 +232,7 @@ void OnDrawGizmos()
                                 <b>GroundLayer</b> - LayerMask，代表要偵測的 layer。
                             </li>
                         </ul>
-                        底下是實際配值，如果 OnDrawGizmons 設定沒錯且 Gizmons 顯示有打開，就可以在螢幕上看到小騎士的腳邊有一個紅色框框:                        
+                        底下是實際配值，如果 OnDrawGizmons 設定沒錯且 Gizmons 顯示有打開，就可以在螢幕上看到小騎士的腳邊有一個紅色框框:
                     </p>
                     <img class="content-img" src="../../image/hw-jump-raycastbox.png" alt="raycast paremeters">
                     <img class="content-img" src="../../image/hw-jump-raycast.png" alt="raycast box">
@@ -242,7 +244,8 @@ void OnDrawGizmos()
                     <h1 class="L1-section-title">成品</h1>
                     <hr>
                     <br>
-                    <iframe class="content-iframe" src="https://www.youtube.com/embed/4ZiBFG_eLSM?si=jBJZBRyEpaI0-sJd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe class="content-iframe" src="https://www.youtube.com/embed/4ZiBFG_eLSM?si=jBJZBRyEpaI0-sJd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     <p class="content-paragraph">
                         這次的最終成品有點 ... @@，我評分為 50 分不及格，除了包含二跳以外的一堆東西都沒弄，主要在動作切換上有點不順暢，且跳躍的參數控制也沒有調整好，整個跳躍與落下都不自然，這主要是由於目前的 rigidbody 設定問題以及隨著角色的動作越來越複雜，現在的程式沒有引入整體的狀態機導致程式架構凌亂，這些問題都需要修正阿 !
                     </p>

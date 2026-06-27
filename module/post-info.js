@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/kinematice.html",
+        "created": "2026-06-27T00:00:00+08:00",
+        "title": "空洞騎士重現 - Kinematic Rigidbody",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-kinematic-cover.png",
+        "description": "在上次慘痛的成品後，我開始思索開發上遇到的各種問題，其中一點便是難以控制的角色運動，所以本篇要推翻前面使用的 dynamic rigidbody (force) 改用更簡化的 kinematic rigidbody (movement)"
+    },
+    {
         "file": "category/Hollow-Knight/jump.html",
         "created": "2026-05-10T00:00:00+08:00",
         "title": "空洞騎士重現 - Jump",
@@ -103,6 +112,7 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "kinematice",
             "jump",
             "camera",
             "move",
@@ -116,7 +126,8 @@ const Categories = {
             2,
             3,
             4,
-            5
+            5,
+            6
         ]
     },
     "Web-Design": {
@@ -128,11 +139,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            6,
             7,
             8,
             9,
-            10
+            10,
+            11
         ]
     }
 };
@@ -140,6 +151,7 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "kinematice",
             "jump",
             "camera",
             "move",
@@ -153,7 +165,8 @@ const Tags = {
             2,
             3,
             4,
-            5
+            5,
+            6
         ]
     },
     "初學筆記": {
@@ -164,10 +177,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            6,
-            8,
+            7,
             9,
-            10
+            10,
+            11
         ]
     },
     "CSS": {
@@ -176,8 +189,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            6,
-            9
+            7,
+            10
         ]
     },
     "網頁部署": {
@@ -185,7 +198,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            7
+            8
         ]
     },
     "Github": {
@@ -193,7 +206,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            7
+            8
         ]
     },
     "Javascript": {
@@ -201,7 +214,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            8
+            9
         ]
     },
     "HTML": {
@@ -209,7 +222,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            10
+            11
         ]
     }
 };
