@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/cinemachine.html",
+        "created": "2026-07-05T00:00:00+08:00",
+        "title": "空洞騎士重現 - Cinemachine",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-cinemachine-cover.png",
+        "description": "上次優化角色的移動控制，這次來改善鏡頭移動 - 導入 unity 的 cinemachine 來讓鏡頭的移動更穩定，且不會穿過地圖邊界，最後結合多鏡頭的轉換來達成不同效果，例如進入王房後轉成定點鏡頭等等。"
+    },
+    {
         "file": "category/Hollow-Knight/kinematice.html",
         "created": "2026-06-27T00:00:00+08:00",
         "title": "空洞騎士重現 - Kinematic Rigidbody",
@@ -112,6 +121,7 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "cinemachine",
             "kinematice",
             "jump",
             "camera",
@@ -127,7 +137,8 @@ const Categories = {
             3,
             4,
             5,
-            6
+            6,
+            7
         ]
     },
     "Web-Design": {
@@ -139,11 +150,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            7,
             8,
             9,
             10,
-            11
+            11,
+            12
         ]
     }
 };
@@ -151,6 +162,7 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "cinemachine",
             "kinematice",
             "jump",
             "camera",
@@ -166,7 +178,8 @@ const Tags = {
             3,
             4,
             5,
-            6
+            6,
+            7
         ]
     },
     "初學筆記": {
@@ -177,10 +190,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            7,
-            9,
+            8,
             10,
-            11
+            11,
+            12
         ]
     },
     "CSS": {
@@ -189,8 +202,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            7,
-            10
+            8,
+            11
         ]
     },
     "網頁部署": {
@@ -198,7 +211,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            8
+            9
         ]
     },
     "Github": {
@@ -206,7 +219,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            8
+            9
         ]
     },
     "Javascript": {
@@ -214,7 +227,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            9
+            10
         ]
     },
     "HTML": {
@@ -222,7 +235,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            11
+            12
         ]
     }
 };
