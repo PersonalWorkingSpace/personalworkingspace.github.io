@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/dash-climb.html",
+        "created": "2026-07-19T00:00:00+08:00",
+        "title": "空洞騎士重現 - Dash & Climb",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-dash-climb-cover.png",
+        "description": "這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) & 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~"
+    },
+    {
         "file": "category/Hollow-Knight/cinemachine.html",
         "created": "2026-07-05T00:00:00+08:00",
         "title": "空洞騎士重現 - Cinemachine",
@@ -121,6 +130,7 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "dash-climb",
             "cinemachine",
             "kinematice",
             "jump",
@@ -138,7 +148,8 @@ const Categories = {
             4,
             5,
             6,
-            7
+            7,
+            8
         ]
     },
     "Web-Design": {
@@ -150,11 +161,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            8,
             9,
             10,
             11,
-            12
+            12,
+            13
         ]
     }
 };
@@ -162,6 +173,7 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "dash-climb",
             "cinemachine",
             "kinematice",
             "jump",
@@ -179,7 +191,8 @@ const Tags = {
             4,
             5,
             6,
-            7
+            7,
+            8
         ]
     },
     "初學筆記": {
@@ -190,10 +203,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            8,
-            10,
+            9,
             11,
-            12
+            12,
+            13
         ]
     },
     "CSS": {
@@ -202,8 +215,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            8,
-            11
+            9,
+            12
         ]
     },
     "網頁部署": {
@@ -211,7 +224,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            9
+            10
         ]
     },
     "Github": {
@@ -219,7 +232,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            9
+            10
         ]
     },
     "Javascript": {
@@ -227,7 +240,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            10
+            11
         ]
     },
     "HTML": {
@@ -235,7 +248,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            12
+            13
         ]
     }
 };
