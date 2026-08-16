@@ -5,7 +5,7 @@ const Posts = [
         "title": "空洞騎士重現 - Tilemap",
         "category": "Hollow-Knight",
         "tag": "GameMake",
-        "thumbnail": "../../image/hw-Tilemap-cover.png",
+        "thumbnail": "../../image/hw-tilemap-cover.png",
         "description": "在過去的場景建構時，我們都是直接使用 sprite 來搭建出所需的地面與牆壁，但在開發初期時不太可能這樣一磚一瓦的把整張地圖建起來，效率太低且不易修改，需要一個更快速呈現出地圖輪廓的方式，這時候就可以靠 unity 的 Tilemap 了，能讓我們以繪圖的方式來勾勒地圖，繪製完成也能直接加上 collider 變成實際玩家接觸的地面與牆壁 ~~~"
     },
     {
