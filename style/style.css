@@ -695,6 +695,11 @@ a.github {
     margin-bottom: 1.5rem;
 }
 
+.context-fig {
+    margin: 0rem;
+    text-align: center
+}
+
 p.cc {
     color: var(--note-color);
     font-size: var(--cc-font-size);

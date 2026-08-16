@@ -203,7 +203,7 @@ Vector2 GetMaximumMovement(Vector2 movement)
             movement.y = clampMovement.y + MiniGap;
             yClamped = true;
         }
-        else if ( angle &gt; 170f || angle &lt; -170f && !yClamped )
+        else if ( ( angle &gt; 170f || angle &lt; -170f ) && !yClamped )
         {
             movement.y = clampMovement.y - MiniGap;
             yClamped = true;

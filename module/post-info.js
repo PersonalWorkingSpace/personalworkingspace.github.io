@@ -1,5 +1,14 @@
 const Posts = [
     {
+        "file": "category/Hollow-Knight/tilemap.html",
+        "created": "2026-08-09T00:00:00+08:00",
+        "title": "空洞騎士重現 - Tilemap",
+        "category": "Hollow-Knight",
+        "tag": "GameMake",
+        "thumbnail": "../../image/hw-Tilemap-cover.png",
+        "description": "在過去的場景建構時，我們都是直接使用 sprite 來搭建出所需的地面與牆壁，但在開發初期時不太可能這樣一磚一瓦的把整張地圖建起來，效率太低且不易修改，需要一個更快速呈現出地圖輪廓的方式，這時候就可以靠 unity 的 Tilemap 了，能讓我們以繪圖的方式來勾勒地圖，繪製完成也能直接加上 collider 變成實際玩家接觸的地面與牆壁 ~~~"
+    },
+    {
         "file": "category/Hollow-Knight/dash-climb.html",
         "created": "2026-07-19T00:00:00+08:00",
         "title": "空洞騎士重現 - Dash & Climb",
@@ -130,6 +139,7 @@ const Posts = [
 const Categories = {
     "Hollow-Knight": {
         "name": [
+            "tilemap",
             "dash-climb",
             "cinemachine",
             "kinematice",
@@ -149,7 +159,8 @@ const Categories = {
             5,
             6,
             7,
-            8
+            8,
+            9
         ]
     },
     "Web-Design": {
@@ -161,11 +172,11 @@ const Categories = {
             "HTML-Beginner"
         ],
         "postID": [
-            9,
             10,
             11,
             12,
-            13
+            13,
+            14
         ]
     }
 };
@@ -173,6 +184,7 @@ const Categories = {
 const Tags = {
     "GameMake": {
         "name": [
+            "tilemap",
             "dash-climb",
             "cinemachine",
             "kinematice",
@@ -192,7 +204,8 @@ const Tags = {
             5,
             6,
             7,
-            8
+            8,
+            9
         ]
     },
     "初學筆記": {
@@ -203,10 +216,10 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            9,
-            11,
+            10,
             12,
-            13
+            13,
+            14
         ]
     },
     "CSS": {
@@ -215,8 +228,8 @@ const Tags = {
             "CSS-Beginner"
         ],
         "postID": [
-            9,
-            12
+            10,
+            13
         ]
     },
     "網頁部署": {
@@ -224,7 +237,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            10
+            11
         ]
     },
     "Github": {
@@ -232,7 +245,7 @@ const Tags = {
             "Github-Pages"
         ],
         "postID": [
-            10
+            11
         ]
     },
     "Javascript": {
@@ -240,7 +253,7 @@ const Tags = {
             "Javascript-Beginner"
         ],
         "postID": [
-            11
+            12
         ]
     },
     "HTML": {
@@ -248,7 +261,7 @@ const Tags = {
             "HTML-Beginner"
         ],
         "postID": [
-            13
+            14
         ]
     }
 };

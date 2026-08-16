@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <title>空洞騎士重現 - Tilemap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="auther" content="MJ CHEN">
+    <meta name="description" content="在過去的場景建構時，我們都是直接使用 sprite 來搭建出所需的地面與牆壁，但在開發初期時不太可能這樣一磚一瓦的把整張地圖建起來，效率太低且不易修改，需要一個更快速呈現出地圖輪廓的方式，這時候就可以靠 unity 的 Tilemap 了，能讓我們以繪圖的方式來勾勒地圖，繪製完成也能直接加上 collider 變成實際玩家接觸的地面與牆壁 ~~~">
+    <meta name="keywords" content="GameMake">
+    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
+    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
+    <link href="../../style/style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
+    <script type="module" src="../../module/post.js"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+</head>
+
+<body>
+    <header class="banner">
+        <div class="wrapper">
+            <a id="site-logo" href="../../index.html">
+                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
+            </a>
+            <button id="hamburger">&#9776;</button>
+            <nav id="site-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../index.html">Posts</a>
+                <a href="../../entrypoint/categories.html">Categories</a>
+                <a href="../../entrypoint/tags.html">Tags</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <aside id="left-area" class="sidebar">
+            <!-- 這是大綱 -->
+            <div id="agenda-wrapper">
+                <h1 class="agenda-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <line x1="9" y1="10" x2="20" y2="10"></line>
+                        <line x1="9" y1="16" x2="20" y2="16"></line>
+                        <line x1="9" y1="22" x2="20" y2="22"></line>
+                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
+                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
+                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
+                    </svg> In this article
+                </h1>
+                <hr>
+                <ol id="agenda">
+                </ol>
+            </div>
+        </aside>
+
+        <main id="center-area">
+            <article id="main-content">
+                <header class="post-header">
+                    <h1 class="post-title">空洞騎士重現 - Tilemap</h1>
+                    <div class="post-meta">
+                        <time datetime="2026-08-09T00:00:00+08:00" itemprop="datePublished"> Aug 09, 2026 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
+                        <img src="../../image/TAG-ICON.png" class="inline-icon">
+                        <nav id="tag-bar"></nav>
+                    </div>
+                </header>
+
+                <section class="L1-section">
+                    <div id="cover-container">
+                        <img id="cover" src="../../image/hw-Tilemap-cover.png" alt="空洞騎士">
+                    </div>
+                    <p class="content-paragraph">
+                        在過去的場景建構時，我們都是直接使用 sprite 來搭建出所需的地面與牆壁，但在開發初期時不太可能這樣一磚一瓦的把整張地圖建起來，效率太低且不易修改，需要一個更快速呈現出地圖輪廓的方式，這時候就可以靠 unity 的 Tilemap 了，能讓我們以繪圖的方式來勾勒地圖，繪製完成也能直接加上 collider 變成實際玩家接觸的地面與牆壁 ~~~
+                    </p>
+                </section>
+
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Tilemap</h1>
+                    <hr>
+                    <figure class="context-fig">
+                        <img class="content-img" src="https://opengameart.org/sites/default/files/2018-01-19.png" alt="tilemap reference">
+                        <figcaption>Timemaps 參考圖片 from <a href="https://opengameart.org/content/pokemon-inspired-16x16-tiles">here</a></figcaption>
+                    </figure>
+                    <p class="content-paragraph">
+                        Tilemap 常見於一些平面 2D 遊戲的地圖鋪設，尤其是像素風遊戲，例如早期的寶可夢遊戲，整張地圖是由一個一個方塊拼成，實際上只需要幾種方塊就能創造出多樣的地圖，但在此不是為了這個原因來使用他的，要在 unity 中使用 Tilemap 需要以下步驟:
+                        <ul class="content-ul">
+                            <li>
+                                <b>創建 Tilemap 2D</b> - Hierarchy Panel 左鍵點選 <code class="inline">2D Object &gt; Tilemap &gt; Rectangular</code>，創造會出現兩個物件 Grid & Tilemap，Grid 的設定決定 Tilemap 的方塊的大小，太小可能會使地圖有奇特的凹凸、太大則會使地圖缺乏變化性，我個人覺得預設值就很合適了。
+                                <img class="content-img" src="../../image/hw-tilemap-grid.png" alt="tilemap grid setting" style="margin: 1rem 0rem">
+                                至於 tilemap 本身只需要設定 sorting layer 就好:
+                                <img class="content-img" src="../../image/hw-tilemap-map.png" alt="tilemap setting" style="margin: 1rem 0rem">
+                            </li>
+                            <li>
+                                <b>創建 Tile Palette</b> - Grid & Tilemap 是我們的繪圖紙，接下來要創建我們的調色盤，左鍵點選 Project Asset Panel <code class="inline">Create &gt; 2D &gt; Tile Palette &gt; Rectangular</code>，會產生一個調色盤物件，點選他會在 Scene 出現 Open Tile Palette 的選項:
+                                <img class="content-img" src="../../image/hw-tilemap-palette-open.png" alt="open tile palette" style="margin: 1rem 0rem">
+                                
+                                點下去就會看到下面右側視窗，預設是空的，每一個格子都可以放置 sprite 來當成繪圖方塊，由於我們只是要用 tilemap 來打草稿，所以不需要實際的 sprite，我就直接匯入 32 x 32 的色塊來繪圖:
+                                <img class="content-img" src="../../image/hw-tilemap-palette.png" alt="tile palette" style="margin: 1rem 0rem">
+                                為了確保繪製出來的 Grid & Tilemap 是大小相符的，記得要讓 sprite 的 pixels per unit 與圖片大小相符:
+                                <img class="content-img" src="../../image/hw-tilemap-sprite-size.png" alt="tilemap sprite" style="margin: 1rem 0rem">
+                            </li>
+                            <li>
+                                <b>快樂繪圖時間</b> - 接著就用畫筆選個顏色在 Scene 上開心作畫了 ~~~ 除了畫筆也有填滿跟清除等功能，跟以前小畫家蠻像的:
+                                <img class="content-img" src="../../image/hw-tilemap-paint.png" alt="tilemap painting" style="margin: 1rem 0rem">
+                            </li>
+                        </ul>
+                        這樣我們就有了 Tilemap 能繪製出想要的地圖，最棒的一點在於我們是畫在 Scene 上因此能直接在 Game 模式中看到，方便與腳色互動也能夠直接調整地圖配置。
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">Create Map</h1>
+                    <hr>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">Scope</h1>
+                        <p class="content-paragraph">
+                            雖然 tilemap 可以讓我們自由繪製地圖，但繪製的時候還是要注意一些比例原則，像是:
+                            <ul class="content-ul">
+                                <li><b>tile 太小</b> - tile 小的好處在於能繪製出各種結構，但也可能畫出一些角色無法通過的路徑，除非是設計成特殊形態才能通過，不然這種瑕疵路徑蠻惱人，玩家以為那邊還有路在那邊找半天 XD。有一種勞永逸的處理方式是把先前 grid 的Cell Size 調大，還要把 tile palette 用到的 sprite PPU 下調同樣倍率，這樣才能把 Cell 填滿。</li>
+                                <img class="content-img" src="../../image/hw-tilemap-small-grid.png" alt="small grid">
+                                <li><b>上帝視角</b> - 在繪製地圖時我們會有預先設定好的路線，玩家從左往右移動、發現祕密路徑、二段跳、最後抵達上方平台，但我們很容易忘掉 <b>玩家的視野有限</b>，鏡頭能呈現的畫面是固定的，像是底下這種設計就很糟:
+                                <img class="content-img" src="../../image/hw-tilemap-bad-map-design.png" alt="bad map design" style="margin: 1rem 0rem">
+                                完全看不出來下一個移動方向在哪邊 !!! 該往左還是往右都看不出來，除非是想營造神秘感，例如某種迷霧大峽谷，不然就得讓玩家明白下一個移動方向是哪邊，其實這邊是希望讓玩家往上攀達，所以把上面區塊搬下來一點，這樣就好多了:
+                                <img class="content-img" src="../../image/hw-tilemap-good-map-design.png" alt="good map design" style="margin: 1rem 0rem">
+                                </li>
+                            </ul>
+                            剛剛講的結構比例、玩家視角想要驗證都有一個前提是需要自己試玩才會曉得，不過目前 tilemap 還只是看的到圖片而已，要成為遊戲的一部分還需要 Collider。
+                        </p>
+                    </section>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">Collider</h1>
+                        <p class="content-paragraph">
+                            為了讓這些繪製出來的牆壁地面變成小騎士能實際接觸的物件，得替 tilemap 加上 collider，詳細設定如下圖，tilemap 有屬於自己的 tilemap collider 2D，不過每個獨立的 tile 都自己一個 collider 對系統負擔太大，這邊加上 composite collider 2D 來 merge collider，記得 geometry type 要選 <code class="inline">Polygons</code>，另外就是 composite collider 自動附贈的 Rigidbody 2D 要跟之前一樣改成 static，不然場景會自由落體 ~~~
+                        </p>
+                        <p class="note">記得 tilemap 的 Layer 要設定成先前 <a href="./jump.html#raycast-para">ground detection</a> 採用的 Layer。</p>
+                        <img class="content-img" src="../../image/hw-tilemap-collider.png" alt="tilemap collider">
+                        <p class="content-paragraph">
+                            其實 Tilemap + Collider 是絕配，因為 tilemap 是方格排列所以不會誤差導致的 gap 存在，在之前的實作中 collider 是直接綁在 sprite 上，然後 sprite 間沒有排列準確出現微小高低差，這樣就會直接卡住小騎士的移動 @@。
+                        </p>
+                        <img class="content-img" src="../../image/hw-tilemap-sprite-wrong.png" alt="sprite collider misaligned">
+                    </section>
+                    <section class="L2-section">
+                        <h1 class="L2-section-title">Copy & Paste</h1>
+                        <p class="content-paragraph">
+                            設定好 collider 之後我們就能啟動 game 模式讓小騎士在地圖上奔馳，同時在 scene 頁面上同步修改地圖，這樣就能確保玩家看到的景色符合開發人員的預期，不過要注意的是，game 模式下對 scene 的編輯都只是暫時的，<span style="color: red">一旦 game 模式結束就會消失 !!!</span>
+                        </p>
+                        <p class="content-paragraph">
+                            不過幸好就跟大部分的 component 一樣，tilemap 可以進行複製，只要記得在結束 game 模式前複製 tilemap，然後再使用 <code class="inline">Paste Component Values</code> 就能把編輯的內容都保存下來 ~~~
+                        </p>
+                        <img class="content-img" src="../../image/hw-tilemap-copy-paste.png" alt="tilemap copy-paste">
+                    </section>
+                </section>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">後製</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        這些 tilemap 加入 collider 就能作為實際場景的牆壁，部分 tilemap 也可以做為設定導引，像是我用藍色代表水池、黃色代表入口點，但這些都只是早期開發用而已，之後還是需要進行後製，就是得像之前一樣用 sprite 點綴，把這些 tilemap 掩蓋起來，那才是最費工的部分 &gt;&lt;。
+                    </p>
+                    <p class="content-paragraph">
+                        我現階段還沒辦法弄得很好，就不獻醜了，之後在後續文章中的場景一點點展現吧 ~~~
+                    </p>
+                </section>
+                <section class="L1-section">
+                    <h1 class="L1-section-title">總結</h1>
+                    <hr>
+                    <p class="content-paragraph">
+                        本次學習用最簡單的 tilemap 功能來規劃地圖，讓開發過程能快速的驗證與測試，內容上有點過於簡單，連程式都沒碰到呢 XD，下一回就來點難的，實作小騎士最為複雜的動作 - 骨釘攻擊。
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <aside id="right-area" class="sidebar">
+            <div id="category-wrapper">
+                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
+                <hr>
+                <ul id="same-category-list">
+                </ul>
+            </div>
+            <div id="tag-wrapper">
+            </div>
+        </aside>
+    </div>
+
+    <footer>
+        <div id="contact-info">
+            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
+            <a class="github" href="https://github.com/PersonalWorkingSpace">
+                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
+                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
+                    </svg>
+                <span>Github</span>
+            </a>
+            <span>隨筆紀錄我的學習過程</span>
+        </div>
+        <p class="cc">
+            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
+        </p>
+        <p class="cc">
+            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
+            please include the original link.
+        </p>
+    </footer>
+</body>
+
+</html>
