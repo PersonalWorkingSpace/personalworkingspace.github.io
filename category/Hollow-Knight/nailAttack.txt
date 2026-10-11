@@ -1,0 +1,217 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/3pbnp14axw3wi.js"
+3:I[25954,["$2"],"default"]
+4:I[39756,["$2"],"default"]
+5:I[37457,["$2"],"default"]
+6:I[22016,["$2"],""]
+d:I[97367,["$2"],"OutletBoundary"]
+e:"$Sreact.suspense"
+10:"ViewportBoundary"
+11:I[97367,["$2"],"$10"]
+13:"MetadataBoundary"
+14:I[97367,["$2"],"$13"]
+16:I[68027,["$2"],"default",1]
+:HL["/_next/static/chunks/44hmm9eswl_k6.css","style"]
+8:X
+b:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":["$Lc",[["$","script","script-0",{"src":"/_next/static/chunks/303vpg09n1wil.js","async":true,"nonce":"$undefined"}]],["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]]}],"p":false,"v":null}}]]
+a:[["children",{"s":{"n":"slug","t":"d","k":"nailAttack","s":[]},"h":66048,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$8"},"c":"$Qb"}]]
+9:[["children",{"s":{"n":"category","t":"d","k":"Hollow-Knight","s":[]},"h":197120,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$8"},"c":"$Qa"}]]
+7:[["children",{"s":"category","h":131584,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$8"},"c":"$Q9"}]]
+0:{"P":null,"c":["","category","Hollow-Knight","nailAttack"],"q":"","i":false,"t":{"t":{"s":"","h":131600,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/44hmm9eswl_k6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3pbnp14axw3wi.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"zh-Hant-TW","children":["$","body",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"main-container","children":["$","main",null,{"id":"center-area","children":[["$","h1",null,{"className":"post-title","children":"404 - 找不到這個頁面"}],["$","p",null,{"className":"content-paragraph","children":["$","$L6",null,{"href":"/","children":"回到首頁"}]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","footer",null,{"children":[["$","div",null,{"id":"contact-info","children":[["$","a",null,{"href":"mailto:tonychen3000tony@gmail.com","children":"tonychen3000tony@gmail.com"}],["$","a",null,{"className":"github","href":"https://github.com/PersonalWorkingSpace","children":[["$","svg",null,{"height":"24","aria-hidden":"true","viewBox":"0 0 24 24","version":"1.1","width":"24","children":["$","path",null,{"d":"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"}]}],["$","span",null,{"children":"Github"}]]}],["$","span",null,{"children":"隨筆紀錄我的學習過程"}]]}],["$","p",null,{"className":"cc","children":["本文採用",["$","a",null,{"href":"https://creativecommons.org/licenses/by-nc-nd/4.0/","children":"創用 CC BY-NC-ND 4.0 條款"}],"授權分享，歡迎非商業性分享，唯請務必附上原文連結。"]}],["$","p",null,{"className":"cc","children":["This work is licensed under a ",["$","a",null,{"href":"https://creativecommons.org/licenses/by-nc-nd/4.0/","children":"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License"}],". You are welcome to share it for non-commercial purposes, but please include the original link."]}]]}]]}]}]]}],"p":false,"v":null},"c":"$Q7"},"h":{"r":["$","$1","h",{"children":[null,["$","$L11",null,{"children":"$L12"}],["$","$L14",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$e",null,{"name":"Next.Metadata","children":"$L15"}]}],null]}],null]}],"p":false,"v":null}},"m":"$undefined","G":["$16",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/44hmm9eswl_k6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"jy5l5GewKZPz7v6l7ZEND"}
+17:"/_next/static/chunks/303vpg09n1wil.js"
+18:I[1440,["$2","$17"],"default"]
+19:I[29818,["$2","$17"],"InlineAgenda"]
+:HL["/image/hw-nailAttack-cover.png","image"]
+:HL["/image/hw-nailAttack-slash.png","image"]
+:HL["/image/hw-nailAttack-break-grave.png","image"]
+:HL["/image/hw-nailAttack-hitEffect.png","image"]
+8:C
+c:["$","$L18",null,{"post":{"category":"Hollow-Knight","slug":"nailAttack","href":"/category/Hollow-Knight/nailAttack","title":"空洞騎士重現 - Nail Attack","created":"2026-10-07T00:00:00+08:00","tags":["GameMake"],"description":"骨丁攻擊，是空洞騎士當中做得非常好的一點，他的攻擊手感極佳，不僅是削減敵人血量的方法，更是與整個環境互動的一環，諸如擊碎場景物件、孢子跳跳樂、收集吉歐等等...","thumbnail":"/image/hw-nailAttack-cover.png"},"headings":["Sprites","Nail Attack","Slash Effect","Damageable","Hit Effect","Slash Down","成品","總結"],"sameCategory":{"count":11,"posts":[{"href":"/category/Hollow-Knight/camera","label":"Day5 - 空洞騎士重現 - 運鏡","current":false},{"href":"/category/Hollow-Knight/jump","label":"Day6 - 空洞騎士重現 - Jump","current":false},{"href":"/category/Hollow-Knight/kinematice","label":"Day7 - 空洞騎士重現 - Kinematic Rigidbody","current":false},{"href":"/category/Hollow-Knight/cinemachine","label":"Day8 - 空洞騎士重現 - Cinemachine","current":false},{"href":"/category/Hollow-Knight/dash-climb","label":"Day9 - 空洞騎士重現 - Dash & Climb","current":false},{"href":"/category/Hollow-Knight/tilemap","label":"Day10 - 空洞騎士重現 - Tilemap","current":false},{"href":"/category/Hollow-Knight/nailAttack","label":"Day11 - 空洞騎士重現 - Nail Attack","current":true}]},"tagGroups":[{"tag":"GameMake","count":11,"candidates":[{"href":"/category/Hollow-Knight/tilemap","title":"空洞騎士重現 - Tilemap"},{"href":"/category/Hollow-Knight/dash-climb","title":"空洞騎士重現 - Dash & Climb"},{"href":"/category/Hollow-Knight/cinemachine","title":"空洞騎士重現 - Cinemachine"},{"href":"/category/Hollow-Knight/kinematice","title":"空洞騎士重現 - Kinematic Rigidbody"},{"href":"/category/Hollow-Knight/jump","title":"空洞騎士重現 - Jump"},{"href":"/category/Hollow-Knight/camera","title":"空洞騎士重現 - 運鏡"},{"href":"/category/Hollow-Knight/move","title":"空洞騎士重現 - 移動"},{"href":"/category/Hollow-Knight/idle","title":"空洞騎士重現 - IDLE Scene"},{"href":"/category/Hollow-Knight/sprite","title":"空洞騎士重現 - 素材準備"},{"href":"/category/Hollow-Knight/begin","title":"空洞騎士重現 - 初衷"}]}],"children":[[["$","section",null,{"className":"L1-section","children":[["$","div",null,{"id":"cover-container","children":["$","img",null,{"id":"cover","src":"/image/hw-nailAttack-cover.png","alt":"空洞騎士"}]}],["$","div",null,{"className":"content-paragraph","children":"這次的 topic 是骨丁攻擊，是空洞騎士當中做得非常好的一點，他的攻擊手感極佳，不僅是削減敵人血量的方法，更是與整個環境互動的一環，諸如擊碎場景物件、孢子跳跳樂、收集吉歐等等，小小的揮擊卻帶來大大的回饋，本篇就來實踐這個機制。"}]]}],["$","$L19",null,{}]],["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Sprites","children":"Sprites"}],["$","hr",null,{}],[["$","div",null,{"className":"content-paragraph","children":["首先介紹本次使用的 sprites 來源:",["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","a",null,{"href":"https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC","children":"Nail Attack"}]," - 使用 ",["$","code",null,{"className":"inline","children":"004, 006~010"}]," 共包含了兩種平砍與上下劈，與之前的 dash / double jump 一樣，斬擊特效與小騎士的動作是分開的，不過斬擊特效我只找到平砍的，所以上下劈也沿用平砍的特效。 ",["$","img",null,{"className":"content-img","style":{"margin":"1rem 0rem"},"src":"/image/hw-nailAttack-slash.png","alt":"nailAttack slash effect"}]]}],["$","li",null,{"children":[["$","a",null,{"href":"https://drive.google.com/drive/folders/1EkU5yo5Uu_IXDAe_TsJNBAt4Nj6P1tTM","children":"場景物件"}]," - 這次使用的物件有點零散，主要被打擊的石柱來自 Dirtmouth，不過有趣的是他被打碎的 spirte 卻是來自 Resting Grounds，至於孢子跳跳樂則是從 Fungal Wastes 取得。 ",["$","img",null,{"className":"content-img","style":{"margin":"1rem 0rem"},"src":"/image/hw-nailAttack-break-grave.png","alt":"break grave"}]]}],["$","li",null,{"children":[["$","a",null,{"href":"https://drive.google.com/drive/folders/14vzV_uPmNzRIqRCSXoFv8tAlTY-LdOPc","children":"場景特效"}]," - 諸如擊碎噴出的石頭以及打到牆壁的火花都是從中擷取的。 ",["$","img",null,{"className":"content-img","style":{"margin":"1rem 0rem"},"src":"/image/hw-nailAttack-hitEffect.png","alt":"hit effect"}]]}]]}]]}],["$","div",null,{"className":"content-paragraph","children":["上述 sprites 可能會有紅框，可以透過此",["$","a",null,{"href":"https://github.com/PersonalWorkingSpace/inpc-blog-demo/tree/master/remove_red_border","children":"程式"}],"來移除。"]}]]]}],["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Nail Attack","children":"Nail Attack"}],"$L1a","$L1b"]}],"$L1c","$L1d","$L1e","$L1f","$L20","$L21"]}]
+22:I[34883,["$2","$17"],"default"]
+:HL["/image/hw-nailAttack-attack-state-machine.png","image"]
+:HL["/image/hw-nailAttack-slashCollider.png","image"]
+:HL["/image/hw-nailAttack-collision-matrix.png","image"]
+:HL["/image/hw-nailAttack-damageable.png","image"]
+1a:["$","hr",null,{}]
+1b:["$","div",null,{"className":"content-paragraph","children":["前製作業跟之前提到的 ",["$","a",null,{"href":"/category/Hollow-Knight/dash-climb","children":" Dash & Climb "}]," 一樣，就是新增 Button, Context, State, Animation 等等，不過由於攻擊本身與水平/垂直移動是獨立，所以在此額外新增一個狀態機用於 attack，底下補充幾點骨丁攻擊的特色:",["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","b",null,{"children":"兩種水平揮砍"}]," - 水平有兩種揮砍的動作 - slash / slashAlt，slashAlt 只會在快速連砍的時候與 slash 交互出現，除此之外都是 slash 動作，要達到這個效果的狀態機如底下所示，attack 在連擊時間結束後跳回去 none，反之在時間內又按下攻擊鍵則切到 attack alt，對於 attack alt 也是如此。因此除了本來的 attack cooldown 參數，還要新增一個 attack duration 參數來判定連擊。 ",["$","img",null,{"className":"content-img","style":{"margin":"1rem 0rem"},"src":"/image/hw-nailAttack-attack-state-machine.png","alt":"break grave"}]]}],["$","li",null,{"children":[["$","b",null,{"children":"紀錄攻擊方向"}]," - 除了本來的水平揮擊還會有上下劈兩種狀態，每一個狀態都需要紀錄一個 attack direction，也就是上下左右，這是為了讓其他物件產生對應的效果，例如擊中時敵人要往同方向飛出去。"]}]]}]]}]
+1c:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Slash Effect","children":"Slash Effect"}],["$","hr",null,{}],[["$","div",null,{"className":"content-paragraph","children":"與之前的 double jump 以及 dash 不同，這邊的 slash effect 其實才是攻擊本體，小騎士本身的動作反而只是動畫，為了能夠偵測到 slash effect 是否與物件產生碰撞，得替它加上 box collider 2D，這邊同樣要透過 animation record 的方式替每一張 slash sprite 調整 collider 的大小與範圍，另外記得 collider 要勾選 Is Trigger。"}],["$","img",null,{"className":"content-img","style":"$undefined","src":"/image/hw-nailAttack-slashCollider.png","alt":"slash collider"}],["$","div",null,{"className":"content-paragraph","children":["接者掛載腳本來處理 trigger 事件，首先檢查碰撞的物件是否具備一個 ",["$","code",null,{"className":"inline","children":"damageable"}]," 的 function，這個 function 是由我們替可被攻擊的物件實做出來，並會根據攻擊傷害與攻擊方向而產生不一樣的效果，這樣的實作方式能讓不同物件對攻擊產生不同反應，而不需要直接讀取 slash 本身的設定，同時 slash 也能直接偵測到攻擊的回饋 - valid，是相當好的寫法 ~~~"]}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L22",null,{"text":"// slash effect script\nvoid OnTriggerEnter2D(Collider2D other)\n{\n    if (other.TryGetComponent(out IDamageable damageable))\n    {\n        bool valid = damageable.TakeDamage(SlashDamage, Player.Context.SlashDirection);\n        ...\n    }\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"<span class=\"hljs-comment\">// slash effect script</span>\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">OnTriggerEnter2D</span>(<span class=\"hljs-params\">Collider2D other</span>)</span>\n{\n    <span class=\"hljs-keyword\">if</span> (other.TryGetComponent(<span class=\"hljs-keyword\">out</span> IDamageable damageable))\n    {\n        <span class=\"hljs-built_in\">bool</span> valid = damageable.TakeDamage(SlashDamage, Player.Context.SlashDirection);\n        ...\n    }\n}"}}]]}],["$","div",null,{"className":"content-paragraph","children":"另外一個非必需的設定是可以調整 project setting 中的 physics 2D collision matrix，這部分是 global 的控制 layer 能跟哪些 layer 產生碰撞，可以減少不必要的物理計算。我是讓 slash 跟 player 同一個 layer，然後只讓他能與 solid (地面牆壁) 跟 damageable 產生碰撞。"}],["$","img",null,{"className":"content-img","style":"$undefined","src":"/image/hw-nailAttack-collision-matrix.png","alt":"collision matrix"}]]]}]
+23:T753,<span class="hljs-comment">// stone pillar script</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDamageable</span>
+{
+    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">TakeDamage</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> amount, Vector2 direction</span>)</span>;
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">stone_pillar</span> : <span class="hljs-title">MonoBehaviour</span>, <span class="hljs-title">IDamageable</span>
+{
+    [<span class="hljs-meta">SerializeField</span>] <span class="hljs-built_in">int</span> maxHealth;
+    [<span class="hljs-meta">SerializeField</span>] <span class="hljs-built_in">float</span> invincibleDuration;
+    [<span class="hljs-meta">SerializeField</span>] GameObject originalObject;
+    [<span class="hljs-meta">SerializeField</span>] GameObject[] brokenObjects;
+    [<span class="hljs-meta">SerializeField</span>] Rigidbody2D[] fragmentSamples;
+    [<span class="hljs-meta">SerializeField</span>] LayerMask brokenLayer;
+
+    <span class="hljs-built_in">int</span> health;
+    <span class="hljs-built_in">float</span> invincibleTimer;
+
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> IsBroken =&gt; health &lt;= <span class="hljs-number">0</span>;
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>()</span>
+    {
+        health = maxHealth;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span>
+    {
+        <span class="hljs-keyword">if</span> (invincibleTimer &gt; <span class="hljs-number">0f</span>) invincibleTimer -= Time.deltaTime;
+    }
+    
+    ...
+}
+1d:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Damageable","children":"Damageable"}],["$","hr",null,{}],[["$","section",null,{"className":"L2-section","children":[["$","h1",null,{"className":"L2-section-title","children":"Component"}],[["$","div",null,{"className":"content-paragraph","children":"空洞騎士中一個可被破壞的物體是由三個物件構成: 完整外觀、破碎外觀、碎片 所構成。如下圖所示，破碎外觀準備兩種來隨機挑選，在一開始先把這三種 sprites 都放到同一個父物件底下，然後把破碎外觀跟碎片與完整外觀重疊，但只把完整外觀 enable，其餘都先 disable，並且只有父物件才要套 box colilder 2D，然後父物件的 layer 設定成 damageable，在 collision matrix 才能跟 slash 碰撞。"}],["$","img",null,{"className":"content-img","style":"$undefined","src":"/image/hw-nailAttack-damageable.png","alt":"damageable items"}]]]}],["$","section",null,{"className":"L2-section","children":[["$","h1",null,{"className":"L2-section-title","children":"Script"}],[["$","div",null,{"className":"content-paragraph","children":["替剛剛的父物件掛載 script，除了 MonoBehaviour 還要額外讓他實作 interface IDamageable 中的 TakeDamage，也就是 slash effect 中會偵測的 function，至於外部參數的用途依序是:",["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","b",null,{"children":"maxHealth"}]," - 代表此物件的生命值，歸零才會破碎。"]}],["$","li",null,{"children":[["$","b",null,{"children":"invincibleDuration"}]," - 無敵狀態時間，當受到攻擊後一段時間內攻擊會無效，這邊只是用來避免單次攻擊造成數次傷害，因為每一個 slash 是好幾幀組成的，有機率會觸發多次 damage。"]}],["$","li",null,{"children":[["$","b",null,{"children":"originalObject、brokenObjects、fragmentSamples"}]," - 就是前面提到的那些 sprites，不過可以注意 fragmentSamples 是 rigidbody 2D，這點稍後解釋。"]}],["$","li",null,{"children":[["$","b",null,{"children":"brokenLayer"}]," - 這是替被打碎後的物體切換 layer，來減少物理計算。"]}]]}]]}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L22",null,{"text":"// stone pillar script\npublic interface IDamageable\n{\n    bool TakeDamage(int amount, Vector2 direction);\n}\n\npublic class stone_pillar : MonoBehaviour, IDamageable\n{\n    [SerializeField] int maxHealth;\n    [SerializeField] float invincibleDuration;\n    [SerializeField] GameObject originalObject;\n    [SerializeField] GameObject[] brokenObjects;\n    [SerializeField] Rigidbody2D[] fragmentSamples;\n    [SerializeField] LayerMask brokenLayer;\n\n    int health;\n    float invincibleTimer;\n\n    public bool IsBroken => health <= 0;\n\n    void Awake()\n    {\n        health = maxHealth;\n    }\n\n    void Update()\n    {\n        if (invincibleTimer > 0f) invincibleTimer -= Time.deltaTime;\n    }\n    \n    ...\n}\n"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$23"}}]]}],"$L24","$L25","$L26","$L27","$L28","$L29"]]}]]]}]
+2a:T62c,<span class="hljs-comment">// slash effect script</span>
+...
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnTriggerEnter2D</span>(<span class="hljs-params">Collider2D other</span>)</span>
+{
+    ...
+
+    <span class="hljs-keyword">if</span> (other.gameObject.CompareTag(<span class="hljs-string">&quot;Solid&quot;</span>))
+    {
+        Vector2 point = other.ClosestPoint(slashCollider.bounds.center);
+        SpawnHitEffect(point);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SpawnHitEffect</span>(<span class="hljs-params">Vector2 position</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (HitEffect == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;
+
+    GameObject effect = Instantiate(HitEffect, position, HitEffect.transform.rotation);
+    effect.SetActive(<span class="hljs-literal">true</span>);
+
+    Animator effectAnimator = effect.GetComponent&lt;Animator&gt;();
+    effectAnimator.Play(HitEffectState, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+    effectAnimator.Update(<span class="hljs-number">0f</span>);
+
+    AnimatorStateInfo info = effectAnimator.GetCurrentAnimatorStateInfo(<span class="hljs-number">0</span>);
+    <span class="hljs-built_in">float</span> speed = Mathf.Abs(info.speed * info.speedMultiplier);
+    <span class="hljs-built_in">float</span> lifetime = speed &gt; <span class="hljs-number">0f</span> ? info.length / speed : info.length;
+
+    Destroy(effect, lifetime);
+}1e:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Hit Effect","children":"Hit Effect"}],["$","hr",null,{}],[["$","div",null,{"className":"content-paragraph","children":["前面說完了打擊物體的效果，現在說說打擊牆壁/地面的效果，空洞騎士中如果打擊一些堅硬的物體會產生出刀光，而這個的實作方式與 ",["$","code",null,{"className":"inline","children":"TakeDamage"}]," 不太一樣，由於刀光本身只是特效，不會對牆壁那些東西造成甚麼影響，所以可以完全由 slash 控制:"]}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L22",null,{"text":"// slash effect script\n...\n\nvoid OnTriggerEnter2D(Collider2D other)\n{\n    ...\n\n    if (other.gameObject.CompareTag(\"Solid\"))\n    {\n        Vector2 point = other.ClosestPoint(slashCollider.bounds.center);\n        SpawnHitEffect(point);\n    }\n}\n\nvoid SpawnHitEffect(Vector2 position)\n{\n    if (HitEffect == null) return;\n\n    GameObject effect = Instantiate(HitEffect, position, HitEffect.transform.rotation);\n    effect.SetActive(true);\n\n    Animator effectAnimator = effect.GetComponent<Animator>();\n    effectAnimator.Play(HitEffectState, 0, 0);\n    effectAnimator.Update(0f);\n\n    AnimatorStateInfo info = effectAnimator.GetCurrentAnimatorStateInfo(0);\n    float speed = Mathf.Abs(info.speed * info.speedMultiplier);\n    float lifetime = speed > 0f ? info.length / speed : info.length;\n\n    Destroy(effect, lifetime);\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$2a"}}]]}],["$","div",null,{"className":"content-paragraph","children":["由於我們使用的是 trigger 因此無法直接取得準確的碰撞位置，但依舊能透過 ",["$","code",null,{"className":"inline","children":"ClosestPoint"}]," 取得相近的座標，這樣其實就足夠了，透過在此座標生成物件並播放動畫就能達成刀光劍影的效果，一樣要記得設定生命週期，這邊是動畫播完就刪除。"]}]]]}]
+1f:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Slash Down","children":"Slash Down"}],["$","hr",null,{}],[["$","div",null,{"className":"content-paragraph","children":"前面都是 slash 對物體產生的效果或動畫，這邊講講攻擊對小騎士的影響，其中最顯著的就是下劈，向下劈砍擊中時可以產生跳躍的效果，還能夠重製 double jump & dash，是空戰的重要一環:"}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L22",null,{"text":"// slash effect script\n...\n\nvoid OnTriggerEnter2D(Collider2D other)\n{\n    if (other.TryGetComponent(out IDamageable damageable))\n    {\n        bool valid = damageable.TakeDamage(SlashDamage, Player.Context.SlashDirection);\n\n        if (!valid) return;\n\n        if (Player.Context.SlashDirection == Vector2.down)\n        {\n            if (other.gameObject.CompareTag(\"Bouncer\"))\n            {\n                Player.Context.PogoRequested = true;\n            };\n        }\n    }\n\n    ...\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"<span class=\"hljs-comment\">// slash effect script</span>\n...\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">OnTriggerEnter2D</span>(<span class=\"hljs-params\">Collider2D other</span>)</span>\n{\n    <span class=\"hljs-keyword\">if</span> (other.TryGetComponent(<span class=\"hljs-keyword\">out</span> IDamageable damageable))\n    {\n        <span class=\"hljs-built_in\">bool</span> valid = damageable.TakeDamage(SlashDamage, Player.Context.SlashDirection);\n\n        <span class=\"hljs-keyword\">if</span> (!valid) <span class=\"hljs-keyword\">return</span>;\n\n        <span class=\"hljs-keyword\">if</span> (Player.Context.SlashDirection == Vector2.down)\n        {\n            <span class=\"hljs-keyword\">if</span> (other.gameObject.CompareTag(<span class=\"hljs-string\">&quot;Bouncer&quot;</span>))\n            {\n                Player.Context.PogoRequested = <span class=\"hljs-literal\">true</span>;\n            };\n        }\n    }\n\n    ...\n}"}}]]}],["$","div",null,{"className":"content-paragraph","children":"實作方式就是在本來的有效命中底下插入一個攻擊方向檢查，如果是下劈的話且擊中的物體是可以彈跳的，就設定一個 context，這個 context 能夠讓小騎士狀態機進入到跳躍狀態，並重製 double jump & dash。"}]]]}]
+20:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"成品","children":"成品"}],["$","hr",null,{}],[["$","br",null,{}]," ",["$","iframe",null,{"className":"content-iframe","src":"https://www.youtube.com/embed/Qu8FZQG7YnM?si=r5eUJOwNF8NQExF3","title":"YouTube video player","frameBorder":"0","allow":"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share","referrerPolicy":"strict-origin-when-cross-origin","allowFullScreen":true}],["$","div",null,{"className":"content-paragraph","children":"本次成品包含了打擊牆壁時的刀光，以及石柱不同方向的碎石噴濺，最後的石柱則是拉高 health 讓他不會一打就碎，能夠看出打碎前的噴濺方向都是反方向，最後下劈的孢子跳跳樂則是在 TakeDamange 內加上 particle system 的播放。有些地方沒有實踐，像是碎石消失的方式該要是縮小並且淡化消失，以及打擊時應該會有的後座力 (除非有裝穩定護符)。"}]]]}]
+21:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"總結","children":"總結"}],["$","hr",null,{}],["$","div",null,{"className":"content-paragraph","children":"這次透過實踐骨丁攻擊學到了 2D 遊戲中的基礎物件互動，感覺有很多東西都能實現了呢 !!! 不過攻擊的效果呈現有點單調，雖然 sprite 都是用原始遊戲的，但還是少了適當的後處理，下次就來弄弄 shader graph 吧。"}]]}]
+:HL["/image/hw-nailAttack-damageable-script.png","image"]
+24:["$","div",null,{"className":"content-paragraph","children":"整體外部設定如下圖所示:"}]
+25:["$","img",null,{"className":"content-img","style":"$undefined","src":"/image/hw-nailAttack-damageable-script.png","alt":"damageable script setting"}]
+26:["$","div",null,{"className":"content-paragraph","children":["實際的 ",["$","code",null,{"className":"inline","children":"TakeDamage"}]," 如下所示，先確認物體是否完整以及無敵時間結束了才觸發傷害，並重新設定無敵時間，如果生命歸零就把 sprite 顯示替換成 broken 的其中一張，並把 layer 切成故障狀態，至於那個 ",["$","code",null,{"className":"inline","children":"SpawnFragments"}]," 則是為了創造出噴濺碎片的效果，其中如果物體被打碎了才讓碎片往前飛，不然都是往反向飛行，這樣比較真實 ~~~"]}]
+2b:T60e,<span class="hljs-comment">// stone pillar script</span>
+...
+
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">TakeDamage</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> amount, Vector2 attackDirection</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (IsBroken) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+
+    <span class="hljs-keyword">if</span> (invincibleTimer &lt;= <span class="hljs-number">0</span>)
+    {
+        health = Mathf.Max(<span class="hljs-number">0</span>, health - amount);
+
+        <span class="hljs-keyword">if</span> (IsBroken)
+        {
+            SpawnFragments(fragmentsOnBreak, attackDirection);
+            Break();
+        } 
+        <span class="hljs-keyword">else</span>
+        {
+            SpawnFragments(fragmentsPerHit, -attackDirection);    
+        }
+        invincibleTimer = invincibleDuration;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Break</span>()</span>
+{
+    originalObject.SetActive(<span class="hljs-literal">false</span>);
+    gameObject.layer = brokenLayer;
+    brokenObjects[Random.Range(<span class="hljs-number">0</span>, brokenObjects.Length)].SetActive(<span class="hljs-literal">true</span>);
+}
+    
+...27:["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L22",null,{"text":"// stone pillar script\n...\n\npublic bool TakeDamage(int amount, Vector2 attackDirection)\n{\n    if (IsBroken) return false;\n\n    if (invincibleTimer <= 0)\n    {\n        health = Mathf.Max(0, health - amount);\n\n        if (IsBroken)\n        {\n            SpawnFragments(fragmentsOnBreak, attackDirection);\n            Break();\n        } \n        else\n        {\n            SpawnFragments(fragmentsPerHit, -attackDirection);    \n        }\n        invincibleTimer = invincibleDuration;\n        return true;\n    }\n\n    return true;\n}\n\nvoid Break()\n{\n    originalObject.SetActive(false);\n    gameObject.layer = brokenLayer;\n    brokenObjects[Random.Range(0, brokenObjects.Length)].SetActive(true);\n}\n    \n..."}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$2b"}}]]}]
+28:["$","div",null,{"className":"content-paragraph","children":[["$","code",null,{"className":"inline","children":"SpawnFragments"}]," 簡單來說只是隨機創造特定數量的碎片讓他具有不同的位置與旋轉，其中最重要的一點是這些碎片其實都具備 ",["$","span",null,{"style":{"color":"red"},"children":" rigidbody 2D !!! 而且還是 dynamic 的 !!! "}]," 這是因為碎片飛散要做的逼真還是得有物理引擎介入，這樣我們只需要控制力的方向/大小即可 (Launch)，但為了避免過多運算資源介入，記得要設定生命週期 (destroy)。"]}]
+2c:T47a,// stone pillar script
+...
+
+void SpawnFragments(int count, Vector2 offset)
+{
+    for (int i = 0; i < count; i++)
+    {
+        Rigidbody2D sample = fragmentSamples[Random.Range(0, fragmentSamples.Length)];
+
+        Vector2 spawnPos = (Vector2)sample.transform.position + Random.insideUnitCircle * spawnJitter;
+        Quaternion spawnRot = Quaternion.Euler(0f, 0f, Random.Range(0f, 360f));
+
+        Rigidbody2D rb = Instantiate(sample, spawnPos, spawnRot, null);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gameObject.SetActive(true);
+
+        Launch(rb, spawnPos, offset);
+        Destroy(rb.gameObject, fragmentLifetime);
+    }
+}
+
+void Launch(Rigidbody2D rb, Vector2 spawnPos, Vector2 offset)
+{
+    Vector2 direction = offset.sqrMagnitude > 0.0001f
+        ? offset.normalized
+        : Random.insideUnitCircle.normalized;
+
+    direction = (direction + Random.insideUnitCircle * directionVariance).normalized;
+    float magnitude = burstForce * Random.Range(1f - forceVariance, 1f + forceVariance);
+
+    rb.AddForce(direction * magnitude, ForceMode2D.Impulse);
+    rb.AddTorque(Random.Range(-torqueRange, torqueRange));
+}
+    
+...2d:T7a6,<span class="hljs-comment">// stone pillar script</span>
+...
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SpawnFragments</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> count, Vector2 offset</span>)</span>
+{
+    <span class="hljs-keyword">for</span> (<span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span>; i &lt; count; i++)
+    {
+        Rigidbody2D sample = fragmentSamples[Random.Range(<span class="hljs-number">0</span>, fragmentSamples.Length)];
+
+        Vector2 spawnPos = (Vector2)sample.transform.position + Random.insideUnitCircle * spawnJitter;
+        Quaternion spawnRot = Quaternion.Euler(<span class="hljs-number">0f</span>, <span class="hljs-number">0f</span>, Random.Range(<span class="hljs-number">0f</span>, <span class="hljs-number">360f</span>));
+
+        Rigidbody2D rb = Instantiate(sample, spawnPos, spawnRot, <span class="hljs-literal">null</span>);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.gameObject.SetActive(<span class="hljs-literal">true</span>);
+
+        Launch(rb, spawnPos, offset);
+        Destroy(rb.gameObject, fragmentLifetime);
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Launch</span>(<span class="hljs-params">Rigidbody2D rb, Vector2 spawnPos, Vector2 offset</span>)</span>
+{
+    Vector2 direction = offset.sqrMagnitude &gt; <span class="hljs-number">0.0001f</span>
+        ? offset.normalized
+        : Random.insideUnitCircle.normalized;
+
+    direction = (direction + Random.insideUnitCircle * directionVariance).normalized;
+    <span class="hljs-built_in">float</span> magnitude = burstForce * Random.Range(<span class="hljs-number">1f</span> - forceVariance, <span class="hljs-number">1f</span> + forceVariance);
+
+    rb.AddForce(direction * magnitude, ForceMode2D.Impulse);
+    rb.AddTorque(Random.Range(-torqueRange, torqueRange));
+}
+    
+...29:["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L22",null,{"text":"$2c"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$2d"}}]]}]
+12:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+2e:I[27201,["$2"],"IconMark"]
+f:null
+15:[["$","title","0",{"children":"空洞騎士重現 - Nail Attack"}],["$","meta","1",{"name":"description","content":"骨丁攻擊，是空洞騎士當中做得非常好的一點，他的攻擊手感極佳，不僅是削減敵人血量的方法，更是與整個環境互動的一環，諸如擊碎場景物件、孢子跳跳樂、收集吉歐等等..."}],["$","meta","2",{"name":"author","content":"MJ CHEN"}],["$","meta","3",{"name":"keywords","content":"GameMake"}],["$","link","4",{"rel":"icon","href":"/image/INPC-ICON.png"}],["$","$L2e","5",{}]]

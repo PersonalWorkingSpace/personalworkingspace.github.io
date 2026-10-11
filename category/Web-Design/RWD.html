@@ -1,232 +1,31 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-
-<head>
-    <title>RWD 響應式網頁設計</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="在此文章中你會學到如何透過 CSS 的 @media 來設計出響應式網頁...">
-    <meta name="keywords" content="初學筆記, CSS">
-    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
-    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
-    <link href="../../style/style.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
-    <script type="module" src="../../module/post.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
-</head>
-
-<body>
-    <header class="banner">
-        <div class="wrapper">
-            <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
-            </a>
-            <button id="hamburger">&#9776;</button>
-            <nav id="site-nav">
-                <a href="../../index.html">Home</a>
-                <a href="../../index.html">Posts</a>
-                <a href="../../entrypoint/categories.html">Categories</a>
-                <a href="../../entrypoint/tags.html">Tags</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <aside id="left-area" class="sidebar">
-            <!-- 這是大綱 -->
-            <div id="agenda-wrapper">
-                <h1 class="agenda-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <line x1="9" y1="10" x2="20" y2="10"></line>
-                        <line x1="9" y1="16" x2="20" y2="16"></line>
-                        <line x1="9" y1="22" x2="20" y2="22"></line>
-                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
-                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
-                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
-                    </svg> In this article</h1>
-                <hr>
-                <ol id="agenda">
-                </ol>
-            </div>
-        </aside>
-
-        <main id="center-area">
-            <article id="main-content">
-                <header class="post-header">
-                    <h1 class="post-title">RWD 響應式網頁設計</h1>
-                    <div class="post-meta">
-                        <time datetime="2025-08-02T00:00:00+08:00" itemprop="datePublished"> Aug 02, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
-                        <img src="../../image/TAG-ICON.png" class="inline-icon">
-                        <nav id="tag-bar"></nav>
-                    </div>
-                </header>
-
-                <section class="L1-section">
-                    <div id="cover-container">
-                        <img id="cover" src="https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
-                    </div>
-                    <p class="content-paragraph">
-                        一個好的網頁必須考慮到使用者會藉由不同螢幕大小的裝置來檢視，像是電腦、平板、手機等螢幕尺寸差異會很大，可能你的網頁在電腦上看是正常的，到了手機上就擠成一團，所以我們得引入 RWD 的概念來讓網頁在不同螢幕尺寸時有不同的顯示方式。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">RWD</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        全名為 Responsive Web Design / 響應式網頁設計，主要是希望網頁在不同尺寸的裝置上都能有適當的呈現方式，減少使用者滑動或縮放的操作，我很喜歡 wiki 上的圖片說明:
-                    </p>
-                    <img class="content-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Content-is-like-water.svg/1920px-Content-is-like-water.svg.png" alt="wiki說明圖">
-                    <p class="content-paragraph">
-                        <b>內容就像水一樣，能夠根據裝置變化為合適的樣貌</b>，要達成這點最常見的處理方式就是偵測網頁的寬度，當寬度縮小到一個下限時，就把部分資訊欄位隱藏或是收縮起來。
-                    </p>
-                    <p class="content-paragraph">
-                        以本網頁為例，如果是在電腦上看應該會在左側看到目錄、右側看到相關文章推薦，如果將頁面的寬度慢慢下降到 <code class="inline">1000px</code> 以下，兩側欄位會直接隱藏，避免內文被擠壓過頭，此外頁首的部分也會把 <code class="inline">nav</code> 收縮起來，改成以下拉式選單呈現。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">CSS @media</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        想要實現 RWD 的網頁設計，最簡單的方式是透過 CSS 內建的 <code class="inline">@media</code> rule 達成; 它能根據裝置的 media type 來決定是否套用部分 CSS styles，在 RWD 中就是以網頁寬度來控制:
-                        <pre><code class="css">
-@media (max-width: 1000px) {
-    #side-area {
-        display: none;
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/image/INPC-ICON.png"/><link rel="preload" as="image" href="/image/CATEGORY-ICON.png"/><link rel="preload" as="image" href="/image/TAG-ICON.png"/><link rel="preload" href="https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" as="image"/><link rel="preload" href="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Content-is-like-water.svg/1920px-Content-is-like-water.svg.png" as="image"/><link rel="preload" href="/image/dropdown-menu.png" as="image"/><link rel="stylesheet" href="/_next/static/chunks/44hmm9eswl_k6.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/1x6obpmlu1_c2.js"/><script src="/_next/static/chunks/02aeof6897urs.js" async=""></script><script src="/_next/static/chunks/0y23_0vo0sx8y.js" async=""></script><script src="/_next/static/chunks/2odeex0vp2-n5.js" async=""></script><script src="/_next/static/chunks/turbopack-3-ry682tkyiqk.js" async=""></script><script src="/_next/static/chunks/3pbnp14axw3wi.js" async=""></script><script src="/_next/static/chunks/303vpg09n1wil.js" async=""></script><title>RWD 響應式網頁設計</title><meta name="description" content="在此文章中你會學到如何透過 CSS 的 @media 來設計出響應式網頁..."/><meta name="author" content="MJ CHEN"/><meta name="keywords" content="初學筆記,CSS"/><link rel="icon" href="/image/INPC-ICON.png"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><header class="banner"><div class="wrapper"><a id="site-logo" href="/"><img width="40" src="/image/INPC-ICON.png" alt="inpc-icon"/> Internet NPC</a><button id="hamburger">☰</button><nav id="site-nav"><a href="/">Home</a><a href="/">Posts</a><a href="/entrypoint/categories">Categories</a><a href="/entrypoint/tags">Tags</a></nav></div></header><div class="main-container"><aside id="left-area" class="sidebar"><div class="agenda-wrapper agenda-sidebar"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#RWD">RWD</a></li><li class="non-focus-section"><a href="#CSS @media">CSS @media</a></li><li class="non-focus-section"><a href="#範例">範例</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div></aside><main id="center-area"><article id="main-content"><header class="post-header"><h1 class="post-title">RWD 響應式網頁設計</h1><div class="post-meta"><time dateTime="2025-08-02T00:00:00+08:00" itemProp="datePublished"> <!-- -->Aug 02, 2025<!-- --> </time> |<img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><span id="category-bar"><a class="tag" style="color:#707070;background-color:#fae5d3" href="/entrypoint/categories?category=Web-Design">網頁設計</a></span><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><nav id="tag-bar"><a class="tag" style="color:#707070;background-color:#ebf5fb" href="/entrypoint/tags?tag=%E5%88%9D%E5%AD%B8%E7%AD%86%E8%A8%98">初學筆記</a><a class="tag" style="color:#707070;background-color:#ebdef0" href="/entrypoint/tags?tag=CSS">CSS</a></nav></div></header><section class="L1-section"><div id="cover-container"><img id="cover" src="https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80&amp;w=2070&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了"/></div><div class="content-paragraph">一個好的網頁必須考慮到使用者會藉由不同螢幕大小的裝置來檢視，像是電腦、平板、手機等螢幕尺寸差異會很大，可能你的網頁在電腦上看是正常的，到了手機上就擠成一團，所以我們得引入 RWD 的概念來讓網頁在不同螢幕尺寸時有不同的顯示方式。</div></section><div class="agenda-wrapper agenda-inline"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#RWD">RWD</a></li><li class="non-focus-section"><a href="#CSS @media">CSS @media</a></li><li class="non-focus-section"><a href="#範例">範例</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div><section class="L1-section"><h1 class="L1-section-title" id="RWD">RWD</h1><hr/><div class="content-paragraph">全名為 Responsive Web Design / 響應式網頁設計，主要是希望網頁在不同尺寸的裝置上都能有適當的呈現方式，減少使用者滑動或縮放的操作，我很喜歡 wiki 上的圖片說明:</div><img class="content-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Content-is-like-water.svg/1920px-Content-is-like-water.svg.png" alt="wiki說明圖"/><div class="content-paragraph"><b>內容就像水一樣，能夠根據裝置變化為合適的樣貌</b>，要達成這點最常見的處理方式就是偵測網頁的寬度，當寬度縮小到一個下限時，就把部分資訊欄位隱藏或是收縮起來。</div><div class="content-paragraph">以本網頁為例，如果是在電腦上看應該會在左側看到目錄、右側看到相關文章推薦，如果將頁面的寬度慢慢下降到 <code class="inline">1000px</code> 以下，兩側欄位會直接隱藏，避免內文被擠壓過頭，此外頁首的部分也會把 <code class="inline">nav</code> 收縮起來，改成以下拉式選單呈現。</div></section><section class="L1-section"><h1 class="L1-section-title" id="CSS @media">CSS @media</h1><hr/><div class="content-paragraph">想要實現 RWD 的網頁設計，最簡單的方式是透過 CSS 內建的 <code class="inline">@media</code> rule 達成; 它能根據裝置的 media type 來決定是否套用部分 CSS styles，在 RWD 中就是以網頁寬度來控制:<pre><div class="code-bar"><h4>CSS</h4><button type="button">Copy</button></div><code class="css hljs"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">max-width</span>: <span class="hljs-number">1000px</span>) {
+    <span class="hljs-selector-id">#side-area</span> {
+        <span class="hljs-attribute">display</span>: none;
     }
     ...
-}
-                        </code></pre>
-                    </p>
-                    <p class="content-paragraph">
-                        使用上很直觀:
-                        <ul class="content-ul">
-                            <li>
-                                <b>設定條件</b> - 條件由 () 所包起來，螢幕寬度可以設定成 <code class="inline">min-width</code> (&gt;= 我觸發) <code class="inline">max-width</code> (&lt; 我觸發)，並透過 <code class="inline">and</code>, <code class="inline">or</code>來實現複雜邏輯。以上設定為寬度小於
-                                1000px 時觸發。
-                            </li>
-                            <li>
-                                <b>要套用的 sytles</b> - 可以接多個 style，這邊就是把一些區塊的顯示關掉。
-                            </li>
-                        </ul>
-                    </p>
-                    <p class="content-paragraph">
-                        你可能會覺得這個 min-width, max-width 不太直觀，放心你不孤獨XD，在 CSS Media Queries Level 4 後就有提供以下這種更方便的寫法，底下是當螢幕尺寸介於 480px 跟 1000px 才會套用的寫法，數學式就就直觀多了 (^u^)
-                        <pre><code class="css">
-@media (480px <= width <= 1000px) {
+}</code></pre></div><div class="content-paragraph">使用上很直觀:<ul class="content-ul"><li><b>設定條件</b> - 條件由 () 所包起來，螢幕寬度可以設定成 <code class="inline">min-width</code> (&gt;= 我觸發) <code class="inline">max-width</code> (&lt; 我觸發)，並透過 <code class="inline">and</code>, <code class="inline">or</code>來實現複雜邏輯。以上設定為寬度小於 1000px 時觸發。</li><li><b>要套用的 sytles</b> - 可以接多個 style，這邊就是把一些區塊的顯示關掉。</li></ul></div><div class="content-paragraph">你可能會覺得這個 min-width, max-width 不太直觀，放心你不孤獨XD，在 CSS Media Queries Level 4 後就有提供以下這種更方便的寫法，底下是當螢幕尺寸介於 480px 跟 1000px 才會套用的寫法，數學式就就直觀多了 (^u^)<pre><div class="code-bar"><h4>CSS</h4><button type="button">Copy</button></div><code class="css hljs"><span class="hljs-keyword">@media</span> (<span class="hljs-number">480px</span> &lt;= <span class="hljs-attribute">width</span> &lt;= <span class="hljs-number">1000px</span>) {
     ...
-}
-                        </code></pre>
-                    </p>
-                    <p class="note">
-                        由於 CSS 是放在後面的 style 能夠複寫前面的，建議是把 @media 區塊放在後面。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">範例</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        在此介紹一下本網頁如何實作寬度縮小時，標頭的連結 (Home, Posts, Categories, Tags) 自動轉成下拉選單 (menu):
-                        <br><br>
-                        <img class="content-img" src="../../image/dropdown-menu.png" alt="dropdown-menu">
-                        <ol class="content-ol">
-                            <li> 先產生出下拉清單的符號 (hamburger menu) 跟連結 nav，初始狀態是只顯示 nav、不顯示 menu:
-                                <pre><code class="html">
-&lt;button id="hamburger"&gt;&#9776;&lt;/button&gt;
-&lt;nav id="site-nav"&gt;
+}</code></pre></div><p class="note">由於 CSS 是放在後面的 style 能夠複寫前面的，建議是把 @media 區塊放在後面。</p></section><section class="L1-section"><h1 class="L1-section-title" id="範例">範例</h1><hr/><div class="content-paragraph">在此介紹一下本網頁如何實作寬度縮小時，標頭的連結 (Home, Posts, Categories, Tags) 自動轉成下拉選單 (menu): <br/><br/> <img class="content-img" src="/image/dropdown-menu.png" alt="dropdown-menu"/><ol class="content-ol"><li>先產生出下拉清單的符號 (hamburger menu) 跟連結 nav，初始狀態是只顯示 nav、不顯示 menu:<pre><div class="code-bar"><h4>HTML</h4><button type="button">Copy</button></div><code class="html hljs"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;hamburger&quot;</span>&gt;</span>☰<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">nav</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;site-nav&quot;</span>&gt;</span>
     ...
-&lt;/nav&gt;
-                                </code></pre>
-                                <pre><code class="css">
-#hamburger {
-    display: none;
-}
-                        </code></pre>
-                            </li>
-                            <li> 設定 @media 網頁寬度小於 1000px 時的 style，讓 nav 隱藏並顯示出 menu，此外還修改了 nav 的顯示屬性，使其變成每個連結都是單獨一行:
-                                <pre><code class="css">                               
-@media (width < 1000px) {
-    #site-nav {
-        display: none;
-        flex-direction: column;
-        width: 100%;
+<span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span></code></pre><pre><div class="code-bar"><h4>CSS</h4><button type="button">Copy</button></div><code class="css hljs"><span class="hljs-selector-id">#hamburger</span> {
+    <span class="hljs-attribute">display</span>: none;
+}</code></pre></li><li>設定 @media 網頁寬度小於 1000px 時的 style，讓 nav 隱藏並顯示出 menu，此外還修改了 nav 的顯示屬性，使其變成每個連結都是單獨一行:<pre><div class="code-bar"><h4>CSS</h4><button type="button">Copy</button></div><code class="css hljs"><span class="hljs-keyword">@media</span> (<span class="hljs-attribute">width</span> &lt; <span class="hljs-number">1000px</span>) {
+    <span class="hljs-selector-id">#site-nav</span> {
+        <span class="hljs-attribute">display</span>: none;
+        <span class="hljs-attribute">flex-direction</span>: column;
+        <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;
     }
-    #hamburger {
-        display: block;
+    <span class="hljs-selector-id">#hamburger</span> {
+        <span class="hljs-attribute">display</span>: block;
     }
-}
-                                </code></pre> 這麼做的目的是當 nav 的 display 打開就會有下拉的清單出現， 值得注意的是裝 nav 的外部元素必須採用 <code class="inline">flex-flow: row wrap;</code>，這樣才會使 nav 自動換到下一行。
-                            </li>
-                            <li> 接下來要設定點擊後 menu 修改 nav 的 display，我們可以先設定一個 class 為 open 的屬性顯示，然後用 JS 幫 nav 加上 open class 即可:
-                                <pre><code class="css">
-#site-nav.open {
-    display: flex;
-}
-                                </code></pre>
-                                <pre><code class="javascript">
-let menu = document.getElementById("hamburger");
-menu.addEventListener(
-    "click", () => {
-        let siteNav = document.getElementById("site-nav");
-        // 如果 class 有包含 open 則移除，沒有則加入 open
-        siteNav.classList.toggle('open');
+}</code></pre>這麼做的目的是當 nav 的 display 打開就會有下拉的清單出現， 值得注意的是裝 nav 的外部元素必須採用 <code class="inline">flex-flow: row wrap;</code>，這樣才會使 nav 自動換到下一行。</li><li>接下來要設定點擊後 menu 修改 nav 的 display，我們可以先設定一個 class 為 open 的屬性顯示，然後用 JS 幫 nav 加上 open class 即可:<pre><div class="code-bar"><h4>CSS</h4><button type="button">Copy</button></div><code class="css hljs"><span class="hljs-selector-id">#site-nav</span><span class="hljs-selector-class">.open</span> {
+    <span class="hljs-attribute">display</span>: flex;
+}</code></pre><pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-keyword">let</span> menu = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;hamburger&quot;</span>);
+menu.<span class="hljs-title function_">addEventListener</span>(
+    <span class="hljs-string">&quot;click&quot;</span>, <span class="hljs-function">() =&gt;</span> {
+        <span class="hljs-keyword">let</span> siteNav = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;site-nav&quot;</span>);
+        <span class="hljs-comment">// 如果 class 有包含 open 則移除，沒有則加入 open</span>
+        siteNav.<span class="hljs-property">classList</span>.<span class="hljs-title function_">toggle</span>(<span class="hljs-string">&#x27;open&#x27;</span>);
     }
-);
-                                </code></pre>
-                            </li>
-                        </ol>
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">總結</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        以上就是透過 @media 來達成 RWD 網頁的介紹，透過 @media 來設定寬度條件並動態套用 style，讓網頁在手機等裝置上也能清楚呈現，並結合 JS 來實踐下拉選單將資訊保留，騰出更多版面給你的內文。
-                    </p>
-                </section>
-            </article>
-        </main>
-
-        <aside id="right-area" class="sidebar">
-            <div id="category-wrapper">
-                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
-                <hr>
-                <ul id="same-category-list">
-                </ul>
-            </div>
-            <div id="tag-wrapper">
-            </div>
-        </aside>
-    </div>
-
-    <footer>
-        <div id="contact-info">
-            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
-            <a class="github" href="https://github.com/PersonalWorkingSpace">
-                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
-                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
-                    </svg>
-                <span>Github</span>
-            </a>
-            <span>隨筆紀錄我的學習過程</span>
-        </div>
-        <p class="cc">
-            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
-        </p>
-        <p class="cc">
-            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
-            please include the original link.
-        </p>
-    </footer>
-</body>
-
-</html>
+);</code></pre></li></ol></div></section><section class="L1-section"><h1 class="L1-section-title" id="總結">總結</h1><hr/><div class="content-paragraph">以上就是透過 @media 來達成 RWD 網頁的介紹，透過 @media 來設定寬度條件並動態套用 style，讓網頁在手機等裝置上也能清楚呈現，並結合 JS 來實踐下拉選單將資訊保留，騰出更多版面給你的內文。</div></section></article></main><aside id="right-area" class="sidebar"><div id="category-wrapper"><h1 id="category-title"><img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#707070;background-color:#fae5d3" href="/entrypoint/categories?category=Web-Design">網頁設計 (5)</a></h1><hr/><ul id="same-category-list"><li><a href="/category/Web-Design/HTML-Beginner">Day1 - HTML 初學筆記</a></li><li><a href="/category/Web-Design/CSS-Beginner">Day2 - CSS 初學筆記</a></li><li><a href="/category/Web-Design/Javascript-Beginner">Day3 - Javascript 初學筆記</a></li><li><a href="/category/Web-Design/Github-Pages">Day4 - 網頁部署 - Github Pages</a></li><li><a class="this-article" href="/category/Web-Design/RWD">Day5 - RWD 響應式網頁設計</a></li></ul></div><div id="tag-wrapper"><div><h1 class="tag-title"><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#707070;background-color:#ebf5fb" href="/entrypoint/tags?tag=%E5%88%9D%E5%AD%B8%E7%AD%86%E8%A8%98">初學筆記 (4)</a></h1><hr/><ul class="same-tag-list"><li><a href="/category/Web-Design/Javascript-Beginner">Javascript 初學筆記</a></li><li><a href="/category/Web-Design/CSS-Beginner">CSS 初學筆記</a></li><li><a href="/category/Web-Design/HTML-Beginner">HTML 初學筆記</a></li></ul><br/></div><div><h1 class="tag-title"><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#707070;background-color:#ebdef0" href="/entrypoint/tags?tag=CSS">CSS (2)</a></h1><hr/><ul class="same-tag-list"><li><a href="/category/Web-Design/CSS-Beginner">CSS 初學筆記</a></li></ul><br/></div></div></aside></div><!--$--><!--/$--><footer><div id="contact-info"><a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a><a class="github" href="https://github.com/PersonalWorkingSpace"><svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24"><path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path></svg><span>Github</span></a><span>隨筆紀錄我的學習過程</span></div><p class="cc">本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。</p><p class="cc">This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but please include the original link.</p></footer><script id="_R_">(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push({"otherChunks":["static/chunks/1x6obpmlu1_c2.js","static/chunks/02aeof6897urs.js","static/chunks/0y23_0vo0sx8y.js","static/chunks/2odeex0vp2-n5.js"],"runtimeModuleIds":[94553]});</script><script src="/_next/static/chunks/1x6obpmlu1_c2.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:\"/_next/static/chunks/3pbnp14axw3wi.js\"\n3:I[25954,[\"$2\"],\"default\"]\n4:I[39756,[\"$2\"],\"default\"]\n5:I[37457,[\"$2\"],\"default\"]\n6:I[22016,[\"$2\"],\"\"]\nd:I[97367,[\"$2\"],\"OutletBoundary\"]\ne:\"$Sreact.suspense\"\n10:\"ViewportBoundary\"\n11:I[97367,[\"$2\"],\"$10\"]\n13:\"MetadataBoundary\"\n14:I[97367,[\"$2\"],\"$13\"]\n16:I[68027,[\"$2\"],\"default\",1]\n:HL[\"/_next/static/chunks/44hmm9eswl_k6.css\",\"style\"]\n8:X\nb:[[\"children\",{\"s\":\"__PAGE__\",\"h\":512,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[\"$Lc\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/303vpg09n1wil.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@f\"}]}]]}],\"p\":false,\"v\":null}}]]\na:[[\"children\",{\"s\":{\"n\":\"slug\",\"t\":\"d\",\"k\":\"RWD\",\"s\":[]},\"h\":66048,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qb\"}]]\n9:[[\"children\",{\"s\":{\"n\":\"category\",\"t\":\"d\",\"k\":\"Web-Design\",\"s\":[]},\"h\":197120,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qa\"}]]\n7:[[\"children\",{\"s\":\"category\",\"h\":131584,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Q9\"}]]\n0:{\"P\":null,\"c\":[\"\",\"category\",\"Web-Design\",\"RWD\"],\"q\":\"\",\"i\":false,\"t\":{\"t\":{\"s\":\"\",\"h\":131600,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/3pbnp14axw3wi.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-Hant-TW\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"div\",null,{\"className\":\"main-container\",\"children\":[\"$\",\"main\",null,{\"id\":\"center-area\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"post-title\",\"children\":\"404 - 找不到這個頁面\"}],[\"$\",\"p\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"$L6\",null,{\"href\":\"/\",\"children\":\"回到首頁\"}]}]]}]}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}],[\"$\",\"footer\",null,{\"children\":[[\"$\",\"div\",null,{\"id\":\"contact-info\",\"children\":[[\"$\",\"a\",null,{\"href\":\"mailto:tonychen3000tony@gmail.com\",\"children\":\"tonychen3000tony@gmail.com\"}],[\"$\",\"a\",null,{\"className\":\"github\",\"href\":\"https://github.com/PersonalWorkingSpace\",\"children\":[[\"$\",\"svg\",null,{\"height\":\"24\",\"aria-hidden\":\"true\",\"viewBox\":\"0 0 24 24\",\"version\":\"1.1\",\"width\":\"24\",\"children\":[\"$\",\"path\",null,{\"d\":\"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z\"}]}],[\"$\",\"span\",null,{\"children\":\"Github\"}]]}],[\"$\",\"span\",null,{\"children\":\"隨筆紀錄我的學習過程\"}]]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"本文採用\",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"創用 CC BY-NC-ND 4.0 條款\"}],\"授權分享，歡迎非商業性分享，唯請務必附上原文連結。\"]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"This work is licensed under a \",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License\"}],\". You are welcome to share it for non-commercial purposes, but please include the original link.\"]}]]}]]}]}]]}],\"p\":false,\"v\":null},\"c\":\"$Q7\"},\"h\":{\"r\":[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L11\",null,{\"children\":\"$L12\"}],[\"$\",\"$L14\",null,{\"children\":[[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L15\"}]}],null]}],null]}],\"p\":false,\"v\":null}},\"m\":\"$undefined\",\"G\":[\"$16\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"r\":\"$undefined\",\"s\":\"$undefined\",\"a\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"jy5l5GewKZPz7v6l7ZEND\"}\n17:\"/_next/static/chunks/303vpg09n1wil.js\"\n18:I[1440,[\"$2\",\"$17\"],\"default\"]\n19:I[29818,[\"$2\",\"$17\"],\"InlineAgenda\"]\n1a:I[34883,[\"$2\",\"$17\"],\"default\"]\n:HL[\"https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80\u0026w=2070\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"image\"]\n:HL[\"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Content-is-like-water.svg/1920px-Content-is-like-water.svg.png\",\"image\"]\n8:C\nc:[\"$\",\"$L18\",null,{\"post\":{\"category\":\"Web-Design\",\"slug\":\"RWD\",\"href\":\"/category/Web-Design/RWD\",\"title\":\"RWD 響應式網頁設計\",\"created\":\"2025-08-02T00:00:00+08:00\",\"tags\":[\"初學筆記\",\"CSS\"],\"description\":\"在此文章中你會學到如何透過 CSS 的 @media 來設計出響應式網頁...\",\"thumbnail\":\"https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80\u0026w=2070\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"},\"headings\":[\"RWD\",\"CSS @media\",\"範例\",\"總結\"],\"sameCategory\":{\"count\":5,\"posts\":[{\"href\":\"/category/Web-Design/HTML-Beginner\",\"label\":\"Day1 - HTML 初學筆記\",\"current\":false},{\"href\":\"/category/Web-Design/CSS-Beginner\",\"label\":\"Day2 - CSS 初學筆記\",\"current\":false},{\"href\":\"/category/Web-Design/Javascript-Beginner\",\"label\":\"Day3 - Javascript 初學筆記\",\"current\":false},{\"href\":\"/category/Web-Design/Github-Pages\",\"label\":\"Day4 - 網頁部署 - Github Pages\",\"current\":false},{\"href\":\"/category/Web-Design/RWD\",\"label\":\"Day5 - RWD 響應式網頁設計\",\"current\":true}]},\"tagGroups\":[{\"tag\":\"初學筆記\",\"count\":4,\"candidates\":[{\"href\":\"/category/Web-Design/Javascript-Beginner\",\"title\":\"Javascript 初學筆記\"},{\"href\":\"/category/Web-Design/CSS-Beginner\",\"title\":\"CSS 初學筆記\"},{\"href\":\"/category/Web-Design/HTML-Beginner\",\"title\":\"HTML 初學筆記\"}]},{\"tag\":\"CSS\",\"count\":2,\"candidates\":[{\"href\":\"/category/Web-Design/CSS-Beginner\",\"title\":\"CSS 初學筆記\"}]}],\"children\":[[[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"div\",null,{\"id\":\"cover-container\",\"children\":[\"$\",\"img\",null,{\"id\":\"cover\",\"src\":\"https://images.unsplash.com/photo-1640158616235-731aa6b43d38?q=80\u0026w=2070\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"alt\":\"看起來unsplash過期了\"}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"一個好的網頁必須考慮到使用者會藉由不同螢幕大小的裝置來檢視，像是電腦、平板、手機等螢幕尺寸差異會很大，可能你的網頁在電腦上看是正常的，到了手機上就擠成一團，所以我們得引入 RWD 的概念來讓網頁在不同螢幕尺寸時有不同的顯示方式。\"}]]}],[\"$\",\"$L19\",null,{}]],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"RWD\",\"children\":\"RWD\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"全名為 Responsive Web Design / 響應式網頁設計，主要是希望網頁在不同尺寸的裝置上都能有適當的呈現方式，減少使用者滑動或縮放的操作，我很喜歡 wiki 上的圖片說明:\"}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Content-is-like-water.svg/1920px-Content-is-like-water.svg.png\",\"alt\":\"wiki說明圖\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[[\"$\",\"b\",null,{\"children\":\"內容就像水一樣，能夠根據裝置變化為合適的樣貌\"}],\"，要達成這點最常見的處理方式就是偵測網頁的寬度，當寬度縮小到一個下限時，就把部分資訊欄位隱藏或是收縮起來。\"]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"以本網頁為例，如果是在電腦上看應該會在左側看到目錄、右側看到相關文章推薦，如果將頁面的寬度慢慢下降到 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"1000px\"}],\" 以下，兩側欄位會直接隱藏，避免內文被擠壓過頭，此外頁首的部分也會把 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"nav\"}],\" 收縮起來，改成以下拉式選單呈現。\"]}]]]}],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"CSS @media\",\"children\":\"CSS @media\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"想要實現 RWD 的網頁設計，最簡單的方式是透過 CSS 內建的 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"@media\"}],\" rule 達成; 它能根據裝置的 media type 來決定是否套用部分 CSS styles，在 RWD 中就是以網頁寬度來控制:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"CSS\"}],[\"$\",\"$L1a\",null,{\"text\":\"@media (max-width: 1000px) {\\n    #side-area {\\n        display: none;\\n    }\\n    ...\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"css hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003e@media\u003c/span\u003e (\u003cspan class=\\\"hljs-attribute\\\"\u003emax-width\u003c/span\u003e: \u003cspan class=\\\"hljs-number\\\"\u003e1000px\u003c/span\u003e) {\\n    \u003cspan class=\\\"hljs-selector-id\\\"\u003e#side-area\u003c/span\u003e {\\n        \u003cspan class=\\\"hljs-attribute\\\"\u003edisplay\u003c/span\u003e: none;\\n    }\\n    ...\\n}\"}}]]}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"使用上很直觀:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"設定條件\"}],\" - 條件由 () 所包起來，螢幕寬度可以設定成 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"min-width\"}],\" (\u003e= 我觸發) \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"max-width\"}],\" (\u003c 我觸發)，並透過 \",\"$L1b\",\", \",\"$L1c\",\"來實現複雜邏輯。以上設定為寬度小於 1000px 時觸發。\"]}],\"$L1d\"]}]]}],\"$L1e\",\"$L1f\"]]}],\"$L20\",\"$L21\"]}]\n:HL[\"/image/dropdown-menu.png\",\"image\"]\n1b:[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"and\"}]\n1c:[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"or\"}]\n1d:[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"要套用的 sytles\"}],\" - 可以接多個 style，這邊就是把一些區塊的顯示關掉。\"]}]\n1e:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"你可能會覺得這個 min-width, max-width 不太直觀，放心你不孤獨XD，在 CSS Media Queries Level 4 後就有提供以下這種更方便的寫法，底下是當螢幕尺寸介於 480px 跟 1000px 才會套用的寫法，數學式就就直觀多了 (^u^)\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"CSS\"}],[\"$\",\"$L1a\",null,{\"text\":\"@media (480px \u003c= width \u003c= 1000px) {\\n    ...\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"css hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003e@media\u003c/span\u003e (\u003cspan class=\\\"hljs-number\\\"\u003e480px\u003c/span\u003e \u0026lt;= \u003cspan class=\\\"hljs-attribute\\\"\u003ewidth\u003c/span\u003e \u0026lt;= \u003cspan class=\\\"hljs-number\\\"\u003e1000px\u003c/span\u003e) {\\n    ...\\n}\"}}]]}]]}]\n1f:[\"$\",\"p\",null,{\"className\":\"note\",\"children\":\"由於 CSS 是放在後面的 style 能夠複寫前面的，建議是把 @media 區塊放在後面。\"}]\n20:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"範例\",\"children\":\"範例\"}],[\"$\",\"hr\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"在此介紹一下本網頁如何實作寬度縮小時，標頭的連結 (Home, Posts, Categories, Tags) 自動轉成下拉選單 (menu): \",[\"$\",\"br\",null,{}],[\"$\",\"br\",null,{}],\" \",[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/dropdown-menu.png\",\"alt\":\"dropdown-menu\"}],[\"$\",\"ol\",null,{\"className\":\"content-ol\",\"children\":[[\"$\",\"li\",null,{\"children\":[\"先產生出下拉清單的符號 (hamburger menu) 跟連結 nav，初始狀態是只顯示 nav、不顯示 menu:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"HTML\"}],[\"$\",\"$L1a\",null,{\"text\":\"\u003cbutton id=\\\"hamburger\\\"\u003e☰\u003c/button\u003e\\n\u003cnav id=\\\"site-nav\\\"\u003e\\n    ...\\n\u003c/nav\u003e\"}]]}],[\"$\",\"code\",null,{\"className\":\"html hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003ebutton\u003c/span\u003e \u003cspan class=\\\"hljs-attr\\\"\u003eid\u003c/span\u003e=\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;hamburger\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e☰\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003ebutton\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003enav\u003c/span\u003e \u003cspan class=\\\"hljs-attr\\\"\u003eid\u003c/span\u003e=\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;site-nav\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n    ...\\n\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003enav\u003c/span\u003e\u0026gt;\u003c/span\u003e\"}}]]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"CSS\"}],[\"$\",\"$L1a\",null,{\"text\":\"#hamburger {\\n    display: none;\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"css hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-selector-id\\\"\u003e#hamburger\u003c/span\u003e {\\n    \u003cspan class=\\\"hljs-attribute\\\"\u003edisplay\u003c/span\u003e: none;\\n}\"}}]]}]]}],[\"$\",\"li\",null,{\"children\":[\"設定 @media 網頁寬度小於 1000px 時的 style，讓 nav 隱藏並顯示出 menu，此外還修改了 nav 的顯示屬性，使其變成每個連結都是單獨一行:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"CSS\"}],[\"$\",\"$L1a\",null,{\"text\":\"@media (width \u003c 1000px) {\\n    #site-nav {\\n        display: none;\\n        flex-direction: column;\\n        width: 100%;\\n    }\\n    #hamburger {\\n        display: block;\\n    }\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"css hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003e@media\u003c/span\u003e (\u003cspan class=\\\"hljs-attribute\\\"\u003ewidth\u003c/span\u003e \u0026lt; \u003cspan class=\\\"hljs-number\\\"\u003e1000px\u003c/span\u003e) {\\n    \u003cspan class=\\\"hljs-selector-id\\\"\u003e#site-nav\u003c/span\u003e {\\n        \u003cspan class=\\\"hljs-attribute\\\"\u003edisplay\u003c/span\u003e: none;\\n        \u003cspan class=\\\"hljs-attribute\\\"\u003eflex-direction\u003c/span\u003e: column;\\n        \u003cspan class=\\\"hljs-attribute\\\"\u003ewidth\u003c/span\u003e: \u003cspan class=\\\"hljs-number\\\"\u003e100%\u003c/span\u003e;\\n    }\\n    \u003cspan class=\\\"hljs-selector-id\\\"\u003e#hamburger\u003c/span\u003e {\\n        \u003cspan class=\\\"hljs-attribute\\\"\u003edisplay\u003c/span\u003e: block;\\n    }\\n}\"}}]]}],\"這麼做的目的是當 nav 的 display 打開就會有下拉的清單出現， 值得注意的是裝 nav 的外部元素必須採用 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"flex-flow: row wrap;\"}],\"，這樣才會使 nav 自動換到下一行。\"]}],[\"$\",\"li\",null,{\"children\":[\"接下來要設定點擊後 menu 修改 nav 的 display，我們可以先設定一個 class 為 open 的屬性顯示，然後用 JS 幫 nav 加上 open class 即可:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"CSS\"}],[\"$\",\"$L1a\",null,{\"text\":\"#site-nav.open {\\n    display: flex;\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"css hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-selector-id\\\"\u003e#site-nav\u003c/span\u003e\u003cspan class=\\\"hljs-selector-class\\\"\u003e.open\u003c/span\u003e {\\n    \u003cspan class=\\\"hljs-attribute\\\"\u003edisplay\u003c/span\u003e: flex;\\n}\"}}]]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1a\",null,{\"text\":\"let menu = document.getElementById(\\\"hamburger\\\");\\nmenu.addEventListener(\\n    \\\"click\\\", () =\u003e {\\n        let siteNav = document.getElementById(\\\"site-nav\\\");\\n        // 如果 class 有包含 open 則移除，沒有則加入 open\\n        siteNav.classList.toggle('open');\\n    }\\n);\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e menu = \u003cspan class=\\\"hljs-variable language_\\\"\u003edocument\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003egetElementById\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;hamburger\u0026quot;\u003c/span\u003e);\\nmenu.\u003cspan class=\\\"hljs-title function_\\\"\u003eaddEventListener\u003c/span\u003e(\\n    \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;click\u0026quot;\u003c/span\u003e, \u003cspan class=\\\"hljs-function\\\"\u003e() =\u0026gt;\u003c/span\u003e {\\n        \u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e siteNav = \u003cspan class=\\\"hljs-variable language_\\\"\u003edocument\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003egetElementById\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;site-nav\u0026quot;\u003c/span\u003e);\\n        \u003cspan class=\\\"hljs-comment\\\"\u003e// 如果 class 有包含 open 則移除，沒有則加入 open\u003c/span\u003e\\n        siteNav.\u003cspan class=\\\"hljs-property\\\"\u003eclassList\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003etoggle\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026#x27;open\u0026#x27;\u003c/span\u003e);\\n    }\\n);\"}}]]}]]}]]}]]}]]}]\n21:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"總結\",\"children\":\"總結\"}],[\"$\",\"hr\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"以上就是透過 @media 來達成 RWD 網頁的介紹，透過 @media 來設定寬度條件並動態套用 style，讓網頁在手機等裝置上也能清楚呈現，並結合 JS 來實踐下拉選單將資訊保留，騰出更多版面給你的內文。\"}]]}]\n12:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n22:I[27201,[\"$2\"],\"IconMark\"]\nf:null\n15:[[\"$\",\"title\",\"0\",{\"children\":\"RWD 響應式網頁設計\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"在此文章中你會學到如何透過 CSS 的 @media 來設計出響應式網頁...\"}],[\"$\",\"meta\",\"2\",{\"name\":\"author\",\"content\":\"MJ CHEN\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"初學筆記,CSS\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/image/INPC-ICON.png\"}],[\"$\",\"$L22\",\"5\",{}]]\n"])</script></body></html>

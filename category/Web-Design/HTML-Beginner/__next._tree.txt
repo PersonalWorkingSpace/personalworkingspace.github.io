@@ -1,0 +1,8 @@
+:HL["/_next/static/chunks/44hmm9eswl_k6.css","style"]
+:HL["https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D","image"]
+:HL["/image/web-001_html-arch.png","image"]
+4:[["children",{"s":"__PAGE__","h":160}]]
+3:[["children",{"s":{"n":"slug","t":"d","k":"HTML-Beginner","s":[]},"h":65632,"c":"$Q4"}]]
+2:[["children",{"s":{"n":"category","t":"d","k":"Web-Design","s":[]},"h":196704,"c":"$Q3"}]]
+1:[["children",{"s":"category","h":131168,"c":"$Q2"}]]
+0:{"b":"jy5l5GewKZPz7v6l7ZEND","t":{"t":{"s":"","h":131152,"c":"$Q1"}}}

@@ -1,0 +1,258 @@
+1:"$Sreact.fragment"
+2:"/_next/static/chunks/3pbnp14axw3wi.js"
+3:I[25954,["$2"],"default"]
+4:I[39756,["$2"],"default"]
+5:I[37457,["$2"],"default"]
+6:I[22016,["$2"],""]
+11:"/_next/static/chunks/303vpg09n1wil.js"
+12:I[1440,["$2","$11"],"default"]
+1f:"ViewportBoundary"
+20:I[97367,["$2"],"$1f"]
+21:"MetadataBoundary"
+22:I[97367,["$2"],"$21"]
+23:"$Sreact.suspense"
+24:I[27201,["$2"],"IconMark"]
+:HL["/_next/static/chunks/44hmm9eswl_k6.css","style"]
+8:X
+b:X
+b:C
+10:[["children",{"s":"__PAGE__","h":160,"d":{"r":["$","$1","c",{"children":[["$","$L12",null,{"post":{"category":"Hollow-Knight","slug":"kinematice","href":"/category/Hollow-Knight/kinematice","title":"空洞騎士重現 - Kinematic Rigidbody","created":"2026-06-27T00:00:00+08:00","tags":["GameMake"],"description":"在上次慘痛的成品後，我開始思索開發上遇到的各種問題，其中一點便是難以控制的角色運動，所以本篇要推翻前面使用的 dynamic rigidbody (force) 改用更簡化的 kinematic rigidbody (movement)","thumbnail":"/image/hw-kinematic-cover.png"},"headings":["Kinematic RigidBody","MovePosition","Get Maximum Movement","Player State Machine","Animation State Machine","成品","總結"],"sameCategory":{"count":11,"posts":[{"href":"/category/Hollow-Knight/move","label":"Day4 - 空洞騎士重現 - 移動","current":false},{"href":"/category/Hollow-Knight/camera","label":"Day5 - 空洞騎士重現 - 運鏡","current":false},{"href":"/category/Hollow-Knight/jump","label":"Day6 - 空洞騎士重現 - Jump","current":false},{"href":"/category/Hollow-Knight/kinematice","label":"Day7 - 空洞騎士重現 - Kinematic Rigidbody","current":true},{"href":"/category/Hollow-Knight/cinemachine","label":"Day8 - 空洞騎士重現 - Cinemachine","current":false},{"href":"/category/Hollow-Knight/dash-climb","label":"Day9 - 空洞騎士重現 - Dash & Climb","current":false},{"href":"/category/Hollow-Knight/tilemap","label":"Day10 - 空洞騎士重現 - Tilemap","current":false}]},"tagGroups":[{"tag":"GameMake","count":11,"candidates":[{"href":"/category/Hollow-Knight/nailAttack","title":"空洞騎士重現 - Nail Attack"},{"href":"/category/Hollow-Knight/tilemap","title":"空洞騎士重現 - Tilemap"},{"href":"/category/Hollow-Knight/dash-climb","title":"空洞騎士重現 - Dash & Climb"},{"href":"/category/Hollow-Knight/cinemachine","title":"空洞騎士重現 - Cinemachine"},{"href":"/category/Hollow-Knight/jump","title":"空洞騎士重現 - Jump"},{"href":"/category/Hollow-Knight/camera","title":"空洞騎士重現 - 運鏡"},{"href":"/category/Hollow-Knight/move","title":"空洞騎士重現 - 移動"},{"href":"/category/Hollow-Knight/idle","title":"空洞騎士重現 - IDLE Scene"},{"href":"/category/Hollow-Knight/sprite","title":"空洞騎士重現 - 素材準備"},{"href":"/category/Hollow-Knight/begin","title":"空洞騎士重現 - 初衷"}]}],"children":[["$L13","$L14"],"$L15","$L16","$L17","$L18","$L19","$L1a","$L1b"]}],["$L1c"],"$L1d"]}],"p":"$@1e","v":null,"s":"$8"}}]]
+e:[["children",{"s":{"n":"slug","t":"d","k":"kinematice","s":[]},"h":65632,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]]}],"p":"$@f","v":"$b","s":"$8"},"c":"$Q10"}]]
+c:[["children",{"s":{"n":"category","t":"d","k":"Hollow-Knight","s":[]},"h":196704,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]]}],"p":"$@d","v":"$b","s":"$8"},"c":"$Qe"}]]
+9:[["children",{"s":"category","h":131168,"d":{"r":["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]]}],"p":"$@a","v":"$b","s":"$8"},"c":"$Qc"}]]
+0:{"t":{"t":{"s":"","h":131152,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/44hmm9eswl_k6.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/3pbnp14axw3wi.js","async":true}]],["$","html",null,{"lang":"zh-Hant-TW","children":["$","body",null,{"children":[["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}],"notFound":[["$","div",null,{"className":"main-container","children":["$","main",null,{"id":"center-area","children":[["$","h1",null,{"className":"post-title","children":"404 - 找不到這個頁面"}],["$","p",null,{"className":"content-paragraph","children":["$","$L6",null,{"href":"/","children":"回到首頁"}]}]]}]}],[]]}],["$","footer",null,{"children":[["$","div",null,{"id":"contact-info","children":[["$","a",null,{"href":"mailto:tonychen3000tony@gmail.com","children":"tonychen3000tony@gmail.com"}],["$","a",null,{"className":"github","href":"https://github.com/PersonalWorkingSpace","children":[["$","svg",null,{"height":"24","aria-hidden":"true","viewBox":"0 0 24 24","version":"1.1","width":"24","children":["$","path",null,{"d":"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"}]}],["$","span",null,{"children":"Github"}]]}],["$","span",null,{"children":"隨筆紀錄我的學習過程"}]]}],["$","p",null,{"className":"cc","children":["本文採用",["$","a",null,{"href":"https://creativecommons.org/licenses/by-nc-nd/4.0/","children":"創用 CC BY-NC-ND 4.0 條款"}],"授權分享，歡迎非商業性分享，唯請務必附上原文連結。"]}],["$","p",null,{"className":"cc","children":["This work is licensed under a ",["$","a",null,{"href":"https://creativecommons.org/licenses/by-nc-nd/4.0/","children":"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License"}],". You are welcome to share it for non-commercial purposes, but please include the original link."]}]]}]]}]}]]}],"p":"$@7","v":null,"s":"$8"},"c":"$Q9"},"h":{"r":["$","$1","h",{"children":[null,["$","$L20",null,{"children":[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]}],["$","$L22",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$23",null,{"name":"Next.Metadata","children":[["$","title","0",{"children":"空洞騎士重現 - Kinematic Rigidbody"}],["$","meta","1",{"name":"description","content":"在上次慘痛的成品後，我開始思索開發上遇到的各種問題，其中一點便是難以控制的角色運動，所以本篇要推翻前面使用的 dynamic rigidbody (force) 改用更簡化的 kinematic rigidbody (movement)"}],["$","meta","2",{"name":"author","content":"MJ CHEN"}],["$","meta","3",{"name":"keywords","content":"GameMake"}],["$","link","4",{"rel":"icon","href":"/image/INPC-ICON.png"}],["$","$L24","5",{}]]}]}],null]}],null]}],"p":"$@25","v":null,"s":"$8"}},"a":"$@26","u":"$@27","b":"jy5l5GewKZPz7v6l7ZEND"}
+28:I[29818,["$2","$11"],"InlineAgenda"]
+29:I[34883,["$2","$11"],"default"]
+33:I[97367,["$2"],"OutletBoundary"]
+:HL["/image/hw-kinematic-cover.png","image"]
+:HL["/image/hw-kinematic-rigidbody.png","image"]
+:HL["/image/hw-kinematic-fullcontacts.png","image"]
+:HL["/image/hw-jump-animator.png","image"]
+:HL["/image/hw-kinematic-animation-state-machine.png","image"]
+:HL["/image/hw-kinematic-doubleJump.png","image"]
+:HL["/image/hw-kinematic-wing.png","image"]
+:HL["/image/hw-kinematic-doubleJumpAnimation.png","image"]
+:HL["/image/hw-kinematic-wingAnimationConstantMove.png","image"]
+13:["$","section",null,{"className":"L1-section","children":[["$","div",null,{"id":"cover-container","children":["$","img",null,{"id":"cover","src":"/image/hw-kinematic-cover.png","alt":"空洞騎士"}]}],["$","div",null,{"className":"content-paragraph","children":["在上次慘痛的成品後，我開始思索開發上遇到的各種問題，其中一點便是難以控制的角色運動，由於目前使用 force 來移動角色，當改變移動方向時就需要施加反方向更大的力，在跳躍時更是明顯，為了讓角色能更快的下墜，我是把小騎士的重力係數上調超大，但就需要同步上調跳躍力才能正常起跳，就是這樣彼此拉扯、牽一髮動全身，這麼麻煩還不如直接控制角色的 movement (移位) 更簡單，所以本篇要推翻前面使用的 dynamic rigidbody (force) 改用更簡化的 ",["$","b",null,{"children":"kinematic rigidbody (movement)"}],"。"]}]]}]
+14:["$","$L28",null,{}]
+15:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Kinematic RigidBody","children":"Kinematic RigidBody"}],["$","hr",null,{}],[["$","br",null,{}]," ",["$","img",null,{"className":"content-img","src":"/image/hw-kinematic-rigidbody.png","alt":"kinematic rigidbody"}],["$","div",null,{"className":"content-paragraph","children":["在小騎士的 rigidbody body type 選項中，有三種類型:",["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","b",null,{"children":"Dynamic"}]," - 接近現實物理模型，物體具有質量且能對力做出反應，有加速度、速度、重力、摩擦力等屬性，並且會處理物體間的碰撞反彈，同時消耗較多的運算資源。"]}],["$","li",null,{"children":[["$","b",null,{"children":"Kinematic"}]," - 不具備力與速度，而是直接控制物體的位置，這樣的好處在於直觀且無須多餘的計算，物體完全由開發人員控制。"]}],["$","li",null,{"children":[["$","b",null,{"children":"Static"}]," - 完全靜態的物件，不會移動，可以套用在地面與牆壁等物件，基本上等同於 no rigidbody 但多了彈性可以切換成其他 type。"]}]]}],"為了讓開發能更順暢，Kinematic rigidbody 是 best choice，但有一個 \"小問題\"，少了物理模擬，很多原本系統幫你做掉的事情現在得自己處理了，像是重力、物體碰撞等等，所以接下來就是一步一步實踐這些功能。"]}]]]}]
+2a:T430,<span class="hljs-built_in">bool</span> touchGround;
+GameObject lastTouchedGround;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnCollisionEnter2D</span>(<span class="hljs-params">Collision2D other</span>)</span>
+{
+    <span class="hljs-keyword">if</span> ( other.gameObject.CompareTag(<span class="hljs-string">&quot;Floor&quot;</span>) &amp;&amp; other.GetContact(<span class="hljs-number">0</span>).normal == Vector2.up )
+    {
+        touchGround = <span class="hljs-literal">true</span>;
+        lastTouchedGround = other.gameObject;
+    }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnCollisionExit2D</span>(<span class="hljs-params">Collision2D other</span>)</span>
+{
+    <span class="hljs-keyword">if</span> ( lastTouchedGround != <span class="hljs-literal">null</span> &amp;&amp; other.gameObject == lastTouchedGround )
+    {
+        touchGround = <span class="hljs-literal">false</span>;
+        lastTouchedGround = <span class="hljs-literal">null</span>;
+    }
+}16:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"MovePosition","children":"MovePosition"}],["$","hr",null,{}],[["$","div",null,{"className":"content-paragraph","children":["首先直接把小騎士的 body type 改成 kinematic，就會發現會跟封面圖一樣卡在半空中維持落下的動作，這是因為現在沒有重力了，必須撰寫程式讓他落下:",["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L29",null,{"text":"// Player.cs\nvoid FixedUpdate()\n{\n    Vector2 speed = Vector2.zero;\n\n    if ( !isGrounded() )\n    {\n        speed.y = FallSpeed; // -5\n    }\n\n    Vector2 newPosition = rb.position + speed * Time.fixedDeltaTime;\n    rb.MovePosition(newPosition);\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"<span class=\"hljs-comment\">// Player.cs</span>\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">FixedUpdate</span>()</span>\n{\n    Vector2 speed = Vector2.zero;\n\n    <span class=\"hljs-keyword\">if</span> ( !isGrounded() )\n    {\n        speed.y = FallSpeed; <span class=\"hljs-comment\">// -5</span>\n    }\n\n    Vector2 newPosition = rb.position + speed * Time.fixedDeltaTime;\n    rb.MovePosition(newPosition);\n}"}}]]}],"Kinematic rigidbody 只能透過 ",["$","code",null,{"className":"inline","children":"MovePosition"}]," 的方式來進行移動，而程式就是替小騎士計算一個新的座標 - 隨時間往下降的座標，另外由於現在沒有任何碰撞機制，所以落到地面也會直接穿過去，得自己偵測是否已經著陸 - 使用上次撰寫的 ",["$","a",null,{"href":"/category/Hollow-Knight/jump#raycast-para","children":"raycast ground detection"}],"，已經著陸就停止座標下降。"]}],["$","section",null,{"className":"L2-section","children":[["$","h1",null,{"className":"L2-section-title","children":"補充 Ground Detection"}],[["$","div",null,{"className":"content-paragraph","children":["補充一下除了 raycast 外更簡單的 Ground Detection 方法，就是透過小騎士身上的 collider，前面雖然有說 kinematic rigidbody 不會產生碰撞等物理現象，但依舊可以取得碰撞當下的 event - 啟用 ",["$","code",null,{"className":"inline","children":"Use Full Kinematic Contacts"}],"，透過這個 event 就能判別是否碰撞到地面。"]}],["$","p",null,{"className":"note","children":"kinematic 和 dynamic rigidbody 間的碰撞本來就會觸發 collision event，\"Use Full Kinematic Contacts\" 則是讓 kinematic 能與 kinematic / static rigidbody 也能產生!!"}],["$","img",null,{"className":"content-img","src":"/image/hw-kinematic-fullcontacts.png","alt":"fullcontacts"}],["$","div",null,{"className":"content-paragraph","children":["為了確保碰撞的是地面，在 ",["$","code",null,{"className":"inline","children":"OnCollisionEnter2D"}]," 碰撞觸發時，偵測碰撞對象的 tag 是否為 Floor; 為了避免接觸到的是牆壁 (tag 一樣)，偵測碰撞時方向是向下 (法向量向上); 同時記住接觸時的物件，因為在 ",["$","code",null,{"className":"inline","children":"OnCollisionExit2D"}]," 時無法偵測方向，必須確保是離開接觸時的地面，不然碰到牆壁離開也會判定成離開地面 !!!"]}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L29",null,{"text":"bool touchGround;\nGameObject lastTouchedGround;\n\nvoid OnCollisionEnter2D(Collision2D other)\n{\n    if ( other.gameObject.CompareTag(\"Floor\") && other.GetContact(0).normal == Vector2.up )\n    {\n        touchGround = true;\n        lastTouchedGround = other.gameObject;\n    }\n}\n\nvoid OnCollisionExit2D(Collision2D other)\n{\n    if ( lastTouchedGround != null && other.gameObject == lastTouchedGround )\n    {\n        touchGround = false;\n        lastTouchedGround = null;\n    }\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$2a"}}]]}],"$L2b"]]}]]]}]
+2c:T65c,// Player.cs
+[SerializeField] LayerMask GroundLayer;
+[SerializeField] float MiniGap = 0.02f;
+RaycastHit2D[] hitResults = new RaycastHit2D[10];
+
+void FixedUpdate()
+{
+    ...
+
+    Vector2 newPosition = rb.position + GetMaximumMovement(speed * Time.fixedDeltaTime);
+    rb.MovePosition(newPosition);
+
+    ...
+}
+
+Vector2 GetMaximumMovement(Vector2 movement)
+{
+    if (movement.magnitude < MiniGap) return Vector2.zero;
+
+    Vector2 direction = movement.normalized;
+
+    int hitCount = rb.Cast(direction, GroundFilter, hitResults, movement.magnitude);
+
+    bool xClamped = false, yClamped = false;
+    for ( int i = 0 ;  i < hitCount ; i++ )
+    {
+        RaycastHit2D closestHit = hitResults[i];
+        Vector2 clampMovement = direction * closestHit.distance;
+        float angle = Vector2.SignedAngle(closestHit.normal, Vector2.up); // from normal to up (-180 ~ 180)
+
+        if ( angle < 10f && angle > -10f && !yClamped )
+        {
+            movement.y = clampMovement.y + MiniGap;
+            yClamped = true;
+        }
+        else if ( ( angle > 170f || angle < -170f ) && !yClamped )
+        {
+            movement.y = clampMovement.y - MiniGap;
+            yClamped = true;
+        }
+
+        if ( angle < 100f && angle > 80f && !xClamped )
+        {
+            movement.x = clampMovement.x + MiniGap;
+            xClamped = true;
+        }
+        else if ( angle < -80f && angle > -100f && !xClamped )
+        {
+            movement.x = clampMovement.x - MiniGap;
+            xClamped = true;
+        }
+
+        if ( xClamped && yClamped )
+        {
+            return movement;
+        }
+    }
+
+    return movement;
+}2d:Tca5,<span class="hljs-comment">// Player.cs</span>
+[<span class="hljs-meta">SerializeField</span>] LayerMask GroundLayer;
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-built_in">float</span> MiniGap = <span class="hljs-number">0.02f</span>;
+RaycastHit2D[] hitResults = <span class="hljs-keyword">new</span> RaycastHit2D[<span class="hljs-number">10</span>];
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FixedUpdate</span>()</span>
+{
+    ...
+
+    Vector2 newPosition = rb.position + GetMaximumMovement(speed * Time.fixedDeltaTime);
+    rb.MovePosition(newPosition);
+
+    ...
+}
+
+<span class="hljs-function">Vector2 <span class="hljs-title">GetMaximumMovement</span>(<span class="hljs-params">Vector2 movement</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (movement.magnitude &lt; MiniGap) <span class="hljs-keyword">return</span> Vector2.zero;
+
+    Vector2 direction = movement.normalized;
+
+    <span class="hljs-built_in">int</span> hitCount = rb.Cast(direction, GroundFilter, hitResults, movement.magnitude);
+
+    <span class="hljs-built_in">bool</span> xClamped = <span class="hljs-literal">false</span>, yClamped = <span class="hljs-literal">false</span>;
+    <span class="hljs-keyword">for</span> ( <span class="hljs-built_in">int</span> i = <span class="hljs-number">0</span> ;  i &lt; hitCount ; i++ )
+    {
+        RaycastHit2D closestHit = hitResults[i];
+        Vector2 clampMovement = direction * closestHit.distance;
+        <span class="hljs-built_in">float</span> angle = Vector2.SignedAngle(closestHit.normal, Vector2.up); <span class="hljs-comment">// from normal to up (-180 ~ 180)</span>
+
+        <span class="hljs-keyword">if</span> ( angle &lt; <span class="hljs-number">10f</span> &amp;&amp; angle &gt; <span class="hljs-number">-10f</span> &amp;&amp; !yClamped )
+        {
+            movement.y = clampMovement.y + MiniGap;
+            yClamped = <span class="hljs-literal">true</span>;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( ( angle &gt; <span class="hljs-number">170f</span> || angle &lt; <span class="hljs-number">-170f</span> ) &amp;&amp; !yClamped )
+        {
+            movement.y = clampMovement.y - MiniGap;
+            yClamped = <span class="hljs-literal">true</span>;
+        }
+
+        <span class="hljs-keyword">if</span> ( angle &lt; <span class="hljs-number">100f</span> &amp;&amp; angle &gt; <span class="hljs-number">80f</span> &amp;&amp; !xClamped )
+        {
+            movement.x = clampMovement.x + MiniGap;
+            xClamped = <span class="hljs-literal">true</span>;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( angle &lt; <span class="hljs-number">-80f</span> &amp;&amp; angle &gt; <span class="hljs-number">-100f</span> &amp;&amp; !xClamped )
+        {
+            movement.x = clampMovement.x - MiniGap;
+            xClamped = <span class="hljs-literal">true</span>;
+        }
+
+        <span class="hljs-keyword">if</span> ( xClamped &amp;&amp; yClamped )
+        {
+            <span class="hljs-keyword">return</span> movement;
+        }
+    }
+
+    <span class="hljs-keyword">return</span> movement;
+}17:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Get Maximum Movement","children":"Get Maximum Movement"}],["$","hr",null,{}],["$","div",null,{"className":"content-paragraph","children":["由於前面的 Ground Detection 只是偵測碰到地板了，加上角色移動速度太快，可能會發生角色已經一半身體都卡進地板才停下來，所以除了要計算是否接觸地面，還得要計算每次移動是否會穿牆並限制移動的距離，同樣透過 ray cast 實作:",["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"rb.Cast"}]," - 以角色的碰撞箱根據移動方向、距離去計算是否會碰撞給定類型的物件，將碰撞的結果由近到遠保存在 hitResults，並回傳碰撞數量。"]}],["$","li",null,{"children":"對每個碰撞的物件去計算是否為水平或是垂直方向碰撞，因為是由近到遠，所以兩者都遇到過就可以提前結束計算。判斷碰撞方向是根據法向量的角度，跟之前的 ground detection 一樣。"}],["$","li",null,{"children":["發生碰撞後根據碰撞物體的距離 ",["$","code",null,{"className":"inline","children":"closestHit.distance"}]," 來限制移動，重點在於不要直接移動到碰撞的座標，這樣會導致下次計算時無法移動，例如角色站在地面上時會無法左右移動，因為 y 軸會導致每次 ",["$","code",null,{"className":"inline","children":"closestHit.distance = 0"}],"，即便根本沒有向下移動，所以每次移動都離碰撞點多一個小數字 (MiniGap)。"]}]]}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L29",null,{"text":"$2c"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$2d"}}]]}]]}]]}]
+2e:T946,<span class="hljs-comment">// StateMachine.cs</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">State</span>
+{
+    <span class="hljs-keyword">protected</span> Configuration Config;
+    <span class="hljs-keyword">protected</span> OutputData outputs;
+    <span class="hljs-keyword">protected</span> <span class="hljs-built_in">float</span> elapsedTime;
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">State</span>(<span class="hljs-params">Configuration config, <span class="hljs-built_in">int</span> animeCode</span>)</span>
+    {
+        Config = config;
+        outputs = <span class="hljs-keyword">new</span>(Vector2.zero, Vector2.zero, animeCode);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Enter</span>(<span class="hljs-params">InputData inputs, PropagateData pdata</span>)</span>
+    {
+        elapsedTime = <span class="hljs-number">0f</span>;
+        OnEnter(inputs, pdata);
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnter</span>(<span class="hljs-params">InputData inputs, PropagateData pdata</span>)</span> {}
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Exit</span>()</span>
+    {
+        OnExit();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExit</span>()</span> {}
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> StateCode <span class="hljs-title">Transition</span>(<span class="hljs-params">InputData inputs, PropagateData pdata, <span class="hljs-built_in">float</span> dtime</span>)</span>;
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> OutputData <span class="hljs-title">GetAction</span>()</span>
+    {
+        <span class="hljs-keyword">return</span> outputs;
+    }
+}18:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Player State Machine","children":"Player State Machine"}],["$","hr",null,{}],[["$","br",null,{}]," ",["$","img",null,{"className":"content-img","src":"/image/hw-jump-animator.png","alt":"animator"}],["$","div",null,{"className":"content-paragraph","children":"接下來就是去實作移動與跳躍等操作，但為了避免每個操作所施加的速度彼此打架，我們要引入狀態機的概念，類似之前實作的 animator 的狀態機 (上圖)，每次角色只會處在一個狀態中，然後根據不同狀態來設定輸出的速度與動畫，這樣的好處很多，不僅能解決操作的手感問題，還能大幅簡化 animator 狀態機的複雜度，因為現在狀態機是由程式控制的。"}],["$","section",null,{"className":"L2-section","children":[["$","h1",null,{"className":"L2-section-title","children":"State"}],[["$","div",null,{"className":"content-paragraph","children":[["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L29",null,{"text":"// StateMachine.cs\npublic abstract class State\n{\n    protected Configuration Config;\n    protected OutputData outputs;\n    protected float elapsedTime;\n\n    protected State(Configuration config, int animeCode)\n    {\n        Config = config;\n        outputs = new(Vector2.zero, Vector2.zero, animeCode);\n    }\n\n    public void Enter(InputData inputs, PropagateData pdata)\n    {\n        elapsedTime = 0f;\n        OnEnter(inputs, pdata);\n    }\n\n    protected virtual void OnEnter(InputData inputs, PropagateData pdata) {}\n\n    public void Exit()\n    {\n        OnExit();\n    }\n\n    protected virtual void OnExit() {}\n\n    public abstract StateCode Transition(InputData inputs, PropagateData pdata, float dtime);\n    public virtual OutputData GetAction()\n    {\n        return outputs;\n    }\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$2e"}}]]}],"由於程式量有點大就不一一細說，完整的狀態機 ","$L2f"," 放在這邊供各位參考，簡單說就是把每個狀態都依照上述的模板創建出來，一個狀態包含四大功能:","$L30"]}],"$L31"]]}],"$L32"]]}]
+19:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"Animation State Machine","children":"Animation State Machine"}],["$","hr",null,{}],[["$","br",null,{}]," ",["$","img",null,{"className":"content-img","src":"/image/hw-kinematic-animation-state-machine.png","alt":"simpified animator"}],["$","div",null,{"className":"content-paragraph","children":"當我們完成角色在程式中的狀態機後，再回頭過來修正動畫狀態機，就會發現一個天大的好處，動畫狀態機變得超簡單的 ~~~ 大部分動畫都是獨立，主要就是配合程式內的狀態機輸出來達成動畫切換:"}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L29",null,{"text":"// Player.cs\nvoid Update()\n{\n    overallStateMachine.Transition(inputs, Time.deltaTime);\n    OutputData outputs = overallStateMachine.GetAction();\n\n    if ( outputs.currAnimationCode != outputs.nextAnimationCode )\n    {\n        animator.Play(outputs.nextAnimationCode, 0, 0);\n    }\n\n    ...\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"<span class=\"hljs-comment\">// Player.cs</span>\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">void</span> <span class=\"hljs-title\">Update</span>()</span>\n{\n    overallStateMachine.Transition(inputs, Time.deltaTime);\n    OutputData outputs = overallStateMachine.GetAction();\n\n    <span class=\"hljs-keyword\">if</span> ( outputs.currAnimationCode != outputs.nextAnimationCode )\n    {\n        animator.Play(outputs.nextAnimationCode, <span class=\"hljs-number\">0</span>, <span class=\"hljs-number\">0</span>);\n    }\n\n    ...\n}"}}]]}],["$","div",null,{"className":"content-paragraph","children":[["$","code",null,{"className":"inline","children":"overallStateMachine"}]," 就是前面提到兩個狀態機的包裝，對全部狀態機更新後，如果輸出動畫與當下播放的不同，則改播新的動畫，",["$","code",null,{"className":"inline","children":"animator.Play(..., 0, 0);"}]," 的第一個 0 是代表 animator 的第一個 layer，而第二個 0 則是從第一個 frame 開始播放。"]}],["$","section",null,{"className":"L2-section","children":[["$","h1",null,{"className":"L2-section-title","children":"補充帝王之翼動畫"}],[["$","div",null,{"className":"content-paragraph","children":"原先以為二段跳也只是一般的動畫播放，但實作時發現整個動畫是由兩段獨立的 sprites 構成，小騎士的跳躍動作以及額外翅膀的動畫。"}],["$","img",null,{"className":"content-img","src":"/image/hw-kinematic-doubleJump.png","alt":"double jump"}]," ",["$","img",null,{"className":"content-img","src":"/image/hw-kinematic-wing.png","alt":"double jump wing"}],["$","div",null,{"className":"content-paragraph","children":["為了讓翅膀與小騎士的動畫能匹配上，需要借助 unity 動畫視窗的 property 功能:",["$","ol",null,{"className":"content-ol","children":[["$","li",null,{"children":"將翅膀的 sprites 設定成小騎士的子物件。"}],["$","li",null,{"children":[["$","code",null,{"className":"inline","children":"Add Property > Wing > Sprite"}],"，然後將動畫 sprites 放過去。 ",["$","br",null,{}]," ",["$","img",null,{"className":"content-img","style":{"marginTop":"1em"},"src":"/image/hw-kinematic-doubleJumpAnimation.png","alt":"double jump wing animation"}]]}],["$","li",null,{"children":"對齊兩邊動畫的時間點。"}],["$","li",null,{"children":["使用 ",["$","b",null,{"children":"錄製功能"}]," 在每一個 key frame 上調整翅膀的位置，會自動產生出 ",["$","code",null,{"className":"inline","children":"Wing:Position property"}],"。"]}],["$","li",null,{"children":"我們只希望動畫播放時翅膀才出現，在錄製第一個 frame 時才把翅膀 Enable，然後最一個 frame 在 Disable。"}],["$","li",null,{"children":["Unity 動畫錄製時位置的變動預設是線性移動，所以播放時翅膀會慢慢地飄移，看起來會很奇特，所以這邊改成瞬間移動到指定位置，點選 ",["$","code",null,{"className":"inline","children":"Wing:Position property"}]," 的每一個 key frame，然後修改 ",["$","code",null,{"className":"inline","children":"Both Tangents > Constant"}],"。 ",["$","img",null,{"className":"content-img","style":{"marginTop":"1em"},"src":"/image/hw-kinematic-wingAnimationConstantMove.png","alt":"double jump wing animation constant move"}]]}]]}]]}]]]}]]]}]
+1a:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"成品","children":"成品"}],["$","hr",null,{}],[["$","br",null,{}]," ",["$","iframe",null,{"className":"content-iframe","src":"https://www.youtube.com/embed/rqqDn-rVs5Q?si=jTinV67JlnxVeV4m","title":"YouTube video player","frameBorder":"0","allow":"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share","referrerPolicy":"strict-origin-when-cross-origin","allowFullScreen":true}],["$","div",null,{"className":"content-paragraph","children":"可以看到採用了 Kinematic Rigidbody 以及狀態機後移動、跳躍、落下都相當順暢，並沒有出現穿牆、卡住等問題，另外把上次欠各位的二段跳完成了，更重要的是整個程式框架相當容易擴充，能讓我們後續重現各種功能時更為快速 ~~~"}]]]}]
+1b:["$","section",null,{"className":"L1-section","children":[["$","h1",null,{"className":"L1-section-title","id":"總結","children":"總結"}],["$","hr",null,{}],["$","div",null,{"className":"content-paragraph","children":"本次花了點時間把過去實作的功能進行程式架構的優化，導入了 Kinematic Rigidbody 以及狀態機來讓角色的移位更加順暢，下次就來探討鏡頭的優化 - 導入 cinemachine。"}]]}]
+1c:["$","script","script-0",{"src":"/_next/static/chunks/303vpg09n1wil.js","async":true}]
+1d:["$","$L33",null,{"children":["$","$23",null,{"name":"Next.MetadataOutlet","children":"$@34"}]}]
+:HL["/image/hw-kinematic-state-machine.png","image"]
+8:300
+2b:["$","div",null,{"className":"content-paragraph","children":"這個方法雖然不用像 raycast 要調整參數，但會產生許多判定上的問題，像是如果地面是傾斜的，判定條件得修改，另外地面 sprite 沒有切齊，很可能會有誤判，加上只在 collision 發生與結束時判定，一旦誤判就會有嚴重問題，像是角色直接穿過地面，因此之後還是會使用 raycast 的方式來實作 ~~~"}]
+2f:["$","a",null,{"href":"https://github.com/PersonalWorkingSpace/inpc-blog-demo/blob/master/Hollow-Knight-Recreate/day7-kinematic-rigidbody.cs","children":"程式碼"}]
+30:["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","b",null,{"children":"初始化"}]," - 目前每個狀態都只是繼承模板的設定，將角色的設定檔讀進來，例如移動速度、等待時間等等，方便進行後續調參，並且初始化輸出: movement vector、rotate vector、以及最重要的 animation code，讓程式能直接根據狀態播放動畫。"]}],["$","li",null,{"children":[["$","b",null,{"children":"進入狀態"}]," - 預設是會將進入狀態的計時歸零，然後執行每個狀態自訂的 OnEnter function。"]}],["$","li",null,{"children":[["$","b",null,{"children":"轉換狀態"}]," - 這就是最重要的部分了!! 撰寫達成哪些條件才會切換成其他的狀態，會根據 ",["$","code",null,{"className":"inline","children":"inputs"}]," - 玩家的操作 & 環境的回饋、",["$","code",null,{"className":"inline","children":"pdata"}]," - 前面狀態的紀錄共同決定下一個狀態，這邊回傳的是 enum 的代碼，外部會再根據代碼選擇對應的狀態。"]}],["$","li",null,{"children":[["$","b",null,{"children":"離開狀態"}]," - 離開狀態時採取的行動，暫時沒有用到 ~~~"]}],["$","li",null,{"children":[["$","b",null,{"children":"取得行動"}]," - 暫時只是用來讀取 outputs 的數據。"]}]]}]
+35:T755,<span class="hljs-comment">// StateMachine.cs</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">FallState</span> : <span class="hljs-title">State</span>
+{
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> <span class="hljs-built_in">int</span> animeCode = Animator.StringToHash(<span class="hljs-string">&quot;Fall&quot;</span>); 
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">FallState</span>(<span class="hljs-params">Configuration config</span>) : <span class="hljs-title">base</span>(<span class="hljs-params">config, animeCode</span>)</span> {}
+
+    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnter</span>(<span class="hljs-params">InputData inputs, PropagateData pdata</span>)</span>
+    {
+        outputs.speed.y = -Config.fallSpeed;
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> StateCode <span class="hljs-title">Transition</span>(<span class="hljs-params">InputData inputs, PropagateData pdata, <span class="hljs-built_in">float</span> dtime</span>)</span>
+    {
+        <span class="hljs-keyword">if</span> ( inputs.onGround )
+        {
+            <span class="hljs-keyword">return</span> StateCode.Land;
+        }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( inputs.movement.y &gt; <span class="hljs-number">0</span> &amp;&amp; inputs.jumpButtonPress &amp;&amp; !pdata.isDoubleJumped )
+        {
+            <span class="hljs-keyword">return</span> StateCode.DoubleJump;
+        }
+
+        <span class="hljs-keyword">return</span> StateCode.Fall;
+    }
+}31:["$","div",null,{"className":"content-paragraph","children":["以前面提到的墜落狀態為例，進入此狀態時會設定 y 軸速度，其實可以在初始化設定就好，但為了在執行時調整參數，所以才改成這樣，另外狀態切換的部分分成兩條路:",["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","b",null,{"children":"著陸"}]," - 角色落地了，直接切到著陸的狀態。"]}],["$","li",null,{"children":[["$","b",null,{"children":"二段跳"}]," - 玩家按下的跳躍鍵並且還沒有二段跳才能切過去，在進入二段跳狀態時會把 ",["$","code",null,{"className":"inline","children":"pdata.isDoubleJumped = true"}],"，然後在進入著陸後的狀態才切回 false，以此避免空中連續跳躍，至於 ",["$","code",null,{"className":"inline","children":"jumpButtonPress"}]," 是為了避免玩家一直壓著跳躍鍵影響手感 - 起跳後要先放開跳躍鍵再按一次才會變成二段跳。"]}]]}],["$","pre",null,{"children":[["$","div",null,{"className":"code-bar","children":[["$","h4",null,{"children":"C#"}],["$","$L29",null,{"text":"// StateMachine.cs\npublic class FallState : State\n{\n    static readonly int animeCode = Animator.StringToHash(\"Fall\"); \n\n    public FallState(Configuration config) : base(config, animeCode) {}\n\n    protected override void OnEnter(InputData inputs, PropagateData pdata)\n    {\n        outputs.speed.y = -Config.fallSpeed;\n    }\n\n    public override StateCode Transition(InputData inputs, PropagateData pdata, float dtime)\n    {\n        if ( inputs.onGround )\n        {\n            return StateCode.Land;\n        }\n        else if ( inputs.movement.y > 0 && inputs.jumpButtonPress && !pdata.isDoubleJumped )\n        {\n            return StateCode.DoubleJump;\n        }\n\n        return StateCode.Fall;\n    }\n}"}]]}],["$","code",null,{"className":"c# hljs","dangerouslySetInnerHTML":{"__html":"$35"}}]]}]]}]
+32:["$","section",null,{"className":"L2-section","children":[["$","h1",null,{"className":"L2-section-title","children":"State Machine"}],[["$","div",null,{"className":"content-paragraph","children":["底下是最終實作出狀態機，正確來說是",["$","span",null,{"style":{"color":"red"},"children":"兩個"}],"狀態機，分成垂直與水平運動兩個獨立的狀態機，會這樣區分主要是因為很多動作發生在空中或是地面其實差不多，像是你在空中也能進行水平移動、轉身、攻擊等等，如果弄成單獨狀態數量會變太多，不如分開管理，至於在動畫播放上垂直狀態機的優先權比較高，除非垂直狀態的動畫沒設定 (ex: OnGround state) 才會播放水平狀態的動畫。"]}],["$","div",null,{"className":"content-paragraph","children":["至於各個狀態大概就是字面上的意思，但有兩個想特別說明:",["$","ul",null,{"className":"content-ul","children":[["$","li",null,{"children":[["$","b",null,{"children":"Glide"}]," - 這個狀態是當玩家長時間按著跳躍鍵到最後，會讓小騎士跳到最高點後有一小段制空的時間，落下速度會較慢，同樣當二段跳如果也按夠久也能夠進入此狀態。"]}],["$","li",null,{"children":[["$","b",null,{"children":"Turn around"}]," - 代表玩家水平移動改變方向，一開始我並沒設定可以直接從 Move 狀態切換過去，我以為 unity 中按鍵讀取是沒辦法直接左右轉換，必須先放開本來的按鍵不然會兩者抵銷，也就會先切到 Idle 狀態才會到 Turn around，但實測上確實有機會按出左右直接切換 => ",["$","b",null,{"children":"左右抵銷的時間短到狀態機還沒補捉到 !!"}]," 然後就會導致小騎士直接上演月球漫步 XD"]}]]}]]}],["$","img",null,{"className":"content-img","src":"/image/hw-kinematic-state-machine.png","alt":"state-machine"}]]]}]
+34:null
+27:true
+8:C
+26:0
+f:"$undefined"
+d:"$undefined"
+a:"$undefined"
+7:"$undefined"
+25:"$undefined"
+1e:"$undefined"

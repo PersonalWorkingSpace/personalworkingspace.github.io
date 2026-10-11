@@ -1,123 +1,17 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/image/INPC-ICON.png"/><link rel="preload" as="image" href="/image/CATEGORY-ICON.png"/><link rel="preload" as="image" href="/image/TAG-ICON.png"/><link rel="preload" href="/image/hw-camera-cover.png" as="image"/><link rel="preload" href="/image/hw-camera-left-view.png" as="image"/><link rel="preload" href="/image/hw-camera-run-view.png" as="image"/><link rel="preload" href="/image/hw-camera-animator.png" as="image"/><link rel="preload" href="/image/hw-camera-lookup-back.png" as="image"/><link rel="preload" href="/image/hw-camera-inputsystem.png" as="image"/><link rel="stylesheet" href="/_next/static/chunks/44hmm9eswl_k6.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/1x6obpmlu1_c2.js"/><script src="/_next/static/chunks/02aeof6897urs.js" async=""></script><script src="/_next/static/chunks/0y23_0vo0sx8y.js" async=""></script><script src="/_next/static/chunks/2odeex0vp2-n5.js" async=""></script><script src="/_next/static/chunks/turbopack-3-ry682tkyiqk.js" async=""></script><script src="/_next/static/chunks/3pbnp14axw3wi.js" async=""></script><script src="/_next/static/chunks/303vpg09n1wil.js" async=""></script><title>空洞騎士重現 - 運鏡</title><meta name="description" content="今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光..."/><meta name="author" content="MJ CHEN"/><meta name="keywords" content="GameMake"/><link rel="icon" href="/image/INPC-ICON.png"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><header class="banner"><div class="wrapper"><a id="site-logo" href="/"><img width="40" src="/image/INPC-ICON.png" alt="inpc-icon"/> Internet NPC</a><button id="hamburger">☰</button><nav id="site-nav"><a href="/">Home</a><a href="/">Posts</a><a href="/entrypoint/categories">Categories</a><a href="/entrypoint/tags">Tags</a></nav></div></header><div class="main-container"><aside id="left-area" class="sidebar"><div class="agenda-wrapper agenda-sidebar"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#重現場景">重現場景</a></li><li class="non-focus-section"><a href="#Camera Controller">Camera Controller</a></li><li class="non-focus-section"><a href="#重直視角控制">重直視角控制</a></li><li class="non-focus-section"><a href="#成品">成品</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div></aside><main id="center-area"><article id="main-content"><header class="post-header"><h1 class="post-title">空洞騎士重現 - 運鏡</h1><div class="post-meta"><time dateTime="2026-01-01T00:00:00+08:00" itemProp="datePublished"> <!-- -->Jan 01, 2026<!-- --> </time> |<img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><span id="category-bar"><a class="tag" style="color:#FAF6F5;background-color:#345864" href="/entrypoint/categories?category=Hollow-Knight">Hollow Knight</a></span><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><nav id="tag-bar"><a class="tag" style="color:#FF2164;background-color:#21FFBC" href="/entrypoint/tags?tag=GameMake">GameMake</a></nav></div></header><section class="L1-section"><div id="cover-container"><img id="cover" src="/image/hw-camera-cover.png" alt="空洞騎士"/></div><div class="content-paragraph">今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光大，現在就來學習空洞騎士中最基本的運鏡吧。</div></section><div class="agenda-wrapper agenda-inline"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#重現場景">重現場景</a></li><li class="non-focus-section"><a href="#Camera Controller">Camera Controller</a></li><li class="non-focus-section"><a href="#重直視角控制">重直視角控制</a></li><li class="non-focus-section"><a href="#成品">成品</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div><section class="L1-section"><h1 class="L1-section-title" id="重現場景">重現場景</h1><hr/><div class="content-paragraph"><iframe class="content-iframe" src="https://www.youtube.com/embed/V2Czncxa0X8?si=y0g0iq7Py7nR0B3K" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen=""></iframe>這次要重現的場景跟<a href="/category/Hollow-Knight/move">上一篇</a>一樣是宮殿廣場，我們可以直接沿用搭好場景，但由於這次鏡頭會移動，所以得考慮到 <b>parallex scrolling</b>，要了解這個現象可以仔細看影片中背景燈柱與前面橋墩的尖刺，會發現隨著鏡頭移動，兩者間的距離會改變甚至重疊，這點符合現實世界中的遠景動得比較慢。</div><div class="content-paragraph">這算是使用 perspective camera 的好處，但沒有設定好適當的 z 軸深度，當鏡頭動起來後就會發現某些東西移動不太同步，這通常是因為我們把東西放太遠然後直接把尺寸放大彌補，靜止時看不出來，但一動起來就很突兀。遇到時再調整就好，至於本次要重現的運鏡，包含兩種: 水平移動、仰望與俯視。</div></section><section class="L1-section"><h1 class="L1-section-title" id="Camera Controller">Camera Controller</h1><hr/><div class="content-paragraph">在介紹要怎樣控制鏡頭前，我強烈推薦可以去看這個<a href="https://www.youtube.com/watch?v=9dzBrLUIF8g&amp;list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1&amp;index=19">介紹影片</a>，內容不僅介紹了 unity 的運鏡系統 (Cinemachine) 而且還是以空洞騎士為主題，真的太合適了XD，不過由於目前我們的場景還算是半開放式，還用不到那麼強大的功能，因此本篇會先用土法煉鋼的方式來處理運鏡!!!</div><div class="content-paragraph">首先從目標影片開頭會發現在角色移動之前，鏡頭就已經展現了影響力，當角色面向左邊或右邊時鏡頭會稍微偏移，以下圖為例會發現當面朝左邊時其實畫面正中央是落在小騎士左側，這讓畫面的左側透漏更多資訊，就彷彿玩家真的向左邊眺望，反之面朝右會讓右側佔有更多空間。</div><img class="content-img" src="/image/hw-camera-left-view.png" alt="camera when facing left"/><div class="content-paragraph">為了辦到這點，先替 camera 新增一個 script，內容如下，先新增一個 Player 物件變數，然後從 Inspect 上將 Player 物件拖進來，讓我們能夠直接讀取到 Player 座標以及狀態，此外在 Player class 中加上一個 public 變數 <code class="inline">IsFacingRight</code> 來方便判定角色面向哪邊，另外可以注意採用這邊採用的是 <code class="inline">LateUpdate</code>，這個函數是在 Update 呼叫完後才會執行，也就是確保 Camera 位置的更新是在 Player 任何行動之後:</div><pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs">[<span class="hljs-meta">SerializeField</span>] Player player;
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-built_in">float</span> SmoothTrans = <span class="hljs-number">5f</span>;
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-built_in">float</span> BiasX = <span class="hljs-number">0.75f</span>;
+[<span class="hljs-meta">SerializeField</span>] <span class="hljs-built_in">float</span> BiasY = <span class="hljs-number">1f</span>;
 
-<head>
-    <title>空洞騎士重現 - 運鏡</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光...">
-    <meta name="keywords" content="GameMake">
-    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
-    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
-    <link href="../../style/style.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
-    <script type="module" src="../../module/post.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
-</head>
-
-<body>
-    <header class="banner">
-        <div class="wrapper">
-            <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
-            </a>
-            <button id="hamburger">&#9776;</button>
-            <nav id="site-nav">
-                <a href="../../index.html">Home</a>
-                <a href="../../index.html">Posts</a>
-                <a href="../../entrypoint/categories.html">Categories</a>
-                <a href="../../entrypoint/tags.html">Tags</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <aside id="left-area" class="sidebar">
-            <!-- 這是大綱 -->
-            <div id="agenda-wrapper">
-                <h1 class="agenda-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <line x1="9" y1="10" x2="20" y2="10"></line>
-                        <line x1="9" y1="16" x2="20" y2="16"></line>
-                        <line x1="9" y1="22" x2="20" y2="22"></line>
-                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
-                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
-                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
-                    </svg> In this article
-                </h1>
-                <hr>
-                <ol id="agenda">
-                </ol>
-            </div>
-        </aside>
-
-        <main id="center-area">
-            <article id="main-content">
-                <header class="post-header">
-                    <h1 class="post-title">空洞騎士重現 - 運鏡</h1>
-                    <div class="post-meta">
-                        <time datetime="2026-01-01T00:00:00+08:00" itemprop="datePublished"> Jan 01, 2026 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
-                        <img src="../../image/TAG-ICON.png" class="inline-icon">
-                        <nav id="tag-bar"></nav>
-                    </div>
-                </header>
-
-                <section class="L1-section">
-                    <div id="cover-container">
-                        <img id="cover" src="../../image/hw-camera-cover.png" alt="空洞騎士">
-                    </div>
-                    <p class="content-paragraph">
-                        今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光大，現在就來學習空洞騎士中最基本的運鏡吧。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">重現場景</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        <iframe class="content-iframe" src="https://www.youtube.com/embed/V2Czncxa0X8?si=y0g0iq7Py7nR0B3K" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>這次要重現的場景跟<a href="move.html">上一篇</a>一樣是宮殿廣場，我們可以直接沿用搭好場景，但由於這次鏡頭會移動，所以得考慮到 <b>parallex scrolling</b>，要了解這個現象可以仔細看影片中背景燈柱與前面橋墩的尖刺，會發現隨著鏡頭移動，兩者間的距離會改變甚至重疊，這點符合現實世界中的遠景動得比較慢。
-                    </p>
-                    <p class="content-paragraph">
-                        這算是使用 perspective camera 的好處，但沒有設定好適當的 z 軸深度，當鏡頭動起來後就會發現某些東西移動不太同步，這通常是因為我們把東西放太遠然後直接把尺寸放大彌補，靜止時看不出來，但一動起來就很突兀。遇到時再調整就好，至於本次要重現的運鏡，包含兩種: 水平移動、仰望與俯視。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Camera Controller</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        在介紹要怎樣控制鏡頭前，我強烈推薦可以去看這個<a href="https://www.youtube.com/watch?v=9dzBrLUIF8g&list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1&index=19">介紹影片</a>，內容不僅介紹了 unity 的運鏡系統 (Cinemachine) 而且還是以空洞騎士為主題，真的太合適了XD，不過由於目前我們的場景還算是半開放式，還用不到那麼強大的功能，因此本篇會先用土法煉鋼的方式來處理運鏡!!!
-                    </p>
-                    <p class="content-paragraph">
-                        首先從目標影片開頭會發現在角色移動之前，鏡頭就已經展現了影響力，當角色面向左邊或右邊時鏡頭會稍微偏移，以下圖為例會發現當面朝左邊時其實畫面正中央是落在小騎士左側，這讓畫面的左側透漏更多資訊，就彷彿玩家真的向左邊眺望，反之面朝右會讓右側佔有更多空間。
-                    </p>
-                    <img class="content-img" src="../../image/hw-camera-left-view.png" alt="camera when facing left">
-                    <p class="content-paragraph">
-                        為了辦到這點，先替 camera 新增一個 script，內容如下，先新增一個 Player 物件變數，然後從 Inspect 上將 Player 物件拖進來，讓我們能夠直接讀取到 Player 座標以及狀態，此外在 Player class 中加上一個 public 變數 <code class="inline">IsFacingRight</code> 來方便判定角色面向哪邊，另外可以注意採用這邊採用的是 <code class="inline">LateUpdate</code>，這個函數是在
-                        Update 呼叫完後才會執行，也就是確保 Camera 位置的更新是在 Player 任何行動之後:
-                    </p>
-                    <pre><code class="c#">
-[SerializeField] Player player;
-[SerializeField] float SmoothTrans = 5f;
-[SerializeField] float BiasX = 0.75f;
-[SerializeField] float BiasY = 1f;
-
-void LateUpdate()
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">LateUpdate</span>()</span>
 {
     Vector3 camPos = transform.position;
 
-    if  ( player.IsFacingRight ) // face to right
+    <span class="hljs-keyword">if</span>  ( player.IsFacingRight ) <span class="hljs-comment">// face to right</span>
     {
         camPos.x = player.transform.position.x + BiasX;
     }
-    else // face to left
+    <span class="hljs-keyword">else</span> <span class="hljs-comment">// face to left</span>
     {
         camPos.x = player.transform.position.x - BiasX;
     }
@@ -129,154 +23,50 @@ void LateUpdate()
         camPos,
         SmoothTrans * Time.deltaTime
     );
-}
-                    </code></pre>
-                    <p class="content-paragraph">
-                        Bias 在 x 軸就根據面向哪邊來調整，至於 y 軸就預設偏高，因為小騎士很矮XD，此外這裡使用 <code class="inline">Vector3.Lerp</code> 來線性內插，此函數的功能等於 <code class="inline">V = A + (B − A) × t</code>，讓鏡頭的座標慢慢朝預設的位置移動，避免瞬間跳過去造成畫面斷裂感，可以調整 <code class="inline">SmoothTrans</code>                        來感覺一下效果。
-                    </p>
-                    <img class="content-img" src="../../image/hw-camera-run-view.png" alt="camera when running">
-                    <p class="content-paragraph">
-                        同時可以講一下空洞騎士運鏡的另一特點，就是當小騎士在移動時，它的位置會落在畫面正中央，象徵他已經追上鏡頭了，同時這會讓移動的動畫更加清楚，要達成這點其實稍微調整一下 <code class="inline">SmoothTrans</code> 即可達成。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">重直視角控制</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        我蠻喜歡的一個細節是當按下上下時，小騎士會有對應的動作，然後過一會鏡頭會移動!!! 讓玩家感覺角色的視野是同步的，要辦到這點可以結合上次學到的 Input System 跟 Animation State Machine，先擴增 animator 的狀態，新增 lookdown、lookup 分別會用到社群提供的 <a href="https://drive.google.com/drive/folders/1Yt6ywcpnSoPVw4gziQwn-ItB8Oe4uHsW">013.LookDown</a>、
-                        <a href="https://drive.google.com/drive/folders/1e7RaGznmFBOu_SOurW0oQUTChoKyx0uV">014.LookUp</a> sprites。
-                    </p>
-                    <img class="content-img" src="../../image/hw-camera-animator.png" alt="animator">
-                    <p class="content-paragraph">
-                        至於 lookup-back、lookdown-back 則是反向播放的動畫，為了是當玩家放開上下鍵時，讓小騎士把頭轉為原位，至於要如何反向播放可以參考:
-                        <ul class="content-ul">
-                            <li><b>Speed</b> - 預設通常是 1，修改成負數就會反向播放，設定成 -2 是希望能快點把頭轉回來，我覺得這是 team cherry 設計巧思，當玩家要檢視上下環境時，通常是為了謹慎行事，所以會比較有耐心等動畫播完，但確認完後，就會立刻行動，這時候慢慢等動畫就有點惱人。</li>
-                            <li><b>Cycle Offset</b> - 0~1 的浮點數，這是控制動畫要從哪一幀播放，因為是要反著播，所以設 1 -> 最後一幀。</li>
-                        </ul>
-                    </p>
-                    <img class="content-img" src="../../image/hw-camera-lookup-back.png" alt="lookup-back animation setting">
-                    <p class="content-paragraph">
-                        為了讓 Player 能接收到向上與向下看的動作，這邊設定了新的 Action - Look，清除掉本來無關的 Binding 並新增 "Up Down" 加上 Interaction - Hold，這是為了透過 hold time 來創造出時間差，讓小騎士先做出動作，過一會才讓鏡頭移動，之後就是新增鍵盤偵測 up、down。
-                    </p>
-                    <p class="note">hold 設定參數的 press point 用於輸入要按壓到甚麼程度才算觸發，對於搖桿等輸入裝置比較有意義，hold time 則是觸發多久才會執行。</p>
-                    <img class="content-img" src="../../image/hw-camera-inputsystem.png" alt="input system">
-                    <p class="content-paragraph">
-                        輸入設定好了之後就針對 Player script 撰寫相關的 event handler，<code class="inline">started</code> 是當 press 發生後立刻觸發，而 <code class="inline">performed</code> 則是 hold time 過了才觸發，然後兩者會對不同的變數賦值，lookInput 可以用在 Update:
-                    </p>
-                    <pre><code class="c#">
-// Player.cs
-void Awake() 
+}</code></pre><div class="content-paragraph">Bias 在 x 軸就根據面向哪邊來調整，至於 y 軸就預設偏高，因為小騎士很矮XD，此外這裡使用 <code class="inline">Vector3.Lerp</code> 來線性內插，此函數的功能等於 <code class="inline">V = A + (B − A) × t</code>，讓鏡頭的座標慢慢朝預設的位置移動，避免瞬間跳過去造成畫面斷裂感，可以調整 <code class="inline">SmoothTrans</code> 來感覺一下效果。</div><img class="content-img" src="/image/hw-camera-run-view.png" alt="camera when running"/><div class="content-paragraph">同時可以講一下空洞騎士運鏡的另一特點，就是當小騎士在移動時，它的位置會落在畫面正中央，象徵他已經追上鏡頭了，同時這會讓移動的動畫更加清楚，要達成這點其實稍微調整一下 <code class="inline">SmoothTrans</code> 即可達成。</div></section><section class="L1-section"><h1 class="L1-section-title" id="重直視角控制">重直視角控制</h1><hr/><div class="content-paragraph">我蠻喜歡的一個細節是當按下上下時，小騎士會有對應的動作，然後過一會鏡頭會移動!!! 讓玩家感覺角色的視野是同步的，要辦到這點可以結合上次學到的 Input System 跟 Animation State Machine，先擴增 animator 的狀態，新增 lookdown、lookup 分別會用到社群提供的 <a href="https://drive.google.com/drive/folders/1Yt6ywcpnSoPVw4gziQwn-ItB8Oe4uHsW">013.LookDown</a>、 <a href="https://drive.google.com/drive/folders/1e7RaGznmFBOu_SOurW0oQUTChoKyx0uV">014.LookUp</a> sprites。</div><img class="content-img" src="/image/hw-camera-animator.png" alt="animator"/><div class="content-paragraph">至於 lookup-back、lookdown-back 則是反向播放的動畫，為了是當玩家放開上下鍵時，讓小騎士把頭轉為原位，至於要如何反向播放可以參考:<ul class="content-ul"><li><b>Speed</b> - 預設通常是 1，修改成負數就會反向播放，設定成 -2 是希望能快點把頭轉回來，我覺得這是 team cherry 設計巧思，當玩家要檢視上下環境時，通常是為了謹慎行事，所以會比較有耐心等動畫播完，但確認完後，就會立刻行動，這時候慢慢等動畫就有點惱人。</li><li><b>Cycle Offset</b> - 0~1 的浮點數，這是控制動畫要從哪一幀播放，因為是要反著播，所以設 1 -&gt; 最後一幀。</li></ul></div><img class="content-img" src="/image/hw-camera-lookup-back.png" alt="lookup-back animation setting"/><div class="content-paragraph">為了讓 Player 能接收到向上與向下看的動作，這邊設定了新的 Action - Look，清除掉本來無關的 Binding 並新增 &quot;Up Down&quot; 加上 Interaction - Hold，這是為了透過 hold time 來創造出時間差，讓小騎士先做出動作，過一會才讓鏡頭移動，之後就是新增鍵盤偵測 up、down。</div><p class="note">hold 設定參數的 press point 用於輸入要按壓到甚麼程度才算觸發，對於搖桿等輸入裝置比較有意義，hold time 則是觸發多久才會執行。</p><img class="content-img" src="/image/hw-camera-inputsystem.png" alt="input system"/><div class="content-paragraph">輸入設定好了之後就針對 Player script 撰寫相關的 event handler，<code class="inline">started</code> 是當 press 發生後立刻觸發，而 <code class="inline">performed</code> 則是 hold time 過了才觸發，然後兩者會對不同的變數賦值，lookInput 可以用在 Update:</div><pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player.cs</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>()</span> 
 {
     ...
-    controls.Player.Look.started += ctx => lookInput = ctx.ReadValue&lt;Vector2&gt;();
-    controls.Player.Look.performed += ctx => ViewInput = ctx.ReadValue&lt;Vector2&gt;();
-    controls.Player.Look.canceled += ctx => { lookInput = Vector2.zero; ViewInput = Vector2.zero; };
+    controls.Player.Look.started += ctx =&gt; lookInput = ctx.ReadValue&lt;Vector2&gt;();
+    controls.Player.Look.performed += ctx =&gt; ViewInput = ctx.ReadValue&lt;Vector2&gt;();
+    controls.Player.Look.canceled += ctx =&gt; { lookInput = Vector2.zero; ViewInput = Vector2.zero; };
 }
 
-void Update()
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span>
 {
     ...
-    if ( lookInput.y &gt; 0 )
+    <span class="hljs-keyword">if</span> ( lookInput.y &gt; <span class="hljs-number">0</span> )
     {
-        anime.SetBool("lookup", true);
+        anime.SetBool(<span class="hljs-string">&quot;lookup&quot;</span>, <span class="hljs-literal">true</span>);
     }
-    else if ( lookInput.y &lt; 0 )
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( lookInput.y &lt; <span class="hljs-number">0</span> )
     {
-        anime.SetBool("lookdown", true);
+        anime.SetBool(<span class="hljs-string">&quot;lookdown&quot;</span>, <span class="hljs-literal">true</span>);
     }
-    else
+    <span class="hljs-keyword">else</span>
     {
-        anime.SetBool( "lookup", false);
-        anime.SetBool( "lookdown", false);
+        anime.SetBool( <span class="hljs-string">&quot;lookup&quot;</span>, <span class="hljs-literal">false</span>);
+        anime.SetBool( <span class="hljs-string">&quot;lookdown&quot;</span>, <span class="hljs-literal">false</span>);
     }
     ...
-}
-                    </code></pre>
-                    <p class="content-paragraph">
-                        <code class="inline">lookInput</code> 的數值可以用來更新 animator 的參數 - lookup, lookdown，這些參數就可以用來設定甚麼時候從 IDLE 狀態切到 LOOKUP / LOOkDOWN 以及切回，至於 <code class="inline">ViewInput</code> public 變數則是用來設定 Camera 的 Y 軸偏移，且只會在 hold time 之後才會更新數值:
-                    </p>
-                    <pre><code class="c#">
-// CameraPositionController.cs
-void LateUpdate() 
+}</code></pre><div class="content-paragraph"><code class="inline">lookInput</code> 的數值可以用來更新 animator 的參數 - lookup, lookdown，這些參數就可以用來設定甚麼時候從 IDLE 狀態切到 LOOKUP / LOOkDOWN 以及切回，至於 <code class="inline">ViewInput</code> public 變數則是用來設定 Camera 的 Y 軸偏移，且只會在 hold time 之後才會更新數值:</div><pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// CameraPositionController.cs</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">LateUpdate</span>()</span> 
 {
     ...
-    float delta = 0f;
-    if ( player.ViewInput.y &gt; 0 )
+    <span class="hljs-built_in">float</span> delta = <span class="hljs-number">0f</span>;
+    <span class="hljs-keyword">if</span> ( player.ViewInput.y &gt; <span class="hljs-number">0</span> )
     {
-        delta = ViewUpY; // 3
+        delta = ViewUpY; <span class="hljs-comment">// 3</span>
     }
-    else if ( player.ViewInput.y &lt; 0 )
+    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ( player.ViewInput.y &lt; <span class="hljs-number">0</span> )
     {
-        delta = -ViewDownY; // 5
+        delta = -ViewDownY; <span class="hljs-comment">// 5</span>
     }
 
     camPos.y = player.transform.position.y + BiasY + delta;
     ...
-}
-                    </code></pre>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">成品</h1>
-                    <hr>
-                    <iframe class="content-iframe" src="https://www.youtube.com/embed/f_3RBDMXnN4?si=wS_VaOX0d7GXN7k3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <p class="content-paragraph">
-                        這是最終成品，成功完成了水平方向的運鏡並加上仰望與俯視的視角，開發到這個地步後就會注意到一些程式上的 BUG，像是影片中快速左右切換再奔跑，有一小段時間小騎士是直接水平滑行，推測是前面的動畫還沒播完，就直接開始移位了，看起來還有很多地方要注意呢!! 順邊說一些其他需要注意的地方:
-                        <ul class="content-ul">
-                            <li><b>清晰的動畫</b> - 空洞騎士中，即使小騎士在奔跑中，他本身的動作依舊是清晰的，不過在本次重現過程，會感覺當鏡頭移動時，角色動畫也變得模糊，可以試著降低動畫速度來改善。</li>
-                            <li><b>Frame rate</b> - 如果測試過程有發現鏡頭移動時，畫面會出現短暫水平分割線，這通常是因為 GPU 更新畫面速度比螢幕還要快導致的，可以檢查右上角的 Stats 看看 frame rate (FPS) 是不是超過螢幕上限，如果超過的話可以點選左上角的畫質設定，把 VSync 打開，這樣會確保畫面更新得等到螢幕顯示完成，另外也可以在任意物件中進行底下強制設定 FPS / VSync:
-                                <pre><code class="c#">
-void Awake() 
+}</code></pre></section><section class="L1-section"><h1 class="L1-section-title" id="成品">成品</h1><hr/><iframe class="content-iframe" src="https://www.youtube.com/embed/f_3RBDMXnN4?si=wS_VaOX0d7GXN7k3" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen=""></iframe><div class="content-paragraph">這是最終成品，成功完成了水平方向的運鏡並加上仰望與俯視的視角，開發到這個地步後就會注意到一些程式上的 BUG，像是影片中快速左右切換再奔跑，有一小段時間小騎士是直接水平滑行，推測是前面的動畫還沒播完，就直接開始移位了，看起來還有很多地方要注意呢!! 順邊說一些其他需要注意的地方:<ul class="content-ul"><li><b>清晰的動畫</b> - 空洞騎士中，即使小騎士在奔跑中，他本身的動作依舊是清晰的，不過在本次重現過程，會感覺當鏡頭移動時，角色動畫也變得模糊，可以試著降低動畫速度來改善。</li><li><b>Frame rate</b> - 如果測試過程有發現鏡頭移動時，畫面會出現短暫水平分割線，這通常是因為 GPU 更新畫面速度比螢幕還要快導致的，可以檢查右上角的 Stats 看看 frame rate (FPS) 是不是超過螢幕上限，如果超過的話可以點選左上角的畫質設定，把 VSync 打開，這樣會確保畫面更新得等到螢幕顯示完成，另外也可以在任意物件中進行底下強制設定 FPS / VSync:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>()</span> 
 {
-    QualitySettings.vSyncCount = 60;
-    Application.targetFrameRate = 1;
-}
-                                </code></pre>
-                            </li>
-                        </ul>
-                    </p>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">總結</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        恭喜完成了水平向的小騎士控制了ヽ(●´∀`●)ﾉ，接下來要朝進階課題 - 垂直運動邁進，也就是空洞騎士中最重要的跳躍，包含短跳、長跳、二段跳、落下，以及垂直軸的場景構圖等等。
-                    </p>
-                </section>
-            </article>
-        </main>
-
-        <aside id="right-area" class="sidebar">
-            <div id="category-wrapper">
-                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
-                <hr>
-                <ul id="same-category-list">
-                </ul>
-            </div>
-            <div id="tag-wrapper">
-            </div>
-        </aside>
-    </div>
-
-    <footer>
-        <div id="contact-info">
-            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
-            <a class="github" href="https://github.com/PersonalWorkingSpace">
-                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
-                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
-                    </svg>
-                <span>Github</span>
-            </a>
-            <span>隨筆紀錄我的學習過程</span>
-        </div>
-        <p class="cc">
-            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
-        </p>
-        <p class="cc">
-            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
-            please include the original link.
-        </p>
-    </footer>
-</body>
-
-</html>
+    QualitySettings.vSyncCount = <span class="hljs-number">60</span>;
+    Application.targetFrameRate = <span class="hljs-number">1</span>;
+}</code></pre></li></ul></div></section><section class="L1-section"><h1 class="L1-section-title" id="總結">總結</h1><hr/><div class="content-paragraph">恭喜完成了水平向的小騎士控制了ヽ(●´∀`●)ﾉ，接下來要朝進階課題 - 垂直運動邁進，也就是空洞騎士中最重要的跳躍，包含短跳、長跳、二段跳、落下，以及垂直軸的場景構圖等等。</div></section></article></main><aside id="right-area" class="sidebar"><div id="category-wrapper"><h1 id="category-title"><img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#FAF6F5;background-color:#345864" href="/entrypoint/categories?category=Hollow-Knight">Hollow Knight (11)</a></h1><hr/><ul id="same-category-list"><li><a href="/category/Hollow-Knight/sprite">Day2 - 空洞騎士重現 - 素材準備</a></li><li><a href="/category/Hollow-Knight/idle">Day3 - 空洞騎士重現 - IDLE Scene</a></li><li><a href="/category/Hollow-Knight/move">Day4 - 空洞騎士重現 - 移動</a></li><li><a class="this-article" href="/category/Hollow-Knight/camera">Day5 - 空洞騎士重現 - 運鏡</a></li><li><a href="/category/Hollow-Knight/jump">Day6 - 空洞騎士重現 - Jump</a></li><li><a href="/category/Hollow-Knight/kinematice">Day7 - 空洞騎士重現 - Kinematic Rigidbody</a></li><li><a href="/category/Hollow-Knight/cinemachine">Day8 - 空洞騎士重現 - Cinemachine</a></li></ul></div><div id="tag-wrapper"><div><h1 class="tag-title"><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#FF2164;background-color:#21FFBC" href="/entrypoint/tags?tag=GameMake">GameMake (11)</a></h1><hr/><ul class="same-tag-list"><li><a href="/category/Hollow-Knight/nailAttack">空洞騎士重現 - Nail Attack</a></li><li><a href="/category/Hollow-Knight/tilemap">空洞騎士重現 - Tilemap</a></li><li><a href="/category/Hollow-Knight/dash-climb">空洞騎士重現 - Dash &amp; Climb</a></li><li><a href="/category/Hollow-Knight/cinemachine">空洞騎士重現 - Cinemachine</a></li><li><a href="/category/Hollow-Knight/kinematice">空洞騎士重現 - Kinematic Rigidbody</a></li></ul><br/></div></div></aside></div><!--$--><!--/$--><footer><div id="contact-info"><a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a><a class="github" href="https://github.com/PersonalWorkingSpace"><svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24"><path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path></svg><span>Github</span></a><span>隨筆紀錄我的學習過程</span></div><p class="cc">本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。</p><p class="cc">This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but please include the original link.</p></footer><script id="_R_">(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push({"otherChunks":["static/chunks/1x6obpmlu1_c2.js","static/chunks/02aeof6897urs.js","static/chunks/0y23_0vo0sx8y.js","static/chunks/2odeex0vp2-n5.js"],"runtimeModuleIds":[94553]});</script><script src="/_next/static/chunks/1x6obpmlu1_c2.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:\"/_next/static/chunks/3pbnp14axw3wi.js\"\n3:I[25954,[\"$2\"],\"default\"]\n4:I[39756,[\"$2\"],\"default\"]\n5:I[37457,[\"$2\"],\"default\"]\n6:I[22016,[\"$2\"],\"\"]\nd:I[97367,[\"$2\"],\"OutletBoundary\"]\ne:\"$Sreact.suspense\"\n10:\"ViewportBoundary\"\n11:I[97367,[\"$2\"],\"$10\"]\n13:\"MetadataBoundary\"\n14:I[97367,[\"$2\"],\"$13\"]\n16:I[68027,[\"$2\"],\"default\",1]\n:HL[\"/_next/static/chunks/44hmm9eswl_k6.css\",\"style\"]\n8:X\nb:[[\"children\",{\"s\":\"__PAGE__\",\"h\":512,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[\"$Lc\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/303vpg09n1wil.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@f\"}]}]]}],\"p\":false,\"v\":null}}]]\na:[[\"children\",{\"s\":{\"n\":\"slug\",\"t\":\"d\",\"k\":\"camera\",\"s\":[]},\"h\":66048,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qb\"}]]\n9:[[\"children\",{\"s\":{\"n\":\"category\",\"t\":\"d\",\"k\":\"Hollow-Knight\",\"s\":[]},\"h\":197120,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qa\"}]]\n7:[[\"children\",{\"s\":\"category\",\"h\":131584,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Q9\"}]]\n0:{\"P\":null,\"c\":[\"\",\"category\",\"Hollow-Knight\",\"camera\"],\"q\":\"\",\"i\":false,\"t\":{\"t\":{\"s\":\"\",\"h\":131600,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/3pbnp14axw3wi.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-Hant-TW\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"div\",null,{\"className\":\"main-container\",\"children\":[\"$\",\"main\",null,{\"id\":\"center-area\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"post-title\",\"children\":\"404 - 找不到這個頁面\"}],[\"$\",\"p\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"$L6\",null,{\"href\":\"/\",\"children\":\"回到首頁\"}]}]]}]}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}],[\"$\",\"footer\",null,{\"children\":[[\"$\",\"div\",null,{\"id\":\"contact-info\",\"children\":[[\"$\",\"a\",null,{\"href\":\"mailto:tonychen3000tony@gmail.com\",\"children\":\"tonychen3000tony@gmail.com\"}],[\"$\",\"a\",null,{\"className\":\"github\",\"href\":\"https://github.com/PersonalWorkingSpace\",\"children\":[[\"$\",\"svg\",null,{\"height\":\"24\",\"aria-hidden\":\"true\",\"viewBox\":\"0 0 24 24\",\"version\":\"1.1\",\"width\":\"24\",\"children\":[\"$\",\"path\",null,{\"d\":\"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z\"}]}],[\"$\",\"span\",null,{\"children\":\"Github\"}]]}],[\"$\",\"span\",null,{\"children\":\"隨筆紀錄我的學習過程\"}]]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"本文採用\",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"創用 CC BY-NC-ND 4.0 條款\"}],\"授權分享，歡迎非商業性分享，唯請務必附上原文連結。\"]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"This work is licensed under a \",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License\"}],\". You are welcome to share it for non-commercial purposes, but please include the original link.\"]}]]}]]}]}]]}],\"p\":false,\"v\":null},\"c\":\"$Q7\"},\"h\":{\"r\":[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L11\",null,{\"children\":\"$L12\"}],[\"$\",\"$L14\",null,{\"children\":[[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L15\"}]}],null]}],null]}],\"p\":false,\"v\":null}},\"m\":\"$undefined\",\"G\":[\"$16\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"r\":\"$undefined\",\"s\":\"$undefined\",\"a\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"jy5l5GewKZPz7v6l7ZEND\"}\n17:\"/_next/static/chunks/303vpg09n1wil.js\"\n18:I[1440,[\"$2\",\"$17\"],\"default\"]\n19:I[29818,[\"$2\",\"$17\"],\"InlineAgenda\"]\n:HL[\"/image/hw-camera-cover.png\",\"image\"]\n8:C\nc:[\"$\",\"$L18\",null,{\"post\":{\"category\":\"Hollow-Knight\",\"slug\":\"camera\",\"href\":\"/category/Hollow-Knight/camera\",\"title\":\"空洞騎士重現 - 運鏡\",\"created\":\"2026-01-01T00:00:00+08:00\",\"tags\":[\"GameMake\"],\"description\":\"今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光...\",\"thumbnail\":\"/image/hw-camera-cover.png\"},\"headings\":[\"重現場景\",\"Camera Controller\",\"重直視角控制\",\"成品\",\"總結\"],\"sameCategory\":{\"count\":11,\"posts\":[{\"href\":\"/category/Hollow-Knight/sprite\",\"label\":\"Day2 - 空洞騎士重現 - 素材準備\",\"current\":false},{\"href\":\"/category/Hollow-Knight/idle\",\"label\":\"Day3 - 空洞騎士重現 - IDLE Scene\",\"current\":false},{\"href\":\"/category/Hollow-Knight/move\",\"label\":\"Day4 - 空洞騎士重現 - 移動\",\"current\":false},{\"href\":\"/category/Hollow-Knight/camera\",\"label\":\"Day5 - 空洞騎士重現 - 運鏡\",\"current\":true},{\"href\":\"/category/Hollow-Knight/jump\",\"label\":\"Day6 - 空洞騎士重現 - Jump\",\"current\":false},{\"href\":\"/category/Hollow-Knight/kinematice\",\"label\":\"Day7 - 空洞騎士重現 - Kinematic Rigidbody\",\"current\":false},{\"href\":\"/category/Hollow-Knight/cinemachine\",\"label\":\"Day8 - 空洞騎士重現 - Cinemachine\",\"current\":false}]},\"tagGroups\":[{\"tag\":\"GameMake\",\"count\":11,\"candidates\":[{\"href\":\"/category/Hollow-Knight/nailAttack\",\"title\":\"空洞騎士重現 - Nail Attack\"},{\"href\":\"/category/Hollow-Knight/tilemap\",\"title\":\"空洞騎士重現 - Tilemap\"},{\"href\":\"/category/Hollow-Knight/dash-climb\",\"title\":\"空洞騎士重現 - Dash \u0026 Climb\"},{\"href\":\"/category/Hollow-Knight/cinemachine\",\"title\":\"空洞騎士重現 - Cinemachine\"},{\"href\":\"/category/Hollow-Knight/kinematice\",\"title\":\"空洞騎士重現 - Kinematic Rigidbody\"},{\"href\":\"/category/Hollow-Knight/jump\",\"title\":\"空洞騎士重現 - Jump\"},{\"href\":\"/category/Hollow-Knight/move\",\"title\":\"空洞騎士重現 - 移動\"},{\"href\":\"/category/Hollow-Knight/idle\",\"title\":\"空洞騎士重現 - IDLE Scene\"},{\"href\":\"/category/Hollow-Knight/sprite\",\"title\":\"空洞騎士重現 - 素材準備\"},{\"href\":\"/category/Hollow-Knight/begin\",\"title\":\"空洞騎士重現 - 初衷\"}]}],\"children\":[[[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"div\",null,{\"id\":\"cover-container\",\"children\":[\"$\",\"img\",null,{\"id\":\"cover\",\"src\":\"/image/hw-camera-cover.png\",\"alt\":\"空洞騎士\"}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光大，現在就來學習空洞騎士中最基本的運鏡吧。\"}]]}],[\"$\",\"$L19\",null,{}]],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"重現場景\",\"children\":\"重現場景\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[[\"$\",\"iframe\",null,{\"className\":\"content-iframe\",\"src\":\"https://www.youtube.com/embed/V2Czncxa0X8?si=y0g0iq7Py7nR0B3K\",\"title\":\"YouTube video player\",\"frameBorder\":\"0\",\"allow\":\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\",\"referrerPolicy\":\"strict-origin-when-cross-origin\",\"allowFullScreen\":true}],\"這次要重現的場景跟\",[\"$\",\"a\",null,{\"href\":\"/category/Hollow-Knight/move\",\"children\":\"上一篇\"}],\"一樣是宮殿廣場，我們可以直接沿用搭好場景，但由於這次鏡頭會移動，所以得考慮到 \",[\"$\",\"b\",null,{\"children\":\"parallex scrolling\"}],\"，要了解這個現象可以仔細看影片中背景燈柱與前面橋墩的尖刺，會發現隨著鏡頭移動，兩者間的距離會改變甚至重疊，這點符合現實世界中的遠景動得比較慢。\"]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"這算是使用 perspective camera 的好處，但沒有設定好適當的 z 軸深度，當鏡頭動起來後就會發現某些東西移動不太同步，這通常是因為我們把東西放太遠然後直接把尺寸放大彌補，靜止時看不出來，但一動起來就很突兀。遇到時再調整就好，至於本次要重現的運鏡，包含兩種: 水平移動、仰望與俯視。\"}]]]}],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Camera Controller\",\"children\":\"Camera Controller\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"在介紹要怎樣控制鏡頭前，我強烈推薦可以去看這個\",[\"$\",\"a\",null,{\"href\":\"https://www.youtube.com/watch?v=9dzBrLUIF8g\u0026list=PLmV0NRTQxnC0Ma_bYB3mOIL1gRfUJ6qK1\u0026index=19\",\"children\":\"介紹影片\"}],\"，內容不僅介紹了 unity 的運鏡系統 (Cinemachine) 而且還是以空洞騎士為主題，真的太合適了XD，不過由於目前我們的場景還算是半開放式，還用不到那麼強大的功能，因此本篇會先用土法煉鋼的方式來處理運鏡!!!\"]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"首先從目標影片開頭會發現在角色移動之前，鏡頭就已經展現了影響力，當角色面向左邊或右邊時鏡頭會稍微偏移，以下圖為例會發現當面朝左邊時其實畫面正中央是落在小騎士左側，這讓畫面的左側透漏更多資訊，就彷彿玩家真的向左邊眺望，反之面朝右會讓右側佔有更多空間。\"}],\"$L1a\",\"$L1b\",\"$L1c\",\"$L1d\",\"$L1e\",\"$L1f\"]]}],\"$L20\",\"$L21\",\"$L22\"]}]\n23:I[34883,[\"$2\",\"$17\"],\"default\"]\n:HL[\"/image/hw-camera-left-view.png\",\"image\"]\n:HL[\"/image/hw-camera-run-view.png\",\"image\"]\n:HL[\"/image/hw-camera-animator.png\",\"image\"]\n:HL[\"/image/hw-camera-lookup-back.png\",\"image\"]\n:HL[\"/image/hw-camera-inputsystem.png\",\"image\"]\n1a:[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-camera-left-view.png\",\"alt\":\"camera when facing left\"}]\n1b:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"為了辦到這點，先替 camera 新增一個 script，內容如下，先新增一個 Player 物件變數，然後從 Inspect 上將 Player 物件拖進來，讓我們能夠直接讀取到 Player 座標以及狀態，此外在 Player class 中加上一個 public 變數 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"IsFacingRight\"}],\" 來方便判定角色面向哪邊，另外可以注意採用這邊採用的是 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"LateUpdate\"}],\"，這個函數是在 Update 呼叫完後才會執行，也就是確保 Camera 位置的更新是在 Player 任何行動之後:\"]}]\n24:T48f,[\u003cspan class=\"hljs-meta\"\u003eSerializeField\u003c/span\u003e] Player player;\n[\u003cspan class=\"hljs-meta\"\u003eSerializeField\u003c/span\u003e] \u003cspan class=\"hljs-built_in\"\u003efloat\u003c/span\u003e SmoothTrans = \u003cspan class=\"hljs-number\"\u003e5f\u003c/span\u003e;\n[\u003cspan class=\"hljs-meta\"\u003eSerializeField\u003c/span\u003e] \u003cspan class=\"hljs-built_in\"\u003efloat\u003c/span\u003e BiasX = \u003cspan class=\"hljs-number\"\u003e0.75f\u003c/span\u003e;\n[\u003cspan class=\"hljs-meta\"\u003eSerializeField\u003c/span\u003e] \u003cspan class=\"hljs-built_in\"\u003efloat\u003c/span\u003e BiasY = \u003cspan class=\"hljs-number\"\u003e1f\u003c/span\u003e;\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eLateUpdate\u003c/span\u003e()\u003c/span\u003e\n{\n    Vector3 camPos = transform.position;\n\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e  ( player.IsFacingRight ) \u003cspan class=\"hljs-comment\"\u003e// face to right\u003c/span\u003e\n    {\n        camPos.x = player.transform.position.x + BiasX;\n    }\n    \u003cspan class=\"hljs-keyword\"\u003eelse\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e// face to left\u003c/span\u003e\n    {\n        camPos.x = player.transform.position.x - BiasX;\n    }\n\n    camPos.y = player.transform.position.y + BiasY;\n\n    transform.position = Vector3.Lerp(\n        transform.position,\n        camPos,\n        SmoothTrans * Time.deltaTime\n    );\n}1c:[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L23\",null,{\"text\":\"[SerializeField] Player player;\\n[SerializeField] float SmoothTrans = 5f;\\n[SerializeField] float BiasX = 0.75f;\\n[SerializeField] float BiasY = 1f;\\n\\nvoid LateUpdate()\\n{\\n    Vector3 camPos = transform.position;\\n\\n    if  ( player.IsFacingRight ) // face to right\\n    {\\n        camPos.x = player.transform.position.x + BiasX;\\n    }\\n    else // face to left\\n    {\\n        camPos.x = player.transform.position.x - BiasX;\\n    }\\n\\n    camPos.y = player.transform.position.y + BiasY;\\n\\n    transform.position = Vector3.Lerp(\\n        transform.position,\\n        camPos,\\n        SmoothTrans * Time.deltaTime\\n    );\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"$24\"}}]]}]\n1d:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"Bias 在 x 軸就根據面向哪邊來調整，至於 y 軸就預設偏高，因為小騎士很矮XD，此外這裡使用 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"Vector3.Lerp\"}],\" 來線性內插，此函數的功能等於 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"V = A + (B − A) × t\"}],\"，讓鏡頭的座標慢慢朝預設的位置移動，避免瞬間跳過去造成畫面斷裂感，可以調整 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"SmoothTrans\"}],\" 來感覺一下效果。\"]}]\n1e:[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-camera-run-view.png\",\"alt\":\"camera when running\"}]\n1f:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"同時可以講一下空洞騎士運鏡的另一特點，就是當小騎士在移動時，它的位置會落在畫面正中央，象徵他已經追上鏡頭了，同時這會讓移動的動畫更加清楚，要達成這點其實稍微調整一下 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"SmoothTrans\"}],\" 即可達成。\"]}]\n25:T563,\u003cspan class=\"hljs-comment\"\u003e// Player.cs\u003c/span\u003e\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eAwake\u003c/span\u003e()\u003c/span\u003e \n{\n    ...\n    controls.Player.Look.started += ctx =\u0026gt; lookInput = ctx.ReadValue\u0026lt;Vector2\u0026gt;();\n    controls.Player.Look.performed += ctx =\u0026gt; ViewInput = ctx.ReadValue\u0026lt;Vector2\u0026gt;();\n    controls.Player.Look.canceled += ctx =\u0026gt; { lookInput = Vector2.zero; ViewInput = Vector2.zero; };\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eUpdate\u003c/span\u003e()\u003c/span\u003e\n{\n    ...\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e ( lookInput.y \u0026gt; \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e )\n    {\n        anime.SetBool(\u003cspan class=\"hljs-string\"\u003e\u0026quot;lookup\u0026quot;\u003c/span\u003e, \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e);\n    }\n    \u003cspan class=\"hljs-keyword\"\u003eelse\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e ( lookInput.y \u0026lt; \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e )\n    {\n        anime.SetBool(\u003cspan class=\"hljs-string\"\u003e\u0026quot;lookdown\u0026quot;\u003c/span\u003e, \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e);\n    }\n    \u003cspan class=\"hljs-keyword\"\u003eelse\u003c/span\u003e\n    {\n        anime.SetBool( \u003cspan class=\"hljs-string\"\u003e\u0026quot;lookup\u0026quot;\u003c/span\u003e, \u003cspan class=\"hljs-literal\"\u003efalse\u003c/span\u003e);\n        anime.SetBool( \u003cspan class=\"hljs-string\"\u003e\u0026quot;lookdown\u0026quot;\u003c/span\u003e, \u003cspan class=\"hljs-literal\"\u003efalse\u003c/span\u003e);\n    }\n    ...\n}20:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"重直視角控制\",\"children\":\"重直視角控制\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"我蠻喜歡的一個細節是當按下上下時，小騎士會有對應的動作，然後過一會鏡頭會移動!!! 讓玩家感覺角色的視野是同步的，要辦到這點可以結合上次學到的 Input System 跟 Animation State Machine，先擴增 animator 的狀態，新增 lookdown、lookup 分別會用到社群提供的 \",[\"$\",\"a\",null,{\"href\":\"https://drive.google.com/drive/folders/1Yt6ywcpnSoPVw4gziQwn-ItB8Oe4uHsW\",\"children\":\"013.LookDown\"}],\"、 \",[\"$\",\"a\",null,{\"href\":\"https://drive.google.com/drive/folders/1e7RaGznmFBOu_SOurW0oQUTChoKyx0uV\",\"children\":\"014.LookUp\"}],\" sprites。\"]}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-camera-animator.png\",\"alt\":\"animator\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"至於 lookup-back、lookdown-back 則是反向播放的動畫，為了是當玩家放開上下鍵時，讓小騎士把頭轉為原位，至於要如何反向播放可以參考:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"Speed\"}],\" - 預設通常是 1，修改成負數就會反向播放，設定成 -2 是希望能快點把頭轉回來，我覺得這是 team cherry 設計巧思，當玩家要檢視上下環境時，通常是為了謹慎行事，所以會比較有耐心等動畫播完，但確認完後，就會立刻行動，這時候慢慢等動畫就有點惱人。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"Cycle Offset\"}],\" - 0~1 的浮點數，這是控制動畫要從哪一幀播放，因為是要反著播，所以設 1 -\u003e 最後一幀。\"]}]]}]]}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-camera-lookup-back.png\",\"alt\":\"lookup-back animation setting\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"為了讓 Player 能接收到向上與向下看的動作，這邊設定了新的 Action - Look，清除掉本來無關的 Binding 並新增 \\\"Up Down\\\" 加上 Interaction - Hold，這是為了透過 hold time 來創造出時間差，讓小騎士先做出動作，過一會才讓鏡頭移動，之後就是新增鍵盤偵測 up、down。\"}],[\"$\",\"p\",null,{\"className\":\"note\",\"children\":\"hold 設定參數的 press point 用於輸入要按壓到甚麼程度才算觸發，對於搖桿等輸入裝置比較有意義，hold time 則是觸發多久才會執行。\"}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-camera-inputsystem.png\",\"alt\":\"input system\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"輸入設定好了之後就針對 Player script 撰寫相關的 event handler，\",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"started\"}],\" 是當 press 發生後立刻觸發，而 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"performed\"}],\" 則是 hold time 過了才觸發，然後兩者會對不同的變數賦值，lookInput 可以用在 Update:\"]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L23\",null,{\"text\":\"// Player.cs\\nvoid Awake() \\n{\\n    ...\\n    controls.Player.Look.started += ctx =\u003e lookInput = ctx.ReadValue\u003cVector2\u003e();\\n    controls.Player.Look.performed += ctx =\u003e ViewInput = ctx.ReadValue\u003cVector2\u003e();\\n    controls.Player.Look.canceled += ctx =\u003e { lookInput = Vector2.zero; ViewInput = Vector2.zero; };\\n}\\n\\nvoid Update()\\n{\\n    ...\\n    if ( lookInput.y \u003e 0 )\\n    {\\n        anime.SetBool(\\\"lookup\\\", true);\\n    }\\n    else if ( lookInput.y \u003c 0 )\\n    {\\n        anime.SetBool(\\\"lookdown\\\", true);\\n    }\\n    else\\n    {\\n        anime.SetBool( \\\"lookup\\\", false);\\n        anime.SetBool( \\\"lookdown\\\", false);\\n    }\\n    ...\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"$25\"}}]]}],\"$L26\",\"$L27\"]]}]\n21:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"成品\",\"children\":\"成品\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"iframe\",null,{\"className\":\"content-iframe\",\"src\":\"https://www.youtube.com/embed/f_3RBDMXnN4?si=wS_VaOX0d7GXN7k3\",\"title\":\"YouTube video player\",\"frameBorder\":\"0\",\"allow\":\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\",\"referrerPolicy\":\"strict-origin-when-cross-origin\",\"allowFullScreen\":true}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"這是最終成品，成功完成了水平方向的運鏡並加上仰望與俯視的視角，開發到這個地步後就會注意到一些程式上的 BUG，像是影片中快速左右切換再奔跑，有一小段時間小騎士是直接水平滑行，推測是前面的動畫還沒播完，就直接開始移位了，看起來還有很多地方要注意呢!! 順邊說一些其他需要注意的地方:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"清晰的動畫\"}],\" - 空洞騎士中，即使小騎士在奔跑中，他本身的動作依舊是清晰的，不過在本次重現過程，會感覺當鏡頭移動時，角色動畫也變得模糊，可以試著降低動畫速度來改善。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"Frame rate\"}],\" - 如果測試過程有發現鏡頭移動時，畫面會出現短暫水平分割線，這通常是因為 GPU 更新畫面速度比螢幕還要快導致的，可以檢查右上角的 Stats 看看 frame rate (FPS) 是不是超過螢幕上限，如果超過的話可以點選左上角的畫質設定，把 VSync 打開，這樣會確保畫面更新得等到螢幕顯示完成，另外也可以在任意物件中進行底下強制設定 FPS / VSync:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L23\",null,{\"text\":\"void Awake() \\n{\\n    QualitySettings.vSyncCount = 60;\\n    Application.targetFrameRate = 1;\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eAwake\u003c/span\u003e()\u003c/span\u003e \\n{\\n    QualitySettings.vSyncCount = \u003cspan class=\\\"hljs-number\\\"\u003e60\u003c/span\u003e;\\n    Application.targetFrameRate = \u003cspan class=\\\"hljs-number\\\"\u003e1\u003c/span\u003e;\\n}\"}}]]}]]}]]}]]}]]]}]\n22:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"總結\",\"children\":\"總結\"}],[\"$\",\"hr\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"恭喜完成了水平向的小騎士控制了ヽ(●´∀`●)ﾉ，接下來要朝進階課題 - 垂直運動邁進，也就是空洞騎士中最重要的跳躍，包含短跳、長跳、二段跳、落下，以及垂直軸的場景構圖等等。\"}]]}]\n26:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"lookInput\"}],\" 的數值可以用來更新 animator 的參數 - lookup, lookdown，這些參數就可以用來設定甚麼時候從 IDLE 狀態切到 LOOKUP / LOOkDOWN 以及切回，至於 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"ViewInput\"}],\" public 變數則是用來設定 Camera 的 Y 軸偏移，且只會在 hold time 之後才會更新數值:\"]}]\n27:[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L23\",null,{\"text\":\"// CameraPositionController.cs\\nvoid LateUpdate() \\n{\\n    ...\\n    float delta = 0f;\\n    if ( player.ViewInput.y \u003e 0 )\\n    {\\n        delta = ViewUpY; // 3\\n    }\\n    else if ( player.ViewInput.y \u003c 0 )\\n    {\\n        delta = -ViewDownY; // 5\\n    }\\n\\n    camPos.y = player.transform.position.y + BiasY + delta;\\n    ...\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// CameraPositionController.cs\u003c/span\u003e\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eLateUpdate\u003c/span\u003e()\u003c/span\u003e \\n{\\n    ...\\n    \u003cspan class=\\\"hljs-built_in\\\"\u003efloat\u003c/span\u003e delta = \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e;\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003eif\u003c/span\u003e ( player.ViewInput.y \u0026gt; \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e )\\n    {\\n        delta = ViewUpY; \u003cspan class=\\\"hljs-comment\\\"\u003e// 3\u003c/span\u003e\\n    }\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003eelse\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eif\u003c/span\u003e ( player.ViewInput.y \u0026lt; \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e )\\n    {\\n        delta = -ViewDownY; \u003cspan class=\\\"hljs-comment\\\"\u003e// 5\u003c/span\u003e\\n    }\\n\\n    camPos.y = player.transform.position.y + BiasY + delta;\\n    ...\\n}\"}}]]}]\n12:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n28:I[27201,[\"$2\"],\"IconMark\"]\nf:null\n15:[[\"$\",\"title\",\"0\",{\"children\":\"空洞騎士重現 - 運鏡\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"今天的課題是運鏡，人們常說眼睛是靈魂之窗，而在遊戲中鏡頭扮演了同樣的角色，在空洞騎士這種類銀河惡魔城遊戲中，鏡頭是跟角色的移動有關，而角色又是由玩家操作，但玩家並沒有辦法完全控制鏡頭，有時反而是鏡頭的變化來引導玩家，而這個細節在空洞騎士中可謂發揚光...\"}],[\"$\",\"meta\",\"2\",{\"name\":\"author\",\"content\":\"MJ CHEN\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"GameMake\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/image/INPC-ICON.png\"}],[\"$\",\"$L28\",\"5\",{}]]\n"])</script></body></html>

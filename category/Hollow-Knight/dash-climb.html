@@ -1,336 +1,89 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-
-<head>
-    <title>空洞騎士重現 - Dash & Climb</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) & 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~">
-    <meta name="keywords" content="GameMake">
-    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
-    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
-    <link href="../../style/style.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
-    <script type="module" src="../../module/post.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
-</head>
-
-<body>
-    <header class="banner">
-        <div class="wrapper">
-            <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
-            </a>
-            <button id="hamburger">&#9776;</button>
-            <nav id="site-nav">
-                <a href="../../index.html">Home</a>
-                <a href="../../index.html">Posts</a>
-                <a href="../../entrypoint/categories.html">Categories</a>
-                <a href="../../entrypoint/tags.html">Tags</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <aside id="left-area" class="sidebar">
-            <!-- 這是大綱 -->
-            <div id="agenda-wrapper">
-                <h1 class="agenda-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <line x1="9" y1="10" x2="20" y2="10"></line>
-                        <line x1="9" y1="16" x2="20" y2="16"></line>
-                        <line x1="9" y1="22" x2="20" y2="22"></line>
-                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
-                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
-                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
-                    </svg> In this article
-                </h1>
-                <hr>
-                <ol id="agenda">
-                </ol>
-            </div>
-        </aside>
-
-        <main id="center-area">
-            <article id="main-content">
-                <header class="post-header">
-                    <h1 class="post-title">空洞騎士重現 - Dash & Climb</h1>
-                    <div class="post-meta">
-                        <time datetime="2026-07-19T00:00:00+08:00" itemprop="datePublished"> Jul 19, 2026 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
-                        <img src="../../image/TAG-ICON.png" class="inline-icon">
-                        <nav id="tag-bar"></nav>
-                    </div>
-                </header>
-
-                <section class="L1-section">
-                    <div id="cover-container">
-                        <img id="cover" src="../../image/hw-dash-climb-cover.png" alt="空洞騎士">
-                    </div>
-                    <p class="content-paragraph">
-                        這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) & 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Sprites</h1>
-                    <hr>
-                    <p class="content-paragraph">
-
-                        <ul class="content-ul">
-                            <li>
-                                <b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">Dash</a></b> - 只使用 <code class="inline">002.Dash</code>, <code class="inline">080.Dash Down</code>, <code class="inline">082.Dash Effect</code>，Dash
-                                Down 是向下衝刺，下衝是裝配衝刺大師後才可以使用，另外如果要做出更完整的衝刺動畫還可以加上 <code class="inline">079.Dash To Idle</code>, <code class="inline">081.Dash Down Land</code>。
-                            </li>
-                            <li>
-                                <b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">Climb</a></b> -攀牆是相對簡單的動畫，僅使用 <code class="inline">084.Wall Slide</code>，內容僅四張圖片。
-                                <img class="content-img" src="../../image/hw-dash-climb.png" alt="climb sprites">
-                            </li>
-                        </ul>
-                    </p>
-
-                    <p class="content-paragraph">
-                        上述 sprites 可能會有紅框，可以透過此<a href="https://github.com/PersonalWorkingSpace/inpc-blog-demo/tree/master/remove_red_border">程式</a>來移除。
-                    </p>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Dash</h1>
-                    <hr>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">Context</h1>
-                        <p class="content-paragraph">
-                            Context 是用在狀態機轉換的變數，要達成 Dash 狀態觸發，跟之前 <a href="./jump.html">Jump</a> 一樣新增一個 Input Button，並設定按下與放開的動作:
-                            <pre><code class="c#">
-// Player Controller
-void Start()
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/image/INPC-ICON.png"/><link rel="preload" as="image" href="/image/CATEGORY-ICON.png"/><link rel="preload" as="image" href="/image/TAG-ICON.png"/><link rel="preload" href="/image/hw-dash-climb-cover.png" as="image"/><link rel="preload" href="/image/hw-dash-climb.png" as="image"/><link rel="preload" href="/image/hw-dash-climb-dashAnime.png" as="image"/><link rel="preload" href="/image/hw-dash-climb-dashdownAnime.png" as="image"/><link rel="stylesheet" href="/_next/static/chunks/44hmm9eswl_k6.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/1x6obpmlu1_c2.js"/><script src="/_next/static/chunks/02aeof6897urs.js" async=""></script><script src="/_next/static/chunks/0y23_0vo0sx8y.js" async=""></script><script src="/_next/static/chunks/2odeex0vp2-n5.js" async=""></script><script src="/_next/static/chunks/turbopack-3-ry682tkyiqk.js" async=""></script><script src="/_next/static/chunks/3pbnp14axw3wi.js" async=""></script><script src="/_next/static/chunks/303vpg09n1wil.js" async=""></script><title>空洞騎士重現 - Dash &amp; Climb</title><meta name="description" content="這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) &amp; 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~"/><meta name="author" content="MJ CHEN"/><meta name="keywords" content="GameMake"/><link rel="icon" href="/image/INPC-ICON.png"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><header class="banner"><div class="wrapper"><a id="site-logo" href="/"><img width="40" src="/image/INPC-ICON.png" alt="inpc-icon"/> Internet NPC</a><button id="hamburger">☰</button><nav id="site-nav"><a href="/">Home</a><a href="/">Posts</a><a href="/entrypoint/categories">Categories</a><a href="/entrypoint/tags">Tags</a></nav></div></header><div class="main-container"><aside id="left-area" class="sidebar"><div class="agenda-wrapper agenda-sidebar"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#Sprites">Sprites</a></li><li class="non-focus-section"><a href="#Dash">Dash</a></li><li class="non-focus-section"><a href="#Climb">Climb</a></li><li class="non-focus-section"><a href="#成品">成品</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div></aside><main id="center-area"><article id="main-content"><header class="post-header"><h1 class="post-title">空洞騎士重現 - Dash &amp; Climb</h1><div class="post-meta"><time dateTime="2026-07-19T00:00:00+08:00" itemProp="datePublished"> <!-- -->Jul 19, 2026<!-- --> </time> |<img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><span id="category-bar"><a class="tag" style="color:#FAF6F5;background-color:#345864" href="/entrypoint/categories?category=Hollow-Knight">Hollow Knight</a></span><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><nav id="tag-bar"><a class="tag" style="color:#FF2164;background-color:#21FFBC" href="/entrypoint/tags?tag=GameMake">GameMake</a></nav></div></header><section class="L1-section"><div id="cover-container"><img id="cover" src="/image/hw-dash-climb-cover.png" alt="空洞騎士"/></div><div class="content-paragraph">這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) &amp; 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~</div></section><div class="agenda-wrapper agenda-inline"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#Sprites">Sprites</a></li><li class="non-focus-section"><a href="#Dash">Dash</a></li><li class="non-focus-section"><a href="#Climb">Climb</a></li><li class="non-focus-section"><a href="#成品">成品</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div><section class="L1-section"><h1 class="L1-section-title" id="Sprites">Sprites</h1><hr/><div class="content-paragraph"><ul class="content-ul"><li><b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">Dash</a></b> - 只使用 <code class="inline">002.Dash</code>, <code class="inline">080.Dash Down</code>, <code class="inline">082.Dash Effect</code>，Dash Down 是向下衝刺，下衝是裝配衝刺大師後才可以使用，另外如果要做出更完整的衝刺動畫還可以加上 <code class="inline">079.Dash To Idle</code>, <code class="inline">081.Dash Down Land</code>。</li><li><b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">Climb</a></b> -攀牆是相對簡單的動畫，僅使用 <code class="inline">084.Wall Slide</code>，內容僅四張圖片。 <img class="content-img" src="/image/hw-dash-climb.png" alt="climb sprites"/></li></ul></div><div class="content-paragraph">上述 sprites 可能會有紅框，可以透過此<a href="https://github.com/PersonalWorkingSpace/inpc-blog-demo/tree/master/remove_red_border">程式</a>來移除。</div></section><section class="L1-section"><h1 class="L1-section-title" id="Dash">Dash</h1><hr/><section class="L2-section"><h1 class="L2-section-title">Context</h1><div class="content-paragraph">Context 是用在狀態機轉換的變數，要達成 Dash 狀態觸發，跟之前 <a href="/category/Hollow-Knight/jump">Jump</a> 一樣新增一個 Input Button，並設定按下與放開的動作:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player Controller</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Start</span>()</span>
 {
-    var player = InputReader.Controller.Player;
+    <span class="hljs-keyword">var</span> player = InputReader.Controller.Player;
     ...
-    player.Dash.started += ctx =&gt; { context.DashButtonPress = true; };
-    player.Dash.performed += ctx =&gt; { context.DashButtonPress = false; };
-    player.Dash.canceled += ctx =&gt; { context.DashButtonPress = false; };
+    player.Dash.started += ctx =&gt; { context.DashButtonPress = <span class="hljs-literal">true</span>; };
+    player.Dash.performed += ctx =&gt; { context.DashButtonPress = <span class="hljs-literal">false</span>; };
+    player.Dash.canceled += ctx =&gt; { context.DashButtonPress = <span class="hljs-literal">false</span>; };
     ...
-}
-                            </code></pre>
-                            按鍵達到 hold time (performed) 就把 <code class="inline">DashButtonPress</code> 關掉是為了避免玩家壓著衝刺按鍵達成連續衝刺，所以設定是要放開再按才算數。此外還要給衝刺加上冷卻時間以及限制在空中只能衝刺一次，在此新增兩個變數:
-                            <pre><code class="c#">
-context.IsAirDash
-context.DashCooldownRemaining
-                            </code></pre>                         
-                        </p>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">State</h1>
-                        <p class="content-paragraph">
-                            Dash 的狀態有幾大特色是:
-                            <ul class="content-ul">
-                                <li><b>最高的 animation priority</b> - 由於小騎士能在空中進行衝刺，衝刺的時候會改成播放衝刺動畫，因此設定獨立的 priority 並且高於 vertical movement。</li>
-                                <li><b>不會下墜</b> - 由於衝刺最初是讓小騎士能夠衝過缺口，所以在水平衝刺時並不會有下墜發生，這邊額外設定一個 <code class="inline">VerticalVelocity2 = 0 & OverwriteVerticalVelocity = true</code>，讓最終 y 軸速度會被改寫成 0。</li>
-                                <li><b>空中只能衝一次</b> - 如前面所說，如果衝刺是在空中就記錄起來，直到腳色回到地面才會清掉。</li>
-                                <li><b>有冷卻時間</b> - 如前面所說，離開衝刺狀態後會設定冷卻時間，每次更新狀態都會從中扣除經過的時間直到歸零。</li>
-                            </ul>
-                            <pre><code class="c#">
-// Player State
-public class DashState : State
+}</code></pre>按鍵達到 hold time (performed) 就把 <code class="inline">DashButtonPress</code> 關掉是為了避免玩家壓著衝刺按鍵達成連續衝刺，所以設定是要放開再按才算數。此外還要給衝刺加上冷卻時間以及限制在空中只能衝刺一次，在此新增兩個變數:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs">context.IsAirDash
+context.DashCooldownRemaining</code></pre></div></section><section class="L2-section"><h1 class="L2-section-title">State</h1><div class="content-paragraph">Dash 的狀態有幾大特色是:<ul class="content-ul"><li><b>最高的 animation priority</b> - 由於小騎士能在空中進行衝刺，衝刺的時候會改成播放衝刺動畫，因此設定獨立的 priority 並且高於 vertical movement。</li><li><b>不會下墜</b> - 由於衝刺最初是讓小騎士能夠衝過缺口，所以在水平衝刺時並不會有下墜發生，這邊額外設定一個 <code class="inline">VerticalVelocity2 = 0 &amp; OverwriteVerticalVelocity = true</code>，讓最終 y 軸速度會被改寫成 0。</li><li><b>空中只能衝一次</b> - 如前面所說，如果衝刺是在空中就記錄起來，直到腳色回到地面才會清掉。</li><li><b>有冷卻時間</b> - 如前面所說，離開衝刺狀態後會設定冷卻時間，每次更新狀態都會從中扣除經過的時間直到歸零。</li></ul><pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player State</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DashState</span> : <span class="hljs-title">State</span>
 {
-    public override int AnimationHash => Animations.Dash;
-    public override int Priority => AnimationPriority.Dash;
-    public override bool OverwriteVerticalVelocity => true;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> AnimationHash =&gt; Animations.Dash;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> Priority =&gt; AnimationPriority.Dash;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">bool</span> OverwriteVerticalVelocity =&gt; <span class="hljs-literal">true</span>;
 
-    public override void OnEnter(Context context)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnter</span>(<span class="hljs-params">Context context</span>)</span>
     {
         context.HorizontalVelocity = context.IsFacingRight ? context.Config.dashSpeed : -context.Config.dashSpeed;
-        context.VerticalVelocity2 = 0f;
+        context.VerticalVelocity2 = <span class="hljs-number">0f</span>;
 
-        if (!context.OnGround)
+        <span class="hljs-keyword">if</span> (!context.OnGround)
         {
-            context.IsAirDash = true;
+            context.IsAirDash = <span class="hljs-literal">true</span>;
         }
     }
 
-    public override void OnExit(Context context)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExit</span>(<span class="hljs-params">Context context</span>)</span>
     {
         context.DashCooldownRemaining = context.Config.dashCooldownPeriod;
     }
-}
-                            </code></pre>
-                            至於下衝也是差不多的設計，只是由於本來就是空中向下衝刺，所以算是 vertical movement 的一環，就沒使用獨立的 priority:
-                            <pre><code class="c#">
-// Player State
-public class DashDownState : State
+}</code></pre>至於下衝也是差不多的設計，只是由於本來就是空中向下衝刺，所以算是 vertical movement 的一環，就沒使用獨立的 priority:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player State</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DashDownState</span> : <span class="hljs-title">State</span>
 {
-    public override int AnimationHash => Animations.DashDown;
-    public override int Priority => AnimationPriority.Vertical;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> AnimationHash =&gt; Animations.DashDown;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> Priority =&gt; AnimationPriority.Vertical;
 
-    public override void OnEnter(Context context)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnter</span>(<span class="hljs-params">Context context</span>)</span>
     {
         context.VerticalVelocity = -context.Config.dashDownSpeed;
-        context.IsAirDash = true;
+        context.IsAirDash = <span class="hljs-literal">true</span>;
     }
 
-    public override void OnExit(Context context)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnExit</span>(<span class="hljs-params">Context context</span>)</span>
     {
         context.DashCooldownRemaining = context.Config.dashCooldownPeriod;
     }
 }
-
-                            </code></pre>
-                        </p>
-                        <p class="content-paragraph">
-                            至於原先的 horizontal & vertical states 怎樣才能轉移到 dash 狀態則是分別根據底下兩種條件:
-                            <pre><code class="c#">
-public bool CanDash => ( !OnGround && LookInput.y >= 0f || OnGround ) && DashButtonPress && !IsAirDash && DashCooldownRemaining <= 0f;
-public bool CanDashDown => !OnGround && LookInput.y < 0f && DashButtonPress && !IsAirDash && DashCooldownRemaining <= 0f;
-                            </code></pre>
-                            水平衝刺跟下衝共同的條件是: 按下衝刺鍵、空中沒有衝刺過、冷卻時間結束了，不同的條件則是角色的位置以及面朝方向:
-                            <ul class="content-ul">
-                                <li><b>水平衝刺</b> - 角色在空中但不是面朝下或是角色在地面。</li>
-                                <li><b>向下衝刺</b> - 角色在空中且面朝下。</li>
-                            </ul>
-                        </p>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">Animation</h1>
-                        <p class="content-paragraph">
-                            Dash 的動畫實作方式與<a href="./kinematice.html">二段跳</a>一樣，需要透過<b>錄製功能</b>來調整衝刺特效與小騎士的相對位置:
-                        </p>
-                        <img class="content-img" src="../../image/hw-dash-climb-dashAnime.png" alt="dash anime">
-                        <img class="content-img" src="../../image/hw-dash-climb-dashdownAnime.png" alt="dash down anime">
-                    </section>
-                </section>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Climb</h1>
-                    <hr>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">Context</h1>
-                        <p class="content-paragraph">
-                            為了要能偵測玩家是否碰觸牆壁，這邊用跟之前 <a href="./jump.html">ground detetion</a> 一樣的 raycast function 來偵測是否接觸左右牆壁:
-                            <pre><code class="c#">
-// Player Controller
-void FixedUpdate()
+</code></pre></div><div class="content-paragraph">至於原先的 horizontal &amp; vertical states 怎樣才能轉移到 dash 狀態則是分別根據底下兩種條件:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> CanDash =&gt; ( !OnGround &amp;&amp; LookInput.y &gt;= <span class="hljs-number">0f</span> || OnGround ) &amp;&amp; DashButtonPress &amp;&amp; !IsAirDash &amp;&amp; DashCooldownRemaining &lt;= <span class="hljs-number">0f</span>;
+<span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> CanDashDown =&gt; !OnGround &amp;&amp; LookInput.y &lt; <span class="hljs-number">0f</span> &amp;&amp; DashButtonPress &amp;&amp; !IsAirDash &amp;&amp; DashCooldownRemaining &lt;= <span class="hljs-number">0f</span>;</code></pre>水平衝刺跟下衝共同的條件是: 按下衝刺鍵、空中沒有衝刺過、冷卻時間結束了，不同的條件則是角色的位置以及面朝方向:<ul class="content-ul"><li><b>水平衝刺</b> - 角色在空中但不是面朝下或是角色在地面。</li><li><b>向下衝刺</b> - 角色在空中且面朝下。</li></ul></div></section><section class="L2-section"><h1 class="L2-section-title">Animation</h1><div class="content-paragraph">Dash 的動畫實作方式與<a href="/category/Hollow-Knight/kinematice">二段跳</a>一樣，需要透過<b>錄製功能</b>來調整衝刺特效與小騎士的相對位置:</div><img class="content-img" src="/image/hw-dash-climb-dashAnime.png" alt="dash anime"/> <img class="content-img" src="/image/hw-dash-climb-dashdownAnime.png" alt="dash down anime"/></section></section><section class="L1-section"><h1 class="L1-section-title" id="Climb">Climb</h1><hr/><section class="L2-section"><h1 class="L2-section-title">Context</h1><div class="content-paragraph">為了要能偵測玩家是否碰觸牆壁，這邊用跟之前 <a href="/category/Hollow-Knight/jump">ground detetion</a> 一樣的 raycast function 來偵測是否接觸左右牆壁:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player Controller</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FixedUpdate</span>()</span>
 {
     ...
     context.OnRightWall = TouchRightWall();
     context.OnLeftWall = TouchLeftWall();
 }
-                    
-bool TouchRightWall()
+
+<span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">TouchRightWall</span>()</span>
 {
-    return rb.Cast(Vector2.right, GroundFilter, hitResults, Config.rayCastWallDistance) &gt 0;
+    <span class="hljs-keyword">return</span> rb.Cast(Vector2.right, GroundFilter, hitResults, Config.rayCastWallDistance) &gt; <span class="hljs-number">0</span>;
 }
 
-bool TouchLeftWall()
+<span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">TouchLeftWall</span>()</span>
 {
-    return rb.Cast(Vector2.left, GroundFilter, hitResults, Config.rayCastWallDistance) &gt 0;
-}
-                            </code></pre>
-                        </p>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">State</h1>
-                        <p class="content-paragraph">
-                            Climb 本身的 state 沒什麼特別的就是一個會緩慢下滑的狀態，但要注意的是碰觸到牆壁跟碰觸到地面是相同的，會重製空中衝刺以及二段跳:
-                            <pre><code class="c#">
-// Player State
-public class ClimbState : State
+    <span class="hljs-keyword">return</span> rb.Cast(Vector2.left, GroundFilter, hitResults, Config.rayCastWallDistance) &gt; <span class="hljs-number">0</span>;
+}</code></pre></div></section><section class="L2-section"><h1 class="L2-section-title">State</h1><div class="content-paragraph">Climb 本身的 state 沒什麼特別的就是一個會緩慢下滑的狀態，但要注意的是碰觸到牆壁跟碰觸到地面是相同的，會重製空中衝刺以及二段跳:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player State</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ClimbState</span> : <span class="hljs-title">State</span>
 {
-    public override int AnimationHash =&gt; Animations.Climb;
-    public override int Priority =&gt; AnimationPriority.Vertical;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> AnimationHash =&gt; Animations.Climb;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> Priority =&gt; AnimationPriority.Vertical;
 
-    public override void OnEnter(Context context)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnter</span>(<span class="hljs-params">Context context</span>)</span>
     {
-        context.IsDoubleJumped = false;
-        context.IsAirDash = false;
+        context.IsDoubleJumped = <span class="hljs-literal">false</span>;
+        context.IsAirDash = <span class="hljs-literal">false</span>;
         context.VerticalVelocity = -context.Config.climbSpeed;
     }
-}
-                            </code></pre>
-                            Climb 雖然本身是 vertical movement，但在貼著牆壁時如果按下跳躍其實會往反方向跳躍，以此達成貼牆攀爬，底下就是模擬這種反方向移動的 horizontal 狀態，這個狀態只會持續一小段時間:
-                            <pre><code class="c#">
-// Player State
-public class ReversedMoveState : State
+}</code></pre>Climb 雖然本身是 vertical movement，但在貼著牆壁時如果按下跳躍其實會往反方向跳躍，以此達成貼牆攀爬，底下就是模擬這種反方向移動的 horizontal 狀態，這個狀態只會持續一小段時間:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player State</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ReversedMoveState</span> : <span class="hljs-title">State</span>
 {
-    public override int AnimationHash =&gt; Animations.PreMove;
-    public override int Priority =&gt; AnimationPriority.Horizontal;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> AnimationHash =&gt; Animations.PreMove;
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-built_in">int</span> Priority =&gt; AnimationPriority.Horizontal;
 
-    public override void OnEnter(Context context)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnEnter</span>(<span class="hljs-params">Context context</span>)</span>
     {
-        context.HorizontalVelocity = context.Movement.x &gt; 0f ? -context.Config.reversedMoveSpeed : context.Config.reversedMoveSpeed;
+        context.HorizontalVelocity = context.Movement.x &gt; <span class="hljs-number">0f</span> ? -context.Config.reversedMoveSpeed : context.Config.reversedMoveSpeed;
     }
-}
-                            </code></pre>
-                        </p>
-                        <p class="content-paragraph">
-                            能進入到 Climb 狀態需要滿足底下條件，就是要在空中往牆壁方向移動，至於 Climb 只會在腳色下墜時才會觸發，跳躍過程則不會:
-                            <pre><code class="c#">
-public bool CanClimbWall => ( Movement.x < 0f && OnLeftWall || Movement.x > 0f && OnRightWall ) && !OnGround;
-                            </code></pre>
-                            而 ReversedMoveState 則是在小騎士處於 ClimbState 時按下跳躍鍵自動進入。
-                        </p>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">Animation</h1>
-                        <p class="content-paragraph">
-                            如前面所說就只是四張圖而已 ~~~~
-                        </p>
-                    </section>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">成品</h1>
-                    <hr>
-                    <br>
-                    <iframe class="content-iframe" src="https://www.youtube.com/embed/TUXPJymnw_w?si=VNOGac-NDZrq4LTQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <p class="content-paragraph">
-                        我們成功把 Dash & Climb 的動作整合到小騎士的移動中了，移動速度與彈性都大幅提升，多虧於之前的 Kinematic rigidbody & 狀態機的導入讓這個動作添加可以快速完成 ~~~
-                    </p>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">總結</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        雖然很想繼續趁勝追擊加上更多小騎士的動作 - Nail Attack, Spirit Attack 等等，但下次想換點口味，回到我們荒廢的場景布置，學學 Unity Tilemap 的使用吧。
-                    </p>
-                </section>
-            </article>
-        </main>
-
-        <aside id="right-area" class="sidebar">
-            <div id="category-wrapper">
-                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
-                <hr>
-                <ul id="same-category-list">
-                </ul>
-            </div>
-            <div id="tag-wrapper">
-            </div>
-        </aside>
-    </div>
-
-    <footer>
-        <div id="contact-info">
-            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
-            <a class="github" href="https://github.com/PersonalWorkingSpace">
-                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
-                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
-                    </svg>
-                <span>Github</span>
-            </a>
-            <span>隨筆紀錄我的學習過程</span>
-        </div>
-        <p class="cc">
-            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
-        </p>
-        <p class="cc">
-            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
-            please include the original link.
-        </p>
-    </footer>
-</body>
-
-</html>
+}</code></pre></div><div class="content-paragraph">能進入到 Climb 狀態需要滿足底下條件，就是要在空中往牆壁方向移動，至於 Climb 只會在腳色下墜時才會觸發，跳躍過程則不會:<pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> CanClimbWall =&gt; ( Movement.x &lt; <span class="hljs-number">0f</span> &amp;&amp; OnLeftWall || Movement.x &gt; <span class="hljs-number">0f</span> &amp;&amp; OnRightWall ) &amp;&amp; !OnGround;</code></pre>而 ReversedMoveState 則是在小騎士處於 ClimbState 時按下跳躍鍵自動進入。</div></section><section class="L2-section"><h1 class="L2-section-title">Animation</h1><div class="content-paragraph">如前面所說就只是四張圖而已 ~~~~</div></section></section><section class="L1-section"><h1 class="L1-section-title" id="成品">成品</h1><hr/><br/> <iframe class="content-iframe" src="https://www.youtube.com/embed/TUXPJymnw_w?si=VNOGac-NDZrq4LTQ" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen=""></iframe><div class="content-paragraph">我們成功把 Dash &amp; Climb 的動作整合到小騎士的移動中了，移動速度與彈性都大幅提升，多虧於之前的 Kinematic rigidbody &amp; 狀態機的導入讓這個動作添加可以快速完成 ~~~</div></section><section class="L1-section"><h1 class="L1-section-title" id="總結">總結</h1><hr/><div class="content-paragraph">雖然很想繼續趁勝追擊加上更多小騎士的動作 - Nail Attack, Spirit Attack 等等，但下次想換點口味，回到我們荒廢的場景布置，學學 Unity Tilemap 的使用吧。</div></section></article></main><aside id="right-area" class="sidebar"><div id="category-wrapper"><h1 id="category-title"><img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#FAF6F5;background-color:#345864" href="/entrypoint/categories?category=Hollow-Knight">Hollow Knight (11)</a></h1><hr/><ul id="same-category-list"><li><a href="/category/Hollow-Knight/camera">Day5 - 空洞騎士重現 - 運鏡</a></li><li><a href="/category/Hollow-Knight/jump">Day6 - 空洞騎士重現 - Jump</a></li><li><a href="/category/Hollow-Knight/kinematice">Day7 - 空洞騎士重現 - Kinematic Rigidbody</a></li><li><a href="/category/Hollow-Knight/cinemachine">Day8 - 空洞騎士重現 - Cinemachine</a></li><li><a class="this-article" href="/category/Hollow-Knight/dash-climb">Day9 - 空洞騎士重現 - Dash &amp; Climb</a></li><li><a href="/category/Hollow-Knight/tilemap">Day10 - 空洞騎士重現 - Tilemap</a></li><li><a href="/category/Hollow-Knight/nailAttack">Day11 - 空洞騎士重現 - Nail Attack</a></li></ul></div><div id="tag-wrapper"><div><h1 class="tag-title"><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#FF2164;background-color:#21FFBC" href="/entrypoint/tags?tag=GameMake">GameMake (11)</a></h1><hr/><ul class="same-tag-list"><li><a href="/category/Hollow-Knight/nailAttack">空洞騎士重現 - Nail Attack</a></li><li><a href="/category/Hollow-Knight/tilemap">空洞騎士重現 - Tilemap</a></li><li><a href="/category/Hollow-Knight/cinemachine">空洞騎士重現 - Cinemachine</a></li><li><a href="/category/Hollow-Knight/kinematice">空洞騎士重現 - Kinematic Rigidbody</a></li><li><a href="/category/Hollow-Knight/jump">空洞騎士重現 - Jump</a></li></ul><br/></div></div></aside></div><!--$--><!--/$--><footer><div id="contact-info"><a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a><a class="github" href="https://github.com/PersonalWorkingSpace"><svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24"><path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path></svg><span>Github</span></a><span>隨筆紀錄我的學習過程</span></div><p class="cc">本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。</p><p class="cc">This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but please include the original link.</p></footer><script id="_R_">(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push({"otherChunks":["static/chunks/1x6obpmlu1_c2.js","static/chunks/02aeof6897urs.js","static/chunks/0y23_0vo0sx8y.js","static/chunks/2odeex0vp2-n5.js"],"runtimeModuleIds":[94553]});</script><script src="/_next/static/chunks/1x6obpmlu1_c2.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:\"/_next/static/chunks/3pbnp14axw3wi.js\"\n3:I[25954,[\"$2\"],\"default\"]\n4:I[39756,[\"$2\"],\"default\"]\n5:I[37457,[\"$2\"],\"default\"]\n6:I[22016,[\"$2\"],\"\"]\nd:I[97367,[\"$2\"],\"OutletBoundary\"]\ne:\"$Sreact.suspense\"\n10:\"ViewportBoundary\"\n11:I[97367,[\"$2\"],\"$10\"]\n13:\"MetadataBoundary\"\n14:I[97367,[\"$2\"],\"$13\"]\n16:I[68027,[\"$2\"],\"default\",1]\n:HL[\"/_next/static/chunks/44hmm9eswl_k6.css\",\"style\"]\n8:X\nb:[[\"children\",{\"s\":\"__PAGE__\",\"h\":512,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[\"$Lc\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/303vpg09n1wil.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@f\"}]}]]}],\"p\":false,\"v\":null}}]]\na:[[\"children\",{\"s\":{\"n\":\"slug\",\"t\":\"d\",\"k\":\"dash-climb\",\"s\":[]},\"h\":66048,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qb\"}]]\n9:[[\"children\",{\"s\":{\"n\":\"category\",\"t\":\"d\",\"k\":\"Hollow-Knight\",\"s\":[]},\"h\":197120,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qa\"}]]\n7:[[\"children\",{\"s\":\"category\",\"h\":131584,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Q9\"}]]\n0:{\"P\":null,\"c\":[\"\",\"category\",\"Hollow-Knight\",\"dash-climb\"],\"q\":\"\",\"i\":false,\"t\":{\"t\":{\"s\":\"\",\"h\":131600,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/3pbnp14axw3wi.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-Hant-TW\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"div\",null,{\"className\":\"main-container\",\"children\":[\"$\",\"main\",null,{\"id\":\"center-area\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"post-title\",\"children\":\"404 - 找不到這個頁面\"}],[\"$\",\"p\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"$L6\",null,{\"href\":\"/\",\"children\":\"回到首頁\"}]}]]}]}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}],[\"$\",\"footer\",null,{\"children\":[[\"$\",\"div\",null,{\"id\":\"contact-info\",\"children\":[[\"$\",\"a\",null,{\"href\":\"mailto:tonychen3000tony@gmail.com\",\"children\":\"tonychen3000tony@gmail.com\"}],[\"$\",\"a\",null,{\"className\":\"github\",\"href\":\"https://github.com/PersonalWorkingSpace\",\"children\":[[\"$\",\"svg\",null,{\"height\":\"24\",\"aria-hidden\":\"true\",\"viewBox\":\"0 0 24 24\",\"version\":\"1.1\",\"width\":\"24\",\"children\":[\"$\",\"path\",null,{\"d\":\"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z\"}]}],[\"$\",\"span\",null,{\"children\":\"Github\"}]]}],[\"$\",\"span\",null,{\"children\":\"隨筆紀錄我的學習過程\"}]]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"本文採用\",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"創用 CC BY-NC-ND 4.0 條款\"}],\"授權分享，歡迎非商業性分享，唯請務必附上原文連結。\"]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"This work is licensed under a \",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License\"}],\". You are welcome to share it for non-commercial purposes, but please include the original link.\"]}]]}]]}]}]]}],\"p\":false,\"v\":null},\"c\":\"$Q7\"},\"h\":{\"r\":[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L11\",null,{\"children\":\"$L12\"}],[\"$\",\"$L14\",null,{\"children\":[[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L15\"}]}],null]}],null]}],\"p\":false,\"v\":null}},\"m\":\"$undefined\",\"G\":[\"$16\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"r\":\"$undefined\",\"s\":\"$undefined\",\"a\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"jy5l5GewKZPz7v6l7ZEND\"}\n17:\"/_next/static/chunks/303vpg09n1wil.js\"\n18:I[1440,[\"$2\",\"$17\"],\"default\"]\n19:I[29818,[\"$2\",\"$17\"],\"InlineAgenda\"]\n1a:I[34883,[\"$2\",\"$17\"],\"default\"]\n:HL[\"/image/hw-dash-climb-cover.png\",\"image\"]\n:HL[\"/image/hw-dash-climb.png\",\"image\"]\n8:C\nc:[\"$\",\"$L18\",null,{\"post\":{\"category\":\"Hollow-Knight\",\"slug\":\"dash-climb\",\"href\":\"/category/Hollow-Knight/dash-climb\",\"title\":\"空洞騎士重現 - Dash \u0026 Climb\",\"created\":\"2026-07-19T00:00:00+08:00\",\"tags\":[\"GameMake\"],\"description\":\"這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) \u0026 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~\",\"thumbnail\":\"/image/hw-dash-climb-cover.png\"},\"headings\":[\"Sprites\",\"Dash\",\"Climb\",\"成品\",\"總結\"],\"sameCategory\":{\"count\":11,\"posts\":[{\"href\":\"/category/Hollow-Knight/camera\",\"label\":\"Day5 - 空洞騎士重現 - 運鏡\",\"current\":false},{\"href\":\"/category/Hollow-Knight/jump\",\"label\":\"Day6 - 空洞騎士重現 - Jump\",\"current\":false},{\"href\":\"/category/Hollow-Knight/kinematice\",\"label\":\"Day7 - 空洞騎士重現 - Kinematic Rigidbody\",\"current\":false},{\"href\":\"/category/Hollow-Knight/cinemachine\",\"label\":\"Day8 - 空洞騎士重現 - Cinemachine\",\"current\":false},{\"href\":\"/category/Hollow-Knight/dash-climb\",\"label\":\"Day9 - 空洞騎士重現 - Dash \u0026 Climb\",\"current\":true},{\"href\":\"/category/Hollow-Knight/tilemap\",\"label\":\"Day10 - 空洞騎士重現 - Tilemap\",\"current\":false},{\"href\":\"/category/Hollow-Knight/nailAttack\",\"label\":\"Day11 - 空洞騎士重現 - Nail Attack\",\"current\":false}]},\"tagGroups\":[{\"tag\":\"GameMake\",\"count\":11,\"candidates\":[{\"href\":\"/category/Hollow-Knight/nailAttack\",\"title\":\"空洞騎士重現 - Nail Attack\"},{\"href\":\"/category/Hollow-Knight/tilemap\",\"title\":\"空洞騎士重現 - Tilemap\"},{\"href\":\"/category/Hollow-Knight/cinemachine\",\"title\":\"空洞騎士重現 - Cinemachine\"},{\"href\":\"/category/Hollow-Knight/kinematice\",\"title\":\"空洞騎士重現 - Kinematic Rigidbody\"},{\"href\":\"/category/Hollow-Knight/jump\",\"title\":\"空洞騎士重現 - Jump\"},{\"href\":\"/category/Hollow-Knight/camera\",\"title\":\"空洞騎士重現 - 運鏡\"},{\"href\":\"/category/Hollow-Knight/move\",\"title\":\"空洞騎士重現 - 移動\"},{\"href\":\"/category/Hollow-Knight/idle\",\"title\":\"空洞騎士重現 - IDLE Scene\"},{\"href\":\"/category/Hollow-Knight/sprite\",\"title\":\"空洞騎士重現 - 素材準備\"},{\"href\":\"/category/Hollow-Knight/begin\",\"title\":\"空洞騎士重現 - 初衷\"}]}],\"children\":[[[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"div\",null,{\"id\":\"cover-container\",\"children\":[\"$\",\"img\",null,{\"id\":\"cover\",\"src\":\"/image/hw-dash-climb-cover.png\",\"alt\":\"空洞騎士\"}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) \u0026 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~\"}]]}],[\"$\",\"$L19\",null,{}]],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Sprites\",\"children\":\"Sprites\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC\",\"children\":\"Dash\"}]}],\" - 只使用 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"002.Dash\"}],\", \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"080.Dash Down\"}],\", \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"082.Dash Effect\"}],\"，Dash Down 是向下衝刺，下衝是裝配衝刺大師後才可以使用，另外如果要做出更完整的衝刺動畫還可以加上 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"079.Dash To Idle\"}],\", \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"081.Dash Down Land\"}],\"。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC\",\"children\":\"Climb\"}]}],\" -攀牆是相對簡單的動畫，僅使用 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"084.Wall Slide\"}],\"，內容僅四張圖片。 \",[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-dash-climb.png\",\"alt\":\"climb sprites\"}]]}]]}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"上述 sprites 可能會有紅框，可以透過此\",[\"$\",\"a\",null,{\"href\":\"https://github.com/PersonalWorkingSpace/inpc-blog-demo/tree/master/remove_red_border\",\"children\":\"程式\"}],\"來移除。\"]}]]]}],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Dash\",\"children\":\"Dash\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"Context\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"Context 是用在狀態機轉換的變數，要達成 Dash 狀態觸發，跟之前 \",[\"$\",\"a\",null,{\"href\":\"/category/Hollow-Knight/jump\",\"children\":\"Jump\"}],\" 一樣新增一個 Input Button，並設定按下與放開的動作:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"// Player Controller\\nvoid Start()\\n{\\n    var player = InputReader.Controller.Player;\\n    ...\\n    player.Dash.started += ctx =\u003e { context.DashButtonPress = true; };\\n    player.Dash.performed += ctx =\u003e { context.DashButtonPress = false; };\\n    player.Dash.canceled += ctx =\u003e { context.DashButtonPress = false; };\\n    ...\\n}\"}]]}],\"$L1b\"]}],\"按鍵達到 hold time (performed) 就把 \",\"$L1c\",\" 關掉是為了避免玩家壓著衝刺按鍵達成連續衝刺，所以設定是要放開再按才算數。此外還要給衝刺加上冷卻時間以及限制在空中只能衝刺一次，在此新增兩個變數:\",\"$L1d\"]}]]}],\"$L1e\",\"$L1f\"]]}],\"$L20\",\"$L21\",\"$L22\"]}]\n:HL[\"/image/hw-dash-climb-dashAnime.png\",\"image\"]\n:HL[\"/image/hw-dash-climb-dashdownAnime.png\",\"image\"]\n1b:[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// Player Controller\u003c/span\u003e\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eStart\u003c/span\u003e()\u003c/span\u003e\\n{\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003evar\u003c/span\u003e player = InputReader.Controller.Player;\\n    ...\\n    player.Dash.started += ctx =\u0026gt; { context.DashButtonPress = \u003cspan class=\\\"hljs-literal\\\"\u003etrue\u003c/span\u003e; };\\n    player.Dash.performed += ctx =\u0026gt; { context.DashButtonPress = \u003cspan class=\\\"hljs-literal\\\"\u003efalse\u003c/span\u003e; };\\n    player.Dash.canceled += ctx =\u0026gt; { context.DashButtonPress = \u003cspan class=\\\"hljs-literal\\\"\u003efalse\u003c/span\u003e; };\\n    ...\\n}\"}}]\n1c:[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"DashButtonPress\"}]\n1d:[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"context.IsAirDash\\ncontext.DashCooldownRemaining\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"context.IsAirDash\\ncontext.DashCooldownRemaining\"}}]]}]\n23:T6a0,\u003cspan class=\"hljs-comment\"\u003e// Player State\u003c/span\u003e\n\u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eclass\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eDashState\u003c/span\u003e : \u003cspan class=\"hljs-title\"\u003eState\u003c/span\u003e\n{\n    \u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-built_in\"\u003eint\u003c/span\u003e AnimationHash =\u0026gt; Animations.Dash;\n    \u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-built_in\"\u003eint\u003c/span\u003e Priority =\u0026gt; AnimationPriority.Dash;\n    \u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-built_in\"\u003ebool\u003c/span\u003e OverwriteVerticalVelocity =\u0026gt; \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e;\n\n    \u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eOnEnter\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003eContext context\u003c/span\u003e)\u003c/span\u003e\n    {\n        context.HorizontalVelocity = context.IsFacingRight ? context.Config.dashSpeed : -context.Config.dashSpeed;\n        context.VerticalVelocity2 = \u003cspan class=\"hljs-number\"\u003e0f\u003c/span\u003e;\n\n        \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e (!context.OnGround)\n        {\n            context.IsAirDash = \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e;\n        }\n    }\n\n    \u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eOnExit\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003eContext context\u003c/span\u003e)\u003c/span\u003e\n    {\n        context.DashCooldownRemaining = context.Config.dashCooldownPeriod;\n    }\n}1e:[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"State\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"Dash 的狀態有幾大特色是:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"最高的 animation priority\"}],\" - 由於小騎士能在空中進行衝刺，衝刺的時候會改成播放衝刺動畫，因此設定獨立的 priority 並且高於 vertical movement。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"不會下墜\"}],\" - 由於衝刺最初是讓小騎士能夠衝過缺口，所以在水平衝刺時並不會有下墜發生，這邊額外設定一個 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"VerticalVelocity2 = 0 \u0026 OverwriteVerticalVelocity = true\"}],\"，讓最終 y 軸速度會被改寫成 0。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"空中只能衝一次\"}],\" - 如前面所說，如果衝刺是在空中就記錄起來，直到腳色回到地面才會清掉。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"有冷卻時間\"}],\" - 如前面所說，離開衝刺狀態後會設定冷卻時間，每次更新狀態都會從中扣除經過的時間直到歸零。\"]}]]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"// Player State\\npublic class DashState : State\\n{\\n    public override int AnimationHash =\u003e Animations.Dash;\\n    public override int Priority =\u003e AnimationPriority.Dash;\\n    public override bool OverwriteVerticalVelocity =\u003e true;\\n\\n    public override void OnEnter(Context context)\\n    {\\n        context.HorizontalVelocity = context.IsFacingRight ? context.Config.dashSpeed : -context.Config.dashSpeed;\\n        context.VerticalVelocity2 = 0f;\\n\\n        if (!context.OnGround)\\n        {\\n            context.IsAirDash = true;\\n        }\\n    }\\n\\n    public override void OnExit(Context context)\\n    {\\n        context.DashCooldownRemaining = context.Config.dashCooldownPeriod;\\n    }\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"$23\"}}]]}],\"至於下衝也是差不多的設計，只是由於本來就是空中向下衝刺，所以算是 vertical movement 的一環，就沒使用獨立的 priority:\",\"$L24\"]}],\"$L25\"]]}]\n1f:[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"Animation\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"Dash 的動畫實作方式與\",[\"$\",\"a\",null,{\"href\":\"/category/Hollow-Knight/kinematice\",\"children\":\"二段跳\"}],\"一樣，需要透過\",[\"$\",\"b\",null,{\"children\":\"錄製功能\"}],\"來調整衝刺特效與小騎士的相對位置:\"]}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-dash-climb-dashAnime.png\",\"alt\":\"dash anime\"}],\" \",[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-dash-climb-dashdownAnime.png\",\"alt\":\"dash down anime\"}]]]}]\n20:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Climb\",\"children\":\"Climb\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"Context\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"為了要能偵測玩家是否碰觸牆壁，這邊用跟之前 \",[\"$\",\"a\",null,{\"href\":\"/category/Hollow-Knight/jump\",\"children\":\"ground detetion\"}],\" 一樣的 raycast function 來偵測是否接觸左右牆壁:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"// Player Controller\\nvoid FixedUpdate()\\n{\\n    ...\\n    context.OnRightWall = TouchRightWall();\\n    context.OnLeftWall = TouchLeftWall();\\n}\\n\\nbool TouchRightWall()\\n{\\n    return rb.Cast(Vector2.right, GroundFilter, hitResults, Config.rayCastWallDistance) \u003e 0;\\n}\\n\\nbool TouchLeftWall()\\n{\\n    return rb.Cast(Vector2.left, GroundFilter, hitResults, Config.rayCastWallDistance) \u003e 0;\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// Player Controller\u003c/span\u003e\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eFixedUpdate\u003c/span\u003e()\u003c/span\u003e\\n{\\n    ...\\n    context.OnRightWall = TouchRightWall();\\n    context.OnLeftWall = TouchLeftWall();\\n}\\n\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-built_in\\\"\u003ebool\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eTouchRightWall\u003c/span\u003e()\u003c/span\u003e\\n{\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003ereturn\u003c/span\u003e rb.Cast(Vector2.right, GroundFilter, hitResults, Config.rayCastWallDistance) \u0026gt; \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e;\\n}\\n\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-built_in\\\"\u003ebool\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eTouchLeftWall\u003c/span\u003e()\u003c/span\u003e\\n{\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003ereturn\u003c/span\u003e rb.Cast(Vector2.left, GroundFilter, hitResults, Config.rayCastWallDistance) \u0026gt; \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e;\\n}\"}}]]}]]}]]}],[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"State\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"Climb 本身的 state 沒什麼特別的就是一個會緩慢下滑的狀態，但要注意的是碰觸到牆壁跟碰觸到地面是相同的，會重製空中衝刺以及二段跳:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"// Player State\\npublic class ClimbState : State\\n{\\n    public override int AnimationHash =\u003e Animations.Climb;\\n    public override int Priority =\u003e AnimationPriority.Vertical;\\n\\n    public override void OnEnter(Context context)\\n    {\\n        context.IsDoubleJumped = false;\\n        context.IsAirDash = false;\\n        context.VerticalVelocity = -context.Config.climbSpeed;\\n    }\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// Player State\u003c/span\u003e\\n\u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eclass\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eClimbState\u003c/span\u003e : \u003cspan class=\\\"hljs-title\\\"\u003eState\u003c/span\u003e\\n{\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eoverride\u003c/span\u003e \u003cspan class=\\\"hljs-built_in\\\"\u003eint\u003c/span\u003e AnimationHash =\u0026gt; Animations.Climb;\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eoverride\u003c/span\u003e \u003cspan class=\\\"hljs-built_in\\\"\u003eint\u003c/span\u003e Priority =\u0026gt; AnimationPriority.Vertical;\\n\\n    \u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eoverride\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eOnEnter\u003c/span\u003e(\u003cspan class=\\\"hljs-params\\\"\u003eContext context\u003c/span\u003e)\u003c/span\u003e\\n    {\\n        context.IsDoubleJumped = \u003cspan class=\\\"hljs-literal\\\"\u003efalse\u003c/span\u003e;\\n        context.IsAirDash = \u003cspan class=\\\"hljs-literal\\\"\u003efalse\u003c/span\u003e;\\n        context.VerticalVelocity = -context.Config.climbSpeed;\\n    }\\n}\"}}]]}],\"Climb 雖然本身是 vertical movement，但在貼著牆壁時如果按下跳躍其實會往反方向跳躍，以此達成貼牆攀爬，底下就是模擬這種反方向移動的 horizontal 狀態，這個狀態只會持續一小段時間:\",\"$L26\"]}],\"$L27\"]]}],\"$L28\"]]}]\n21:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"成品\",\"children\":\"成品\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"br\",null,{}],\" \",[\"$\",\"iframe\",null,{\"className\":\"content-iframe\",\"src\":\"https://www.youtube.com/embed/TUXPJymnw_w?si=VNOGac-NDZrq4LTQ\",\"title\":\"YouTube video player\",\"frameBorder\":\"0\",\"allow\":\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\",\"referrerPolicy\":\"strict-origin-when-cross-origin\",\"allowFullScreen\":true}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"我們成功把 Dash \u0026 Climb 的動作整合到小騎士的移動中了，移動速度與彈性都大幅提升，多虧於之前的 Kinematic rigidbody \u0026 狀態機的導入讓這個動作添加可以快速完成 ~~~\"}]]]}]\n22:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"總結\",\"children\":\"總結\"}],[\"$\",\"hr\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"雖然很想繼續趁勝追擊加上更多小騎士的動作 - Nail Attack, Spirit Attack 等等，但下次想換點口味，回到我們荒廢的場景布置，學學 Unity Tilemap 的使用吧。\"}]]}]\n29:T511,\u003cspan class=\"hljs-comment\"\u003e// Player State\u003c/span\u003e\n\u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eclass\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eDashDownState\u003c/span\u003e : \u003cspan class=\"hljs-title\"\u003eState\u003c/span\u003e\n{\n    \u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-built_in\"\u003eint\u003c/span\u003e AnimationHash =\u0026gt; Animations.DashDown;\n    \u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-built_in\"\u003eint\u003c/span\u003e Priority =\u0026gt; AnimationPriority.Vertical;\n\n    \u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eOnEnter\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003eContext context\u003c/span\u003e)\u003c/span\u003e\n    {\n        context.VerticalVelocity = -context.Config.dashDownSpeed;\n        context.IsAirDash = \u003cspan class=\"hljs-literal\"\u003etrue\u003c/span\u003e;\n    }\n\n    \u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003epublic\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003eoverride\u003c/span\u003e \u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eOnExit\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003eContext context\u003c/span\u003e)\u003c/span\u003e\n    {\n        context.DashCooldownRemaining = context.Config.dashCooldownPeriod;\n    }\n}\n24:[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"// Player State\\npublic class DashDownState : State\\n{\\n    public override int AnimationHash =\u003e Animations.DashDown;\\n    public override int Priority =\u003e AnimationPriority.Vertical;\\n\\n    public override void OnEnter(Context context)\\n    {\\n        context.VerticalVelocity = -context.Config.dashDownSpeed;\\n        context.IsAirDash = true;\\n    }\\n\\n    public override void OnExit(Context context)\\n    {\\n        context.DashCooldownRemaining = context.Config.dashCooldownPeriod;\\n    }\\n}\\n\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"$29\"}}]]}]\n25:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"至於原先的 horizontal \u0026 vertical states 怎樣才能轉移到 dash 狀態則是分別根據底下兩種條件:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"public bool CanDash =\u003e ( !OnGround \u0026\u0026 LookInput.y \u003e= 0f || OnGround ) \u0026\u0026 DashButtonPress \u0026\u0026 !IsAirDash \u0026\u0026 DashCooldownRemaining \u003c= 0f;\\npublic bool CanDashDown =\u003e !OnGround \u0026\u0026 LookInput.y \u003c 0f \u0026\u0026 DashButtonPress \u0026\u0026 !IsAirDash \u0026\u0026 DashCooldownRemaining \u003c= 0f;\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-built_in\\\"\u003ebool\u003c/span\u003e CanDash =\u0026gt; ( !OnGround \u0026amp;\u0026amp; LookInput.y \u0026gt;= \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e || OnGround ) \u0026amp;\u0026amp; DashButtonPress \u0026amp;\u0026amp; !IsAirDash \u0026amp;\u0026amp; DashCooldownRemaining \u0026lt;= \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-built_in\\\"\u003ebool\u003c/span\u003e CanDashDown =\u0026gt; !OnGround \u0026amp;\u0026amp; LookInput.y \u0026lt; \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e \u0026amp;\u0026amp; DashButtonPress \u0026amp;\u0026amp; !IsAirDash \u0026amp;\u0026amp; DashCooldownRemaining \u0026lt;= \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e;\"}}]]}],\"水平衝刺跟下衝共同的條件是: 按下衝刺鍵、空中沒有衝刺過、冷卻時間結束了，不同的條件則是角色的位置以及面朝方向:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"水平衝刺\"}],\" - 角色在空中但不是面朝下或是角色在地面。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"向下衝刺\"}],\" - 角色在空中且面朝下。\"]}]]}]]}]\n26:[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"// Player State\\npublic class ReversedMoveState : State\\n{\\n    public override int AnimationHash =\u003e Animations.PreMove;\\n    public override int Priority =\u003e AnimationPriority.Horizontal;\\n\\n    public override void OnEnter(Context context)\\n    {\\n        context.HorizontalVelocity = context.Movement.x \u003e 0f ? -context.Config.reversedMoveSpeed : context.Config.reversedMoveSpeed;\\n    }\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// Player State\u003c/span\u003e\\n\u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eclass\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eReversedMoveState\u003c/span\u003e : \u003cspan class=\\\"hljs-title\\\"\u003eState\u003c/span\u003e\\n{\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eoverride\u003c/span\u003e \u003cspan class=\\\"hljs-built_in\\\"\u003eint\u003c/span\u003e AnimationHash =\u0026gt; Animations.PreMove;\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eoverride\u003c/span\u003e \u003cspan class=\\\"hljs-built_in\\\"\u003eint\u003c/span\u003e Priority =\u0026gt; AnimationPriority.Horizontal;\\n\\n    \u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eoverride\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eOnEnter\u003c/span\u003e(\u003cspan class=\\\"hljs-params\\\"\u003eContext context\u003c/span\u003e)\u003c/span\u003e\\n    {\\n        context.HorizontalVelocity = context.Movement.x \u0026gt; \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e ? -context.Config.reversedMoveSpeed : context.Config.reversedMoveSpeed;\\n    }\\n}\"}}]]}]\n27:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"能進入到 Climb 狀態需要滿足底下條件，就是要在空中往牆壁方向移動，至於 Climb 只會在腳色下墜時才會觸發，跳躍過程則不會:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L1a\",null,{\"text\":\"public bool CanClimbWall =\u003e ( Movement.x \u003c 0f \u0026\u0026 OnLeftWall || Movement.x \u003e 0f \u0026\u0026 OnRightWall ) \u0026\u0026 !OnGround;\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003epublic\u003c/span\u003e \u003cspan class=\\\"hljs-built_in\\\"\u003ebool\u003c/span\u003e CanClimbWall =\u0026gt; ( Movement.x \u0026lt; \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e \u0026amp;\u0026amp; OnLeftWall || Movement.x \u0026gt; \u003cspan class=\\\"hljs-number\\\"\u003e0f\u003c/span\u003e \u0026amp;\u0026amp; OnRightWall ) \u0026amp;\u0026amp; !OnGround;\"}}]]}],\"而 ReversedMoveState 則是在小騎士處於 ClimbState 時按下跳躍鍵自動進入。\"]}]\n28:[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"Animation\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"如前面所說就只是四張圖而已 ~~~~\"}]]}]\n12:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n2a:I[27201,[\"$2\"],\"IconMark\"]\nf:null\n15:[[\"$\",\"title\",\"0\",{\"children\":\"空洞騎士重現 - Dash \u0026 Climb\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"這次來點簡單的任務，把小騎士的移動方式加上衝刺 (Dash) \u0026 攀牆 (Climb)，分別屬於水平與垂直移動的新狀態，透過先前打造的狀態機可以輕鬆達成 ~~~\"}],[\"$\",\"meta\",\"2\",{\"name\":\"author\",\"content\":\"MJ CHEN\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"GameMake\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/image/INPC-ICON.png\"}],[\"$\",\"$L2a\",\"5\",{}]]\n"])</script></body></html>

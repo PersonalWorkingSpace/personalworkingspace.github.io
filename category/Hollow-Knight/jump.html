@@ -1,296 +1,59 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-
-<head>
-    <title>空洞騎士重現 - Jump</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍...">
-    <meta name="keywords" content="GameMake">
-    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
-    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
-    <link href="../../style/style.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
-    <script type="module" src="../../module/post.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
-</head>
-
-<body>
-    <header class="banner">
-        <div class="wrapper">
-            <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
-            </a>
-            <button id="hamburger">&#9776;</button>
-            <nav id="site-nav">
-                <a href="../../index.html">Home</a>
-                <a href="../../index.html">Posts</a>
-                <a href="../../entrypoint/categories.html">Categories</a>
-                <a href="../../entrypoint/tags.html">Tags</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <aside id="left-area" class="sidebar">
-            <!-- 這是大綱 -->
-            <div id="agenda-wrapper">
-                <h1 class="agenda-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <line x1="9" y1="10" x2="20" y2="10"></line>
-                        <line x1="9" y1="16" x2="20" y2="16"></line>
-                        <line x1="9" y1="22" x2="20" y2="22"></line>
-                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
-                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
-                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
-                    </svg> In this article
-                </h1>
-                <hr>
-                <ol id="agenda">
-                </ol>
-            </div>
-        </aside>
-
-        <main id="center-area">
-            <article id="main-content">
-                <header class="post-header">
-                    <h1 class="post-title">空洞騎士重現 - Jump</h1>
-                    <div class="post-meta">
-                        <time datetime="2026-05-10T00:00:00+08:00" itemprop="datePublished"> May 10, 2026 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
-                        <img src="../../image/TAG-ICON.png" class="inline-icon">
-                        <nav id="tag-bar"></nav>
-                    </div>
-                </header>
-
-                <section class="L1-section">
-                    <div id="cover-container">
-                        <img id="cover" src="../../image/hw-jump-cover.png" alt="空洞騎士">
-                    </div>
-                    <p class="content-paragraph">
-                        Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍，不過我發現了一些開發上的重大問題 !! 文末說明，因此本次的內容會少一點，封面中的二跳也不會出現在本次實作 &gt;&lt;。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">重現場景</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        <iframe class="content-iframe" src="https://www.youtube.com/embed/9u27L1I6BhE?si=Mk24sPbzxqrvfWqj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> 這次要重現的場景可說是空洞騎士中最複雜、使用最多 sprites 的區域 - 蒼綠之徑，不論是背景還是前景的細節都多到爆，但就跟之前的場景一樣是靠少少幾個 sprite 堆出來的:
-
-                        <ul class="content-ul">
-                            <li>
-                                <b><a href="https://drive.google.com/drive/folders/1kqTElD6h8Sy4imJQS85-cVXZZQZ4Khin">蒼綠之鏡場景</a></b> - 前景背景 sprite 都是取自這邊，我主要用了 0126 ~ 0133 圖檔來堆疊出那一堆的植物景色。
-                            </li>
-                            <li>
-                                <b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">小騎士 Move 動畫</a></b> - 會使用 003.Airborne, 011.Land, 061.Fall，部分畫面有紅框框，可以參考 <a href="sprite.html">Day2</a> 去除，其中 Airborne 前半段是起跳的動作，後半段則是空中墜落的畫面，另外有需要二跳可以用
-                                098.Double Jump, 100.Double Jump Wings 2。
-                            </li>
-                        </ul>
-
-                        另外要特別提那湖面<a href="https://drive.google.com/drive/folders/1Tp-ejdaey2Tbg-qP4qSDL5kO5GWLzM12">波光粼粼</a>原來是一段細長的白點 (下圖)，用 30 個 sprite 做出來的動畫，這個畫面有太多可以學的了，也許下次再好好的重現畫面吧，這次只做個大概，把精力專注在小騎士的跳躍 @@。
-                    </p>
-                    <img class="content-img" style="background: #000;" src="../../image/hw-jump-acid.png" alt="acid">
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Dynamic Jump</h1>
-                    <hr>
-                    <br>
-                    <img class="content-img" src="../../image/hw-jump-height.png" alt="jump hight difference">
-                    <p class="content-paragraph">
-                        空洞騎士中的跳躍如上圖所示是有程度差異的，跳躍鍵按得越久跳得越高，短跳讓小騎士不會撞到頭上的尖刺、長跳讓小騎士能飛越峽谷，提供玩家更多可控性，要達成這種效果:
-                        <ul class="content-ul">
-                            <li>
-                                <b>Jump Input System</b> - 跟之前一樣替我們 Player 的輸入添加 Jump 按鍵，這裡用跟遊戲預設的一樣 z 按鍵。
-                            </li>
-                            <img class="content-img" style="background: #000;" src="../../image/hw-jump-input-system.png" alt="jump input system">
-                            <li>
-                                <b>跳躍效果</b> - 只要玩家按下跳躍鍵就將按鍵狀態存到 <code class="inline">jumpInput</code>，並在固定更新的時間去檢查只要玩家持續按著跳躍鍵就施加向上的力，就可以做出 dynamic jump height 的效果，但會導致小騎士變成飛天火箭 🚀，所以要設一個上限，只要超過施力的次數就停止。
-                            </li>
-                            <pre><code class="c#">
-// Player.cs
-void Awake() 
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/image/INPC-ICON.png"/><link rel="preload" as="image" href="/image/CATEGORY-ICON.png"/><link rel="preload" as="image" href="/image/TAG-ICON.png"/><link rel="preload" href="/image/hw-jump-cover.png" as="image"/><link rel="preload" href="/image/hw-jump-acid.png" as="image"/><link rel="preload" href="/image/hw-jump-height.png" as="image"/><link rel="preload" href="/image/hw-jump-input-system.png" as="image"/><link rel="preload" href="/image/hw-jump-sprite.png" as="image"/><link rel="preload" href="/image/hw-jump-animator.png" as="image"/><link rel="preload" href="/image/hw-jump-raycastbox.png" as="image"/><link rel="stylesheet" href="/_next/static/chunks/44hmm9eswl_k6.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/1x6obpmlu1_c2.js"/><script src="/_next/static/chunks/02aeof6897urs.js" async=""></script><script src="/_next/static/chunks/0y23_0vo0sx8y.js" async=""></script><script src="/_next/static/chunks/2odeex0vp2-n5.js" async=""></script><script src="/_next/static/chunks/turbopack-3-ry682tkyiqk.js" async=""></script><script src="/_next/static/chunks/3pbnp14axw3wi.js" async=""></script><script src="/_next/static/chunks/303vpg09n1wil.js" async=""></script><link rel="preload" href="/image/hw-jump-raycast.png" as="image"/><title>空洞騎士重現 - Jump</title><meta name="description" content="Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍..."/><meta name="author" content="MJ CHEN"/><meta name="keywords" content="GameMake"/><link rel="icon" href="/image/INPC-ICON.png"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><header class="banner"><div class="wrapper"><a id="site-logo" href="/"><img width="40" src="/image/INPC-ICON.png" alt="inpc-icon"/> Internet NPC</a><button id="hamburger">☰</button><nav id="site-nav"><a href="/">Home</a><a href="/">Posts</a><a href="/entrypoint/categories">Categories</a><a href="/entrypoint/tags">Tags</a></nav></div></header><div class="main-container"><aside id="left-area" class="sidebar"><div class="agenda-wrapper agenda-sidebar"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#重現場景">重現場景</a></li><li class="non-focus-section"><a href="#Dynamic Jump">Dynamic Jump</a></li><li class="non-focus-section"><a href="#Falling &amp; Land">Falling &amp; Land</a></li><li class="non-focus-section"><a href="#Ground Detection">Ground Detection</a></li><li class="non-focus-section"><a href="#成品">成品</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div></aside><main id="center-area"><article id="main-content"><header class="post-header"><h1 class="post-title">空洞騎士重現 - Jump</h1><div class="post-meta"><time dateTime="2026-05-10T00:00:00+08:00" itemProp="datePublished"> <!-- -->May 10, 2026<!-- --> </time> |<img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><span id="category-bar"><a class="tag" style="color:#FAF6F5;background-color:#345864" href="/entrypoint/categories?category=Hollow-Knight">Hollow Knight</a></span><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><nav id="tag-bar"><a class="tag" style="color:#FF2164;background-color:#21FFBC" href="/entrypoint/tags?tag=GameMake">GameMake</a></nav></div></header><section class="L1-section"><div id="cover-container"><img id="cover" src="/image/hw-jump-cover.png" alt="空洞騎士"/></div><div class="content-paragraph">Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍，不過我發現了一些開發上的重大問題 !! 文末說明，因此本次的內容會少一點，封面中的二跳也不會出現在本次實作 &gt;&lt;。</div></section><div class="agenda-wrapper agenda-inline"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#重現場景">重現場景</a></li><li class="non-focus-section"><a href="#Dynamic Jump">Dynamic Jump</a></li><li class="non-focus-section"><a href="#Falling &amp; Land">Falling &amp; Land</a></li><li class="non-focus-section"><a href="#Ground Detection">Ground Detection</a></li><li class="non-focus-section"><a href="#成品">成品</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div><section class="L1-section"><h1 class="L1-section-title" id="重現場景">重現場景</h1><hr/><div class="content-paragraph"><iframe class="content-iframe" src="https://www.youtube.com/embed/9u27L1I6BhE?si=Mk24sPbzxqrvfWqj" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen=""></iframe> 這次要重現的場景可說是空洞騎士中最複雜、使用最多 sprites 的區域 - 蒼綠之徑，不論是背景還是前景的細節都多到爆，但就跟之前的場景一樣是靠少少幾個 sprite 堆出來的:<ul class="content-ul"><li><b><a href="https://drive.google.com/drive/folders/1kqTElD6h8Sy4imJQS85-cVXZZQZ4Khin">蒼綠之鏡場景</a></b> - 前景背景 sprite 都是取自這邊，我主要用了 0126 ~ 0133 圖檔來堆疊出那一堆的植物景色。</li><li><b><a href="https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC">小騎士 Move 動畫</a></b> - 會使用 003.Airborne, 011.Land, 061.Fall，部分畫面有紅框框，可以參考 <a href="/category/Hollow-Knight/sprite">Day2</a> 去除，其中 Airborne 前半段是起跳的動作，後半段則是空中墜落的畫面，另外有需要二跳可以用 098.Double Jump, 100.Double Jump Wings 2。</li></ul>另外要特別提那湖面<a href="https://drive.google.com/drive/folders/1Tp-ejdaey2Tbg-qP4qSDL5kO5GWLzM12">波光粼粼</a>原來是一段細長的白點 (下圖)，用 30 個 sprite 做出來的動畫，這個畫面有太多可以學的了，也許下次再好好的重現畫面吧，這次只做個大概，把精力專注在小騎士的跳躍 @@。</div><img class="content-img" style="background:#000" src="/image/hw-jump-acid.png" alt="acid"/></section><section class="L1-section"><h1 class="L1-section-title" id="Dynamic Jump">Dynamic Jump</h1><hr/><br/> <img class="content-img" src="/image/hw-jump-height.png" alt="jump hight difference"/><div class="content-paragraph">空洞騎士中的跳躍如上圖所示是有程度差異的，跳躍鍵按得越久跳得越高，短跳讓小騎士不會撞到頭上的尖刺、長跳讓小騎士能飛越峽谷，提供玩家更多可控性，要達成這種效果:<ul class="content-ul"><li><b>Jump Input System</b> - 跟之前一樣替我們 Player 的輸入添加 Jump 按鍵，這裡用跟遊戲預設的一樣 z 按鍵。</li><img class="content-img" style="background:#000" src="/image/hw-jump-input-system.png" alt="jump input system"/><li><b>跳躍效果</b> - 只要玩家按下跳躍鍵就將按鍵狀態存到 <code class="inline">jumpInput</code>，並在固定更新的時間去檢查只要玩家持續按著跳躍鍵就施加向上的力，就可以做出 dynamic jump height 的效果，但會導致小騎士變成飛天火箭 🚀，所以要設一個上限，只要超過施力的次數就停止。</li><pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player.cs</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Awake</span>()</span> 
 {
     ...
-    jumpCou = 0;
-    jumpInput = 0f;
-    controls.Player.Jump.performed += ctx =&gt; jumpInput = ctx.ReadValue&lt;float&gt;();
-    controls.Player.Jump.canceled += ctx =&gt; jumpInput = 0f;
+    jumpCou = <span class="hljs-number">0</span>;
+    jumpInput = <span class="hljs-number">0f</span>;
+    controls.Player.Jump.performed += ctx =&gt; jumpInput = ctx.ReadValue&lt;<span class="hljs-built_in">float</span>&gt;();
+    controls.Player.Jump.canceled += ctx =&gt; jumpInput = <span class="hljs-number">0f</span>;
 }
 
- void FixedUpdate()
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">FixedUpdate</span>()</span>
 {
     Vector2 force = Vector2.zero;
-    
+
     ...
-    if ( jumpInput &gt; 0 && jumpCou &lt; JUMPLIMIT )
+    <span class="hljs-keyword">if</span> ( jumpInput &gt; <span class="hljs-number">0</span> &amp;&amp; jumpCou &lt; JUMPLIMIT )
     {
         force.y = JUMPFORCE;
-        jumpCou += 1;
+        jumpCou += <span class="hljs-number">1</span>;
     }
-    else
+    <span class="hljs-keyword">else</span>
     {
-        force.y = 0;
-        jumpCou = 0;
+        force.y = <span class="hljs-number">0</span>;
+        jumpCou = <span class="hljs-number">0</span>;
     }
 
     ...
-}
-                            </code></pre>
-                            <li>
-                                <b>動畫效果</b> - 如下圖，前面提到的 jump 的 sprite 是使用 003.Airborne 前 8 張，動作其實沒到很複雜，是配合起跳後的地面特效才顯得很多變，至於 Animation 的轉換會變得很複雜，因為小騎士可以從各種狀態轉換成跳躍 - 原地起跳、奔跑起跳等等，完整狀態機等結合 Falling & Land 再一起展示 ~~~
-                            </li>
-                            <img class="content-img" style="background: #000;" src="../../image/hw-jump-sprite.png" alt="jump sprites">
-                        </ul>
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Falling & Land</h1>
-                    <hr>
-                    <br>
-                    <img class="content-img" src="../../image/hw-jump-animator.png" alt="animator">
-                    <p class="content-paragraph">
-                        起跳後會有兩個額外的動作需要考慮，當小騎士下墜後動作會切成 Falling，以及最後接觸地面時轉換成 Land，把這些都考慮進去後就會得到上面那張蜘蛛網 XD，不過實際上只多了四種轉換而已:
-                    </p>
-                    <p class="content-paragraph">
-                        <ul class="content-ul">
-
-                            <li><b>水平移動狀態 -> jump</b> - 由於小騎士可以在各種情況下起跳，就直接把以前創建的水平移動狀態都拉了一條 Transition 到 jump，至於觸發狀態就是當 <code class="inline">jumpInput > 0</code>。</li>
-                            <li><b>jump -> fall</b> - 角色何時會落下呢? 可以直接檢查當下的 y 軸速度，當速度轉負就代表角色開始向下移動，而在空洞騎士中只代表下墜。</li>
-                            <pre><code class="c#">
-// Player.cs
-void Update()
+}</code></pre><li><b>動畫效果</b> - 如下圖，前面提到的 jump 的 sprite 是使用 003.Airborne 前 8 張，動作其實沒到很複雜，是配合起跳後的地面特效才顯得很多變，至於 Animation 的轉換會變得很複雜，因為小騎士可以從各種狀態轉換成跳躍 - 原地起跳、奔跑起跳等等，完整狀態機等結合 Falling &amp; Land 再一起展示 ~~~</li><img class="content-img" style="background:#000" src="/image/hw-jump-sprite.png" alt="jump sprites"/></ul></div></section><section class="L1-section"><h1 class="L1-section-title" id="Falling &amp; Land">Falling &amp; Land</h1><hr/><br/> <img class="content-img" src="/image/hw-jump-animator.png" alt="animator"/><div class="content-paragraph">起跳後會有兩個額外的動作需要考慮，當小騎士下墜後動作會切成 Falling，以及最後接觸地面時轉換成 Land，把這些都考慮進去後就會得到上面那張蜘蛛網 XD，不過實際上只多了四種轉換而已:</div><div class="content-paragraph"><ul class="content-ul"><li><b>水平移動狀態 -&gt; jump</b> - 由於小騎士可以在各種情況下起跳，就直接把以前創建的水平移動狀態都拉了一條 Transition 到 jump，至於觸發狀態就是當 <code class="inline">jumpInput &gt; 0</code>。</li><li><b>jump -&gt; fall</b> - 角色何時會落下呢? 可以直接檢查當下的 y 軸速度，當速度轉負就代表角色開始向下移動，而在空洞騎士中只代表下墜。</li><pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player.cs</span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Update</span>()</span>
 {
     Vector2 vec = rb.linearVelocity;
     ...
-    if ( vec.y &lt; 0 )
+    <span class="hljs-keyword">if</span> ( vec.y &lt; <span class="hljs-number">0</span> )
     {
-        anime.SetBool("fall", true);
+        anime.SetBool(<span class="hljs-string">&quot;fall&quot;</span>, <span class="hljs-literal">true</span>);
     }
-    else
+    <span class="hljs-keyword">else</span>
     {
-        anime.SetBool("fall", false);
+        anime.SetBool(<span class="hljs-string">&quot;fall&quot;</span>, <span class="hljs-literal">false</span>);
     }
     ...
-}
-                            </code></pre>
-                            <li><b>fall -> land</b> - 至於要在甚麼時候著陸，當然是等角色停止落下!! 在目前的開發中，落下要結束只可能是著陸，所以可以簡單判定當 <code class="inline">fall = false</code> 就切換為 land。</li>
-                            <li><b>land -> idle</b> - land 只是一個暫時狀態，播放完畢就可以切換為一般狀態了，不過有個有趣的細節可以分享，當小騎士從很高的地方落下，著陸後會花比較長的時間才能進行移動，要達成這個效果就需要額外設定狀態參數了~~~</li>
-                        </ul>
-                    </p>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Ground Detection</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        眼尖的讀者會發現其實上面的實作會有一個重大的問題 !!! 就是玩家可以進行無限次的空中跳躍，因為只要放開跳躍鍵 jumpCou 就會歸零，然後就可以再按一次跳躍了，為了確保玩家還沒拿到帝王之翼就在那邊二段跳，必須確保停止跳躍後只能等著陸後才能再次觸發。
-                    </p>
-                    <p class="content-paragraph" id="raycast-para">
-                        當然我們可以用前面提到的 y 軸速度來判定是否已經著陸了，但這在後續的應用中會比較難成立，例如攀牆會慢慢往下滑，但攀牆時應該要能跳躍才對，因此這裡要介紹的是最常見的做法: <a href="https://www.youtube.com/watch?v=P_6W-36QfLA">Raycast Ground Check</a>，連結是一個淺顯易懂的教學影片，推薦觀看。
-                    </p>
-                    <pre><code class="c#">
-// Player.cs
-bool isGrounded()
+}</code></pre><li><b>fall -&gt; land</b> - 至於要在甚麼時候著陸，當然是等角色停止落下!! 在目前的開發中，落下要結束只可能是著陸，所以可以簡單判定當 <code class="inline">fall = false</code> 就切換為 land。</li><li><b>land -&gt; idle</b> - land 只是一個暫時狀態，播放完畢就可以切換為一般狀態了，不過有個有趣的細節可以分享，當小騎士從很高的地方落下，著陸後會花比較長的時間才能進行移動，要達成這個效果就需要額外設定狀態參數了~~~</li></ul></div></section><section class="L1-section"><h1 class="L1-section-title" id="Ground Detection">Ground Detection</h1><hr/><div class="content-paragraph">眼尖的讀者會發現其實上面的實作會有一個重大的問題 !!! 就是玩家可以進行無限次的空中跳躍，因為只要放開跳躍鍵 jumpCou 就會歸零，然後就可以再按一次跳躍了，為了確保玩家還沒拿到帝王之翼就在那邊二段跳，必須確保停止跳躍後只能等著陸後才能再次觸發。</div><div class="content-paragraph" id="raycast-para">當然我們可以用前面提到的 y 軸速度來判定是否已經著陸了，但這在後續的應用中會比較難成立，例如攀牆會慢慢往下滑，但攀牆時應該要能跳躍才對，因此這裡要介紹的是最常見的做法: <a href="https://www.youtube.com/watch?v=P_6W-36QfLA">Raycast Ground Check</a>，連結是一個淺顯易懂的教學影片，推薦觀看。</div><pre><div class="code-bar"><h4>C#</h4><button type="button">Copy</button></div><code class="c# hljs"><span class="hljs-comment">// Player.cs</span>
+<span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">isGrounded</span>()</span>
 {
-    if (Physics2D.BoxCast(transform.position, RayCastBoxSize, 0, -transform.up, RayCastDistance, GroundLayer))
+    <span class="hljs-keyword">if</span> (Physics2D.BoxCast(transform.position, RayCastBoxSize, <span class="hljs-number">0</span>, -transform.up, RayCastDistance, GroundLayer))
     {
-        return true;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
     }
-    else
+    <span class="hljs-keyword">else</span>
     {
-        return false;
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     }
 }
 
-void OnDrawGizmos()
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnDrawGizmos</span>()</span>
 {
     Gizmos.color = Color.red;
     Gizmos.DrawWireCube(transform.position - transform.up * RayCastDistance, RayCastBoxSize);
-}
-                    </code></pre>
-                    <p class="content-paragraph">
-                        具體來說我們要新增上面兩個函數，前者是用來判定是否著陸、後者則是視覺化設定的參數:
-                        <ul class="content-ul">
-                            <li>
-                                <b>transform.position</b> - 代表小騎士的位置 (x, y)。
-                            </li>
-                            <li>
-                                <b>RayCastBoxSize</b> - Vector2, 產生的 box 長寬 (w, h)。
-                            </li>
-                            <li>
-                                <b>RayCastDistance</b> - float，產生的 box 偏移量，前面有設定 <code class="inline">-transform.up</code>，代表是向下偏移。
-                            </li>
-                            <li>
-                                <b>GroundLayer</b> - LayerMask，代表要偵測的 layer。
-                            </li>
-                        </ul>
-                        底下是實際配值，如果 OnDrawGizmons 設定沒錯且 Gizmons 顯示有打開，就可以在螢幕上看到小騎士的腳邊有一個紅色框框:
-                    </p>
-                    <img class="content-img" src="../../image/hw-jump-raycastbox.png" alt="raycast paremeters">
-                    <img class="content-img" src="../../image/hw-jump-raycast.png" alt="raycast box">
-                    <p class="content-paragraph">
-                        到這邊就可以理解到 Raycast 就是在幫我們計算這個 box 是否與該 layer 的 collidar 有所接觸，只要有任何一個接觸到就代表小騎士著陸了，可以透過這個 isGrounded 函數來控制玩家的跳躍鍵放開後只能等著陸才能再次觸發 ~~~ 當然有了二跳之後可以允許多跳一次。
-                    </p>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">成品</h1>
-                    <hr>
-                    <br>
-                    <iframe class="content-iframe" src="https://www.youtube.com/embed/4ZiBFG_eLSM?si=jBJZBRyEpaI0-sJd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                    <p class="content-paragraph">
-                        這次的最終成品有點 ... @@，我評分為 50 分不及格，除了包含二跳以外的一堆東西都沒弄，主要在動作切換上有點不順暢，且跳躍的參數控制也沒有調整好，整個跳躍與落下都不自然，這主要是由於目前的 rigidbody 設定問題以及隨著角色的動作越來越複雜，現在的程式沒有引入整體的狀態機導致程式架構凌亂，這些問題都需要修正阿 !
-                    </p>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">總結</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        本次簡單且久違的介紹了遊戲中的跳躍機制，不過也讓我意識到目前的專案架構問題，下次就讓我好好整理一下發現的問題以及如何修正，讓這個重現專案更有樣子點。
-                    </p>
-                </section>
-            </article>
-        </main>
-
-        <aside id="right-area" class="sidebar">
-            <div id="category-wrapper">
-                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
-                <hr>
-                <ul id="same-category-list">
-                </ul>
-            </div>
-            <div id="tag-wrapper">
-            </div>
-        </aside>
-    </div>
-
-    <footer>
-        <div id="contact-info">
-            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
-            <a class="github" href="https://github.com/PersonalWorkingSpace">
-                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
-                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
-                    </svg>
-                <span>Github</span>
-            </a>
-            <span>隨筆紀錄我的學習過程</span>
-        </div>
-        <p class="cc">
-            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
-        </p>
-        <p class="cc">
-            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
-            please include the original link.
-        </p>
-    </footer>
-</body>
-
-</html>
+}</code></pre><div class="content-paragraph">具體來說我們要新增上面兩個函數，前者是用來判定是否著陸、後者則是視覺化設定的參數:<ul class="content-ul"><li><b>transform.position</b> - 代表小騎士的位置 (x, y)。</li><li><b>RayCastBoxSize</b> - Vector2, 產生的 box 長寬 (w, h)。</li><li><b>RayCastDistance</b> - float，產生的 box 偏移量，前面有設定 <code class="inline">-transform.up</code>，代表是向下偏移。</li><li><b>GroundLayer</b> - LayerMask，代表要偵測的 layer。</li></ul>底下是實際配值，如果 OnDrawGizmons 設定沒錯且 Gizmons 顯示有打開，就可以在螢幕上看到小騎士的腳邊有一個紅色框框:</div><img class="content-img" src="/image/hw-jump-raycastbox.png" alt="raycast paremeters"/> <img class="content-img" src="/image/hw-jump-raycast.png" alt="raycast box"/><div class="content-paragraph">到這邊就可以理解到 Raycast 就是在幫我們計算這個 box 是否與該 layer 的 collidar 有所接觸，只要有任何一個接觸到就代表小騎士著陸了，可以透過這個 isGrounded 函數來控制玩家的跳躍鍵放開後只能等著陸才能再次觸發 ~~~ 當然有了二跳之後可以允許多跳一次。</div></section><section class="L1-section"><h1 class="L1-section-title" id="成品">成品</h1><hr/><br/> <iframe class="content-iframe" src="https://www.youtube.com/embed/4ZiBFG_eLSM?si=jBJZBRyEpaI0-sJd" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen=""></iframe><div class="content-paragraph">這次的最終成品有點 ... @@，我評分為 50 分不及格，除了包含二跳以外的一堆東西都沒弄，主要在動作切換上有點不順暢，且跳躍的參數控制也沒有調整好，整個跳躍與落下都不自然，這主要是由於目前的 rigidbody 設定問題以及隨著角色的動作越來越複雜，現在的程式沒有引入整體的狀態機導致程式架構凌亂，這些問題都需要修正阿 !</div></section><section class="L1-section"><h1 class="L1-section-title" id="總結">總結</h1><hr/><div class="content-paragraph">本次簡單且久違的介紹了遊戲中的跳躍機制，不過也讓我意識到目前的專案架構問題，下次就讓我好好整理一下發現的問題以及如何修正，讓這個重現專案更有樣子點。</div></section></article></main><aside id="right-area" class="sidebar"><div id="category-wrapper"><h1 id="category-title"><img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#FAF6F5;background-color:#345864" href="/entrypoint/categories?category=Hollow-Knight">Hollow Knight (11)</a></h1><hr/><ul id="same-category-list"><li><a href="/category/Hollow-Knight/idle">Day3 - 空洞騎士重現 - IDLE Scene</a></li><li><a href="/category/Hollow-Knight/move">Day4 - 空洞騎士重現 - 移動</a></li><li><a href="/category/Hollow-Knight/camera">Day5 - 空洞騎士重現 - 運鏡</a></li><li><a class="this-article" href="/category/Hollow-Knight/jump">Day6 - 空洞騎士重現 - Jump</a></li><li><a href="/category/Hollow-Knight/kinematice">Day7 - 空洞騎士重現 - Kinematic Rigidbody</a></li><li><a href="/category/Hollow-Knight/cinemachine">Day8 - 空洞騎士重現 - Cinemachine</a></li><li><a href="/category/Hollow-Knight/dash-climb">Day9 - 空洞騎士重現 - Dash &amp; Climb</a></li></ul></div><div id="tag-wrapper"><div><h1 class="tag-title"><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#FF2164;background-color:#21FFBC" href="/entrypoint/tags?tag=GameMake">GameMake (11)</a></h1><hr/><ul class="same-tag-list"><li><a href="/category/Hollow-Knight/nailAttack">空洞騎士重現 - Nail Attack</a></li><li><a href="/category/Hollow-Knight/tilemap">空洞騎士重現 - Tilemap</a></li><li><a href="/category/Hollow-Knight/dash-climb">空洞騎士重現 - Dash &amp; Climb</a></li><li><a href="/category/Hollow-Knight/cinemachine">空洞騎士重現 - Cinemachine</a></li><li><a href="/category/Hollow-Knight/kinematice">空洞騎士重現 - Kinematic Rigidbody</a></li></ul><br/></div></div></aside></div><!--$--><!--/$--><footer><div id="contact-info"><a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a><a class="github" href="https://github.com/PersonalWorkingSpace"><svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24"><path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path></svg><span>Github</span></a><span>隨筆紀錄我的學習過程</span></div><p class="cc">本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。</p><p class="cc">This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but please include the original link.</p></footer><script id="_R_">(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push({"otherChunks":["static/chunks/1x6obpmlu1_c2.js","static/chunks/02aeof6897urs.js","static/chunks/0y23_0vo0sx8y.js","static/chunks/2odeex0vp2-n5.js"],"runtimeModuleIds":[94553]});</script><script src="/_next/static/chunks/1x6obpmlu1_c2.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:\"/_next/static/chunks/3pbnp14axw3wi.js\"\n3:I[25954,[\"$2\"],\"default\"]\n4:I[39756,[\"$2\"],\"default\"]\n5:I[37457,[\"$2\"],\"default\"]\n6:I[22016,[\"$2\"],\"\"]\nd:I[97367,[\"$2\"],\"OutletBoundary\"]\ne:\"$Sreact.suspense\"\n10:\"ViewportBoundary\"\n11:I[97367,[\"$2\"],\"$10\"]\n13:\"MetadataBoundary\"\n14:I[97367,[\"$2\"],\"$13\"]\n16:I[68027,[\"$2\"],\"default\",1]\n:HL[\"/_next/static/chunks/44hmm9eswl_k6.css\",\"style\"]\n8:X\nb:[[\"children\",{\"s\":\"__PAGE__\",\"h\":512,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[\"$Lc\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/303vpg09n1wil.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@f\"}]}]]}],\"p\":false,\"v\":null}}]]\na:[[\"children\",{\"s\":{\"n\":\"slug\",\"t\":\"d\",\"k\":\"jump\",\"s\":[]},\"h\":66048,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qb\"}]]\n9:[[\"children\",{\"s\":{\"n\":\"category\",\"t\":\"d\",\"k\":\"Hollow-Knight\",\"s\":[]},\"h\":197120,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qa\"}]]\n7:[[\"children\",{\"s\":\"category\",\"h\":131584,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Q9\"}]]\n0:{\"P\":null,\"c\":[\"\",\"category\",\"Hollow-Knight\",\"jump\"],\"q\":\"\",\"i\":false,\"t\":{\"t\":{\"s\":\"\",\"h\":131600,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/3pbnp14axw3wi.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-Hant-TW\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"div\",null,{\"className\":\"main-container\",\"children\":[\"$\",\"main\",null,{\"id\":\"center-area\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"post-title\",\"children\":\"404 - 找不到這個頁面\"}],[\"$\",\"p\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"$L6\",null,{\"href\":\"/\",\"children\":\"回到首頁\"}]}]]}]}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}],[\"$\",\"footer\",null,{\"children\":[[\"$\",\"div\",null,{\"id\":\"contact-info\",\"children\":[[\"$\",\"a\",null,{\"href\":\"mailto:tonychen3000tony@gmail.com\",\"children\":\"tonychen3000tony@gmail.com\"}],[\"$\",\"a\",null,{\"className\":\"github\",\"href\":\"https://github.com/PersonalWorkingSpace\",\"children\":[[\"$\",\"svg\",null,{\"height\":\"24\",\"aria-hidden\":\"true\",\"viewBox\":\"0 0 24 24\",\"version\":\"1.1\",\"width\":\"24\",\"children\":[\"$\",\"path\",null,{\"d\":\"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z\"}]}],[\"$\",\"span\",null,{\"children\":\"Github\"}]]}],[\"$\",\"span\",null,{\"children\":\"隨筆紀錄我的學習過程\"}]]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"本文採用\",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"創用 CC BY-NC-ND 4.0 條款\"}],\"授權分享，歡迎非商業性分享，唯請務必附上原文連結。\"]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"This work is licensed under a \",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License\"}],\". You are welcome to share it for non-commercial purposes, but please include the original link.\"]}]]}]]}]}]]}],\"p\":false,\"v\":null},\"c\":\"$Q7\"},\"h\":{\"r\":[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L11\",null,{\"children\":\"$L12\"}],[\"$\",\"$L14\",null,{\"children\":[[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L15\"}]}],null]}],null]}],\"p\":false,\"v\":null}},\"m\":\"$undefined\",\"G\":[\"$16\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"r\":\"$undefined\",\"s\":\"$undefined\",\"a\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"jy5l5GewKZPz7v6l7ZEND\"}\n17:\"/_next/static/chunks/303vpg09n1wil.js\"\n18:I[1440,[\"$2\",\"$17\"],\"default\"]\n19:I[29818,[\"$2\",\"$17\"],\"InlineAgenda\"]\n:HL[\"/image/hw-jump-cover.png\",\"image\"]\n:HL[\"/image/hw-jump-acid.png\",\"image\"]\n8:C\nc:[\"$\",\"$L18\",null,{\"post\":{\"category\":\"Hollow-Knight\",\"slug\":\"jump\",\"href\":\"/category/Hollow-Knight/jump\",\"title\":\"空洞騎士重現 - Jump\",\"created\":\"2026-05-10T00:00:00+08:00\",\"tags\":[\"GameMake\"],\"description\":\"Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍...\",\"thumbnail\":\"/image/hw-jump-cover.png\"},\"headings\":[\"重現場景\",\"Dynamic Jump\",\"Falling \u0026 Land\",\"Ground Detection\",\"成品\",\"總結\"],\"sameCategory\":{\"count\":11,\"posts\":[{\"href\":\"/category/Hollow-Knight/idle\",\"label\":\"Day3 - 空洞騎士重現 - IDLE Scene\",\"current\":false},{\"href\":\"/category/Hollow-Knight/move\",\"label\":\"Day4 - 空洞騎士重現 - 移動\",\"current\":false},{\"href\":\"/category/Hollow-Knight/camera\",\"label\":\"Day5 - 空洞騎士重現 - 運鏡\",\"current\":false},{\"href\":\"/category/Hollow-Knight/jump\",\"label\":\"Day6 - 空洞騎士重現 - Jump\",\"current\":true},{\"href\":\"/category/Hollow-Knight/kinematice\",\"label\":\"Day7 - 空洞騎士重現 - Kinematic Rigidbody\",\"current\":false},{\"href\":\"/category/Hollow-Knight/cinemachine\",\"label\":\"Day8 - 空洞騎士重現 - Cinemachine\",\"current\":false},{\"href\":\"/category/Hollow-Knight/dash-climb\",\"label\":\"Day9 - 空洞騎士重現 - Dash \u0026 Climb\",\"current\":false}]},\"tagGroups\":[{\"tag\":\"GameMake\",\"count\":11,\"candidates\":[{\"href\":\"/category/Hollow-Knight/nailAttack\",\"title\":\"空洞騎士重現 - Nail Attack\"},{\"href\":\"/category/Hollow-Knight/tilemap\",\"title\":\"空洞騎士重現 - Tilemap\"},{\"href\":\"/category/Hollow-Knight/dash-climb\",\"title\":\"空洞騎士重現 - Dash \u0026 Climb\"},{\"href\":\"/category/Hollow-Knight/cinemachine\",\"title\":\"空洞騎士重現 - Cinemachine\"},{\"href\":\"/category/Hollow-Knight/kinematice\",\"title\":\"空洞騎士重現 - Kinematic Rigidbody\"},{\"href\":\"/category/Hollow-Knight/camera\",\"title\":\"空洞騎士重現 - 運鏡\"},{\"href\":\"/category/Hollow-Knight/move\",\"title\":\"空洞騎士重現 - 移動\"},{\"href\":\"/category/Hollow-Knight/idle\",\"title\":\"空洞騎士重現 - IDLE Scene\"},{\"href\":\"/category/Hollow-Knight/sprite\",\"title\":\"空洞騎士重現 - 素材準備\"},{\"href\":\"/category/Hollow-Knight/begin\",\"title\":\"空洞騎士重現 - 初衷\"}]}],\"children\":[[[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"div\",null,{\"id\":\"cover-container\",\"children\":[\"$\",\"img\",null,{\"id\":\"cover\",\"src\":\"/image/hw-jump-cover.png\",\"alt\":\"空洞騎士\"}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍，不過我發現了一些開發上的重大問題 !! 文末說明，因此本次的內容會少一點，封面中的二跳也不會出現在本次實作 \u003e\u003c。\"}]]}],[\"$\",\"$L19\",null,{}]],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"重現場景\",\"children\":\"重現場景\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[[\"$\",\"iframe\",null,{\"className\":\"content-iframe\",\"src\":\"https://www.youtube.com/embed/9u27L1I6BhE?si=Mk24sPbzxqrvfWqj\",\"title\":\"YouTube video player\",\"frameBorder\":\"0\",\"allow\":\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\",\"referrerPolicy\":\"strict-origin-when-cross-origin\",\"allowFullScreen\":true}],\" 這次要重現的場景可說是空洞騎士中最複雜、使用最多 sprites 的區域 - 蒼綠之徑，不論是背景還是前景的細節都多到爆，但就跟之前的場景一樣是靠少少幾個 sprite 堆出來的:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"https://drive.google.com/drive/folders/1kqTElD6h8Sy4imJQS85-cVXZZQZ4Khin\",\"children\":\"蒼綠之鏡場景\"}]}],\" - 前景背景 sprite 都是取自這邊，我主要用了 0126 ~ 0133 圖檔來堆疊出那一堆的植物景色。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":[\"$\",\"a\",null,{\"href\":\"https://drive.google.com/drive/folders/17yKRFpyHCXawPWIZNLszZWxh4zoXW5AC\",\"children\":\"小騎士 Move 動畫\"}]}],\" - 會使用 003.Airborne, 011.Land, 061.Fall，部分畫面有紅框框，可以參考 \",[\"$\",\"a\",null,{\"href\":\"/category/Hollow-Knight/sprite\",\"children\":\"Day2\"}],\" 去除，其中 Airborne 前半段是起跳的動作，後半段則是空中墜落的畫面，另外有需要二跳可以用 098.Double Jump, 100.Double Jump Wings 2。\"]}]]}],\"另外要特別提那湖面\",[\"$\",\"a\",null,{\"href\":\"https://drive.google.com/drive/folders/1Tp-ejdaey2Tbg-qP4qSDL5kO5GWLzM12\",\"children\":\"波光粼粼\"}],\"原來是一段細長的白點 (下圖)，用 30 個 sprite 做出來的動畫，這個畫面有太多可以學的了，也許下次再好好的重現畫面吧，這次只做個大概，把精力專注在小騎士的跳躍 @@。\"]}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":{\"background\":\"#000\"},\"src\":\"/image/hw-jump-acid.png\",\"alt\":\"acid\"}]]]}],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Dynamic Jump\",\"children\":\"Dynamic Jump\"}],\"$L1a\",[\"$L1b\",\" \",\"$L1c\",\"$L1d\"]]}],\"$L1e\",\"$L1f\",\"$L20\",\"$L21\"]}]\n22:I[34883,[\"$2\",\"$17\"],\"default\"]\n:HL[\"/image/hw-jump-height.png\",\"image\"]\n:HL[\"/image/hw-jump-input-system.png\",\"image\"]\n:HL[\"/image/hw-jump-sprite.png\",\"image\"]\n:HL[\"/image/hw-jump-animator.png\",\"image\"]\n:HL[\"/image/hw-jump-raycastbox.png\",\"image\"]\n:HL[\"/image/hw-jump-raycast.png\",\"image\"]\n1a:[\"$\",\"hr\",null,{}]\n1b:[\"$\",\"br\",null,{}]\n1c:[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-jump-height.png\",\"alt\":\"jump hight difference\"}]\n23:T426,\u003cspan class=\"hljs-comment\"\u003e// Player.cs\u003c/span\u003e\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eAwake\u003c/span\u003e()\u003c/span\u003e \n{\n    ...\n    jumpCou = \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e;\n    jumpInput = \u003cspan class=\"hljs-number\"\u003e0f\u003c/span\u003e;\n    controls.Player.Jump.performed += ctx =\u0026gt; jumpInput = ctx.ReadValue\u0026lt;\u003cspan class=\"hljs-built_in\"\u003efloat\u003c/span\u003e\u0026gt;();\n    controls.Player.Jump.canceled += ctx =\u0026gt; jumpInput = \u003cspan class=\"hljs-number\"\u003e0f\u003c/span\u003e;\n}\n\n\u003cspan class=\"hljs-function\"\u003e\u003cspan class=\"hljs-keyword\"\u003evoid\u003c/span\u003e \u003cspan class=\"hljs-title\"\u003eFixedUpdate\u003c/span\u003e()\u003c/span\u003e\n{\n    Vector2 force = Vector2.zero;\n\n    ...\n    \u003cspan class=\"hljs-keyword\"\u003eif\u003c/span\u003e ( jumpInput \u0026gt; \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e \u0026amp;\u0026amp; jumpCou \u0026lt; JUMPLIMIT )\n    {\n        force.y = JUMPFORCE;\n        jumpCou += \u003cspan class=\"hljs-number\"\u003e1\u003c/span\u003e;\n    }\n    \u003cspan class=\"hljs-keyword\"\u003eelse\u003c/span\u003e\n    {\n        force.y = \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e;\n        jumpCou = \u003cspan class=\"hljs-number\"\u003e0\u003c/span\u003e;\n    }\n\n    ...\n}1d:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"空洞騎士中的跳躍如上圖所示是有程度差異的，跳躍鍵按得越久跳得越高，短跳讓小騎士不會撞到頭上的尖刺、長跳讓小騎士能飛越峽谷，提供玩家更多可控性，要達成這種效果:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"Jump Input System\"}],\" - 跟之前一樣替我們 Player 的輸入添加 Jump 按鍵，這裡用跟遊戲預設的一樣 z 按鍵。\"]}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":{\"background\":\"#000\"},\"src\":\"/image/hw-jump-input-system.png\",\"alt\":\"jump input system\"}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"跳躍效果\"}],\" - 只要玩家按下跳躍鍵就將按鍵狀態存到 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"jumpInput\"}],\"，並在固定更新的時間去檢查只要玩家持續按著跳躍鍵就施加向上的力，就可以做出 dynamic jump height 的效果，但會導致小騎士變成飛天火箭 🚀，所以要設一個上限，只要超過施力的次數就停止。\"]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L22\",null,{\"text\":\"// Player.cs\\nvoid Awake() \\n{\\n    ...\\n    jumpCou = 0;\\n    jumpInput = 0f;\\n    controls.Player.Jump.performed += ctx =\u003e jumpInput = ctx.ReadValue\u003cfloat\u003e();\\n    controls.Player.Jump.canceled += ctx =\u003e jumpInput = 0f;\\n}\\n\\nvoid FixedUpdate()\\n{\\n    Vector2 force = Vector2.zero;\\n\\n    ...\\n    if ( jumpInput \u003e 0 \u0026\u0026 jumpCou \u003c JUMPLIMIT )\\n    {\\n        force.y = JUMPFORCE;\\n        jumpCou += 1;\\n    }\\n    else\\n    {\\n        force.y = 0;\\n        jumpCou = 0;\\n    }\\n\\n    ...\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"$23\"}}]]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"動畫效果\"}],\" - 如下圖，前面提到的 jump 的 sprite 是使用 003.Airborne 前 8 張，動作其實沒到很複雜，是配合起跳後的地面特效才顯得很多變，至於 Animation 的轉換會變得很複雜，因為小騎士可以從各種狀態轉換成跳躍 - 原地起跳、奔跑起跳等等，完整狀態機等結合 Falling \u0026 Land 再一起展示 ~~~\"]}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":{\"background\":\"#000\"},\"src\":\"/image/hw-jump-sprite.png\",\"alt\":\"jump sprites\"}]]}]]}]\n1e:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Falling \u0026 Land\",\"children\":\"Falling \u0026 Land\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"br\",null,{}],\" \",[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-jump-animator.png\",\"alt\":\"animator\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"起跳後會有兩個額外的動作需要考慮，當小騎士下墜後動作會切成 Falling，以及最後接觸地面時轉換成 Land，把這些都考慮進去後就會得到上面那張蜘蛛網 XD，不過實際上只多了四種轉換而已:\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"水平移動狀態 -\u003e jump\"}],\" - 由於小騎士可以在各種情況下起跳，就直接把以前創建的水平移動狀態都拉了一條 Transition 到 jump，至於觸發狀態就是當 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"jumpInput \u003e 0\"}],\"。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"jump -\u003e fall\"}],\" - 角色何時會落下呢? 可以直接檢查當下的 y 軸速度，當速度轉負就代表角色開始向下移動，而在空洞騎士中只代表下墜。\"]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L22\",null,{\"text\":\"// Player.cs\\nvoid Update()\\n{\\n    Vector2 vec = rb.linearVelocity;\\n    ...\\n    if ( vec.y \u003c 0 )\\n    {\\n        anime.SetBool(\\\"fall\\\", true);\\n    }\\n    else\\n    {\\n        anime.SetBool(\\\"fall\\\", false);\\n    }\\n    ...\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// Player.cs\u003c/span\u003e\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eUpdate\u003c/span\u003e()\u003c/span\u003e\\n{\\n    Vector2 vec = rb.linearVelocity;\\n    ...\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003eif\u003c/span\u003e ( vec.y \u0026lt; \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e )\\n    {\\n        anime.SetBool(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;fall\u0026quot;\u003c/span\u003e, \u003cspan class=\\\"hljs-literal\\\"\u003etrue\u003c/span\u003e);\\n    }\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003eelse\u003c/span\u003e\\n    {\\n        anime.SetBool(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;fall\u0026quot;\u003c/span\u003e, \u003cspan class=\\\"hljs-literal\\\"\u003efalse\u003c/span\u003e);\\n    }\\n    ...\\n}\"}}]]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"fall -\u003e land\"}],\" - 至於要在甚麼時候著陸，當然是等角色停止落下!! 在目前的開發中，落下要結束只可能是著陸，所以可以簡單判定當 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"fall = false\"}],\" 就切換為 land。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"land -\u003e idle\"}],\" - land 只是一個暫時狀態，播放完畢就可以切換為一般狀態了，不過有個有趣的細節可以分享，當小騎士從很高的地方落下，著陸後會花比較長的時間才能進行移動，要達成這個效果就需要額外設定狀態參數了~~~\"]}]]}]}]]]}]\n1f:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Ground Detection\",\"children\":\"Ground Detection\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"眼尖的讀者會發現其實上面的實作會有一個重大的問題 !!! 就是玩家可以進行無限次的空中跳躍，因為只要放開跳躍鍵 jumpCou 就會歸零，然後就可以再按一次跳躍了，為了確保玩家還沒拿到帝王之翼就在那邊二段跳，必須確保停止跳躍後只能等著陸後才能再次觸發。\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"id\":\"raycast-para\",\"children\":[\"當然我們可以用前面提到的 y 軸速度來判定是否已經著陸了，但這在後續的應用中會比較難成立，例如攀牆會慢慢往下滑，但攀牆時應該要能跳躍才對，因此這裡要介紹的是最常見的做法: \",[\"$\",\"a\",null,{\"href\":\"https://www.youtube.com/watch?v=P_6W-36QfLA\",\"children\":\"Raycast Ground Check\"}],\"，連結是一個淺顯易懂的教學影片，推薦觀看。\"]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"C#\"}],[\"$\",\"$L22\",null,{\"text\":\"// Player.cs\\nbool isGrounded()\\n{\\n    if (Physics2D.BoxCast(transform.position, RayCastBoxSize, 0, -transform.up, RayCastDistance, GroundLayer))\\n    {\\n        return true;\\n    }\\n    else\\n    {\\n        return false;\\n    }\\n}\\n\\nvoid OnDrawGizmos()\\n{\\n    Gizmos.color = Color.red;\\n    Gizmos.DrawWireCube(transform.position - transform.up * RayCastDistance, RayCastBoxSize);\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"c# hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// Player.cs\u003c/span\u003e\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-built_in\\\"\u003ebool\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eisGrounded\u003c/span\u003e()\u003c/span\u003e\\n{\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003eif\u003c/span\u003e (Physics2D.BoxCast(transform.position, RayCastBoxSize, \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e, -transform.up, RayCastDistance, GroundLayer))\\n    {\\n        \u003cspan class=\\\"hljs-keyword\\\"\u003ereturn\u003c/span\u003e \u003cspan class=\\\"hljs-literal\\\"\u003etrue\u003c/span\u003e;\\n    }\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003eelse\u003c/span\u003e\\n    {\\n        \u003cspan class=\\\"hljs-keyword\\\"\u003ereturn\u003c/span\u003e \u003cspan class=\\\"hljs-literal\\\"\u003efalse\u003c/span\u003e;\\n    }\\n}\\n\\n\u003cspan class=\\\"hljs-function\\\"\u003e\u003cspan class=\\\"hljs-keyword\\\"\u003evoid\u003c/span\u003e \u003cspan class=\\\"hljs-title\\\"\u003eOnDrawGizmos\u003c/span\u003e()\u003c/span\u003e\\n{\\n    Gizmos.color = Color.red;\\n    Gizmos.DrawWireCube(transform.position - transform.up * RayCastDistance, RayCastBoxSize);\\n}\"}}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"具體來說我們要新增上面兩個函數，前者是用來判定是否著陸、後者則是視覺化設定的參數:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"transform.position\"}],\" - 代表小騎士的位置 (x, y)。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"RayCastBoxSize\"}],\" - Vector2, 產生的 box 長寬 (w, h)。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"RayCastDistance\"}],\" - float，產生的 box 偏移量，前面有設定 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"-transform.up\"}],\"，代表是向下偏移。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"GroundLayer\"}],\" - LayerMask，代表要偵測的 layer。\"]}]]}],\"底下是實際配值，如果 OnDrawGizmons 設定沒錯且 Gizmons 顯示有打開，就可以在螢幕上看到小騎士的腳邊有一個紅色框框:\"]}],[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-jump-raycastbox.png\",\"alt\":\"raycast paremeters\"}],\" \",[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":\"$undefined\",\"src\":\"/image/hw-jump-raycast.png\",\"alt\":\"raycast box\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"到這邊就可以理解到 Raycast 就是在幫我們計算這個 box 是否與該 layer 的 collidar 有所接觸，只要有任何一個接觸到就代表小騎士著陸了，可以透過這個 isGrounded 函數來控制玩家的跳躍鍵放開後只能等著陸才能再次觸發 ~~~ 當然有了二跳之後可以允許多跳一次。\"}]]]}]\n20:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"成品\",\"children\":\"成品\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"br\",null,{}],\" \",[\"$\",\"iframe\",null,{\"className\":\"content-iframe\",\"src\":\"https://www.youtube.com/embed/4ZiBFG_eLSM?si=jBJZBRyEpaI0-sJd\",\"title\":\"YouTube video player\",\"frameBorder\":\"0\",\"allow\":\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\",\"referrerPolicy\":\"strict-origin-when-cross-origin\",\"allowFullScreen\":true}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"這次的最終成品有點 ... @@，我評分為 50 分不及格，除了包含二跳以外的一堆東西都沒弄，主要在動作切換上有點不順暢，且跳躍的參數控制也沒有調整好，整個跳躍與落下都不自然，這主要是由於目前的 rigidbody 設定問題以及隨著角色的動作越來越複雜，現在的程式沒有引入整體的狀態機導致程式架構凌亂，這些問題都需要修正阿 !\"}]]]}]\n21:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"總結\",\"children\":\"總結\"}],[\"$\",\"hr\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"本次簡單且久違的介紹了遊戲中的跳躍機制，不過也讓我意識到目前的專案架構問題，下次就讓我好好整理一下發現的問題以及如何修正，讓這個重現專案更有樣子點。\"}]]}]\n12:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n24:I[27201,[\"$2\"],\"IconMark\"]\nf:null\n15:[[\"$\",\"title\",\"0\",{\"children\":\"空洞騎士重現 - Jump\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Long time no see ~~~ 距離上次更新已經過了4個月了，這段時間都忙於工作跟遊戲XD，但我回來了，這次我要好好堅持寫作💪，本篇目標是要重現小騎士優雅地跳躍...\"}],[\"$\",\"meta\",\"2\",{\"name\":\"author\",\"content\":\"MJ CHEN\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"GameMake\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/image/INPC-ICON.png\"}],[\"$\",\"$L24\",\"5\",{}]]\n"])</script></body></html>

@@ -1,303 +1,51 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-
-<head>
-    <title>HTML 初學筆記</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於...">
-    <meta name="keywords" content="初學筆記, HTML">
-    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
-    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
-    <link href="../../style/style.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script type="module" src="../../module/post.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
-</head>
-
-<body>
-    <header class="banner">
-        <div class="wrapper">
-            <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
-            </a>
-            <button id="hamburger">&#9776;</button>
-            <nav id="site-nav">
-                <a href="../../index.html">Home</a>
-                <a href="../../index.html">Posts</a>
-                <a href="../../entrypoint/categories.html">Categories</a>
-                <a href="../../entrypoint/tags.html">Tags</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <aside id="left-area" class="sidebar">
-            <!-- 這是大綱 -->
-            <div id="agenda-wrapper">
-                <h1 class="agenda-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <line x1="9" y1="10" x2="20" y2="10"></line>
-                        <line x1="9" y1="16" x2="20" y2="16"></line>
-                        <line x1="9" y1="22" x2="20" y2="22"></line>
-                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
-                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
-                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
-                    </svg> In this article</h1>
-                <hr>
-                <ol id="agenda">
-                </ol>
-            </div>
-        </aside>
-
-        <main id="center-area">
-            <article id="main-content">
-                <header class="post-header">
-                    <h1 class="post-title">HTML 初學筆記</h1>
-                    <div class="post-meta">
-                        <time datetime="2025-05-11T00:00:00+08:00" itemprop="datePublished"> May 11, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
-                        <img src="../../image/TAG-ICON.png" class="inline-icon">
-                        <nav id="tag-bar"></nav>
-                    </div>
-                </header>
-
-                <section class="L1-section">
-                    <div id="cover-container">
-                        <img id="cover" src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
-                    </div>
-                    <p class="content-paragraph">
-                        歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下<a href="https://developer.mozilla.org/en-US/">MDN</a>來看看spec或是詢問AI工具即可。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">HTML是什麼</h1>
-                    <hr>
-                    <p class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 章節標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個標籤的形式呈現在文件中，以下是最基本的架構:</p>
-                    <pre><code class="html">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-    &lt;head&gt;
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/image/INPC-ICON.png"/><link rel="preload" as="image" href="/image/CATEGORY-ICON.png"/><link rel="preload" as="image" href="/image/TAG-ICON.png"/><link rel="preload" href="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" as="image"/><link rel="preload" href="/image/web-001_html-arch.png" as="image"/><link rel="stylesheet" href="/_next/static/chunks/44hmm9eswl_k6.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/1x6obpmlu1_c2.js"/><script src="/_next/static/chunks/02aeof6897urs.js" async=""></script><script src="/_next/static/chunks/0y23_0vo0sx8y.js" async=""></script><script src="/_next/static/chunks/2odeex0vp2-n5.js" async=""></script><script src="/_next/static/chunks/turbopack-3-ry682tkyiqk.js" async=""></script><script src="/_next/static/chunks/3pbnp14axw3wi.js" async=""></script><script src="/_next/static/chunks/303vpg09n1wil.js" async=""></script><title>HTML 初學筆記</title><meta name="description" content="本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於..."/><meta name="author" content="MJ CHEN"/><meta name="keywords" content="初學筆記,HTML"/><link rel="icon" href="/image/INPC-ICON.png"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><header class="banner"><div class="wrapper"><a id="site-logo" href="/"><img width="40" src="/image/INPC-ICON.png" alt="inpc-icon"/> Internet NPC</a><button id="hamburger">☰</button><nav id="site-nav"><a href="/">Home</a><a href="/">Posts</a><a href="/entrypoint/categories">Categories</a><a href="/entrypoint/tags">Tags</a></nav></div></header><div class="main-container"><aside id="left-area" class="sidebar"><div class="agenda-wrapper agenda-sidebar"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#HTML是什麼">HTML是什麼</a></li><li class="non-focus-section"><a href="#常用標籤">常用標籤</a></li><li class="non-focus-section"><a href="#範例">範例</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div></aside><main id="center-area"><article id="main-content"><header class="post-header"><h1 class="post-title">HTML 初學筆記</h1><div class="post-meta"><time dateTime="2025-05-11T00:00:00+08:00" itemProp="datePublished"> <!-- -->May 11, 2025<!-- --> </time> |<img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><span id="category-bar"><a class="tag" style="color:#707070;background-color:#fae5d3" href="/entrypoint/categories?category=Web-Design">網頁設計</a></span><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><nav id="tag-bar"><a class="tag" style="color:#707070;background-color:#ebf5fb" href="/entrypoint/tags?tag=%E5%88%9D%E5%AD%B8%E7%AD%86%E8%A8%98">初學筆記</a><a class="tag" style="color:#707070;background-color:#a3e4d7" href="/entrypoint/tags?tag=HTML">HTML</a></nav></div></header><section class="L1-section"><div id="cover-container"><img id="cover" src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&amp;w=1470&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了"/></div><div class="content-paragraph">歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下<a href="https://developer.mozilla.org/en-US/">MDN</a>來看看spec或是詢問AI工具即可。</div></section><div class="agenda-wrapper agenda-inline"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#HTML是什麼">HTML是什麼</a></li><li class="non-focus-section"><a href="#常用標籤">常用標籤</a></li><li class="non-focus-section"><a href="#範例">範例</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div><section class="L1-section"><h1 class="L1-section-title" id="HTML是什麼">HTML是什麼</h1><hr/><div class="content-paragraph">全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 章節標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個標籤的形式呈現在文件中，以下是最基本的架構:</div><pre><div class="code-bar"><h4>HTML</h4><button type="button">Copy</button></div><code class="html hljs"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
         ...
-    &lt;/head&gt;
-    &lt;body&gt;
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
         ...
-    &lt;/body&gt;
-&lt;/html&gt;
-                        </code></pre>
-                    <p class="content-paragraph">
-                        <ul class="content-ul marginx1p5">
-                            <li>
-                                <code class="inline">&lt;!DOCTYPE html&gt;</code> - 這是在告訴系統這個檔案是HTML格式的文件，可以看到他的語法是用&lt;&gt;包起來並自成一個單元，類別屬於單一標籤。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;html lang="en"&gt;...&lt;/html></code> - 與前面不一樣，這邊是由起始標籤&lt;html&gt;與結束標籤&lt;/html&gt;構成，屬於容器標籤，用來標示出文件的內容範圍，屬性lang用來描述網站使用的語言，在瀏覽器搜尋時設定目標語言就會參考這個來過濾。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;head&gt;...&lt;/head&gt;</code> - 標頭檔區域裡面會描述關於此網站的一些相關資訊(metadata)，其中包含編碼方式、文件標題、作者資訊、關鍵字以及其他參考檔案(CSS, Javascript)的位置。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;body&gt;...&lt;/body&gt;</code> - body就是網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正顯示出來的內容，有些是為了之後的CSS排版方便而創造。
-                            </li>
-                        </ul>
-                    </p>
-                    <p class="content-paragraph">
-                        知道框架後，我們需要去了解有哪些標籤能夠塞到head, body來實現我們預期的網頁，下一個章節介紹幾個常用且出現在此網頁上的標籤。
-                    </p>
-                </section>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre><div class="content-paragraph"><ul class="content-ul marginx1p5"><li><code class="inline">&lt;!DOCTYPE html&gt;</code> - 這是在告訴系統這個檔案是HTML格式的文件，可以看到他的語法是用&lt;&gt;包起來並自成一個單元，類別屬於單一標籤。</li><li><code class="inline">&lt;html lang=&quot;en&quot;&gt;...&lt;/html&gt;</code> - 與前面不一樣，這邊是由起始標籤&lt;html&gt;與結束標籤&lt;/html&gt;構成，屬於容器標籤，用來標示出文件的內容範圍，屬性lang用來描述網站使用的語言，在瀏覽器搜尋時設定目標語言就會參考這個來過濾。</li><li><code class="inline">&lt;head&gt;...&lt;/head&gt;</code> - 標頭檔區域裡面會描述關於此網站的一些相關資訊(metadata)，其中包含編碼方式、文件標題、作者資訊、關鍵字以及其他參考檔案(CSS, Javascript)的位置。</li><li><code class="inline">&lt;body&gt;...&lt;/body&gt;</code> - body就是網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正顯示出來的內容，有些是為了之後的CSS排版方便而創造。</li></ul></div><div class="content-paragraph">知道框架後，我們需要去了解有哪些標籤能夠塞到head, body來實現我們預期的網頁，下一個章節介紹幾個常用且出現在此網頁上的標籤。</div></section><section class="L1-section"><h1 class="L1-section-title" id="常用標籤">常用標籤</h1><hr/><div class="content-paragraph"><ul class="content-ul marginx2"><li><code class="inline">&lt;title&gt;...&lt;/title&gt;</code> - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是&quot;HTML 初學筆記&quot;。</li><li><code class="inline">&lt;meta $key=$val&gt;</code> - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:<ul class="content-ul marginx1p5"><li><code class="prop">charset=&quot;UTF-8&quot;</code> - 定義HTML文件的編碼方式，UTF-8能支援絕大部分的文字編碼並且維持相對較小的編碼長度，且大部分的瀏覽器都有支援，因此被廣泛採用。</li><li><code class="prop">name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;</code> - 設定可視區域，主要是為了手機等行動裝置設定的，網頁要讓不同尺寸的螢幕都能正常顯示需要下點功夫，而這邊定義了兩個屬性: 指定螢幕寬度為裝置寬度，畫面初始縮放比例為100%。</li><li><code class="prop">name=&quot;description&quot; content=&quot;XXX&quot;</code> - 提供關於網頁的描述給瀏覽器顯示，就是搜尋時顯示在標題底下的那一小段文字，可以寫點吸人眼球的內容。</li></ul></li><li><code class="inline">&lt;header&gt;...&lt;/header&gt;</code> - 使用於body，與前面的head不同，這裡指的是顯示在文件最上方頁首區域，也就是網頁logo以及連結&lt;nav&gt;呈現的地方。</li><li><code class="inline">&lt;main&gt;...&lt;/main&gt;</code> - 使用於body，主要顯示內容的地方，內部會再細分成多個&lt;section&gt;, &lt;aside&gt;, &lt;article&gt;，用以呈現大小章節。</li><li><code class="inline">&lt;h1&gt;...&lt;/h1&gt;</code> - 使用於body，定義出章節的標題，本章節的標題為&quot;常用標籤&quot;，根據預設字體尺寸由大到小又可分成h1~h6，如果寫在不同層級的section，也會顯示出不一樣的大小。</li><li><code class="inline">&lt;p&gt;...&lt;/p&gt;</code> - 使用於body，定義出章節的段落 (paragraph)，也就是內文撰寫的地方，將一段文字包在一個區間並提供段落之間的間距控制等，文章內不可或缺的標籤。</li><li><code class="inline">&lt;img $key=$val&gt;</code> - 使用於body，用以在網頁中顯示圖片，具備多種屬性可以設定，常見:<ul class="content-ul marginx1p5"><li><code class="prop">width=&quot;XXXpx&quot;</code> - 設定圖片的寬度，單位px，設定寬度後，高度會等比例調整，所以會跟height二選一，兩個同時設定的話則會得到失真的圖片。</li><li><code class="prop">src=&quot;XXX&quot;</code> - 設定圖片來源，可以提供一段網址(ex: unsplash)，或是網站伺服器本地圖片。</li><li><code class="prop">alt=&quot;XXX&quot;</code> - 當圖片顯示不出來時 (網址過期、圖檔遭刪、格式不支援) 就會改顯示此文字，至少能讓人知道本來要顯示什麼。</li></ul></li><li><code class="inline">&lt;ul&gt;... &lt;/ul&gt; &amp; &lt;li&gt;... &lt;/li&gt;</code> - 使用於body，呈現項目符號 (bullet)，也就是本章節的那些黑色小圓圈，ul定義出項目的範圍，每組li則是一個項目，所以整個格式會是:<pre><div class="code-bar"><h4>HTML</h4><button type="button">Copy</button></div><code class="html hljs"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span> <span class="hljs-comment">&lt;!--項目1--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span> <span class="hljs-comment">&lt;!--項目2--&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>...<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span> <span class="hljs-comment">&lt;!--項目3--&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre></li><li><code class="inline">&lt;a href=$link&gt;</code> - 使用於body，a代表anchor - 提供超連結的功能，$link可以是外部網址，也可以是本網站內部的其他頁面/章節，當使用者點擊後就會跳轉到指定的網頁。</li></ul></div><div class="content-paragraph">值得注意的是，header, main, aside等標籤並不會真的影響網頁的呈現，使用他們是為了之後的排版以及程式語意上的維護，讓其他開發人員或是搜索引擎更好了解這份HTML，所以還是別拿石頭砸自己的腳，照常見的方式去使用這些標籤，對於日後的維運會更方便!!!</div><p class="note">尤其等之後學到CSS，還能把段落標籤搞得跟標題標籤一樣外觀，但真的沒必要阿XD</p></section><section class="L1-section"><h1 class="L1-section-title" id="範例">範例</h1><hr/><div class="content-paragraph">在了解HTML文件的架構以及標籤後，可能還是不曉得要怎樣去運用這些標籤寫出一份網頁，這個章節要來實際描述一下本網站的HTML架構來供讀者參考，下圖為簡化的架構: <img class="content-img" style="margin-top:2rem" src="/image/web-001_html-arch.png" alt="此網站的架構圖"/></div><div class="content-paragraph">基本上都是用前面提過的標籤搭建，整個網頁可以分成五大區塊:<ul class="content-ul"><li><b>頁首</b>: 放置連結與logo、網站名稱等資訊。</li><li><b>頁尾</b>: 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。</li><li><b>左側欄位</b>: 提供文章章節以及閱讀進度等。</li><li><b>右側欄位</b>: 提供news或推薦相關文章等。</li><li><b>主要內文</b>: 以多個section組成，每個section又包含一個title/image加上多個paragraph。</li></ul></div><div class="content-paragraph">底下提供此架構的HTML程式碼，建議讀者可以複製成一個HTML檔案 (ex: index.html)，然後用瀏覽器開啟後，你就會發現......整個跟這個網頁一點也不像XDD，甚至連架構都跟上面的圖不一樣，這是因為沒有適當的排版/美化，也就是下一篇要介紹的CSS負責處理的。<p class="note">也許你有注意到&lt;div&gt;標籤，他雖然沒有語意上的意義，但他可是排版用神器!!!</p><pre><div class="code-bar"><h4>HTML</h4><button type="button">Copy</button></div><code class="html hljs"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;zh-Hant-TW&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>MyWeb<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span> <span class="hljs-comment">&lt;!--網頁名稱--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;viewport&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span> <span class="hljs-comment">&lt;!--頁首區域--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Header <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span> <span class="hljs-comment">&lt;!--左側區域--&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Aside <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
 
-                <section class="L1-section">
-                    <h1 class="L1-section-title">常用標籤</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        <ul class="content-ul marginx2">
-                            <li>
-                                <code class="inline">&lt;title&gt;...&lt;/title&gt;</code> - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是"HTML 初學筆記"。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;meta $key=$val&gt;</code> - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:
-                                <ul class="content-ul marginx1p5">
-                                    <li>
-                                        <code class="prop">charset="UTF-8"</code> - 定義HTML文件的編碼方式，UTF-8能支援絕大部分的文字編碼並且維持相對較小的編碼長度，且大部分的瀏覽器都有支援，因此被廣泛採用。
-                                    </li>
-                                    <li>
-                                        <code class="prop">name="viewport" content="width=device-width, initial-scale=1.0"</code> - 設定可視區域，主要是為了手機等行動裝置設定的，網頁要讓不同尺寸的螢幕都能正常顯示需要下點功夫，而這邊定義了兩個屬性: 指定螢幕寬度為裝置寬度，畫面初始縮放比例為100%。
-                                    </li>
-                                    <li>
-                                        <code class="prop">name="description" content="XXX"</code> - 提供關於網頁的描述給瀏覽器顯示，就是搜尋時顯示在標題底下的那一小段文字，可以寫點吸人眼球的內容。
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <code class="inline">&lt;header&gt;...&lt;/header&gt;</code> - 使用於body，與前面的head不同，這裡指的是顯示在文件最上方頁首區域，也就是網頁logo以及連結&lt;nav&gt;呈現的地方。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;main&gt;...&lt;/main&gt;</code> - 使用於body，主要顯示內容的地方，內部會再細分成多個&lt;section&gt;, &lt;aside&gt;, &lt;article&gt;，用以呈現大小章節。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;h1&gt;...&lt;/h1&gt;</code> - 使用於body，定義出章節的標題，本章節的標題為"常用標籤"，根據預設字體尺寸由大到小又可分成h1~h6，如果寫在不同層級的section，也會顯示出不一樣的大小。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;p&gt;...&lt;/p&gt;</code> - 使用於body，定義出章節的段落 (paragraph)，也就是內文撰寫的地方，將一段文字包在一個區間並提供段落之間的間距控制等，文章內不可或缺的標籤。
-                            </li>
-                            <li>
-                                <code class="inline">&lt;img $key=$val&gt;</code> - 使用於body，用以在網頁中顯示圖片，具備多種屬性可以設定，常見:
-                                <ul class="content-ul marginx1p5">
-                                    <li>
-                                        <code class="prop">width="XXXpx"</code> - 設定圖片的寬度，單位px，設定寬度後，高度會等比例調整，所以會跟height二選一，兩個同時設定的話則會得到失真的圖片。
-                                    </li>
-                                    <li>
-                                        <code class="prop">src="XXX"</code> - 設定圖片來源，可以提供一段網址(ex: unsplash)，或是網站伺服器本地圖片。
-                                    </li>
-                                    <li>
-                                        <code class="prop">alt="XXX"</code> - 當圖片顯示不出來時 (網址過期、圖檔遭刪、格式不支援) 就會改顯示此文字，至少能讓人知道本來要顯示什麼。
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <code class="inline">&lt;ul&gt;... &lt;/ul&gt; & &lt;li&gt;... &lt;/li&gt;</code> - 使用於body，呈現項目符號 (bullet)，也就是本章節的那些黑色小圓圈，ul定義出項目的範圍，每組li則是一個項目，所以整個格式會是:
-                                <pre><code class="html">
-&lt;ul&gt;
-    &lt;li&gt;...&lt;/li&gt; &lt;!--項目1--&gt;
-    &lt;li&gt;...&lt;/li&gt; &lt;!--項目2--&gt;
-    &lt;li&gt;...&lt;/li&gt; &lt;!--項目3--&gt;
-&lt;/ul&gt;
-                                    </code></pre>
-                            </li>
-                            <li>
-                                <code class="inline">&lt;a href=$link&gt;</code> - 使用於body，a代表anchor - 提供超連結的功能，$link可以是外部網址，也可以是本網站內部的其他頁面/章節，當使用者點擊後就會跳轉到指定的網頁。
-                            </li>
-                        </ul>
-                    </p>
+            <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>  <span class="hljs-comment">&lt;!--主要內文區域--&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Title<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span> <span class="hljs-comment">&lt;!--介紹，顯示一張lego圖片--&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">width</span>=<span class="hljs-string">&quot;200px&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://images.unsplash.com/photo-1560961911-a21c4f35443f?q=80&amp;w=1374&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&quot;</span> <span class="hljs-attr">alt</span>=<span class="hljs-string">&quot;這是一張lego積木&quot;</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span> Paragraph Introduce <span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
 
+                <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span> <span class="hljs-comment">&lt;!--第一段落--&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Section Title 1<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Paragraph 1<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Paragraph 2<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
 
-                    <p class="content-paragraph">
-                        值得注意的是，header, main, aside等標籤並不會真的影響網頁的呈現，使用他們是為了之後的排版以及程式語意上的維護，讓其他開發人員或是搜索引擎更好了解這份HTML，所以還是別拿石頭砸自己的腳，照常見的方式去使用這些標籤，對於日後的維運會更方便!!!
-                    </p>
-                    <p class="note">
-                        尤其等之後學到CSS，還能把段落標籤搞得跟標題標籤一樣外觀，但真的沒必要阿XD
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">範例</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        在了解HTML文件的架構以及標籤後，可能還是不曉得要怎樣去運用這些標籤寫出一份網頁，這個章節要來實際描述一下本網站的HTML架構來供讀者參考，下圖為簡化的架構:
-                        <img class="content-img" style="margin-top: 2rem;" src="../../image/web-001_html-arch.png" alt="此網站的架構圖">
-                    </p>
-                    <p class="content-paragraph">
-                        基本上都是用前面提過的標籤搭建，整個網頁可以分成五大區塊:
-                        <ul class="content-ul">
-                            <li>
-                                <b>頁首</b>: 放置連結與logo、網站名稱等資訊。
-                            </li>
-                            <li>
-                                <b>頁尾</b>: 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。
-                            </li>
-                            <li>
-                                <b>左側欄位</b>: 提供文章章節以及閱讀進度等。
-                            </li>
-                            <li>
-                                <b>右側欄位</b>: 提供news或推薦相關文章等。
-                            </li>
-                            <li>
-                                <b>主要內文</b>: 以多個section組成，每個section又包含一個title/image加上多個paragraph。
-                            </li>
-                        </ul>
-                    </p>
-
-                    <p class="content-paragraph">
-                        底下提供此架構的HTML程式碼，建議讀者可以複製成一個HTML檔案 (ex: index.html)，然後用瀏覽器開啟後，你就會發現......整個跟這個網頁一點也不像XDD，甚至連架構都跟上面的圖不一樣，這是因為沒有適當的排版/美化，也就是下一篇要介紹的CSS負責處理的。
-                        <p class="note">也許你有注意到&lt;div&gt;標籤，他雖然沒有語意上的意義，但他可是排版用神器!!!</p>
-                        <pre><code class="html">
-&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-Hant-TW"&gt;
-    &lt;head&gt;
-        &lt;title&gt;MyWeb&lt;/title&gt; &lt;!--網頁名稱--&gt;
-        &lt;meta charset="UTF-8"&gt;
-        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;header&gt; &lt;!--頁首區域--&gt;
-            &lt;h1&gt; Header &lt;/h1&gt;
-        &lt;/header&gt;
-        &lt;div&gt;
-            &lt;aside&gt; &lt;!--左側區域--&gt;
-                &lt;h1&gt; Aside &lt;/h1&gt;
-            &lt;/aside&gt;
-            
-            &lt;main&gt;  &lt;!--主要內文區域--&gt;
-                &lt;h1&gt;Title&lt;/h1&gt;
-                &lt;section&gt; &lt;!--介紹，顯示一張lego圖片--&gt;
-                    &lt;img width="200px" src="https://images.unsplash.com/photo-1560961911-a21c4f35443f?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="這是一張lego積木"&gt;
-                    &lt;p&gt; Paragraph Introduce &lt;/p&gt;
-                &lt;/section&gt;
-
-                &lt;section&gt; &lt;!--第一段落--&gt;
-                    &lt;h1&gt;Section Title 1&lt;/h1&gt;
-                    &lt;p&gt;Paragraph 1&lt;/p&gt;
-                    &lt;p&gt;Paragraph 2&lt;/p&gt;
-                &lt;/section&gt;
-            &lt;/main&gt;
-
-            &lt;aside&gt; &lt;!--右側區域--&gt;
-                &lt;h1&gt; Aside &lt;/h1&gt;
-            &lt;/aside&gt;
-        &lt;/div&gt;
-        &lt;footer&gt; &lt;!--頁尾區域--&gt;
-            &lt;h1&gt;Footer&lt;/h1&gt;
-        &lt;/footer&gt;
-    &lt;/body&gt;
-&lt;/html&gt;
-                            </code></pre>
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">總結</h1>
-                    <hr>
-                    <p class="content-paragraph">本篇筆記簡短介紹了HTML做為網頁建材的角色，以及其基本語法-名為標籤的無數磚頭: &lt;h1&gt;, &lt;p&gt;, &lt;img&gt;等等，讀者可以嘗試去搭建自己的網頁架構，想想看要有哪些區塊以及內容要寫些什麼 (這可能才是最難的XD)，也可以拿上面的範例去練習: 改一下內文、標題、增減章節數量，下一篇章會介紹CSS來把這些建材擺到正確的位置並進行美化，讓網頁更接近心中的樣子。</p>
-                </section>
-            </article>
-        </main>
-
-        <aside id="right-area" class="sidebar">
-            <div id="category-wrapper">
-                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
-                <hr>
-                <ul id="same-category-list">
-                </ul>
-            </div>
-            <div id="tag-wrapper">
-            </div>
-        </aside>
-    </div>
-
-    <footer>
-        <div id="contact-info">
-            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
-            <a class="github" href="https://github.com/PersonalWorkingSpace">
-                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
-                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
-                    </svg>
-                <span>Github</span>
-            </a>
-            <span>隨筆紀錄我的學習過程</span>
-        </div>
-        <p class="cc">
-            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
-        </p>
-        <p class="cc">
-            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
-            please include the original link.
-        </p>
-    </footer>
-</body>
-
-</html>
+            <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span> <span class="hljs-comment">&lt;!--右側區域--&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span> Aside <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">footer</span>&gt;</span> <span class="hljs-comment">&lt;!--頁尾區域--&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Footer<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">footer</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre></div></section><section class="L1-section"><h1 class="L1-section-title" id="總結">總結</h1><hr/><div class="content-paragraph">本篇筆記簡短介紹了HTML做為網頁建材的角色，以及其基本語法-名為標籤的無數磚頭: &lt;h1&gt;, &lt;p&gt;, &lt;img&gt;等等，讀者可以嘗試去搭建自己的網頁架構，想想看要有哪些區塊以及內容要寫些什麼 (這可能才是最難的XD)，也可以拿上面的範例去練習: 改一下內文、標題、增減章節數量，下一篇章會介紹CSS來把這些建材擺到正確的位置並進行美化，讓網頁更接近心中的樣子。</div></section></article></main><aside id="right-area" class="sidebar"><div id="category-wrapper"><h1 id="category-title"><img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#707070;background-color:#fae5d3" href="/entrypoint/categories?category=Web-Design">網頁設計 (5)</a></h1><hr/><ul id="same-category-list"><li><a class="this-article" href="/category/Web-Design/HTML-Beginner">Day1 - HTML 初學筆記</a></li><li><a href="/category/Web-Design/CSS-Beginner">Day2 - CSS 初學筆記</a></li><li><a href="/category/Web-Design/Javascript-Beginner">Day3 - Javascript 初學筆記</a></li><li><a href="/category/Web-Design/Github-Pages">Day4 - 網頁部署 - Github Pages</a></li></ul></div><div id="tag-wrapper"><div><h1 class="tag-title"><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#707070;background-color:#ebf5fb" href="/entrypoint/tags?tag=%E5%88%9D%E5%AD%B8%E7%AD%86%E8%A8%98">初學筆記 (4)</a></h1><hr/><ul class="same-tag-list"><li><a href="/category/Web-Design/RWD">RWD 響應式網頁設計</a></li><li><a href="/category/Web-Design/Javascript-Beginner">Javascript 初學筆記</a></li><li><a href="/category/Web-Design/CSS-Beginner">CSS 初學筆記</a></li></ul><br/></div></div></aside></div><!--$--><!--/$--><footer><div id="contact-info"><a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a><a class="github" href="https://github.com/PersonalWorkingSpace"><svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24"><path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path></svg><span>Github</span></a><span>隨筆紀錄我的學習過程</span></div><p class="cc">本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。</p><p class="cc">This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but please include the original link.</p></footer><script id="_R_">(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push({"otherChunks":["static/chunks/1x6obpmlu1_c2.js","static/chunks/02aeof6897urs.js","static/chunks/0y23_0vo0sx8y.js","static/chunks/2odeex0vp2-n5.js"],"runtimeModuleIds":[94553]});</script><script src="/_next/static/chunks/1x6obpmlu1_c2.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:\"/_next/static/chunks/3pbnp14axw3wi.js\"\n3:I[25954,[\"$2\"],\"default\"]\n4:I[39756,[\"$2\"],\"default\"]\n5:I[37457,[\"$2\"],\"default\"]\n6:I[22016,[\"$2\"],\"\"]\nd:I[97367,[\"$2\"],\"OutletBoundary\"]\ne:\"$Sreact.suspense\"\n10:\"ViewportBoundary\"\n11:I[97367,[\"$2\"],\"$10\"]\n13:\"MetadataBoundary\"\n14:I[97367,[\"$2\"],\"$13\"]\n16:I[68027,[\"$2\"],\"default\",1]\n:HL[\"/_next/static/chunks/44hmm9eswl_k6.css\",\"style\"]\n8:X\nb:[[\"children\",{\"s\":\"__PAGE__\",\"h\":512,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[\"$Lc\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/303vpg09n1wil.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@f\"}]}]]}],\"p\":false,\"v\":null}}]]\na:[[\"children\",{\"s\":{\"n\":\"slug\",\"t\":\"d\",\"k\":\"HTML-Beginner\",\"s\":[]},\"h\":66048,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qb\"}]]\n9:[[\"children\",{\"s\":{\"n\":\"category\",\"t\":\"d\",\"k\":\"Web-Design\",\"s\":[]},\"h\":197120,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qa\"}]]\n7:[[\"children\",{\"s\":\"category\",\"h\":131584,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Q9\"}]]\n0:{\"P\":null,\"c\":[\"\",\"category\",\"Web-Design\",\"HTML-Beginner\"],\"q\":\"\",\"i\":false,\"t\":{\"t\":{\"s\":\"\",\"h\":131600,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/3pbnp14axw3wi.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-Hant-TW\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"div\",null,{\"className\":\"main-container\",\"children\":[\"$\",\"main\",null,{\"id\":\"center-area\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"post-title\",\"children\":\"404 - 找不到這個頁面\"}],[\"$\",\"p\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"$L6\",null,{\"href\":\"/\",\"children\":\"回到首頁\"}]}]]}]}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}],[\"$\",\"footer\",null,{\"children\":[[\"$\",\"div\",null,{\"id\":\"contact-info\",\"children\":[[\"$\",\"a\",null,{\"href\":\"mailto:tonychen3000tony@gmail.com\",\"children\":\"tonychen3000tony@gmail.com\"}],[\"$\",\"a\",null,{\"className\":\"github\",\"href\":\"https://github.com/PersonalWorkingSpace\",\"children\":[[\"$\",\"svg\",null,{\"height\":\"24\",\"aria-hidden\":\"true\",\"viewBox\":\"0 0 24 24\",\"version\":\"1.1\",\"width\":\"24\",\"children\":[\"$\",\"path\",null,{\"d\":\"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z\"}]}],[\"$\",\"span\",null,{\"children\":\"Github\"}]]}],[\"$\",\"span\",null,{\"children\":\"隨筆紀錄我的學習過程\"}]]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"本文採用\",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"創用 CC BY-NC-ND 4.0 條款\"}],\"授權分享，歡迎非商業性分享，唯請務必附上原文連結。\"]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"This work is licensed under a \",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License\"}],\". You are welcome to share it for non-commercial purposes, but please include the original link.\"]}]]}]]}]}]]}],\"p\":false,\"v\":null},\"c\":\"$Q7\"},\"h\":{\"r\":[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L11\",null,{\"children\":\"$L12\"}],[\"$\",\"$L14\",null,{\"children\":[[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L15\"}]}],null]}],null]}],\"p\":false,\"v\":null}},\"m\":\"$undefined\",\"G\":[\"$16\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"r\":\"$undefined\",\"s\":\"$undefined\",\"a\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"jy5l5GewKZPz7v6l7ZEND\"}\n17:\"/_next/static/chunks/303vpg09n1wil.js\"\n18:I[1440,[\"$2\",\"$17\"],\"default\"]\n19:I[29818,[\"$2\",\"$17\"],\"InlineAgenda\"]\n1a:I[34883,[\"$2\",\"$17\"],\"default\"]\n:HL[\"https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80\u0026w=1470\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"image\"]\n8:C\nc:[\"$\",\"$L18\",null,{\"post\":{\"category\":\"Web-Design\",\"slug\":\"HTML-Beginner\",\"href\":\"/category/Web-Design/HTML-Beginner\",\"title\":\"HTML 初學筆記\",\"created\":\"2025-05-11T00:00:00+08:00\",\"tags\":[\"初學筆記\",\"HTML\"],\"description\":\"本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於...\",\"thumbnail\":\"https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80\u0026w=1470\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"},\"headings\":[\"HTML是什麼\",\"常用標籤\",\"範例\",\"總結\"],\"sameCategory\":{\"count\":5,\"posts\":[{\"href\":\"/category/Web-Design/HTML-Beginner\",\"label\":\"Day1 - HTML 初學筆記\",\"current\":true},{\"href\":\"/category/Web-Design/CSS-Beginner\",\"label\":\"Day2 - CSS 初學筆記\",\"current\":false},{\"href\":\"/category/Web-Design/Javascript-Beginner\",\"label\":\"Day3 - Javascript 初學筆記\",\"current\":false},{\"href\":\"/category/Web-Design/Github-Pages\",\"label\":\"Day4 - 網頁部署 - Github Pages\",\"current\":false}]},\"tagGroups\":[{\"tag\":\"初學筆記\",\"count\":4,\"candidates\":[{\"href\":\"/category/Web-Design/RWD\",\"title\":\"RWD 響應式網頁設計\"},{\"href\":\"/category/Web-Design/Javascript-Beginner\",\"title\":\"Javascript 初學筆記\"},{\"href\":\"/category/Web-Design/CSS-Beginner\",\"title\":\"CSS 初學筆記\"}]}],\"children\":[[[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"div\",null,{\"id\":\"cover-container\",\"children\":[\"$\",\"img\",null,{\"id\":\"cover\",\"src\":\"https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80\u0026w=1470\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"alt\":\"看起來unsplash過期了\"}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"歡迎來到我隨筆記錄學習網頁製作的第一篇文章，本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，這邊不會提到太多HTML元件，也不會去細講他們的屬性，我們只需要知道核心概念就好，剩下的就是根據需求查一下\",[\"$\",\"a\",null,{\"href\":\"https://developer.mozilla.org/en-US/\",\"children\":\"MDN\"}],\"來看看spec或是詢問AI工具即可。\"]}]]}],[\"$\",\"$L19\",null,{}]],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"HTML是什麼\",\"children\":\"HTML是什麼\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"全名為HyperText Markup Language，是用於建立網頁的標記語言，具體來說它標記了什麼呢? 基本上就是你在網頁上看到的一切內容: 章節標題、開頭的圖片等都是記錄在HTML的文件上，可以說它就是你網頁的建材，而這些建材是以一個個標籤的形式呈現在文件中，以下是最基本的架構:\"}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"HTML\"}],[\"$\",\"$L1a\",null,{\"text\":\"\u003c!DOCTYPE html\u003e\\n\u003chtml lang=\\\"en\\\"\u003e\\n    \u003chead\u003e\\n        ...\\n    \u003c/head\u003e\\n    \u003cbody\u003e\\n        ...\\n    \u003c/body\u003e\\n\u003c/html\u003e\"}]]}],[\"$\",\"code\",null,{\"className\":\"html hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-meta\\\"\u003e\u0026lt;!DOCTYPE \u003cspan class=\\\"hljs-keyword\\\"\u003ehtml\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003ehtml\u003c/span\u003e \u003cspan class=\\\"hljs-attr\\\"\u003elang\u003c/span\u003e=\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;en\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n    \u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003ehead\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n        ...\\n    \u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003ehead\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n    \u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003ebody\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n        ...\\n    \u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003ebody\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003ehtml\u003c/span\u003e\u0026gt;\u003c/span\u003e\"}}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"ul\",null,{\"className\":\"content-ul marginx1p5\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003c!DOCTYPE html\u003e\"}],\" - 這是在告訴系統這個檔案是HTML格式的文件，可以看到他的語法是用\u003c\u003e包起來並自成一個單元，類別屬於單一標籤。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003chtml lang=\\\"en\\\"\u003e...\u003c/html\u003e\"}],\" - 與前面不一樣，這邊是由起始標籤\u003chtml\u003e與結束標籤\u003c/html\u003e構成，屬於容器標籤，用來標示出文件的內容範圍，屬性lang用來描述網站使用的語言，在瀏覽器搜尋時設定目標語言就會參考這個來過濾。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003chead\u003e...\u003c/head\u003e\"}],\" - 標頭檔區域裡面會描述關於此網站的一些相關資訊(metadata)，其中包含編碼方式、文件標題、作者資訊、關鍵字以及其他參考檔案(CSS, Javascript)的位置。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003cbody\u003e...\u003c/body\u003e\"}],\" - body就是網頁內容撰寫的地方，裡面通常會是無數層不同功能的標籤所構成，有些是真正顯示出來的內容，有些是為了之後的CSS排版方便而創造。\"]}]]}]}],\"$L1b\"]]}],\"$L1c\",\"$L1d\",\"$L1e\"]}]\n:HL[\"/image/web-001_html-arch.png\",\"image\"]\n1b:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"知道框架後，我們需要去了解有哪些標籤能夠塞到head, body來實現我們預期的網頁，下一個章節介紹幾個常用且出現在此網頁上的標籤。\"}]\n1c:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"常用標籤\",\"children\":\"常用標籤\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"ul\",null,{\"className\":\"content-ul marginx2\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003ctitle\u003e...\u003c/title\u003e\"}],\" - 使用於head，網頁在瀏覽器顯示的名稱就是定義於此，本網站的title是\\\"HTML 初學筆記\\\"。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003cmeta $key=$val\u003e\"}],\" - 使用於head，功能相當多元，可以設定不同屬性或說明，例如:\",[\"$\",\"ul\",null,{\"className\":\"content-ul marginx1p5\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"prop\",\"children\":\"charset=\\\"UTF-8\\\"\"}],\" - 定義HTML文件的編碼方式，UTF-8能支援絕大部分的文字編碼並且維持相對較小的編碼長度，且大部分的瀏覽器都有支援，因此被廣泛採用。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"prop\",\"children\":\"name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\"\"}],\" - 設定可視區域，主要是為了手機等行動裝置設定的，網頁要讓不同尺寸的螢幕都能正常顯示需要下點功夫，而這邊定義了兩個屬性: 指定螢幕寬度為裝置寬度，畫面初始縮放比例為100%。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"prop\",\"children\":\"name=\\\"description\\\" content=\\\"XXX\\\"\"}],\" - 提供關於網頁的描述給瀏覽器顯示，就是搜尋時顯示在標題底下的那一小段文字，可以寫點吸人眼球的內容。\"]}]]}]]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003cheader\u003e...\u003c/header\u003e\"}],\" - 使用於body，與前面的head不同，這裡指的是顯示在文件最上方頁首區域，也就是網頁logo以及連結\u003cnav\u003e呈現的地方。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003cmain\u003e...\u003c/main\u003e\"}],\" - 使用於body，主要顯示內容的地方，內部會再細分成多個\u003csection\u003e, \u003caside\u003e, \u003carticle\u003e，用以呈現大小章節。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003ch1\u003e...\u003c/h1\u003e\"}],\" - 使用於body，定義出章節的標題，本章節的標題為\\\"常用標籤\\\"，根據預設字體尺寸由大到小又可分成h1~h6，如果寫在不同層級的section，也會顯示出不一樣的大小。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003cp\u003e...\u003c/p\u003e\"}],\" - 使用於body，定義出章節的段落 (paragraph)，也就是內文撰寫的地方，將一段文字包在一個區間並提供段落之間的間距控制等，文章內不可或缺的標籤。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003cimg $key=$val\u003e\"}],\" - 使用於body，用以在網頁中顯示圖片，具備多種屬性可以設定，常見:\",[\"$\",\"ul\",null,{\"className\":\"content-ul marginx1p5\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"prop\",\"children\":\"width=\\\"XXXpx\\\"\"}],\" - 設定圖片的寬度，單位px，設定寬度後，高度會等比例調整，所以會跟height二選一，兩個同時設定的話則會得到失真的圖片。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"prop\",\"children\":\"src=\\\"XXX\\\"\"}],\" - 設定圖片來源，可以提供一段網址(ex: unsplash)，或是網站伺服器本地圖片。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"prop\",\"children\":\"alt=\\\"XXX\\\"\"}],\" - 當圖片顯示不出來時 (網址過期、圖檔遭刪、格式不支援) 就會改顯示此文字，至少能讓人知道本來要顯示什麼。\"]}]]}]]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003cul\u003e... \u003c/ul\u003e \u0026 \u003cli\u003e... \u003c/li\u003e\"}],\" - 使用於body，呈現項目符號 (bullet)，也就是本章節的那些黑色小圓圈，ul定義出項目的範圍，每組li則是一個項目，所以整個格式會是:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"HTML\"}],[\"$\",\"$L1a\",null,{\"text\":\"\u003cul\u003e\\n    \u003cli\u003e...\u003c/li\u003e \u003c!--項目1--\u003e\\n    \u003cli\u003e...\u003c/li\u003e \u003c!--項目2--\u003e\\n    \u003cli\u003e...\u003c/li\u003e \u003c!--項目3--\u003e\\n\u003c/ul\u003e\"}]]}],[\"$\",\"code\",null,{\"className\":\"html hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003eul\u003c/span\u003e\u0026gt;\u003c/span\u003e\\n    \u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003eli\u003c/span\u003e\u0026gt;\u003c/span\u003e...\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003eli\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\\\"hljs-comment\\\"\u003e\u0026lt;!--項目1--\u0026gt;\u003c/span\u003e\\n    \u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003eli\u003c/span\u003e\u0026gt;\u003c/span\u003e...\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003eli\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\\\"hljs-comment\\\"\u003e\u0026lt;!--項目2--\u0026gt;\u003c/span\u003e\\n    \u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003eli\u003c/span\u003e\u0026gt;\u003c/span\u003e...\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003eli\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\\\"hljs-comment\\\"\u003e\u0026lt;!--項目3--\u0026gt;\u003c/span\u003e\\n\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003eul\u003c/span\u003e\u0026gt;\u003c/span\u003e\"}}]]}]]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"\u003ca href=$link\u003e\"}],\" - 使用於body，a代表anchor - 提供超連結的功能，$link可以是外部網址，也可以是本網站內部的其他頁面/章節，當使用者點擊後就會跳轉到指定的網頁。\"]}]]}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"值得注意的是，header, main, aside等標籤並不會真的影響網頁的呈現，使用他們是為了之後的排版以及程式語意上的維護，讓其他開發人員或是搜索引擎更好了解這份HTML，所以還是別拿石頭砸自己的腳，照常見的方式去使用這些標籤，對於日後的維運會更方便!!!\"}],\"$L1f\"]]}]\n20:T522,\u003c!DOCTYPE html\u003e\n\u003chtml lang=\"zh-Hant-TW\"\u003e\n    \u003chead\u003e\n        \u003ctitle\u003eMyWeb\u003c/title\u003e \u003c!--網頁名稱--\u003e\n        \u003cmeta charset=\"UTF-8\"\u003e\n        \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"\u003e\n    \u003c/head\u003e\n    \u003cbody\u003e\n        \u003cheader\u003e \u003c!--頁首區域--\u003e\n            \u003ch1\u003e Header \u003c/h1\u003e\n        \u003c/header\u003e\n        \u003cdiv\u003e\n            \u003caside\u003e \u003c!--左側區域--\u003e\n                \u003ch1\u003e Aside \u003c/h1\u003e\n            \u003c/aside\u003e\n\n            \u003cmain\u003e  \u003c!--主要內文區域--\u003e\n                \u003ch1\u003eTitle\u003c/h1\u003e\n                \u003csection\u003e \u003c!--介紹，顯示一張lego圖片--\u003e\n                    \u003cimg width=\"200px\" src=\"https://images.unsplash.com/photo-1560961911-a21c4f35443f?q=80\u0026w=1374\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\" alt=\"這是一張lego積木\"\u003e\n                    \u003cp\u003e Paragraph Introduce \u003c/p\u003e\n                \u003c/section\u003e\n\n                \u003csection\u003e \u003c!--第一段落--\u003e\n                    \u003ch1\u003eSection Title 1\u003c/h1\u003e\n                    \u003cp\u003eParagraph 1\u003c/p\u003e\n                    \u003cp\u003eParagraph 2\u003c/p\u003e\n                \u003c/section\u003e\n            \u003c/main\u003e\n\n            \u003caside\u003e \u003c!--右側區域--\u003e\n                \u003ch1\u003e Aside \u003c/h1\u003e\n            \u003c/aside\u003e\n        \u003c/div\u003e\n        \u003cfooter\u003e \u003c!--頁尾區域--\u003e\n            \u003ch1\u003eFooter\u003c/h1\u003e\n        \u003c/footer\u003e\n    \u003c/body\u003e\n\u003c/html\u003e21:T148a,\u003cspan class=\"hljs-meta\"\u003e\u0026lt;!DOCTYPE \u003cspan class=\"hljs-keyword\"\u003ehtml\u003c/span\u003e\u0026gt;\u003c/span\u003e\n\u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003ehtml\u003c/span\u003e \u003cspan class=\"hljs-attr\"\u003elang\u003c/span\u003e=\u003cspan class=\"hljs-string\"\u003e\u0026quot;zh-Hant-TW\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e\n    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003ehead\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003etitle\u003c/span\u003e\u0026gt;\u003c/span\u003eMyWeb\u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003etitle\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--網頁名稱--\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003emeta\u003c/span\u003e \u003cspan class=\"hljs-attr\"\u003echarset\u003c/span\u003e=\u003cspan class=\"hljs-string\"\u003e\u0026quot;UTF-8\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003emeta\u003c/span\u003e \u003cspan class=\"hljs-attr\"\u003ename\u003c/span\u003e=\u003cspan class=\"hljs-string\"\u003e\u0026quot;viewport\u0026quot;\u003c/span\u003e \u003cspan class=\"hljs-attr\"\u003econtent\u003c/span\u003e=\u003cspan class=\"hljs-string\"\u003e\u0026quot;width=device-width, initial-scale=1.0\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e\n    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003ehead\u003c/span\u003e\u0026gt;\u003c/span\u003e\n    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003ebody\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eheader\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--頁首區域--\u0026gt;\u003c/span\u003e\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e Header \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003eheader\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003ediv\u003c/span\u003e\u0026gt;\u003c/span\u003e\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003easide\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--左側區域--\u0026gt;\u003c/span\u003e\n                \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e Aside \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003easide\u003c/span\u003e\u0026gt;\u003c/span\u003e\n\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003emain\u003c/span\u003e\u0026gt;\u003c/span\u003e  \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--主要內文區域--\u0026gt;\u003c/span\u003e\n                \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003eTitle\u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e\n                \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003esection\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--介紹，顯示一張lego圖片--\u0026gt;\u003c/span\u003e\n                    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eimg\u003c/span\u003e \u003cspan class=\"hljs-attr\"\u003ewidth\u003c/span\u003e=\u003cspan class=\"hljs-string\"\u003e\u0026quot;200px\u0026quot;\u003c/span\u003e \u003cspan class=\"hljs-attr\"\u003esrc\u003c/span\u003e=\u003cspan class=\"hljs-string\"\u003e\u0026quot;https://images.unsplash.com/photo-1560961911-a21c4f35443f?q=80\u0026amp;w=1374\u0026amp;auto=format\u0026amp;fit=crop\u0026amp;ixlib=rb-4.1.0\u0026amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\u0026quot;\u003c/span\u003e \u003cspan class=\"hljs-attr\"\u003ealt\u003c/span\u003e=\u003cspan class=\"hljs-string\"\u003e\u0026quot;這是一張lego積木\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e\n                    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003ep\u003c/span\u003e\u0026gt;\u003c/span\u003e Paragraph Introduce \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003ep\u003c/span\u003e\u0026gt;\u003c/span\u003e\n                \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003esection\u003c/span\u003e\u0026gt;\u003c/span\u003e\n\n                \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003esection\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--第一段落--\u0026gt;\u003c/span\u003e\n                    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003eSection Title 1\u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e\n                    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003ep\u003c/span\u003e\u0026gt;\u003c/span\u003eParagraph 1\u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003ep\u003c/span\u003e\u0026gt;\u003c/span\u003e\n                    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003ep\u003c/span\u003e\u0026gt;\u003c/span\u003eParagraph 2\u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003ep\u003c/span\u003e\u0026gt;\u003c/span\u003e\n                \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003esection\u003c/span\u003e\u0026gt;\u003c/span\u003e\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003emain\u003c/span\u003e\u0026gt;\u003c/span\u003e\n\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003easide\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--右側區域--\u0026gt;\u003c/span\u003e\n                \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e Aside \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003easide\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003ediv\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003efooter\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\"hljs-comment\"\u003e\u0026lt;!--頁尾區域--\u0026gt;\u003c/span\u003e\n            \u003cspan class=\"hljs-tag\"\u003e\u0026lt;\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003eFooter\u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e\n        \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003efooter\u003c/span\u003e\u0026gt;\u003c/span\u003e\n    \u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003ebody\u003c/span\u003e\u0026gt;\u003c/span\u003e\n\u003cspan class=\"hljs-tag\"\u003e\u0026lt;/\u003cspan class=\"hljs-name\"\u003ehtml\u003c/span\u003e\u0026gt;\u003c/span\u003e1d:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"範例\",\"children\":\"範例\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"在了解HTML文件的架構以及標籤後，可能還是不曉得要怎樣去運用這些標籤寫出一份網頁，這個章節要來實際描述一下本網站的HTML架構來供讀者參考，下圖為簡化的架構: \",[\"$\",\"img\",null,{\"className\":\"content-img\",\"style\":{\"marginTop\":\"2rem\"},\"src\":\"/image/web-001_html-arch.png\",\"alt\":\"此網站的架構圖\"}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"基本上都是用前面提過的標籤搭建，整個網頁可以分成五大區塊:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"頁首\"}],\": 放置連結與logo、網站名稱等資訊。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"頁尾\"}],\": 通常會放一些聯絡方式/地址，但目前我沒什麼可以放XD。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"左側欄位\"}],\": 提供文章章節以及閱讀進度等。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"右側欄位\"}],\": 提供news或推薦相關文章等。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"b\",null,{\"children\":\"主要內文\"}],\": 以多個section組成，每個section又包含一個title/image加上多個paragraph。\"]}]]}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"底下提供此架構的HTML程式碼，建議讀者可以複製成一個HTML檔案 (ex: index.html)，然後用瀏覽器開啟後，你就會發現......整個跟這個網頁一點也不像XDD，甚至連架構都跟上面的圖不一樣，這是因為沒有適當的排版/美化，也就是下一篇要介紹的CSS負責處理的。\",[\"$\",\"p\",null,{\"className\":\"note\",\"children\":\"也許你有注意到\u003cdiv\u003e標籤，他雖然沒有語意上的意義，但他可是排版用神器!!!\"}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"HTML\"}],[\"$\",\"$L1a\",null,{\"text\":\"$20\"}]]}],[\"$\",\"code\",null,{\"className\":\"html hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"$21\"}}]]}]]}]]]}]\n1e:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"總結\",\"children\":\"總結\"}],[\"$\",\"hr\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"本篇筆記簡短介紹了HTML做為網頁建材的角色，以及其基本語法-名為標籤的無數磚頭: \u003ch1\u003e, \u003cp\u003e, \u003cimg\u003e等等，讀者可以嘗試去搭建自己的網頁架構，想想看要有哪些區塊以及內容要寫些什麼 (這可能才是最難的XD)，也可以拿上面的範例去練習: 改一下內文、標題、增減章節數量，下一篇章會介紹CSS來把這些建材擺到正確的位置並進行美化，讓網頁更接近心中的樣子。\"}]]}]\n1f:[\"$\",\"p\",null,{\"className\":\"note\",\"children\":\"尤其等之後學到CSS，還能把段落標籤搞得跟標題標籤一樣外觀，但真的沒必要阿XD\"}]\n12:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n22:I[27201,[\"$2\"],\"IconMark\"]\nf:null\n15:[[\"$\",\"title\",\"0\",{\"children\":\"HTML 初學筆記\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"本篇會簡短介紹HTML的功用以及關於此網頁的HTML框架，讓各位對於網頁的架構有個初步的理解，並能搭建屬於...\"}],[\"$\",\"meta\",\"2\",{\"name\":\"author\",\"content\":\"MJ CHEN\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"初學筆記,HTML\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/image/INPC-ICON.png\"}],[\"$\",\"$L22\",\"5\",{}]]\n"])</script></body></html>

@@ -1,397 +1,43 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-
-<head>
-    <title>Javascript 初學筆記</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="auther" content="MJ CHEN">
-    <meta name="description" content="要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的...">
-    <meta name="keywords" content="初學筆記, Javascript">
-    <link href="../../image/INPC-ICON.png" rel="icon" type="image/x-icon">
-    <link href="../../style/variables.css" rel="stylesheet" type="text/css">
-    <link href="../../style/style.css" rel="stylesheet" type="text/css">
-    <link href="../../style/article/Javascript-Beginner.css" rel="stylesheet" type="text/css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/agate.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/javascript.min.js"></script>
-    <script type="module" src="../../module/post.js"></script>
-    <script type="module" src="../../module/article/Javascript-Beginner.js"></script>
-    <script>
-        hljs.highlightAll();
-    </script>
-</head>
-
-<body>
-    <header class="banner">
-        <div class="wrapper">
-            <a id="site-logo" href="../../index.html">
-                <img width=40px src="../../image/INPC-ICON.png" alt="inpc-icon"> Internet NPC
-            </a>
-            <button id="hamburger">&#9776;</button>
-            <nav id="site-nav">
-                <a href="../../index.html">Home</a>
-                <a href="../../index.html">Posts</a>
-                <a href="../../entrypoint/categories.html">Categories</a>
-                <a href="../../entrypoint/tags.html">Tags</a>
-            </nav>
-        </div>
-    </header>
-
-    <div class="main-container">
-        <aside id="left-area" class="sidebar">
-            <!-- 這是大綱 -->
-            <div id="agenda-wrapper">
-                <h1 class="agenda-title">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-list" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <line x1="9" y1="10" x2="20" y2="10"></line>
-                        <line x1="9" y1="16" x2="20" y2="16"></line>
-                        <line x1="9" y1="22" x2="20" y2="22"></line>
-                        <line x1="5" y1="10" x2="5" y2="10.01"></line>
-                        <line x1="5" y1="16" x2="5" y2="16.01"></line>
-                        <line x1="5" y1="22" x2="5" y2="22.01"></line>
-                    </svg> In this article</h1>
-                <hr>
-                <ol id="agenda">
-                </ol>
-            </div>
-        </aside>
-
-        <main id="center-area">
-            <article id="main-content">
-                <header class="post-header">
-                    <h1 class="post-title">Javascript 初學筆記</h1>
-                    <div class="post-meta">
-                        <time datetime="2025-06-21T00:00:00+08:00" itemprop="datePublished"> Jun 21, 2025 </time> | <img src="../../image/CATEGORY-ICON.png" class="inline-icon"> <span id="category-bar"></span>
-                        <img src="../../image/TAG-ICON.png" class="inline-icon">
-                        <nav id="tag-bar"></nav>
-                    </div>
-                </header>
-
-                <section class="L1-section">
-                    <div id="cover-container">
-                        <img id="cover" src="https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80&w=2064&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了">
-                    </div>
-                    <p class="content-paragraph">
-                        透過 HTML 和 CSS 能夠搭建出一個美美的網頁，用來呈現資訊算夠用了，但如果是要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的元素資訊並動態的新增和修改 HTML/CSS 的內容。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">Javascript是什麼</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        首先與 HTML/CSS 不同的是，Javascript (JS) 是程式語言，就跟C、Python等語言一樣，他能辦到相當多事情，最常見的用處就是用於動態的提供網頁內容: 網頁會根據使用者的操作/資料產生變化，其中又可分成 Server Side 跟 Client Side，差別在動態過程是發生在伺服器端還是瀏覽器端，這邊先只介紹 Client Side 的應用，底下提供一個簡單範例:
-                    </p>
-                    <div class="demo-container" id="flex-demo">
-                        <div class="demo">
-                            <h1>JS Demo</h1>
-                            <div id=js-demo-container>
-                                <input type="text" id="demo-input" name="demo-input" placeholder="輸入demo資訊" maxlength="8" />
-                                <button id="demo-button">➲</button>
-                                <span id="demo-display">demo</span>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="content-paragraph">
-                        可以在左側 input 視窗內打點東西，然後點擊中間的箭號，JS 會將使用者輸入的資料同步到右側的視窗。JS 達成此事的過程可分成三個步驟: <b>提取元素、邏輯運算、顯示</b>。
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">提取元素</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        為了能夠讀取使用者輸入的資料，JS 必須先知道要選取哪個元素，這部分可以透過元素設定的 <code class="inline">id</code>、<code class="inline">class</code> 來辨識，底下列出常見的兩種方式:
-                        <pre><code class="javascript">
-let element = document.getElementById("$ELEMENT ID");
-let collection = document.getElementsByClassName("$ELEMENT CLASSNAME");
-                        </code></pre>
-                    </p>
-                    <p class="content-paragraph">
-                        <ul class="content-ul">
-                            <li>
-                                <code class="inline">let</code> - 用來創建變數，JS 中還有另一種宣告方式: <code class="inline">var</code>，兩種差異在於 <code class="inline">let</code> 是 block-scoped，變數的生命週期只限於同一個 block ({ ... })，<code class="inline">var</code> 則是 function-scoped，變數在同個
-                                function 都有效。
-                                <p class="note">從這裡可以看出 JS 跟 Python 一樣都是 untyped languages。</p>
-                            </li>
-                            <li>
-                                <code class="inline">document</code> - JS 物件，可以當成是用來與 HTML 文件互動的介面。
-                            </li>
-                            <li>
-                                <code class="inline">getElementById</code> - 透過元素的 <code class="inline">id</code> 來選取元素，回傳型別為 HTMLElement 。
-                            </li>
-                            <li>
-                                <code class="inline">getElementsByClassName</code> - 透過元素的 <code class="inline">class</code> 來選取元素 不過由於 classname 並非獨特的，因此回傳時會以 collection 的形式來傳送多個元素，之後處理時可以用 <code class="inline">collection[0]</code>、<code class="inline">collection[1]</code>                                ... 來存取各別的元素。
-                            </li>
-                        </ul>
-                    </p>
-                    <p class="content-paragraph">
-                        如果想透過類似 CSS Selector 去選取物件，JS 也有提供以下兩種方法，用法上相對彈性可以支援階層式/條件式的選取，兩者的差異在於 <code class="inline">querySelector</code> 只會回傳第一個符合條件的元素， <code class="inline">querySelectorAll</code> 則是全部回傳。
-                        <pre><code class="javascript">
-let element = document.querySelector("$YOUR SELECTOR");
-let nodelist = document.querySelectorAll("$YOUR SELECTOR");
-                        </code></pre>
-                        <p class="note">getElementBy 跟 querySelector 傳回的資料型態不太一樣，不過初學時先忽略吧~~。</p>
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">邏輯運算</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        邏輯運算就跟想要達成的效果有關，在我們的範例中沒有做什麼額外的處理，只是單純的把元素的內容取出: <code class="inline">element.value</code>，所以這邊就展示一下 JS 的相關語法好了~~~
-                    </p>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">變數宣告</h1>
-                        <p class="content-paragraph">
-                            程式語言中常見的基本型別: 整數、浮點數、字串、布林、陣列、物件，雖然宣告上看起來有整數與浮點數之分，但數值資料都是double格式存儲。
-                        </p>
-                        <pre><code class="javascript">
-let x1 = 10;
-let x2 = 10.7;
-let x3 = "my string";
-let x4 = true;
-let x5 = ["A", "B", "C"];
-let x6 = { "type": "NPC", "job": "Coding"};
-                        </code></pre>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">運算子</h1>
-                        <p class="content-paragraph">
-                            除了基本的四則運算，JS 運算子與C語言很像，同樣有 <code class="inline">++i</code>、<code class="inline">i++</code>，
-                        </p>
-                        <pre><code class="javascript">
-let x1 = 0;
-let x2 = x1 + 0.5;
-let x3 -= x2++;
-let x4 = x2 * 2;
-let x5 = x4 / 3;
-                        </code></pre>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">流程控制</h1>
-                        <p class="content-paragraph">
-                            底下展示的是最常用的 <code class="inline">if-else</code> 跟 <code class="inline">for-loop</code> 的範例: 遍歷一個物件陣列，然後再根據 value 大小進行統計。
-                        </p>
-                        <pre><code class="javascript">
-// elements是陣列，內部元素是物件
-for (let i = 0; i < elements.length; i++) {
-    if (elements[i]["value"] > 10) {
+<!DOCTYPE html><html lang="zh-Hant-TW"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/image/INPC-ICON.png"/><link rel="preload" as="image" href="/image/CATEGORY-ICON.png"/><link rel="preload" as="image" href="/image/TAG-ICON.png"/><link rel="preload" href="https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80&amp;w=2064&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" as="image"/><link rel="stylesheet" href="/_next/static/chunks/44hmm9eswl_k6.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/1x6obpmlu1_c2.js"/><script src="/_next/static/chunks/02aeof6897urs.js" async=""></script><script src="/_next/static/chunks/0y23_0vo0sx8y.js" async=""></script><script src="/_next/static/chunks/2odeex0vp2-n5.js" async=""></script><script src="/_next/static/chunks/turbopack-3-ry682tkyiqk.js" async=""></script><script src="/_next/static/chunks/3pbnp14axw3wi.js" async=""></script><script src="/_next/static/chunks/303vpg09n1wil.js" async=""></script><title>Javascript 初學筆記</title><meta name="description" content="要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的..."/><meta name="author" content="MJ CHEN"/><meta name="keywords" content="初學筆記,Javascript"/><link rel="icon" href="/image/INPC-ICON.png"/><script src="/_next/static/chunks/0cz1d0mv5g_q7.js" noModule=""></script></head><body><div hidden=""><!--$--><!--/$--></div><header class="banner"><div class="wrapper"><a id="site-logo" href="/"><img width="40" src="/image/INPC-ICON.png" alt="inpc-icon"/> Internet NPC</a><button id="hamburger">☰</button><nav id="site-nav"><a href="/">Home</a><a href="/">Posts</a><a href="/entrypoint/categories">Categories</a><a href="/entrypoint/tags">Tags</a></nav></div></header><div class="main-container"><aside id="left-area" class="sidebar"><div class="agenda-wrapper agenda-sidebar"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#Javascript是什麼">Javascript是什麼</a></li><li class="non-focus-section"><a href="#提取元素">提取元素</a></li><li class="non-focus-section"><a href="#邏輯運算">邏輯運算</a></li><li class="non-focus-section"><a href="#顯示">顯示</a></li><li class="non-focus-section"><a href="#範例">範例</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div></aside><main id="center-area"><article id="main-content"><header class="post-header"><h1 class="post-title">Javascript 初學筆記</h1><div class="post-meta"><time dateTime="2025-06-21T00:00:00+08:00" itemProp="datePublished"> <!-- -->Jun 21, 2025<!-- --> </time> |<img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><span id="category-bar"><a class="tag" style="color:#707070;background-color:#fae5d3" href="/entrypoint/categories?category=Web-Design">網頁設計</a></span><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><nav id="tag-bar"><a class="tag" style="color:#707070;background-color:#ebf5fb" href="/entrypoint/tags?tag=%E5%88%9D%E5%AD%B8%E7%AD%86%E8%A8%98">初學筆記</a><a class="tag" style="color:#707070;background-color:#ebf381" href="/entrypoint/tags?tag=Javascript">Javascript</a></nav></div></header><section class="L1-section"><div id="cover-container"><img id="cover" src="https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80&amp;w=2064&amp;auto=format&amp;fit=crop&amp;ixlib=rb-4.1.0&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="看起來unsplash過期了"/></div><div class="content-paragraph">透過 HTML 和 CSS 能夠搭建出一個美美的網頁，用來呈現資訊算夠用了，但如果是要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的元素資訊並動態的新增和修改 HTML/CSS 的內容。</div></section><div class="agenda-wrapper agenda-inline"><h1 class="agenda-title"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><line x1="9" y1="10" x2="20" y2="10"></line><line x1="9" y1="16" x2="20" y2="16"></line><line x1="9" y1="22" x2="20" y2="22"></line><line x1="5" y1="10" x2="5" y2="10.01"></line><line x1="5" y1="16" x2="5" y2="16.01"></line><line x1="5" y1="22" x2="5" y2="22.01"></line></svg> In this article</h1><hr/><ol class="agenda"><li class="focus-section"><a href="#Javascript是什麼">Javascript是什麼</a></li><li class="non-focus-section"><a href="#提取元素">提取元素</a></li><li class="non-focus-section"><a href="#邏輯運算">邏輯運算</a></li><li class="non-focus-section"><a href="#顯示">顯示</a></li><li class="non-focus-section"><a href="#範例">範例</a></li><li class="non-focus-section"><a href="#總結">總結</a></li></ol></div><section class="L1-section"><h1 class="L1-section-title" id="Javascript是什麼">Javascript是什麼</h1><hr/><div class="content-paragraph">首先與 HTML/CSS 不同的是，Javascript (JS) 是程式語言，就跟C、Python等語言一樣，他能辦到相當多事情，最常見的用處就是用於動態的提供網頁內容: 網頁會根據使用者的操作/資料產生變化，其中又可分成 Server Side 跟 Client Side，差別在動態過程是發生在伺服器端還是瀏覽器端，這邊先只介紹 Client Side 的應用，底下提供一個簡單範例:</div><div class="demo-container" id="flex-demo"><div class="demo"><h1>JS Demo</h1><div id="js-demo-container"><input type="text" id="demo-input" placeholder="輸入demo資訊" maxLength="8" name="demo-input" value=""/><button id="demo-button">➲</button><span id="demo-display">demo</span></div></div></div><div class="content-paragraph">可以在左側 input 視窗內打點東西，然後點擊中間的箭號，JS 會將使用者輸入的資料同步到右側的視窗。JS 達成此事的過程可分成三個步驟: <b>提取元素、邏輯運算、顯示</b>。</div></section><section class="L1-section"><h1 class="L1-section-title" id="提取元素">提取元素</h1><hr/><div class="content-paragraph">為了能夠讀取使用者輸入的資料，JS 必須先知道要選取哪個元素，這部分可以透過元素設定的 <code class="inline">id</code>、<code class="inline">class</code> 來辨識，底下列出常見的兩種方式:<pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-keyword">let</span> element = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;$ELEMENT ID&quot;</span>);
+<span class="hljs-keyword">let</span> collection = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementsByClassName</span>(<span class="hljs-string">&quot;$ELEMENT CLASSNAME&quot;</span>);</code></pre></div><div class="content-paragraph"><ul class="content-ul"><li><code class="inline">let</code> - 用來創建變數，JS 中還有另一種宣告方式: <code class="inline">var</code>，兩種差異在於 <code class="inline">let</code> 是 block-scoped，變數的生命週期只限於同一個 block (<!-- -->{<!-- --> ... <!-- -->}<!-- -->)，<code class="inline">var</code> 則是 function-scoped，變數在同個 function 都有效。<p class="note">從這裡可以看出 JS 跟 Python 一樣都是 untyped languages。</p></li><li><code class="inline">document</code> - JS 物件，可以當成是用來與 HTML 文件互動的介面。</li><li><code class="inline">getElementById</code> - 透過元素的 <code class="inline">id</code> 來選取元素，回傳型別為 HTMLElement 。</li><li><code class="inline">getElementsByClassName</code> - 透過元素的 <code class="inline">class</code> 來選取元素 不過由於 classname 並非獨特的，因此回傳時會以 collection 的形式來傳送多個元素，之後處理時可以用 <code class="inline">collection[0]</code>、<code class="inline">collection[1]</code> ... 來存取各別的元素。</li></ul></div><div class="content-paragraph">如果想透過類似 CSS Selector 去選取物件，JS 也有提供以下兩種方法，用法上相對彈性可以支援階層式/條件式的選取，兩者的差異在於 <code class="inline">querySelector</code> 只會回傳第一個符合條件的元素， <code class="inline">querySelectorAll</code> 則是全部回傳。<pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-keyword">let</span> element = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelector</span>(<span class="hljs-string">&quot;$YOUR SELECTOR&quot;</span>);
+<span class="hljs-keyword">let</span> nodelist = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">querySelectorAll</span>(<span class="hljs-string">&quot;$YOUR SELECTOR&quot;</span>);</code></pre><p class="note">getElementBy 跟 querySelector 傳回的資料型態不太一樣，不過初學時先忽略吧~~。</p></div></section><section class="L1-section"><h1 class="L1-section-title" id="邏輯運算">邏輯運算</h1><hr/><div class="content-paragraph">邏輯運算就跟想要達成的效果有關，在我們的範例中沒有做什麼額外的處理，只是單純的把元素的內容取出: <code class="inline">element.value</code>，所以這邊就展示一下 JS 的相關語法好了~~~</div><section class="L2-section"><h1 class="L2-section-title">變數宣告</h1><div class="content-paragraph">程式語言中常見的基本型別: 整數、浮點數、字串、布林、陣列、物件，雖然宣告上看起來有整數與浮點數之分，但數值資料都是double格式存儲。</div><pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-keyword">let</span> x1 = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">let</span> x2 = <span class="hljs-number">10.7</span>;
+<span class="hljs-keyword">let</span> x3 = <span class="hljs-string">&quot;my string&quot;</span>;
+<span class="hljs-keyword">let</span> x4 = <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">let</span> x5 = [<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>];
+<span class="hljs-keyword">let</span> x6 = { <span class="hljs-string">&quot;type&quot;</span>: <span class="hljs-string">&quot;NPC&quot;</span>, <span class="hljs-string">&quot;job&quot;</span>: <span class="hljs-string">&quot;Coding&quot;</span>};</code></pre></section><section class="L2-section"><h1 class="L2-section-title">運算子</h1><div class="content-paragraph">除了基本的四則運算，JS 運算子與C語言很像，同樣有 <code class="inline">++i</code>、<code class="inline">i++</code>，</div><pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-keyword">let</span> x1 = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">let</span> x2 = x1 + <span class="hljs-number">0.5</span>;
+<span class="hljs-keyword">let</span> x3 -= x2++;
+<span class="hljs-keyword">let</span> x4 = x2 * <span class="hljs-number">2</span>;
+<span class="hljs-keyword">let</span> x5 = x4 / <span class="hljs-number">3</span>;</code></pre></section><section class="L2-section"><h1 class="L2-section-title">流程控制</h1><div class="content-paragraph">底下展示的是最常用的 <code class="inline">if-else</code> 跟 <code class="inline">for-loop</code> 的範例: 遍歷一個物件陣列，然後再根據 value 大小進行統計。</div><pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-comment">// elements是陣列，內部元素是物件</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; elements.<span class="hljs-property">length</span>; i++) {
+    <span class="hljs-keyword">if</span> (elements[i][<span class="hljs-string">&quot;value&quot;</span>] &gt; <span class="hljs-number">10</span>) {
         a++;
-    } else if (elements[i]["value"] > 3) {
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (elements[i][<span class="hljs-string">&quot;value&quot;</span>] &gt; <span class="hljs-number">3</span>) {
         b++;
-    } else {
+    } <span class="hljs-keyword">else</span> {
         c++;
     }
-}
-                        </code></pre>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">字串處理</h1>
-                        <p class="content-paragraph">
-                            網頁資料的動態產生很常會涉及到字串處理，因為得修改 HTML 文件內容，這邊提供一些常用的指令:
-                        </p>
-                        <table class="content-table">
-                            <colgroup>
-                                <col style="width: 35%;">
-                                <col style="width: 25%;">
-                                <col style="width: 40%;">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>Method</th>
-                                    <th>Function</th>
-                                    <th>Example</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>length</td>
-                                    <td>字串長度</td>
-                                    <td>"npc".length → 5</td>
-                                </tr>
-                                <tr>
-                                    <td>substring(start, end)</td>
-                                    <td>子字串(不含 end) </td>
-                                    <td>"npc".substring(0, 2) → "np"</td>
-                                </tr>
-                                <tr>
-                                    <td>includes(sub)</td>
-                                    <td>是否包含子字串</td>
-                                    <td>"npc".includes("pc") → true</td>
-                                </tr>
-                                <tr>
-                                    <td>trim()</td>
-                                    <td>去除前後空白</td>
-                                    <td>" npc ".trim() → "npc"</td>
-                                </tr>
-                                <tr>
-                                    <td>replace(old, new)</td>
-                                    <td>替換第一次出現</td>
-                                    <td>"nnpc".replace("n", "i") → "inpc"</td>
-                                </tr>
-                                <tr>
-                                    <td>replaceAll(old, new)</td>
-                                    <td>替換所有出現</td>
-                                    <td>"nnpc".replaceAll("n", "i") → "iipc"</td>
-                                </tr>
-                                <tr>
-                                    <td>split(sep)</td>
-                                    <td>切割成陣列</td>
-                                    <td>"a,b,c".split(",") → ["a","b","c"]</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                    </section>
-                </section>
-                <section class="L1-section">
-                    <h1 class="L1-section-title">顯示</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        處理後的資料自然是要顯示出來，才能給使用者瀏覽，常見有三種方式能夠達成:
-                    </p>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">console.log()</h1>
-                        <p class="content-paragraph">
-                            這主要是給程式開發人員 debug 使用的，在 JS 中使用此指令 ex: <code class="inline">console.log("Hi");</code>，會在開發者工具的主控台顯示 "Hi"，至於這個主控台可以點選 F12 即可檢視，想看效果可以點擊
-                            <button id="console-button">Say Hi</button> 按鈕即可在 console 顯示 "Hi"。
-                        </p>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">alert()</h1>
-                        <p class="content-paragraph">
-                            相較於 console 一般人不會看到，alert 則是會產生一個跳出視窗通知使用者，來試著點看看吧: <button id="alert-button">Alert</button>。
-                        </p>
-                    </section>
-                    <section class="L2-section">
-                        <h1 class="L2-section-title">修改 HTML 元素</h1>
-                        <p class="content-paragraph">
-                            前兩個方法的用途比較特殊，最常見的顯示方式還是直接修改 HTML 網頁資料，要修改現有元素的資料只需要指定此元素的 <code class="inline">textContent</code>, <code class="inline">innerText</code>, <code class="inline">innterHTML</code>:
-                            <pre><code class="javascript">
-// diplay是元素
-display.textContent = "demo message";
-display.innerText = "demo message";
-display.innerHTML = "&lt;b&gt;demo message&lt;/b&gt;";
-                            </code></pre>
-                        </p>
-                        <p class="content-paragraph">
-                            <code class="inline">textContent</code> 跟 <code class="inline">innerText</code> 只會把內容物當純文字，兩者間的差異在於 innerText 會額外考慮渲染 (render) 的結果，因此會額外考慮 CSS 的設定，這點在取得元素內容時才會顯現，在以下的範例中，<code class="inline">textContent</code> 得到的是 hello，而
-                            <code class="inline">innerText</code> 則是 HELLO。
-                        </p>
-                        <pre><code class="html">
-&lt;h1 class="uppercase"&gt;hello&lt;h1&gt;
-                        </code></pre>
-                        <pre><code class="css">
-h1.uppercase {
-    text-transform: uppercase;
-}
-                        </code></pre>
-                        <p class="content-paragraph">
-                            至於 <code class="inline">innterHTML</code> 則是會將內容物當成 HTML 標籤，所以&lt;b&gt;demo message&lt;/b&gt;會視為加粗文字的標籤。當然我們也可以透過這種方式添加多層的 HTML 元素，但以程式的角度來說不太方便管理，通常會採用另一種方式:
-                            <pre><code class="javascript">
-anchor = document.createElement("a");
-anchor.innerHTML = "my web";
-anchor.setAttribute("href", "https://personalworkingspace.github.io/");
-anchor.style.color = "blue";
-                            </code></pre>
-                            <p class="content-paragraph">
-                                <code class="inline">document.createElement</code> 用來創造 HTML 的元素，上面創造一個 anchor，創造出來的元素跟我們用 getElementBy 取得的是一樣的，能夠替他設定 innerHTML、attribute 以及 style。
-                            </p>
-                        </p>
-                    </section>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">範例</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        要引用 JS code 到 HTML 文件中，首先得創立一個 JS 檔案 ex: script.js，然後在 head 或 body 內填入以下內容:
-                        <pre><code class="html">
-&lt;script src="script.js"&gt;&lt;/script&gt; &lt;!-- 載入 JS 檔案 --&gt;
-                    </code></pre>
-                    </p>
-
-                    <p class="content-paragraph">
-                        至於 script.js 的內容，底下提供 Demo 的 JS 範例:
-                        <pre><code class="javascript">
-window.onload = function() {
-    setDemo();
+}</code></pre></section><section class="L2-section"><h1 class="L2-section-title">字串處理</h1><div class="content-paragraph">網頁資料的動態產生很常會涉及到字串處理，因為得修改 HTML 文件內容，這邊提供一些常用的指令:</div><table class="content-table"><colgroup><col style="width:35%"/><col style="width:25%"/><col style="width:40%"/></colgroup><thead><tr><th>Method</th><th>Function</th><th>Example</th></tr></thead><tbody><tr><td>length</td><td>字串長度</td><td>&quot;npc&quot;.length → 5</td></tr><tr><td>substring(start, end)</td><td>子字串(不含 end)</td><td>&quot;npc&quot;.substring(0, 2) → &quot;np&quot;</td></tr><tr><td>includes(sub)</td><td>是否包含子字串</td><td>&quot;npc&quot;.includes(&quot;pc&quot;) → true</td></tr><tr><td>trim()</td><td>去除前後空白</td><td>&quot; npc &quot;.trim() → &quot;npc&quot;</td></tr><tr><td>replace(old, new)</td><td>替換第一次出現</td><td>&quot;nnpc&quot;.replace(&quot;n&quot;, &quot;i&quot;) → &quot;inpc&quot;</td></tr><tr><td>replaceAll(old, new)</td><td>替換所有出現</td><td>&quot;nnpc&quot;.replaceAll(&quot;n&quot;, &quot;i&quot;) → &quot;iipc&quot;</td></tr><tr><td>split(sep)</td><td>切割成陣列</td><td>&quot;a,b,c&quot;.split(&quot;,&quot;) → [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;]</td></tr></tbody></table></section></section><section class="L1-section"><h1 class="L1-section-title" id="顯示">顯示</h1><hr/><div class="content-paragraph">處理後的資料自然是要顯示出來，才能給使用者瀏覽，常見有三種方式能夠達成:</div><section class="L2-section"><h1 class="L2-section-title">console.log()</h1><div class="content-paragraph">這主要是給程式開發人員 debug 使用的，在 JS 中使用此指令 ex: <code class="inline">console.log(&quot;Hi&quot;);</code>，會在開發者工具的主控台顯示 &quot;Hi&quot;，至於這個主控台可以點選 F12 即可檢視，想看效果可以點擊 <button id="console-button">Say Hi</button> 按鈕即可在 console 顯示 &quot;Hi&quot;。</div></section><section class="L2-section"><h1 class="L2-section-title">alert()</h1><div class="content-paragraph">相較於 console 一般人不會看到，alert 則是會產生一個跳出視窗通知使用者，來試著點看看吧: <button id="alert-button">Alert</button>。</div></section><section class="L2-section"><h1 class="L2-section-title">修改 HTML 元素</h1><div class="content-paragraph">前兩個方法的用途比較特殊，最常見的顯示方式還是直接修改 HTML 網頁資料，要修改現有元素的資料只需要指定此元素的 <code class="inline">textContent</code>, <code class="inline">innerText</code>, <code class="inline">innterHTML</code>:<pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-comment">// diplay是元素</span>
+display.<span class="hljs-property">textContent</span> = <span class="hljs-string">&quot;demo message&quot;</span>;
+display.<span class="hljs-property">innerText</span> = <span class="hljs-string">&quot;demo message&quot;</span>;
+display.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;&lt;b&gt;demo message&lt;/b&gt;&quot;</span>;</code></pre></div><div class="content-paragraph"><code class="inline">textContent</code> 跟 <code class="inline">innerText</code> 只會把內容物當純文字，兩者間的差異在於 innerText 會額外考慮渲染 (render) 的結果，因此會額外考慮 CSS 的設定，這點在取得元素內容時才會顯現，在以下的範例中，<code class="inline">textContent</code> 得到的是 hello，而 <code class="inline">innerText</code> 則是 HELLO。</div><pre><div class="code-bar"><h4>HTML</h4><button type="button">Copy</button></div><code class="html hljs"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;uppercase&quot;</span>&gt;</span>hello<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></code></pre><pre><div class="code-bar"><h4>CSS</h4><button type="button">Copy</button></div><code class="css hljs"><span class="hljs-selector-tag">h1</span><span class="hljs-selector-class">.uppercase</span> {
+    <span class="hljs-attribute">text-transform</span>: uppercase;
+}</code></pre><div class="content-paragraph">至於 <code class="inline">innterHTML</code> 則是會將內容物當成 HTML 標籤，所以&lt;b&gt;demo message&lt;/b&gt;會視為加粗文字的標籤。當然我們也可以透過這種方式添加多層的 HTML 元素，但以程式的角度來說不太方便管理，通常會採用另一種方式:<pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs">anchor = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">createElement</span>(<span class="hljs-string">&quot;a&quot;</span>);
+anchor.<span class="hljs-property">innerHTML</span> = <span class="hljs-string">&quot;my web&quot;</span>;
+anchor.<span class="hljs-title function_">setAttribute</span>(<span class="hljs-string">&quot;href&quot;</span>, <span class="hljs-string">&quot;https://personalworkingspace.github.io/&quot;</span>);
+anchor.<span class="hljs-property">style</span>.<span class="hljs-property">color</span> = <span class="hljs-string">&quot;blue&quot;</span>;</code></pre><div class="content-paragraph"><code class="inline">document.createElement</code> 用來創造 HTML 的元素，上面創造一個 anchor，創造出來的元素跟我們用 getElementBy 取得的是一樣的，能夠替他設定 innerHTML、attribute 以及 style。</div></div></section></section><section class="L1-section"><h1 class="L1-section-title" id="範例">範例</h1><hr/><div class="content-paragraph">要引用 JS code 到 HTML 文件中，首先得創立一個 JS 檔案 ex: script.js，然後在 head 或 body 內填入以下內容:<pre><div class="code-bar"><h4>HTML</h4><button type="button">Copy</button></div><code class="html hljs"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;script.js&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span> <span class="hljs-comment">&lt;!-- 載入 JS 檔案 --&gt;</span></code></pre></div><div class="content-paragraph">至於 script.js 的內容，底下提供 Demo 的 JS 範例:<pre><div class="code-bar"><h4>JAVASCRIPT</h4><button type="button">Copy</button></div><code class="javascript hljs"><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-title function_">setDemo</span>();
 }
 
-function setDemo() {
-    let button = document.getElementById("demo-button");
-    button.onclick = updateDemoDisplay;
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">setDemo</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> button = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo-button&quot;</span>);
+    button.<span class="hljs-property">onclick</span> = updateDemoDisplay;
 }
 
-function updateDemoDisplay() {
-    let text = document.getElementById("demo-input");
-    let value = text.value;
-    let display = document.getElementById("demo-display");
-    display.textContent = value;
-}
-                        </code></pre>
-                    </p>
-
-                    <p class="content-paragraph">
-                        讓我們說明每個 function 的功能吧:
-                        <ul class="content-ul">
-                            <li>
-                                <code class="inline">window.onload</code> - 前面提到 JS 應用需要提取 HTML 元素，但 HTML 元素必須等網頁載入後 (onload) 才會存在，所以建議是把主要執行的部分放到 <code class="inline">window.onload</code> 裡面呼叫，避免找不到元素。
-                            </li>
-                            <li>
-                                <code class="inline">setDemo</code> - 學會了 JS 生成網頁的三個步驟後，你可能會發現還少了點甚麼，就是觸發事件，前面說的流程都是在我們觸發一個事件後才會開始跑: 點擊按鈕，而 JS 中 HTML 元素都能設定 click 事件: <code class="inline">button.onclick = updateDemoDisplay</code>。
-                            </li>
-                            <li>
-                                <code class="inline">updateDemoDisplay</code> - 這塊就是前面提到的三個流程，我們取得使用者輸入資料的元素和之後要顯示的區塊、提取輸入的字串、設定顯示區塊內部的字串。
-                            </li>
-                        </ul>
-                    </p>
-                </section>
-
-                <section class="L1-section">
-                    <h1 class="L1-section-title">總結</h1>
-                    <hr>
-                    <p class="content-paragraph">
-                        這邊介紹了一點 Javascript 的皮毛，實現了動態生成網頁內容，加上前面幾篇介紹過的 HTML 跟 CSS，我們已經把網頁設定所需的三大技術學會了 (剩下就是精進了~~~)，接下來讓我們把搭建的網頁從 localhost 搬到正式的對外網路吧，讓他成為真正的網站!
-                    </p>
-                </section>
-            </article>
-        </main>
-
-        <aside id="right-area" class="sidebar">
-            <div id="category-wrapper">
-                <h1 id="category-title"><img src="../../image/CATEGORY-ICON.png" class="inline-icon"></h1>
-                <hr>
-                <ul id="same-category-list">
-                </ul>
-            </div>
-            <div id="tag-wrapper">
-            </div>
-        </aside>
-    </div>
-
-    <footer>
-        <div id="contact-info">
-            <a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a>
-            <a class="github" href="https://github.com/PersonalWorkingSpace">
-                <svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24" data-view-component="true">
-                        <path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path>
-                    </svg>
-                <span>Github</span>
-            </a>
-            <span>隨筆紀錄我的學習過程</span>
-        </div>
-        <p class="cc">
-            本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。
-        </p>
-        <p class="cc">
-            This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but
-            please include the original link.
-        </p>
-    </footer>
-</body>
-
-</html>
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">updateDemoDisplay</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">let</span> text = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo-input&quot;</span>);
+    <span class="hljs-keyword">let</span> value = text.<span class="hljs-property">value</span>;
+    <span class="hljs-keyword">let</span> display = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;demo-display&quot;</span>);
+    display.<span class="hljs-property">textContent</span> = value;
+}</code></pre></div><div class="content-paragraph">讓我們說明每個 function 的功能吧:<ul class="content-ul"><li><code class="inline">window.onload</code> - 前面提到 JS 應用需要提取 HTML 元素，但 HTML 元素必須等網頁載入後 (onload) 才會存在，所以建議是把主要執行的部分放到 <code class="inline">window.onload</code> 裡面呼叫，避免找不到元素。</li><li><code class="inline">setDemo</code> - 學會了 JS 生成網頁的三個步驟後，你可能會發現還少了點甚麼，就是觸發事件，前面說的流程都是在我們觸發一個事件後才會開始跑: 點擊按鈕，而 JS 中 HTML 元素都能設定 click 事件: <code class="inline">button.onclick = updateDemoDisplay</code>。</li><li><code class="inline">updateDemoDisplay</code> - 這塊就是前面提到的三個流程，我們取得使用者輸入資料的元素和之後要顯示的區塊、提取輸入的字串、設定顯示區塊內部的字串。</li></ul></div></section><section class="L1-section"><h1 class="L1-section-title" id="總結">總結</h1><hr/><div class="content-paragraph">這邊介紹了一點 Javascript 的皮毛，實現了動態生成網頁內容，加上前面幾篇介紹過的 HTML 跟 CSS，我們已經把網頁設定所需的三大技術學會了 (剩下就是精進了~~~)，接下來讓我們把搭建的網頁從 localhost 搬到正式的對外網路吧，讓他成為真正的網站!</div></section></article></main><aside id="right-area" class="sidebar"><div id="category-wrapper"><h1 id="category-title"><img src="/image/CATEGORY-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#707070;background-color:#fae5d3" href="/entrypoint/categories?category=Web-Design">網頁設計 (5)</a></h1><hr/><ul id="same-category-list"><li><a href="/category/Web-Design/HTML-Beginner">Day1 - HTML 初學筆記</a></li><li><a href="/category/Web-Design/CSS-Beginner">Day2 - CSS 初學筆記</a></li><li><a class="this-article" href="/category/Web-Design/Javascript-Beginner">Day3 - Javascript 初學筆記</a></li><li><a href="/category/Web-Design/Github-Pages">Day4 - 網頁部署 - Github Pages</a></li><li><a href="/category/Web-Design/RWD">Day5 - RWD 響應式網頁設計</a></li></ul></div><div id="tag-wrapper"><div><h1 class="tag-title"><img src="/image/TAG-ICON.png" class="inline-icon" alt=""/><a class="tag" style="color:#707070;background-color:#ebf5fb" href="/entrypoint/tags?tag=%E5%88%9D%E5%AD%B8%E7%AD%86%E8%A8%98">初學筆記 (4)</a></h1><hr/><ul class="same-tag-list"><li><a href="/category/Web-Design/RWD">RWD 響應式網頁設計</a></li><li><a href="/category/Web-Design/CSS-Beginner">CSS 初學筆記</a></li><li><a href="/category/Web-Design/HTML-Beginner">HTML 初學筆記</a></li></ul><br/></div></div></aside></div><!--$--><!--/$--><footer><div id="contact-info"><a href="mailto:tonychen3000tony@gmail.com">tonychen3000tony@gmail.com</a><a class="github" href="https://github.com/PersonalWorkingSpace"><svg height="24" aria-hidden="true" viewBox="0 0 24 24" version="1.1" width="24"><path d="M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z"></path></svg><span>Github</span></a><span>隨筆紀錄我的學習過程</span></div><p class="cc">本文採用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">創用 CC BY-NC-ND 4.0 條款</a>授權分享，歡迎非商業性分享，唯請務必附上原文連結。</p><p class="cc">This work is licensed under a <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License</a>. You are welcome to share it for non-commercial purposes, but please include the original link.</p></footer><script id="_R_">(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push({"otherChunks":["static/chunks/1x6obpmlu1_c2.js","static/chunks/02aeof6897urs.js","static/chunks/0y23_0vo0sx8y.js","static/chunks/2odeex0vp2-n5.js"],"runtimeModuleIds":[94553]});</script><script src="/_next/static/chunks/1x6obpmlu1_c2.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:\"/_next/static/chunks/3pbnp14axw3wi.js\"\n3:I[25954,[\"$2\"],\"default\"]\n4:I[39756,[\"$2\"],\"default\"]\n5:I[37457,[\"$2\"],\"default\"]\n6:I[22016,[\"$2\"],\"\"]\nd:I[97367,[\"$2\"],\"OutletBoundary\"]\ne:\"$Sreact.suspense\"\n10:\"ViewportBoundary\"\n11:I[97367,[\"$2\"],\"$10\"]\n13:\"MetadataBoundary\"\n14:I[97367,[\"$2\"],\"$13\"]\n16:I[68027,[\"$2\"],\"default\",1]\n:HL[\"/_next/static/chunks/44hmm9eswl_k6.css\",\"style\"]\n8:X\nb:[[\"children\",{\"s\":\"__PAGE__\",\"h\":512,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[\"$Lc\",[[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/303vpg09n1wil.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"$Ld\",null,{\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.MetadataOutlet\",\"children\":\"$@f\"}]}]]}],\"p\":false,\"v\":null}}]]\na:[[\"children\",{\"s\":{\"n\":\"slug\",\"t\":\"d\",\"k\":\"Javascript-Beginner\",\"s\":[]},\"h\":66048,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qb\"}]]\n9:[[\"children\",{\"s\":{\"n\":\"category\",\"t\":\"d\",\"k\":\"Web-Design\",\"s\":[]},\"h\":197120,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Qa\"}]]\n7:[[\"children\",{\"s\":\"category\",\"h\":131584,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}],\"p\":false,\"v\":\"$8\"},\"c\":\"$Q9\"}]]\n0:{\"P\":null,\"c\":[\"\",\"category\",\"Web-Design\",\"Javascript-Beginner\"],\"q\":\"\",\"i\":false,\"t\":{\"t\":{\"s\":\"\",\"h\":131600,\"d\":{\"r\":[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}],[\"$\",\"script\",\"script-0\",{\"src\":\"/_next/static/chunks/3pbnp14axw3wi.js\",\"async\":true,\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"zh-Hant-TW\",\"children\":[\"$\",\"body\",null,{\"children\":[[\"$\",\"$L3\",null,{}],[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"div\",null,{\"className\":\"main-container\",\"children\":[\"$\",\"main\",null,{\"id\":\"center-area\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"post-title\",\"children\":\"404 - 找不到這個頁面\"}],[\"$\",\"p\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"$L6\",null,{\"href\":\"/\",\"children\":\"回到首頁\"}]}]]}]}],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}],[\"$\",\"footer\",null,{\"children\":[[\"$\",\"div\",null,{\"id\":\"contact-info\",\"children\":[[\"$\",\"a\",null,{\"href\":\"mailto:tonychen3000tony@gmail.com\",\"children\":\"tonychen3000tony@gmail.com\"}],[\"$\",\"a\",null,{\"className\":\"github\",\"href\":\"https://github.com/PersonalWorkingSpace\",\"children\":[[\"$\",\"svg\",null,{\"height\":\"24\",\"aria-hidden\":\"true\",\"viewBox\":\"0 0 24 24\",\"version\":\"1.1\",\"width\":\"24\",\"children\":[\"$\",\"path\",null,{\"d\":\"M12 1C5.923 1 1 5.923 1 12c0 4.867 3.149 8.979 7.521 10.436.55.096.756-.233.756-.522 0-.262-.013-1.128-.013-2.049-2.764.509-3.479-.674-3.699-1.292-.124-.317-.66-1.293-1.127-1.554-.385-.207-.936-.715-.014-.729.866-.014 1.485.797 1.691 1.128.99 1.663 2.571 1.196 3.204.907.096-.715.385-1.196.701-1.471-2.448-.275-5.005-1.224-5.005-5.432 0-1.196.426-2.186 1.128-2.956-.111-.275-.496-1.402.11-2.915 0 0 .921-.288 3.024 1.128a10.193 10.193 0 0 1 2.75-.371c.936 0 1.871.123 2.75.371 2.104-1.43 3.025-1.128 3.025-1.128.605 1.513.221 2.64.111 2.915.701.77 1.127 1.747 1.127 2.956 0 4.222-2.571 5.157-5.019 5.432.399.344.743 1.004.743 2.035 0 1.471-.014 2.654-.014 3.025 0 .289.206.632.756.522C19.851 20.979 23 16.854 23 12c0-6.077-4.922-11-11-11Z\"}]}],[\"$\",\"span\",null,{\"children\":\"Github\"}]]}],[\"$\",\"span\",null,{\"children\":\"隨筆紀錄我的學習過程\"}]]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"本文採用\",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"創用 CC BY-NC-ND 4.0 條款\"}],\"授權分享，歡迎非商業性分享，唯請務必附上原文連結。\"]}],[\"$\",\"p\",null,{\"className\":\"cc\",\"children\":[\"This work is licensed under a \",[\"$\",\"a\",null,{\"href\":\"https://creativecommons.org/licenses/by-nc-nd/4.0/\",\"children\":\"Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License\"}],\". You are welcome to share it for non-commercial purposes, but please include the original link.\"]}]]}]]}]}]]}],\"p\":false,\"v\":null},\"c\":\"$Q7\"},\"h\":{\"r\":[\"$\",\"$1\",\"h\",{\"children\":[null,[\"$\",\"$L11\",null,{\"children\":\"$L12\"}],[\"$\",\"$L14\",null,{\"children\":[[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$e\",null,{\"name\":\"Next.Metadata\",\"children\":\"$L15\"}]}],null]}],null]}],\"p\":false,\"v\":null}},\"m\":\"$undefined\",\"G\":[\"$16\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/chunks/44hmm9eswl_k6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]]],\"S\":true,\"r\":\"$undefined\",\"s\":\"$undefined\",\"a\":\"$undefined\",\"l\":\"$undefined\",\"p\":\"$undefined\",\"d\":\"$undefined\",\"b\":\"jy5l5GewKZPz7v6l7ZEND\"}\n17:\"/_next/static/chunks/303vpg09n1wil.js\"\n18:I[1440,[\"$2\",\"$17\"],\"default\"]\n19:I[29818,[\"$2\",\"$17\"],\"InlineAgenda\"]\n1a:I[53354,[\"$2\",\"$17\"],\"SyncTextDemo\"]\n1b:I[34883,[\"$2\",\"$17\"],\"default\"]\n:HL[\"https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80\u0026w=2064\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"image\"]\n8:C\nc:[\"$\",\"$L18\",null,{\"post\":{\"category\":\"Web-Design\",\"slug\":\"Javascript-Beginner\",\"href\":\"/category/Web-Design/Javascript-Beginner\",\"title\":\"Javascript 初學筆記\",\"created\":\"2025-06-21T00:00:00+08:00\",\"tags\":[\"初學筆記\",\"Javascript\"],\"description\":\"要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的...\",\"thumbnail\":\"https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80\u0026w=2064\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\"},\"headings\":[\"Javascript是什麼\",\"提取元素\",\"邏輯運算\",\"顯示\",\"範例\",\"總結\"],\"sameCategory\":{\"count\":5,\"posts\":[{\"href\":\"/category/Web-Design/HTML-Beginner\",\"label\":\"Day1 - HTML 初學筆記\",\"current\":false},{\"href\":\"/category/Web-Design/CSS-Beginner\",\"label\":\"Day2 - CSS 初學筆記\",\"current\":false},{\"href\":\"/category/Web-Design/Javascript-Beginner\",\"label\":\"Day3 - Javascript 初學筆記\",\"current\":true},{\"href\":\"/category/Web-Design/Github-Pages\",\"label\":\"Day4 - 網頁部署 - Github Pages\",\"current\":false},{\"href\":\"/category/Web-Design/RWD\",\"label\":\"Day5 - RWD 響應式網頁設計\",\"current\":false}]},\"tagGroups\":[{\"tag\":\"初學筆記\",\"count\":4,\"candidates\":[{\"href\":\"/category/Web-Design/RWD\",\"title\":\"RWD 響應式網頁設計\"},{\"href\":\"/category/Web-Design/CSS-Beginner\",\"title\":\"CSS 初學筆記\"},{\"href\":\"/category/Web-Design/HTML-Beginner\",\"title\":\"HTML 初學筆記\"}]}],\"children\":[[[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"div\",null,{\"id\":\"cover-container\",\"children\":[\"$\",\"img\",null,{\"id\":\"cover\",\"src\":\"https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?q=80\u0026w=2064\u0026auto=format\u0026fit=crop\u0026ixlib=rb-4.1.0\u0026ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D\",\"alt\":\"看起來unsplash過期了\"}]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"透過 HTML 和 CSS 能夠搭建出一個美美的網頁，用來呈現資訊算夠用了，但如果是要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的元素資訊並動態的新增和修改 HTML/CSS 的內容。\"}]]}],[\"$\",\"$L19\",null,{}]],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"Javascript是什麼\",\"children\":\"Javascript是什麼\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"首先與 HTML/CSS 不同的是，Javascript (JS) 是程式語言，就跟C、Python等語言一樣，他能辦到相當多事情，最常見的用處就是用於動態的提供網頁內容: 網頁會根據使用者的操作/資料產生變化，其中又可分成 Server Side 跟 Client Side，差別在動態過程是發生在伺服器端還是瀏覽器端，這邊先只介紹 Client Side 的應用，底下提供一個簡單範例:\"}],[\"$\",\"$L1a\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"可以在左側 input 視窗內打點東西，然後點擊中間的箭號，JS 會將使用者輸入的資料同步到右側的視窗。JS 達成此事的過程可分成三個步驟: \",[\"$\",\"b\",null,{\"children\":\"提取元素、邏輯運算、顯示\"}],\"。\"]}]]]}],[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"提取元素\",\"children\":\"提取元素\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"為了能夠讀取使用者輸入的資料，JS 必須先知道要選取哪個元素，這部分可以透過元素設定的 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"id\"}],\"、\",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"class\"}],\" 來辨識，底下列出常見的兩種方式:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"let element = document.getElementById(\\\"$ELEMENT ID\\\");\\nlet collection = document.getElementsByClassName(\\\"$ELEMENT CLASSNAME\\\");\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e element = \u003cspan class=\\\"hljs-variable language_\\\"\u003edocument\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003egetElementById\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;$ELEMENT ID\u0026quot;\u003c/span\u003e);\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e collection = \u003cspan class=\\\"hljs-variable language_\\\"\u003edocument\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003egetElementsByClassName\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;$ELEMENT CLASSNAME\u0026quot;\u003c/span\u003e);\"}}]]}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"let\"}],\" - 用來創建變數，JS 中還有另一種宣告方式: \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"var\"}],\"，兩種差異在於 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"let\"}],\" 是 block-scoped，變數的生命週期只限於同一個 block (\",\"{\",\" ... \",\"}\",\")，\",\"$L1c\",\" 則是 function-scoped，變數在同個 function 都有效。\",\"$L1d\"]}],\"$L1e\",\"$L1f\",\"$L20\"]}]}],\"$L21\"]]}],\"$L22\",\"$L23\",\"$L24\",\"$L25\"]}]\n27:I[53354,[\"$2\",\"$17\"],\"SayHiButton\"]\n28:I[53354,[\"$2\",\"$17\"],\"AlertButton\"]\n1c:[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"var\"}]\n1d:[\"$\",\"p\",null,{\"className\":\"note\",\"children\":\"從這裡可以看出 JS 跟 Python 一樣都是 untyped languages。\"}]\n1e:[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"document\"}],\" - JS 物件，可以當成是用來與 HTML 文件互動的介面。\"]}]\n1f:[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"getElementById\"}],\" - 透過元素的 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"id\"}],\" 來選取元素，回傳型別為 HTMLElement 。\"]}]\n20:[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"getElementsByClassName\"}],\" - 透過元素的 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"class\"}],\" 來選取元素 不過由於 classname 並非獨特的，因此回傳時會以 collection 的形式來傳送多個元素，之後處理時可以用 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"collection[0]\"}],\"、\",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"collection[1]\"}],\" ... 來存取各別的元素。\"]}]\n21:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"如果想透過類似 CSS Selector 去選取物件，JS 也有提供以下兩種方法，用法上相對彈性可以支援階層式/條件式的選取，兩者的差異在於 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"querySelector\"}],\" 只會回傳第一個符合條件的元素， \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"querySelectorAll\"}],\" 則是全部回傳。\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"let element = document.querySelector(\\\"$YOUR SELECTOR\\\");\\nlet nodelist = document.querySelectorAll(\\\"$YOUR SELECTOR\\\");\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e element = \u003cspan class=\\\"hljs-variable language_\\\"\u003edocument\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003equerySelector\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;$YOUR SELECTOR\u0026quot;\u003c/span\u003e);\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e nodelist = \u003cspan class=\\\"hljs-variable language_\\\"\u003edocument\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003equerySelectorAll\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;$YOUR SELECTOR\u0026quot;\u003c/span\u003e);\"}}]]}],[\"$\",\"p\",null,{\"className\":\"note\",\"children\":\"getElementBy 跟 querySelector 傳回的資料型態不太一樣，不過初學時先忽略吧~~。\"}]]}]\n22:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"邏輯運算\",\"children\":\"邏輯運算\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"邏輯運算就跟想要達成的效果有關，在我們的範例中沒有做什麼額外的處理，只是單純的把元素的內容取出: \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"element.value\"}],\"，所以這邊就展示一下 JS 的相關語法好了~~~\"]}],[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"變數宣告\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"程式語言中常見的基本型別: 整數、浮點數、字串、布林、陣列、物件，雖然宣告上看起來有整數與浮點數之分，但數值資料都是double格式存儲。\"}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"let x1 = 10;\\nlet x2 = 10.7;\\nlet x3 = \\\"my string\\\";\\nlet x4 = true;\\nlet x5 = [\\\"A\\\", \\\"B\\\", \\\"C\\\"];\\nlet x6 = { \\\"type\\\": \\\"NPC\\\", \\\"job\\\": \\\"Coding\\\"};\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x1 = \u003cspan class=\\\"hljs-number\\\"\u003e10\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x2 = \u003cspan class=\\\"hljs-number\\\"\u003e10.7\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x3 = \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;my string\u0026quot;\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x4 = \u003cspan class=\\\"hljs-literal\\\"\u003etrue\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x5 = [\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;A\u0026quot;\u003c/span\u003e, \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;B\u0026quot;\u003c/span\u003e, \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;C\u0026quot;\u003c/span\u003e];\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x6 = { \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;type\u0026quot;\u003c/span\u003e: \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;NPC\u0026quot;\u003c/span\u003e, \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;job\u0026quot;\u003c/span\u003e: \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;Coding\u0026quot;\u003c/span\u003e};\"}}]]}]]]}],[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"運算子\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"除了基本的四則運算，JS 運算子與C語言很像，同樣有 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"++i\"}],\"、\",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"i++\"}],\"，\"]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"let x1 = 0;\\nlet x2 = x1 + 0.5;\\nlet x3 -= x2++;\\nlet x4 = x2 * 2;\\nlet x5 = x4 / 3;\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x1 = \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x2 = x1 + \u003cspan class=\\\"hljs-number\\\"\u003e0.5\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x3 -= x2++;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x4 = x2 * \u003cspan class=\\\"hljs-number\\\"\u003e2\u003c/span\u003e;\\n\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e x5 = x4 / \u003cspan class=\\\"hljs-number\\\"\u003e3\u003c/span\u003e;\"}}]]}]]]}],[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"流程控制\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"底下展示的是最常用的 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"if-else\"}],\" 跟 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"for-loop\"}],\" 的範例: 遍歷一個物件陣列，然後再根據 value 大小進行統計。\"]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"// elements是陣列，內部元素是物件\\nfor (let i = 0; i \u003c elements.length; i++) {\\n    if (elements[i][\\\"value\\\"] \u003e 10) {\\n        a++;\\n    } else if (elements[i][\\\"value\\\"] \u003e 3) {\\n        b++;\\n    } else {\\n        c++;\\n    }\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// elements是陣列，內部元素是物件\u003c/span\u003e\\n\u003cspan class=\\\"hljs-keyword\\\"\u003efor\u003c/span\u003e (\u003cspan class=\\\"hljs-keyword\\\"\u003elet\u003c/span\u003e i = \u003cspan class=\\\"hljs-number\\\"\u003e0\u003c/span\u003e; i \u0026lt; elements.\u003cspan class=\\\"hljs-property\\\"\u003elength\u003c/span\u003e; i++) {\\n    \u003cspan class=\\\"hljs-keyword\\\"\u003eif\u003c/span\u003e (elements[i][\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;value\u0026quot;\u003c/span\u003e] \u0026gt; \u003cspan class=\\\"hljs-number\\\"\u003e10\u003c/span\u003e) {\\n        a++;\\n    } \u003cspan class=\\\"hljs-keyword\\\"\u003eelse\u003c/span\u003e \u003cspan class=\\\"hljs-keyword\\\"\u003eif\u003c/span\u003e (elements[i][\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;value\u0026quot;\u003c/span\u003e] \u0026gt; \u003cspan class=\\\"hljs-number\\\"\u003e3\u003c/span\u003e) {\\n        b++;\\n    } \u003cspan class=\\\"hljs-keyword\\\"\u003eelse\u003c/span\u003e {\\n        c++;\\n    }\\n}\"}}]]}]]]}],\"$L26\"]]}]\n23:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"顯示\",\"children\":\"顯示\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"處理後的資料自然是要顯示出來，才能給使用者瀏覽，常見有三種方式能夠達成:\"}],[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"console.log()\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"這主要是給程式開發人員 debug 使用的，在 JS 中使用此指令 ex: \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"console.log(\\\"Hi\\\");\"}],\"，會在開發者工具的主控台顯示 \\\"Hi\\\"，至於這個主控台可以點選 F12 即可檢視，想看效果可以點擊 \",[\"$\",\"$L27\",null,{}],\" 按鈕即可在 console 顯示 \\\"Hi\\\"。\"]}]]}],[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"alert()\"}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"相較於 console 一般人不會看到，alert 則是會產生一個跳出視窗通知使用者，來試著點看看吧: \",[\"$\",\"$L28\",null,{}],\"。\"]}]]}],[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"修改 HTML 元素\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"前兩個方法的用途比較特殊，最常見的顯示方式還是直接修改 HTML 網頁資料，要修改現有元素的資料只需要指定此元素的 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"textContent\"}],\", \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"innerText\"}],\", \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"innterHTML\"}],\":\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"// diplay是元素\\ndisplay.textContent = \\\"demo message\\\";\\ndisplay.innerText = \\\"demo message\\\";\\ndisplay.innerHTML = \\\"\u003cb\u003edemo message\u003c/b\u003e\\\";\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-comment\\\"\u003e// diplay是元素\u003c/span\u003e\\ndisplay.\u003cspan class=\\\"hljs-property\\\"\u003etextContent\u003c/span\u003e = \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;demo message\u0026quot;\u003c/span\u003e;\\ndisplay.\u003cspan class=\\\"hljs-property\\\"\u003einnerText\u003c/span\u003e = \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;demo message\u0026quot;\u003c/span\u003e;\\ndisplay.\u003cspan class=\\\"hljs-property\\\"\u003einnerHTML\u003c/span\u003e = \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;\u0026lt;b\u0026gt;demo message\u0026lt;/b\u0026gt;\u0026quot;\u003c/span\u003e;\"}}]]}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"textContent\"}],\" 跟 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"innerText\"}],\" 只會把內容物當純文字，兩者間的差異在於 innerText 會額外考慮渲染 (render) 的結果，因此會額外考慮 CSS 的設定，這點在取得元素內容時才會顯現，在以下的範例中，\",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"textContent\"}],\" 得到的是 hello，而 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"innerText\"}],\" 則是 HELLO。\"]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"HTML\"}],[\"$\",\"$L1b\",null,{\"text\":\"\u003ch1 class=\\\"uppercase\\\"\u003ehello\u003ch1\u003e\"}]]}],[\"$\",\"code\",null,{\"className\":\"html hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003eh1\u003c/span\u003e \u003cspan class=\\\"hljs-attr\\\"\u003eclass\u003c/span\u003e=\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;uppercase\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003ehello\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003eh1\u003c/span\u003e\u0026gt;\u003c/span\u003e\"}}]]}],[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"CSS\"}],[\"$\",\"$L1b\",null,{\"text\":\"h1.uppercase {\\n    text-transform: uppercase;\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"css hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-selector-tag\\\"\u003eh1\u003c/span\u003e\u003cspan class=\\\"hljs-selector-class\\\"\u003e.uppercase\u003c/span\u003e {\\n    \u003cspan class=\\\"hljs-attribute\\\"\u003etext-transform\u003c/span\u003e: uppercase;\\n}\"}}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"至於 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"innterHTML\"}],\" 則是會將內容物當成 HTML 標籤，所以\u003cb\u003edemo message\u003c/b\u003e會視為加粗文字的標籤。當然我們也可以透過這種方式添加多層的 HTML 元素，但以程式的角度來說不太方便管理，通常會採用另一種方式:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"anchor = document.createElement(\\\"a\\\");\\nanchor.innerHTML = \\\"my web\\\";\\nanchor.setAttribute(\\\"href\\\", \\\"https://personalworkingspace.github.io/\\\");\\nanchor.style.color = \\\"blue\\\";\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"anchor = \u003cspan class=\\\"hljs-variable language_\\\"\u003edocument\u003c/span\u003e.\u003cspan class=\\\"hljs-title function_\\\"\u003ecreateElement\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;a\u0026quot;\u003c/span\u003e);\\nanchor.\u003cspan class=\\\"hljs-property\\\"\u003einnerHTML\u003c/span\u003e = \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;my web\u0026quot;\u003c/span\u003e;\\nanchor.\u003cspan class=\\\"hljs-title function_\\\"\u003esetAttribute\u003c/span\u003e(\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;href\u0026quot;\u003c/span\u003e, \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;https://personalworkingspace.github.io/\u0026quot;\u003c/span\u003e);\\nanchor.\u003cspan class=\\\"hljs-property\\\"\u003estyle\u003c/span\u003e.\u003cspan class=\\\"hljs-property\\\"\u003ecolor\u003c/span\u003e = \u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;blue\u0026quot;\u003c/span\u003e;\"}}]]}],\"$L29\"]}]]]}]]]}]\n2a:T584,\u003cspan class=\"hljs-variable language_\"\u003ewindow\u003c/span\u003e.\u003cspan class=\"hljs-property\"\u003eonload\u003c/span\u003e = \u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003e\u003c/span\u003e) {\n    \u003cspan class=\"hljs-title function_\"\u003esetDemo\u003c/span\u003e();\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003esetDemo\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003e\u003c/span\u003e) {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e button = \u003cspan class=\"hljs-variable language_\"\u003edocument\u003c/span\u003e.\u003cspan class=\"hljs-title function_\"\u003egetElementById\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;demo-button\u0026quot;\u003c/span\u003e);\n    button.\u003cspan class=\"hljs-property\"\u003eonclick\u003c/span\u003e = updateDemoDisplay;\n}\n\n\u003cspan class=\"hljs-keyword\"\u003efunction\u003c/span\u003e \u003cspan class=\"hljs-title function_\"\u003eupdateDemoDisplay\u003c/span\u003e(\u003cspan class=\"hljs-params\"\u003e\u003c/span\u003e) {\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e text = \u003cspan class=\"hljs-variable language_\"\u003edocument\u003c/span\u003e.\u003cspan class=\"hljs-title function_\"\u003egetElementById\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;demo-input\u0026quot;\u003c/span\u003e);\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e value = text.\u003cspan class=\"hljs-property\"\u003evalue\u003c/span\u003e;\n    \u003cspan class=\"hljs-keyword\"\u003elet\u003c/span\u003e display = \u003cspan class=\"hljs-variable language_\"\u003edocument\u003c/span\u003e.\u003cspan class=\"hljs-title function_\"\u003egetElementById\u003c/span\u003e(\u003cspan class=\"hljs-string\"\u003e\u0026quot;demo-display\u0026quot;\u003c/span\u003e);\n    display.\u003cspan class=\"hljs-property\"\u003etextContent\u003c/span\u003e = value;\n}24:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"範例\",\"children\":\"範例\"}],[\"$\",\"hr\",null,{}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"要引用 JS code 到 HTML 文件中，首先得創立一個 JS 檔案 ex: script.js，然後在 head 或 body 內填入以下內容:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"HTML\"}],[\"$\",\"$L1b\",null,{\"text\":\"\u003cscript src=\\\"script.js\\\"\u003e\u003c/script\u003e \u003c!-- 載入 JS 檔案 --\u003e\"}]]}],[\"$\",\"code\",null,{\"className\":\"html hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;\u003cspan class=\\\"hljs-name\\\"\u003escript\u003c/span\u003e \u003cspan class=\\\"hljs-attr\\\"\u003esrc\u003c/span\u003e=\u003cspan class=\\\"hljs-string\\\"\u003e\u0026quot;script.js\u0026quot;\u003c/span\u003e\u0026gt;\u003c/span\u003e\u003cspan class=\\\"hljs-tag\\\"\u003e\u0026lt;/\u003cspan class=\\\"hljs-name\\\"\u003escript\u003c/span\u003e\u0026gt;\u003c/span\u003e \u003cspan class=\\\"hljs-comment\\\"\u003e\u0026lt;!-- 載入 JS 檔案 --\u0026gt;\u003c/span\u003e\"}}]]}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"至於 script.js 的內容，底下提供 Demo 的 JS 範例:\",[\"$\",\"pre\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"code-bar\",\"children\":[[\"$\",\"h4\",null,{\"children\":\"JAVASCRIPT\"}],[\"$\",\"$L1b\",null,{\"text\":\"window.onload = function() {\\n    setDemo();\\n}\\n\\nfunction setDemo() {\\n    let button = document.getElementById(\\\"demo-button\\\");\\n    button.onclick = updateDemoDisplay;\\n}\\n\\nfunction updateDemoDisplay() {\\n    let text = document.getElementById(\\\"demo-input\\\");\\n    let value = text.value;\\n    let display = document.getElementById(\\\"demo-display\\\");\\n    display.textContent = value;\\n}\"}]]}],[\"$\",\"code\",null,{\"className\":\"javascript hljs\",\"dangerouslySetInnerHTML\":{\"__html\":\"$2a\"}}]]}]]}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[\"讓我們說明每個 function 的功能吧:\",[\"$\",\"ul\",null,{\"className\":\"content-ul\",\"children\":[[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"window.onload\"}],\" - 前面提到 JS 應用需要提取 HTML 元素，但 HTML 元素必須等網頁載入後 (onload) 才會存在，所以建議是把主要執行的部分放到 \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"window.onload\"}],\" 裡面呼叫，避免找不到元素。\"]}],[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"setDemo\"}],\" - 學會了 JS 生成網頁的三個步驟後，你可能會發現還少了點甚麼，就是觸發事件，前面說的流程都是在我們觸發一個事件後才會開始跑: 點擊按鈕，而 JS 中 HTML 元素都能設定 click 事件: \",[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"button.onclick = updateDemoDisplay\"}],\"。\"]}],\"$L2b\"]}]]}]]]}]\n25:[\"$\",\"section\",null,{\"className\":\"L1-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L1-section-title\",\"id\":\"總結\",\"children\":\"總結\"}],[\"$\",\"hr\",null,{}],[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"這邊介紹了一點 Javascript 的皮毛，實現了動態生成網頁內容，加上前面幾篇介紹過的 HTML 跟 CSS，我們已經把網頁設定所需的三大技術學會了 (剩下就是精進了~~~)，接下來讓我們把搭建的網頁從 localhost 搬到正式的對外網路吧，讓他成為真正的網站!\"}]]}]\n26:[\"$\",\"section\",null,{\"className\":\"L2-section\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"L2-section-title\",\"children\":\"字串處理\"}],[[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":\"網頁資料的動態產生很常會涉及到字串處理，因為得修改 HTML 文件內容，這邊提供一些常用的指令:\"}],[\"$\",\"table\",null,{\"className\":\"content-table\",\"children\":[[\"$\",\"colgroup\",null,{\"children\":[[\"$\",\"col\",null,{\"style\":{\"width\":\"35%\"}}],[\"$\",\"col\",null,{\"style\":{\"width\":\"25%\"}}],[\"$\",\"col\",null,{\"style\":{\"width\":\"40%\"}}]]}],[\"$\",\"thead\",null,{\"children\":[\"$\",\"tr\",null,{\"children\":[[\"$\",\"th\",null,{\"children\":\"Method\"}],[\"$\",\"th\",null,{\"children\":\"Function\"}],[\"$\",\"th\",null,{\"children\":\"Example\"}]]}]}],[\"$\",\"tbody\",null,{\"children\":[[\"$\",\"tr\",null,{\"children\":[[\"$\",\"td\",null,{\"children\":\"length\"}],[\"$\",\"td\",null,{\"children\":\"字串長度\"}],[\"$\",\"td\",null,{\"children\":\"\\\"npc\\\".length → 5\"}]]}],[\"$\",\"tr\",null,{\"children\":[[\"$\",\"td\",null,{\"children\":\"substring(start, end)\"}],[\"$\",\"td\",null,{\"children\":\"子字串(不含 end)\"}],[\"$\",\"td\",null,{\"children\":\"\\\"npc\\\".substring(0, 2) → \\\"np\\\"\"}]]}],[\"$\",\"tr\",null,{\"children\":[[\"$\",\"td\",null,{\"children\":\"includes(sub)\"}],[\"$\",\"td\",null,{\"children\":\"是否包含子字串\"}],[\"$\",\"td\",null,{\"children\":\"\\\"npc\\\".includes(\\\"pc\\\") → true\"}]]}],[\"$\",\"tr\",null,{\"children\":[[\"$\",\"td\",null,{\"children\":\"trim()\"}],[\"$\",\"td\",null,{\"children\":\"去除前後空白\"}],[\"$\",\"td\",null,{\"children\":\"\\\" npc \\\".trim() → \\\"npc\\\"\"}]]}],[\"$\",\"tr\",null,{\"children\":[[\"$\",\"td\",null,{\"children\":\"replace(old, new)\"}],[\"$\",\"td\",null,{\"children\":\"替換第一次出現\"}],[\"$\",\"td\",null,{\"children\":\"\\\"nnpc\\\".replace(\\\"n\\\", \\\"i\\\") → \\\"inpc\\\"\"}]]}],[\"$\",\"tr\",null,{\"children\":[[\"$\",\"td\",null,{\"children\":\"replaceAll(old, new)\"}],[\"$\",\"td\",null,{\"children\":\"替換所有出現\"}],[\"$\",\"td\",null,{\"children\":\"\\\"nnpc\\\".replaceAll(\\\"n\\\", \\\"i\\\") → \\\"iipc\\\"\"}]]}],[\"$\",\"tr\",null,{\"children\":[[\"$\",\"td\",null,{\"children\":\"split(sep)\"}],[\"$\",\"td\",null,{\"children\":\"切割成陣列\"}],[\"$\",\"td\",null,{\"children\":\"\\\"a,b,c\\\".split(\\\",\\\") → [\\\"a\\\",\\\"b\\\",\\\"c\\\"]\"}]]}]]}]]}]]]}]\n29:[\"$\",\"div\",null,{\"className\":\"content-paragraph\",\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"document.createElement\"}],\" 用來創造 HTML 的元素，上面創造一個 anchor，創造出來的元素跟我們用 getElementBy 取得的是一樣的，能夠替他設定 innerHTML、attribute 以及 style。\"]}]\n2b:[\"$\",\"li\",null,{\"children\":[[\"$\",\"code\",null,{\"className\":\"inline\",\"children\":\"updateDemoDisplay\"}],\" - 這塊就是前面提到的三個流程，我們取得使用者輸入資料的元素和之後要顯示的區塊、提取輸入的字串、設定顯示區塊內部的字串。\"]}]\n12:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n2c:I[27201,[\"$2\"],\"IconMark\"]\nf:null\n15:[[\"$\",\"title\",\"0\",{\"children\":\"Javascript 初學筆記\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"要提供使用者動態回饋的話則要仰賴 Javascript，本篇文章簡單介紹一下 Javascript 如何讀取網頁的...\"}],[\"$\",\"meta\",\"2\",{\"name\":\"author\",\"content\":\"MJ CHEN\"}],[\"$\",\"meta\",\"3\",{\"name\":\"keywords\",\"content\":\"初學筆記,Javascript\"}],[\"$\",\"link\",\"4\",{\"rel\":\"icon\",\"href\":\"/image/INPC-ICON.png\"}],[\"$\",\"$L2c\",\"5\",{}]]\n"])</script></body></html>
